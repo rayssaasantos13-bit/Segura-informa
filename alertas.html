@@ -1,48 +1,49 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela de Alerta</title>
-    <style>
-        @import url(estilo.css);
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tela de Alerta</title>
+  <style>
+    @import url(estilo.css);
+  </style>
 </head>
 
 <body>
-  
-    <div class="container">
 
-        <div class="field">
-            <label for="perfil">Selecione a área que deseja</label>
-            <select id="perfil" name="perfil" required>
-              <option value="" selected disabled>Selecionar</option>
-              <option>Almoxarifado</option>
-              <option>Área de lazer</option>
-              <option>Depósito de equipamentos pesados</option>
-              <option>Gerador</option>
-              <option>Logística</option>
-              <option>Marketing Digital</option>
-              <option>Produção 1</option>
-              <option>Produção 2</option>
-              <option>Recursos Humanos/RH</option>
-              <option>TI</option>
-              <option>Produção química</option>
-              
-            </select>
-          </div>
+<!--MOSTRAR OS EQUIPAMENTOS QUE DEVEM OU NÃO SER USADOS EM CADA SETOR-->
+  <div class="container">
 
-        <img src="img/logo.png" width="90px" style="float: left;">
-        <img src="img/imagem4.png" width="30px" style="float:right;">
-        <br><br>
-        <br><br>
-        <h1>Alertas</h1>
-        <br><br>
-          <label for="perfil">Perfil</label>
-            <select id="perfil" name="perfil" required>
-              <option value="" selected disabled>Selecione</option>
-              <option>Funcionário</option>
-              <option>Gestão</option>
-            </select>
-        <img src="img/imagem7.png" width="340px" style="float: left;">
-           
+    <img src="img/logo.png" width="90px" style="float: left;">
+    <img src="img/imagem4.png" width="30px" style="float:right;">
+    <br><br>
+    <br><br>
+    <h1>Alertas</h1>
+    <div class="field">
+
+      <label for="perfil">
+        <h2>Selecione a área que deseja</h2>
+      </label>
+      <select id="perfil" name="perfil" required>
+        <option value="" selected disabled>Selecionar</option>
+        <option>Almoxarifado</option>
+        <option>Área de lazer</option>
+        <option>Depósito de equipamentos pesados</option>
+        <option>Gerador</option>
+        <option>Logística</option>
+        <option>Marketing Digital</option>
+        <option>Produção 1</option>
+        <option>Produção 2</option>
+        <option>Recursos Humanos/RH</option>
+        <option>TI</option>
+        <option>Produção química</option>
+      </select>
+    </div>
+
+    <img src="img/imagem7.png" width="340px" style="float: left;">
+
+
+    <script src="JavaScript.js" type="text/javascript">
+    </script>
+    
+    
