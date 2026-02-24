@@ -1,18 +1,33 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadrasta o Usuário</title>
-    <style>
-        @import url(estilo.css);
-    </style>
+    <title>Cadastra o Usuário</title>
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="menu.css">
 </head>
-
 <body>
-    <div class="container">
+    <!-- MENU LATERAL -->
+    <div class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <h2>Segura Informa</h2>
+        </div>
+        <span class="close-btn" onclick="toggleMenu()">&times;</span>
+        <a href="painel de iniciante.html">🏠 Início</a>
+        <a href="mapa de risco.html">🗺️ Mapa de Risco</a>
+        <a href="segurança na operação.html">⚙️ Segurança na Operando</a>
+        <a href="Alertas.html">🔔 Alertas</a>
+        <a href="Conta.html">👤 Conta</a>
+        <a href="Login.html">🚪 Sair</a>
+    </div>
+
+    <!-- ÍCONE DO MENU -->
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+        <div class="container">
         <img src="img/logo.png" width="90px" style="float: left;">
-        <img src="img/imagem4.png" width="30px" style="float:right;">
         <br><br>
         <h1>Painel de iniciante</h1>
 
@@ -22,3 +37,8 @@
         <br><br>
         <img src="img/imagem3.png" width="350px">
         <button style="background-color: #ffffff; color:#000000;">Ver mais</button>
+    </div>
+
+    <script src="JavaScript.js"></script>
+</body>
+</html>

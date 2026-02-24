@@ -54,8 +54,6 @@ label {
     gap: 5px;
 }
 
-
-
 button {
     width: 95%;
     background-color: #0077b6;
@@ -66,56 +64,6 @@ button {
     cursor: pointer;
     font-size: 14px;
     margin-top: 10px;
-}
-
-body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(180deg, #ffffff, #ffffff);
-    font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.container {
-    background: rgb(255, 255, 255);
-    width: 330px;
-    padding: 20px 20px 20px 20px;
-    border-color: darkgray;
-    text-align: center;
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.3);
-    min-height: 60vh
-}
-
-.logo {
-    width: 90px;
-    margin-bottom: 10px;
-}
-
-h2 {
-    font-size: 20px;
-    color: #000000;
-    margin-bottom: 20px;
-}
-
-input {
-    width: 90%;
-    padding: 8px;
-    margin: 6px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-label {
-    font-size: 12px;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 8px;
-    gap: 5px;
 }
 
 label a {
@@ -127,25 +75,11 @@ label a:hover {
     text-decoration: underline;
 }
 
-button {
-    width: 95%;
-    background-color: #0077b6;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-
 p {
     font-size: 13px;
     color: #333;
     margin-top: 12px;
 }
-
 
 p a:hover {
     text-decoration: underline;
@@ -163,31 +97,6 @@ html,
 body {
     height: 100%;
     margin: 0;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(180deg, #ffffff, #ffffff);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.container {
-    background: rgb(255, 255, 255);
-    width: 330px;
-    padding: 20px 20px 20px 20px;
-    border-color: darkgray;
-    text-align: center;
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.3);
-    min-height: 60vh
-}
-
-h2 {
-    font-size: 20px;
-    margin-bottom: 20px;
-    color: #000000;
 }
 
 input {
@@ -229,58 +138,6 @@ button {
     margin-top: 10px;
 }
 
-body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(180deg, #ffffff, #ffffff);
-    font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.container {
-    background: rgb(255, 255, 255);
-    width: 330px;
-    padding: 20px 20px 20px 20px;
-    border-color: darkgray;
-    text-align: center;
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.3);
-    min-height: 60vh
-}
-
-.logo {
-    width: 90px;
-    margin-bottom: 10px;
-}
-
-h1 {
-    font-size: 20px;
-    color: #000000;
-    margin-bottom: 20px;
-}
-
-input {
-    width: 90%;
-    padding: 8px;
-    margin: 6px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-label {
-    font-size: 12px;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 8px;
-    gap: 5px;
-}
-
-
-
 button {
     width: 95%;
     background-color: #e9882d;
@@ -291,209 +148,6 @@ button {
     cursor: pointer;
     font-size: 14px;
     margin-top: 10px;
-}
-
-body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(180deg, #ffffff, #ffffff);
-    font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.container {
-    background: rgb(255, 255, 255);
-    width: 330px;
-    padding: 20px 20px 20px 20px;
-    border-color: darkgray;
-    text-align: center;
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.3);
-    min-height: 60vh
-}
-
-.logo {
-    width: 90px;
-    margin-bottom: 10px;
-}
-
-h1 {
-    font-size: 20px;
-    color: #000000;
-    margin-bottom: 20px;
-}
-
-h2 {
-    font-size: 13px;
-    color: #000000;
-    margin-bottom: 13px;
-}
-
-input {
-    width: 90%;
-    padding: 8px;
-    margin: 6px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-label {
-    font-size: 12px;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 8px;
-    gap: 5px;
-}
-
-
-
-button {
-    width: 95%;
-    background-color: #e9882d;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(180deg, #ffffff, #ffffff);
-    font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.container {
-    background: rgb(255, 255, 255);
-    width: 330px;
-    padding: 20px 20px 20px 20px;
-    border-color: darkgray;
-    text-align: center;
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.3);
-    min-height: 60vh
-}
-
-.logo {
-    width: 90px;
-    margin-bottom: 10px;
-}
-
-h1 {
-    font-size: 20px;
-    color: #000000;
-    margin-bottom: 20px;
-}
-
-h2 {
-    font-size: 13px;
-    color: #000000;
-    margin-bottom: 13px;
-}
-
-input {
-    width: 90%;
-    padding: 8px;
-    margin: 6px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-label {
-    font-size: 12px;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 8px;
-    gap: 5px;
-}
-
-
-
-button {
-    width: 95%;
-    background-color: #0077b6;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
-}
-body {
-margin: 0;
-height: 100vh;
-background: linear-gradient(180deg, #ffffff, #ffffff);
-font-family: Arial, sans-serif;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
-.container {
-background: rgb(255, 255, 255);
-    width: 330px;
-    padding: 20px 20px 20px 20px;
-   border-color: darkgray;
-    text-align: center;
-    box-shadow: 0px 0px 12px rgba(0,0,0,0.3);
-    min-height: 60vh
-}
-
-.logo {
-width: 90px;
-margin-bottom: 10px;
-}
-
-h1 {
-font-size: 20px;
-color: #000000;
-margin-bottom: 20px;
-}
-
-input {
-width: 90%;
-padding: 8px;
-margin: 6px 0;
-border: 1px solid #ccc;
-border-radius: 5px;
-font-size: 14px;
-}
-
-label {
-font-size: 12px;
-color: #333;
-display: flex;
-align-items: center;
-justify-content: center;
-margin-top: 8px;
-gap: 5px;
-}
-
-
-
-button {
-width: 95%;
-background-color: #0077b6;
-color: white;
-border: none;
-padding: 10px;
-border-radius: 6px;
-cursor: pointer;
-font-size: 14px;
-margin-top: 10px;
 }
 
 body {
@@ -514,40 +168,67 @@ body {
   font-size: 20px;
 }
 
-.menu {
-  display: none;
-  flex-direction: column;
-  background: #444;
+/* ======= MENU ICON ======= */
+.menu-icon {
   position: absolute;
-  top: 50px;
-  right: 10px;
-  width: 150px;
-  border-radius: 5px;
-}
-
-.menu a {
-  color: white;
-  padding: 10px;
-  text-decoration: none;
-}
-
-.menu a:hover {
-  background: #555;
-}
-
-.hamburger {
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
   cursor: pointer;
-  width: 30px;
+  color: #004AAD;
 }
 
-.hamburger div {
-  background: white;
-  height: 4px;
-  margin: 5px 0;
-  border-radius: 2px;
+/* ======= MENU LATERAL ======= */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 220px;
+  height: 100%;
+  background-color: #004AAD;
+  color: white;
+  padding-top: 60px;
   transition: 0.3s;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 3px 0 10px rgba(0,0,0,0.2);
 }
 
-.menu.active {
-  display: flex;
+.side-menu-header {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.side-menu-header img {
+  width: 45px;
+}
+
+.side-menu-header h2 {
+  margin: 5px 0 0 0;
+  font-size: 16px;
+  color: #fff;
+}
+
+.side-menu a {
+  display: block;
+  color: white;
+  padding: 12px 20px;
+  text-decoration: none;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.side-menu a:hover {
+  background-color: #003680;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
 }
