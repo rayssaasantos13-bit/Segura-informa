@@ -2,8 +2,8 @@ function imprimir() {
     window.print();
 }
 function toggleMenu() {
-  const menu = document.getElementById("sideMenu");
-  menu.style.left = (menu.style.left === "0px") ? "-250px" : "0px";
+    const menu = document.getElementById("sideMenu");
+    menu.style.left = (menu.style.left === "0px") ? "-250px" : "0px";
 }
 
 const perguntas = [
@@ -54,7 +54,7 @@ const perguntas = [
     },
     {
         pergunta: "Qual destes é um exemplo de EPC (Equipamento de Proteção Coletiva)? ",
-        opcoes: ["Luvas","Guarda-corpo","Botas"],
+        opcoes: ["Luvas", "Guarda-corpo", "Botas"],
         correta: 1
     },
 
@@ -93,4 +93,139 @@ function responder(opcaoEscolhida) {
 }
 
 mostrarPergunta();
+
+
+const dadosEPIs = {
+    almoxarifado: {
+        obrigatorios: ["Capacete", "Botina", "Colete Refletivo",],
+        proibidos: ["Alimentos", "Roupas largas", "Fone de ouvido"]
+    },
+
+    lazer: {
+        obrigatorios: ["Fardamento da empresa"],
+        proibidos: ["EPIs não higienizado",]
+
+    },
+
+    lab: {
+        obrigatorios: ["Jaleco", "Óculos de Proteção", "Luva de Látex"],
+        proibidos: ["Sandália", "Alimentos"]
+    },
+
+    deposito: {
+        obrigatorios: ["Capacete", "Botina", "Colete refletivo", "Óculos de proteção", "Protetor auricular"],
+        probidos: ["Roupas soltas"]
+    },
+
+    gerador: {
+        obrigatorios: ["Protetor auricular", "Óculos de proteção", "Luvas isolantes", "Capacete", "Botina", "Protetor Facial"],
+        probidos: ["Adornos metalicos", "Luvas molhadas"]
+    },
+    logistica: {
+        obrigatorios: ["Colete refletivo", "Botina", "Capacete"],
+        probidos: ["Fones de ouvido", "Roupas largas"]
+    },
+    marketing: {
+        obrigatorios: ["Apoio de punho", "Óculos com filtro"],
+        probidos: ["Alimentos"]
+    },
+
+    producao1: {
+        obrigatorios: ["Capacete", "Óculos de proteção", "Protetor auricular", "Botina", "Máscara respiratória", "Luvas adequadas"],
+        probidos: ["Adornos", "Roupas lagas", "Tênis"]
+    },
+
+    producao2: {
+        obrigatorios: ["Capacete", "Óculos de proteção", "Protetor auricular", "Botina", "Máscara respiratória", "Luvas adequadas"],
+        probidos: ["Adornos", "Roupas lagas", "Tênis"]
+    },
+
+    rh: {
+        obrigatorios: ["Ajustes ergonômicos (NR-17)"],
+        probidos: ["Não se aplica"]
+    },
+
+       ti: {
+        obrigatorios: ["Pulseira antiestática", "Calçado fechado", "Óculos de proteção"],
+        probidos: ["Objetos metálicos", "Sapatos abertos"]
+    },
+
+
+
+
+};
+
+function mostrarEPIs() {
+    const area = document.getElementById("selecionarArea").value;
+    const infoepis = document.getElementById("infoepis");
+    const checklist = document.getElementById("checklist");
+    const resultado = document.getElementById("resultado");
+
+    resultado.innerHTML = "";
+    checklist.innerHTML = "";
+
+    if (!area) {
+        infoepis.innerHTML = "";
+        return;
+    }
+
+    const dados = dadosEPIs[area];
+
+    infoepis.innerHTML = `
+        <div class="epi-box obrigatorio">
+            <strong>EPIs Obrigatórios:</strong>
+            <ul>
+                ${dados.obrigatorios.map(epi => `<li>${epi}</li>`).join("")}
+            </ul>
+        </div>
+
+        <div class="epi-box proibido">
+            <strong>EPIs Proibidos:</strong>
+            <ul>
+                ${dados.proibidos.map(epi => `<li>${epi}</li>`).join("")}
+            </ul>
+        </div>
+    `;
+
+    checklist.innerHTML = `
+        <strong>Marque os EPIs que você está usando:</strong>
+        ${dados.obrigatorios.map(epi => `
+            <div>
+                <input type="checkbox" value="${epi}" class="epiCheck"> ${epi}
+            </div>
+        `).join("")}
+    `;
+}
+
+function validarEPIs() {
+    const area = document.getElementById("selecionarArea").value;
+    const resultado = document.getElementById("resultado");
+
+    if (!area) {
+        resultado.innerHTML = "Selecione uma área primeiro!";
+        resultado.style.color = "orange";
+        return;
+    }
+
+    const obrigatorios = dadosEPIs[area].obrigatorios;
+    const checkboxes = document.querySelectorAll(".epiCheck");
+    const marcados = [];
+
+    checkboxes.forEach(cb => {
+        if (cb.checked) {
+            marcados.push(cb.value);
+        }
+    });
+
+    const faltando = obrigatorios.filter(epi => !marcados.includes(epi));
+
+    if (faltando.length === 0) {
+        resultado.innerHTML = " Todos os EPIs obrigatórios estão sendo utilizados. Acesso liberado!";
+        resultado.style.color = "green";
+    } else {
+        resultado.innerHTML = ` Faltando EPIs obrigatórios: ${faltando.join(", ")}`;
+        resultado.style.color = "red";
+    }
+}
+
 
