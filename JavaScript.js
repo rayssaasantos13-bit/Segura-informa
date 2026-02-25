@@ -229,3 +229,57 @@ function validarEPIs() {
 }
 
 
+function cadastrarUsuario(){
+    const nome = document.getElementById("nome").value;
+    const mat = document.getElementById("matricula").value;
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("senha").value;
+    
+    fetch('', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json',
+},
+body: JSON.stringify({
+nome: nome,
+matricula: mat,
+email: email,
+senha: senha
+
+
+}
+
+),
+}).then(response =>{ 
+  
+    response.json()})
+.then(data => console.log(data))
+.catch(error => {
+     window.location.href = "login.html";
+console.error("Erro:", error); // tratamento de erro
+});
+}
+
+function fazerLogin(){
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("senha").value;
+
+    fetch('', {
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify({
+            email: email,
+            senha:senha
+        })
+    }).then(response =>{
+
+        response.json()})
+        then(data => console.log(data))
+.catch(error => {
+     window.location.href = "mapa de risco.html";
+console.error("Erro:", error);
+});
+}
+

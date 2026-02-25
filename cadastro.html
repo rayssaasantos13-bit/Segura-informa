@@ -18,18 +18,19 @@
         <h1>Cadastro de Usuário</h1>
         <br><br>
         <form action="">
-            <input type="text" placeholder="Nome completo">
-            <input type="text" placeholder="Digite seu número de matrícula">
-            <input type="email" placeholder="Digite seu Email">
-            <input type="password" placeholder="Crie uma nova senha">
-            <input type="password" placeholder="Confirme sua nova senha">
+            <input type="text" placeholder="Nome completo" id="nome">
+            <input type="text" placeholder="Digite seu número de matrícula" id="matricula">
+            <input type="email" placeholder="Digite seu Email" id="email">
+            <input type="password" placeholder="Crie uma nova senha" id="senha">
+            <input type="password" placeholder="Confirme sua nova senha" id="confirmarSenha">
             <br><br>
 
             <br><br>
-            <button style="background-color: #D9661c; color:#ffffff;">Cadrastar</button>
+           <button type="button" onclick="cadastrarUsuario()" style="background-color: #D9661c; color:#ffffff;">Cadastrar</button>
             <p><a href="telasistema.html"></a></p>
         </form>
     </div>
+    <script src="JavaScript.js" type="text/javascript"></script>
 </body>
 
 </html>
