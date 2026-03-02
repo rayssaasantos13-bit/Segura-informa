@@ -256,7 +256,7 @@ senha: senha
 .then(data => console.log(data))
 .catch(error => {
      window.location.href = "login.html";
-console.error("Erro:", error); // tratamento de erro
+console.error("Erro:", error); 
 });
 }
 
@@ -283,3 +283,11 @@ console.error("Erro:", error);
 });
 }
 
+function toggleMenu() {
+  const menu = document.getElementById("menu");
+  if (menu.style.display === "flex") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "flex";
+  }
+}
