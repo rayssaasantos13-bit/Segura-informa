@@ -145,7 +145,7 @@ const dadosEPIs = {
         probidos: ["Não se aplica"]
     },
 
-       ti: {
+    ti: {
         obrigatorios: ["Pulseira antiestática", "Calçado fechado", "Óculos de proteção"],
         probidos: ["Objetos metálicos", "Sapatos abertos"]
     },
@@ -229,65 +229,125 @@ function validarEPIs() {
 }
 
 
-function cadastrarUsuario(){
+function cadastrarUsuario() {
     const nome = document.getElementById("nome").value;
     const mat = document.getElementById("matricula").value;
-    const email = document.getElementById("email").value;
-    const senha = document.getElementById("senha").value;
-    
-    fetch('', {
-method: 'POST',
-headers: {
-'Content-Type': 'application/json',
-},
-body: JSON.stringify({
-nome: nome,
-matricula: mat,
-email: email,
-senha: senha
-
-
-}
-
-),
-}).then(response =>{ 
-  
-    response.json()})
-.then(data => console.log(data))
-.catch(error => {
-     window.location.href = "login.html";
-console.error("Erro:", error); 
-});
-}
-
-function fazerLogin(){
     const email = document.getElementById("email").value;
     const senha = document.getElementById("senha").value;
 
     fetch('', {
         method: 'POST',
         headers: {
-            'Content-Type':'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            nome: nome,
+            matricula: mat,
+            email: email,
+            senha: senha
+
+
+        }
+
+        ),
+    }).then(response => {
+
+        response.json()
+    })
+        .then(data => console.log(data))
+        .catch(error => {
+            window.location.href = "login.html";
+            console.error("Erro:", error);
+        });
+}
+
+function fazerLogin() {
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("senha").value;
+
+    fetch('', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify({
             email: email,
-            senha:senha
+            senha: senha
         })
-    }).then(response =>{
+    }).then(response => {
 
-        response.json()})
-        then(data => console.log(data))
-.catch(error => {
-     window.location.href = "mapa de risco.html";
-console.error("Erro:", error);
-});
+        response.json()
+    })
+    then(data => console.log(data))
+        .catch(error => {
+            window.location.href = "mapa de risco.html";
+            console.error("Erro:", error);
+        });
 }
 
 function toggleMenu() {
-  const menu = document.getElementById("menu");
-  if (menu.style.display === "flex") {
-    menu.style.display = "none";
-  } else {
-    menu.style.display = "flex";
-  }
+    const menu = document.getElementById("menu");
+    if (menu.style.display === "flex") {
+        menu.style.display = "none";
+    } else {
+        menu.style.display = "flex";
+    }
+}
+
+function mostrarInfAreas() {
+    const areaSelecionada = document.getElementById("areaSelect").value;
+    const info = document.getElementById("InfoArea");
+
+    if (areaSelecionada === "almoxarifado") {
+        info.innerHTML = "<h3>Almoxarifado</h3><p>Área em limpeza, pode conter riscos de quedas. Fique em alerta.</p>";
+
+    }
+
+    else if (areaSelecionada === "lazer") {
+        
+        info.innerHTML = "<h3>Área de lazer</h3><p>Área livre para circulação. Não deixe de seguir as instruções da Área!</p>";
+
+    }
+    else if (areaSelecionada === "depesito") {
+        info.innerHTML = "<h3>Depósito de equipamentos pesados</h3><p>Área livre para circulação. Não deixe de seguir as instruções da Área!</p>";
+
+    }
+
+    
+    else if (areaSelecionada === "gerador") {
+        info.innerHTML ="<h3>Gerador</h3><p>Área em manuntenção, até o momento a circulação dessa área está bloqueada.</p>";
+    }
+    else if (areaSelecionada === "logistica") {
+        info.innerHTML = "<h3>Almmoxarifado</h3><p>Área em livre para circulação limpeza, pode conter riscos de quedas. Fique em alerta!</p>";
+
+    }
+    else if (areaSelecionada === "marketing") {
+        info.innerHTML = "<h3>Marketing Digital</h3><p>Área em limpeza, pode conter riscos de quedas> Fique em alerta!</p>";
+
+    }
+    else if (areaSelecionada === "p1") {
+        info.innerHTML = "<h3>Produção 1</h3><p>Área em limpeza, pode conter riscos de quedas> Fique em alerta!</p>";
+
+    }
+     else if (areaSelecionada === "p2") {
+        info.innerHTML = "<h3>Produção 2</h3><p>Área em limpeza, pode conter riscos de quedas. Fique em alerta!</p>";
+
+    }
+ else if (areaSelecionada === "rh") {
+        info.innerHTML = "<h3>Recursos Humanos/RH</h3><p>Área em limpeza, pode conter riscos de quedas. Fique em alerta!</p>";
+
+    }
+ else if (areaSelecionada === "ti") {
+        info.innerHTML = "<h3>TI</h3><p>Área em limpeza, pode conter riscos de quedas> Fique em alerta!</p>";
+
+    }
+ else if (areaSelecionada === "pq") {
+        info.innerHTML = "<h3>Produção química</h3><p>Área em limpeza, pode conter riscos de quedas. Fique em alerta!</p>";
+
+    }
+
+
+    else{
+        info.innerHTML= "";
+    }
 }

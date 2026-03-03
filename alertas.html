@@ -15,7 +15,6 @@
 
 <body>
 
-<!--MOSTRAR OS EQUIPAMENTOS QUE DEVEM OU NÃO SER USADOS EM CADA SETOR-->
   <div class="container">
   <div class="menu-hamburguer">
       <div class="hamburguer-icon" id="hamburguer-btn">
@@ -26,14 +25,14 @@
 
       <nav class="menu-lateral" id="menu-lateral">
        <header>
-  <!-- Botão hamburguer -->
+
   <div class="menu-icon" onclick="toggleMenu()">
     ☰
   </div>
 
-  <!-- Menu -->
+
   <nav id="menu">
-  >
+  
     <a href="mapa de risco.html">Mapa de Risco</a>
     <a href="alertas.html">Alertas</a>
     <a href="Controle de EPIs.html">Controle de EPIs</a>
@@ -42,8 +41,8 @@
      <a href="login.html">Sair</a>
 
   </nav>
-  <br><br>
-  <br><br>
+  
+  
 </header>
     <img src="img/logo.png" width="90px" style="float: left;">
     
@@ -52,23 +51,24 @@
     <h1>Alertas</h1>
     <div class="field">
 
-      <label for="perfil">
+      <label for="info">
         <h2>Selecione a área que deseja</h2>
       </label>
-      <select id="perfil" name="perfil" required>
+      <select id="areaSelect" onchange="mostrarInfAreas()">
         <option value="" selected disabled>Selecionar</option>
-        <option>Almoxarifado</option>
-        <option>Área de lazer</option>
-        <option>Depósito de equipamentos pesados</option>
-        <option>Gerador</option>
-        <option>Logística</option>
-        <option>Marketing Digital</option>
-        <option>Produção 1</option>
-        <option>Produção 2</option>
-        <option>Recursos Humanos/RH</option>
-        <option>TI</option>
-        <option>Produção química</option>
+        <option value="almoxarifado">Almoxarifado</option>
+        <option value="lazer">Área de lazer</option>
+        <option value="depesito">Depósito de equipamentos pesados</option>
+        <option value="gerador">Gerador</option>
+        <option value="logistica">Logística</option>
+        <option value="marketing">Marketing Digital</option>
+        <option value="p1">Produção 1</option>
+        <option value="p2">Produção 2</option>
+        <option value="rh">Recursos Humanos/RH</option>
+        <option value="ti">TI</option>
+        <option value="pq">Produção química</option>
       </select>
+      <div id="InfoArea"></div>
     </div>
 
    
