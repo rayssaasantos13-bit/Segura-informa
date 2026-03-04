@@ -92,142 +92,6 @@ function responder(opcaoEscolhida) {
     mostrarPergunta();
 }
 
-mostrarPergunta();
-
-
-const dadosEPIs = {
-    almoxarifado: {
-        obrigatorios: ["Capacete", "Botina", "Colete Refletivo",],
-        proibidos: ["Alimentos", "Roupas largas", "Fone de ouvido"]
-    },
-
-    lazer: {
-        obrigatorios: ["Fardamento da empresa"],
-        proibidos: ["EPIs não higienizado",]
-
-    },
-
-    lab: {
-        obrigatorios: ["Jaleco", "Óculos de Proteção", "Luva de Látex"],
-        proibidos: ["Sandália", "Alimentos"]
-    },
-
-    deposito: {
-        obrigatorios: ["Capacete", "Botina", "Colete refletivo", "Óculos de proteção", "Protetor auricular"],
-        probidos: ["Roupas soltas"]
-    },
-
-    gerador: {
-        obrigatorios: ["Protetor auricular", "Óculos de proteção", "Luvas isolantes", "Capacete", "Botina", "Protetor Facial"],
-        probidos: ["Adornos metalicos", "Luvas molhadas"]
-    },
-    logistica: {
-        obrigatorios: ["Colete refletivo", "Botina", "Capacete"],
-        probidos: ["Fones de ouvido", "Roupas largas"]
-    },
-    marketing: {
-        obrigatorios: ["Apoio de punho", "Óculos com filtro"],
-        probidos: ["Alimentos"]
-    },
-
-    producao1: {
-        obrigatorios: ["Capacete", "Óculos de proteção", "Protetor auricular", "Botina", "Máscara respiratória", "Luvas adequadas"],
-        probidos: ["Adornos", "Roupas lagas", "Tênis"]
-    },
-
-    producao2: {
-        obrigatorios: ["Capacete", "Óculos de proteção", "Protetor auricular", "Botina", "Máscara respiratória", "Luvas adequadas"],
-        probidos: ["Adornos", "Roupas lagas", "Tênis"]
-    },
-
-    rh: {
-        obrigatorios: ["Ajustes ergonômicos (NR-17)"],
-        probidos: ["Não se aplica"]
-    },
-
-    ti: {
-        obrigatorios: ["Pulseira antiestática", "Calçado fechado", "Óculos de proteção"],
-        probidos: ["Objetos metálicos", "Sapatos abertos"]
-    },
-
-
-
-
-};
-
-function mostrarEPIs() {
-    const area = document.getElementById("selecionarArea").value;
-    const infoepis = document.getElementById("infoepis");
-    const checklist = document.getElementById("checklist");
-    const resultado = document.getElementById("resultado");
-
-    resultado.innerHTML = "";
-    checklist.innerHTML = "";
-
-    if (!area) {
-        infoepis.innerHTML = "";
-        return;
-    }
-
-    const dados = dadosEPIs[area];
-
-    infoepis.innerHTML = `
-        <div class="epi-box obrigatorio">
-            <strong>EPIs Obrigatórios:</strong>
-            <ul>
-                ${dados.obrigatorios.map(epi => `<li>${epi}</li>`).join("")}
-            </ul>
-        </div>
-
-        <div class="epi-box proibido">
-            <strong>EPIs Proibidos:</strong>
-            <ul>
-                ${dados.proibidos.map(epi => `<li>${epi}</li>`).join("")}
-            </ul>
-        </div>
-    `;
-
-    checklist.innerHTML = `
-        <strong>Marque os EPIs que você está usando:</strong>
-        ${dados.obrigatorios.map(epi => `
-            <div>
-                <input type="checkbox" value="${epi}" class="epiCheck"> ${epi}
-            </div>
-        `).join("")}
-    `;
-}
-
-function validarEPIs() {
-    const area = document.getElementById("selecionarArea").value;
-    const resultado = document.getElementById("resultado");
-
-    if (!area) {
-        resultado.innerHTML = "Selecione uma área primeiro!";
-        resultado.style.color = "orange";
-        return;
-    }
-
-    const obrigatorios = dadosEPIs[area].obrigatorios;
-    const checkboxes = document.querySelectorAll(".epiCheck");
-    const marcados = [];
-
-    checkboxes.forEach(cb => {
-        if (cb.checked) {
-            marcados.push(cb.value);
-        }
-    });
-
-    const faltando = obrigatorios.filter(epi => !marcados.includes(epi));
-
-    if (faltando.length === 0) {
-        resultado.innerHTML = " Todos os EPIs obrigatórios estão sendo utilizados. Acesso liberado!";
-        resultado.style.color = "green";
-    } else {
-        resultado.innerHTML = ` Faltando EPIs obrigatórios: ${faltando.join(", ")}`;
-        resultado.style.color = "red";
-    }
-}
-
 
 function cadastrarUsuario() {
     const nome = document.getElementById("nome").value;
@@ -304,7 +168,7 @@ function mostrarInfAreas() {
     }
 
     else if (areaSelecionada === "lazer") {
-        
+
         info.innerHTML = "<h3>Área de lazer</h3><p>Área livre para circulação. Não deixe de seguir as instruções da Área!</p>";
 
     }
@@ -313,9 +177,9 @@ function mostrarInfAreas() {
 
     }
 
-    
+
     else if (areaSelecionada === "gerador") {
-        info.innerHTML ="<h3>Gerador</h3><p>Área em manuntenção, até o momento a circulação dessa área está bloqueada.</p>";
+        info.innerHTML = "<h3>Gerador</h3><p>Área em manuntenção, até o momento a circulação dessa área está bloqueada.</p>";
     }
     else if (areaSelecionada === "logistica") {
         info.innerHTML = "<h3>Almmoxarifado</h3><p>Área em livre para circulação limpeza, pode conter riscos de quedas. Fique em alerta!</p>";
@@ -329,25 +193,82 @@ function mostrarInfAreas() {
         info.innerHTML = "<h3>Produção 1</h3><p>Área em limpeza, pode conter riscos de quedas> Fique em alerta!</p>";
 
     }
-     else if (areaSelecionada === "p2") {
+    else if (areaSelecionada === "p2") {
         info.innerHTML = "<h3>Produção 2</h3><p>Área em limpeza, pode conter riscos de quedas. Fique em alerta!</p>";
 
     }
- else if (areaSelecionada === "rh") {
+    else if (areaSelecionada === "rh") {
         info.innerHTML = "<h3>Recursos Humanos/RH</h3><p>Área em limpeza, pode conter riscos de quedas. Fique em alerta!</p>";
 
     }
- else if (areaSelecionada === "ti") {
+    else if (areaSelecionada === "ti") {
         info.innerHTML = "<h3>TI</h3><p>Área em limpeza, pode conter riscos de quedas> Fique em alerta!</p>";
 
     }
- else if (areaSelecionada === "pq") {
+    else if (areaSelecionada === "pq") {
         info.innerHTML = "<h3>Produção química</h3><p>Área em limpeza, pode conter riscos de quedas. Fique em alerta!</p>";
 
     }
 
 
-    else{
-        info.innerHTML= "";
+    else {
+        info.innerHTML = "";
+    }
+}
+
+function mostrarInfEpis() {
+    const areaSelecionada = document.getElementById("episSelect").value;
+    const info = document.getElementById("Infoepis");
+
+    if (areaSelecionada === "almoxarifado") {
+        info.innerHTML = "<h3>Almoxarifado</h3><p>Capacete, Botina, Colete Refletivo</p>"
+
+    }
+
+    else if (areaSelecionada === "lazer") {
+
+        info.innerHTML = "<h3>Área de lazer</h3><p>Fardamento da empresa</p>";
+
+    }
+    else if (areaSelecionada === "depesito") {
+        info.innerHTML = "<h3>Depósito de equipamentos pesados</h3><p>Colete refletivo, Botina, Capacete,</p>";
+
+    }
+
+    else if (areaSelecionada === "gerador") {
+        info.innerHTML = "<h3>Gerador</h3><p>Protetor auricular, Óculos de proteção, Luvas isolantes, Capacete, Botina, Protetor Facial</p>";
+    }
+    else if (areaSelecionada === "logistica") {
+        info.innerHTML = "<h3>Almmoxarifado</h3><p>Colete refletivo, Botina, Capacete</p>";
+
+    }
+    else if (areaSelecionada === "marketing") {
+        info.innerHTML = "<h3>Marketing Digital</h3><p>Apoio de punho, Óculos com filtro</p>";
+
+    }
+    else if (areaSelecionada === "p1") {
+        info.innerHTML = "<h3>Produção 1</h3><p>Capacete, Óculos de proteção, Protetor auricular</p>";
+
+    }
+    else if (areaSelecionada === "p2") {
+        info.innerHTML = "<h3>Produção 2</h3><p>Capacete, Óculos de proteção, Protetor auricular</p>";
+
+    }
+    else if (areaSelecionada === "rh") {
+        info.innerHTML = "<h3>Recursos Humanos/RH</h3><p>Ajustes ergonômicos (NR-17)</p>";
+
+    }
+    else if (areaSelecionada === "ti") {
+        info.innerHTML = "<h3>TI</h3><p>Pulseira antiestática, Calçado fechado, Óculos de proteção</p>";
+
+    }
+    else if (areaSelecionada === "pq") {
+        info.innerHTML = "<h3>Produção química</h3><p>Jaleco, Óculos de Proteção, Luva de Látex</p>";
+
+    }
+
+
+    else {
+        info.innerHTML = "";
     }
 }

@@ -170,6 +170,7 @@ button:hover {
     padding: 10px;
     border-radius: 8px;
 }
+
 .google-btn {
     display: flex;
     align-items: center;
@@ -218,50 +219,51 @@ button:hover {
     text-decoration: none;
     border-radius: 5px;
 }
+
 header {
-  position: relative;
+    position: relative;
 }
 
 
 .menu-icon {
-  position: absolute;
-  top: 15px;         
-  right: 15px;       
-  font-size: 28px;
-  cursor: pointer;
-  z-index: 1000;     
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 1000;
 }
 
 
 
 #menu {
-  display: none;
-  flex-direction: column;
-  background: #f2f2f2;
-  position: absolute;
-  top: 50px;
-  left: 0;
-  width: 200px;
-  padding: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    background: #f2f2f2;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 200px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 #menu a {
-  padding: 10px;
-  text-decoration: none;
-  color: #333;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
 }
 
 #menu a:hover {
-  background: #ddd;
+    background: #ddd;
 }
 
 .btn-entrar {
-  display: inline-block;
-  background-color: #d2691e;
-  color: white;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  text-align: center;
+    display: inline-block;
+    background-color: #d2691e;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
 }

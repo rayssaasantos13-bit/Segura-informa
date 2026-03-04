@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contorole de EPIs</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contorole de EPIs</title>
 
-    <link rel="stylesheet" type="text/css" href="estilo.css">
+  <link rel="stylesheet" type="text/css" href="estilo.css">
 
 </head>
 
@@ -14,62 +14,59 @@
 </body>
 
 <div class="container">
-    <img src="img/logo.png" width="90px" style="float: left;">
-       <div class="menu-hamburguer">
-      <div class="hamburguer-icon" id="hamburguer-btn">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+  <img src="img/logo.png" width="90px" style="float: left;">
+  <div class="menu-hamburguer">
+    <div class="hamburguer-icon" id="hamburguer-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
-      <nav class="menu-lateral" id="menu-lateral">
-       <header>
-  <!-- Botão hamburguer -->
-  <div class="menu-icon" onclick="toggleMenu()">
-    ☰
-  </div>
+    <nav class="menu-lateral" id="menu-lateral">
+      <header>
 
-  <!-- Menu -->
-  <nav id="menu">
-    
-    <a href="mapa de risco.html">Mapa de Risco</a>
-    <a href="alertas.html">Alertas</a>
-    <a href="Controle de EPIs.html">Controle de EPIs</a>
-    <a href="Quiz segurança do trabalho.html">Quiz</a>
-     <a href="tela de perfil.html">Tela de perfil</a>
-     <a href="login.html">Sair</a>
+        <div class="menu-icon" onclick="toggleMenu()">
+          ☰
+        </div>
 
-  </nav>
-  <br><br>
-  <br><br>
-</header>
-    <br><br>
-    <br><br>
-    <h1>Contorole de EPIs por área</h1>
-    <label>
-        <h2>Selecione a área de trabalho:</h2>
-    </label>
-    <select id="selecionarArea" onchange="mostrarEPIs()">
-        <option>--Escolha uma área</option>
+
+        <nav id="menu">
+
+          <a href="mapa de risco.html">Mapa de Risco</a>
+          <a href="alertas.html">Alertas</a>
+          <a href="Controle de EPIs.html">Controle de EPIs</a>
+          <a href="Quiz segurança do trabalho.html">Quiz</a>
+          <a href="tela de perfil.html">Tela de perfil</a>
+          <a href="login.html">Sair</a>
+
+        </nav>
+        <br><br>
+        <br><br>
+      </header>
+      <br><br>
+      <br><br>
+      <h1>Contorole de EPIs por área</h1>
+
+      <label for="info">
+        <h2>Selecione a área que deseja</h2>
+      </label>
+      <select id="episSelect" onchange="mostrarInfEpis()">
+        <option value="" selected disabled>Selecionar</option>
         <option value="almoxarifado">Almoxarifado</option>
         <option value="lazer">Área de lazer</option>
-        <option value="deposito">Depósito de equipamentos pesados</option>
+        <option value="depesito">Depósito de equipamentos pesados</option>
         <option value="gerador">Gerador</option>
         <option value="logistica">Logística</option>
         <option value="marketing">Marketing Digital</option>
-        <option value="prducao1">Produção 1</option>
-        <option value="producao2">Produção 2</option>
+        <option value="p1">Produção 1</option>
+        <option value="p2">Produção 2</option>
         <option value="rh">Recursos Humanos/RH</option>
         <option value="ti">TI</option>
-        <option value="lab">Produção química</option>
-    </select>
+        <option value="pq">Produção química</option>
+      </select>
+      <div id="Infoepis"></div>
+  </div>
 
-    <div id="infoepis"></div>
-
-    <div class="checklist" id="checklist"></div>
-    <button onclick="validarEPIs()">Validar EPIs</button>
-    <div class="resultado"></div>
-    
-    <script src="JavaScript.js"></script>
+  <script src="JavaScript.js"></script>
 
 </html>
