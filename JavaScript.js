@@ -163,9 +163,13 @@ function mostrarInfAreas() {
     const info = document.getElementById("InfoArea");
 
     if (areaSelecionada === "almoxarifado") {
-        info.innerHTML = "<h3>Almoxarifado</h3><p>Área em limpeza, pode conter riscos de quedas. Fique em alerta.</p>";
+    info.innerHTML = `
+        <h3>Almoxarifado</h3>
+        <p>Área em limpeza, pode conter riscos de quedas. Fique em alerta.</p>
+        <img src="img/almoxarifado.jpg" alt="Almoxarifado em limpeza" style="width:200px; margin-top:10px;">
+    `;
+}
 
-    }
 
     else if (areaSelecionada === "lazer") {
 
@@ -220,11 +224,16 @@ function mostrarInfEpis() {
     const areaSelecionada = document.getElementById("episSelect").value;
     const info = document.getElementById("Infoepis");
 
-    if (areaSelecionada === "almoxarifado") {
-        info.innerHTML = "<h3>Almoxarifado</h3><p>Capacete, Botina, Colete Refletivo</p>"
-
-    }
-
+       if (areaSelecionada === "almoxarifado") {
+    info.innerHTML = `
+        <h3>Almoxarifado</h3>
+        <p>Capacete, Botina, Colete Refletivo</p>
+        <img src="img/botina.webp" alt="Almoxarifado em limpeza" style="width:100px; margin-top:10px;">
+        <img src="img/colete.jpg" alt="Almoxarifado em limpeza" style="width:100px; margin-top:10px;">
+        <img src="img/capacete.png" alt="Almoxarifado em limpeza" style="width:100px; margin-top:10px;">
+    `;
+}
+   
     else if (areaSelecionada === "lazer") {
 
         info.innerHTML = "<h3>Área de lazer</h3><p>Fardamento da empresa</p>";
