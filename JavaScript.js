@@ -2,7 +2,7 @@ function imprimir() {
     window.print();
 }
 function toggleMenu() {
-    const menu = document.getElementById("sideMenu");
+    const menu = document.getElementById("menu-lateral");
     menu.style.left = (menu.style.left === "0px") ? "-250px" : "0px";
 }
 
@@ -66,6 +66,8 @@ let pontuacao = 0;
 function mostrarPergunta() {
     const quizDiv = document.getElementById("quiz");
 
+    if (!quizDiv) return; // evita erro se a div não existir
+
     if (indice >= perguntas.length) {
         quizDiv.innerHTML = "";
         document.getElementById("resultado").innerText =
@@ -76,10 +78,10 @@ function mostrarPergunta() {
     const atual = perguntas[indice];
 
     quizDiv.innerHTML = `
-        <p>${indice + 1}. ${atual.pergunta}</p>
+        <p><strong>${indice + 1}. ${atual.pergunta}</strong></p>
         ${atual.opcoes.map((opcao, i) =>
-        `<button onclick="responder(${i})">${opcao}</button>`
-    ).join("")}
+            `<button onclick="responder(${i})">${opcao}</button>`
+        ).join("")}
     `;
 }
 
@@ -92,6 +94,11 @@ function responder(opcaoEscolhida) {
     mostrarPergunta();
 }
 
+
+// ================= INICIA O QUIZ =================
+document.addEventListener("DOMContentLoaded", function() {
+    mostrarPergunta();
+});
 
 function cadastrarUsuario() {
     const nome = document.getElementById("nome").value;

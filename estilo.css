@@ -130,6 +130,14 @@ body {
     text-align: center;
 }
 
+.quiz-container {
+    background: white;
+    padding: 20px;
+    width: 60%;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+}
 
 .pergunta {
     margin: 20px 0;
