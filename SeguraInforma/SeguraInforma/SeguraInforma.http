@@ -1,0 +1,6 @@
+@SeguraInforma_HostAddress = http://localhost:5277
+
+GET {{SeguraInforma_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
