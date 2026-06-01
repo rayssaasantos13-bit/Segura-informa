@@ -1,58 +1,40 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Perfil do Usuário</title>
-
-        <link rel="stylesheet" type="text/css" href="estilo.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="Perfil.css">
 </head>
-
 <body>
 
-                <img src="img/logo.png" width="90px" style="float: left;">
-                <div class="menu-hamburguer">
-                        <div class="hamburguer-icon" id="hamburguer-btn">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                        </div>
+    <div class="perfil">
 
-                        <nav class="menu-lateral" id="menu-lateral">
-                                <header>
+        
+        <h1 class="titulo"> Perfil</h1>
 
-                                        <div class="menu-icon" onclick="toggleMenu()">
-                                                ☰
-                                        </div>
+        <img
+            class="foto"
+            src="img/boneca.png"
+            alt="Foto de Perfil"
+        ><br>
 
+        <h2 id="nome">Maria Silva</h2>
+        <br>
 
-                                        <nav id="menu">
-                                                <a href="mapa de risco.html">Mapa de Risco</a>
-                                                <a href="alertas.html">Alertas</a>
-                                                <a href="Controle de EPIs.html">Controle de EPIs</a>
-                                                <a href="Quiz segurança do trabalho.html">Quiz</a>
-                                                <a href="tela de perfil.html">Tela de perfil</a>
-                                                <a href="login.html">Sair</a>
+        <p id="email">📧 Maria@email.com</p>
 
-                                        </nav>
-                                        <br><br>
-                                        <br><br>
-                                </header>
+        <p id="telefone">📱 (79) 99999-9999</p>
 
-                                <img src="img/perfil.jpg" width="50px" style="float: left;">
+        <button onclick="editarPerfil()">
+            Editar Perfil
+        </button>
 
-                                <br><br>
-                                <br><br>
-                                <br><br>
+        
 
-                                <button style="background-color: #D9D9D9; color:#333;"><img src="img/imagem9.png"
-                                                width="15px" style="float: left;">Notificações</button>
-                                <button style="background-color: #D9D9D9; color:#333;"><img src="img/imagem10.png"
-                                                width="15px" style="float: left;">Sua Atividade</button>
-                                <button style="background-color: #D9D9D9; color:#333;"><img src="img/imagem11.png"
-                                                width="15px" style="float: left;">Ajuda</button>
-                                <button style="background-color: #D9D9D9; color:#333;"><img src="img/imagem12.png"
-                                                width="15px" style="float: left;">Sobre</button>
+    </div>
 
-                                <script src="JavaScript.js" type="text/javascript">
-                                </script>
+    <script src="Perfil.js"></script>
+
+</body>
+</html>
