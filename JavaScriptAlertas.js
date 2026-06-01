@@ -162,4 +162,8 @@ informacoes.innerHTML = `
 `;
 }
 
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
