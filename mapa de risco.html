@@ -1,13 +1,19 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Mapa de risco </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa de Risco</title>
 
+<<<<<<< Updated upstream
   <link rel="stylesheet" type="text/css" href="estiloMapa.css">
+=======
+<link rel="stylesheet" href="mapa.css">
+>>>>>>> Stashed changes
 </head>
+<body>
 
+<<<<<<< Updated upstream
 
   <div class="menu-hamburguer">
     <div class="hamburguer-icon" id="hamburguer-btn">
@@ -22,39 +28,76 @@
         <div class="menu-icon" onclick="toggleMenu()">
           ☰
         </div>
+=======
+<div class="container">
+
+>>>>>>> Stashed changes
 
 
-        <nav id="menu">
+<div class="menu-lateral" id="menu">
 
-          <a href="mapa de risco.html">Mapa de Risco</a>
-          <a href="alertas.html">Alertas</a>
-          <a href="Controle de EPIs.html">Controle de EPIs</a>
-          <a href="Quiz segurança do trabalho.html">Quiz</a>
-          <a href="tela de perfil.html">Tela de perfil</a>
-          <a href="login.html">Sair</a>
+<img src="img/boneca.png" class="logo">
 
-        </nav>
-        <br><br>
-        <br><br>
-      </header>
+<a href="mapa de risco.html">Mapa de Risco</a>
+<a href="alertas.html">Alertas</a>
+<a href="#">Controle de EPIs</a>
+<a href="#">Quiz</a>
+<a href="#">Tela de Perfil</a>
+<a href="#">Sair</a>
 
-      <br><br>
-      <br><br>
-      <h1>Mapa de Risco</h1>
-      <p> Pesquise a área para visualizar os risco do ambiente</p>
+</div>
 
+<div class="card">
 
-      <div class="pesquisar">
-        <input type="text" id="campoPesquisa" placeholder="Pesquisar áreas...">
-      </div>
-      <button>Pesquisar</button>
-      <br></br>
+<div class="topo">
 
+<<<<<<< Updated upstream
       <img src="img/mapa de risco.png" width="900px">
       <br><br>
       <p>
         <input type="button" value="Imprimir tela com mapa de risco" onclick="imprimir()">
       </p>
+=======
+<img src="img/boneca_obra.png" class="logo-menor">
+>>>>>>> Stashed changes
 
-      <script src="JavaScript.js" type="text/javascript">
-      </script>
+<button class="btn-menu" onclick="abrirMenu()">
+☰
+</button>
+
+</div>
+
+<h1>Mapa de Risco</h1>
+
+<h3>Pesquise uma área para visualizar os riscos</h3>
+
+<div class="pesquisa">
+
+<input type="text" id="busca"
+placeholder="Digite a área...">
+
+<button onclick="pesquisarArea()">
+Pesquisar
+</button>
+
+</div>
+
+<div class="informacoes" id="resultado">
+
+<h2>Escolha uma área</h2>
+
+<p>
+Digite o nome de uma área para visualizar
+os riscos ocupacionais e medidas preventivas.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="mapa.js"></script>
+
+</body>
+</html>
