@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SeguraInforma")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+156a708df9b7d759138aabeaadb82151e034f800")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+958a2d6890fd1d912ecee08c0b60c620d1e88d36")]
 [assembly: System.Reflection.AssemblyProductAttribute("SeguraInforma")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SeguraInforma")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
