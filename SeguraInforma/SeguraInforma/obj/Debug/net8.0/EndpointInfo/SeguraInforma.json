@@ -36,6 +36,29 @@
         }
       }
     },
+    "/Risco/{id}": {
+      "delete": {
+        "tags": [
+          "Risco"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Usuario/login": {
       "post": {
         "tags": [
@@ -139,7 +162,7 @@
       "Risco": {
         "type": "object",
         "properties": {
-          "id_risco": {
+          "id_Risco": {
             "type": "integer",
             "format": "int32"
           },
@@ -154,10 +177,6 @@
           "descricao": {
             "type": "string",
             "nullable": true
-          },
-          "id_Usuario": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false

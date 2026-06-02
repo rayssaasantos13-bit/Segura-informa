@@ -59,18 +59,19 @@ namespace SeguraInforma.Controllers
             var idLogado = HttpContext.Session.GetString("IdLogado");
             if (idLogado == null)
             {
-                return Unauthorized("Login antes");
+                return Unauthorized("Faça o login antes");
             }
             var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
             if (usuarioLogado != null)
             {
-               // Console.WriteLine(!usuarioLogado.Cargo.Equals("gestao"));
-                if (usuarioLogado.Cargo.Equals("gestao"))
+           
+
+                if (!usuarioLogado.Cargo.Trim().Equals("gestao"))
                 {
                     return Unauthorized("Apenas gestores podem deletar usuários.");
                 }
             }
-            Console.WriteLine(id);
+    
             var usuarioBanco = _context.Usuarios.Find(id);
             if (usuarioBanco == null)
             {

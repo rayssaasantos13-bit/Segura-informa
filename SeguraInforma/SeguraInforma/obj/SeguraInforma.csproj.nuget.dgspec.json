@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\manha.ceticc\\source\\repos\\rayssaasantos13-bit\\Segura-informa\\SeguraInforma\\SeguraInforma\\SeguraInforma.csproj": {}
+    "E:\\Ana Vitória\\SeguraInforma\\Segura-informa\\SeguraInforma\\SeguraInforma\\SeguraInforma.csproj": {}
   },
   "projects": {
-    "C:\\Users\\manha.ceticc\\source\\repos\\rayssaasantos13-bit\\Segura-informa\\SeguraInforma\\SeguraInforma\\SeguraInforma.csproj": {
+    "E:\\Ana Vitória\\SeguraInforma\\Segura-informa\\SeguraInforma\\SeguraInforma\\SeguraInforma.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\manha.ceticc\\source\\repos\\rayssaasantos13-bit\\Segura-informa\\SeguraInforma\\SeguraInforma\\SeguraInforma.csproj",
+        "projectUniqueName": "E:\\Ana Vitória\\SeguraInforma\\Segura-informa\\SeguraInforma\\SeguraInforma\\SeguraInforma.csproj",
         "projectName": "SeguraInforma",
-        "projectPath": "C:\\Users\\manha.ceticc\\source\\repos\\rayssaasantos13-bit\\Segura-informa\\SeguraInforma\\SeguraInforma\\SeguraInforma.csproj",
+        "projectPath": "E:\\Ana Vitória\\SeguraInforma\\Segura-informa\\SeguraInforma\\SeguraInforma\\SeguraInforma.csproj",
         "packagesPath": "C:\\Users\\manha.ceticc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\manha.ceticc\\source\\repos\\rayssaasantos13-bit\\Segura-informa\\SeguraInforma\\SeguraInforma\\obj\\",
+        "outputPath": "E:\\Ana Vitória\\SeguraInforma\\Segura-informa\\SeguraInforma\\SeguraInforma\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
