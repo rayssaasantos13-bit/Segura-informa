@@ -65,17 +65,32 @@ input:focus, select:focus {
 }
 
 /* Checkbox */
-label input[type="checkbox"] {
-  margin-right: 6px;
-}
+  .check{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      font-size: 13px;
+      color: #374151;
+    }
+    .check input{
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+    }
 
-/* Botão Google */
+    .actions{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+/* Botão Google com mesma largura do botão Entrar */
 .google-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  width: 100%;        /* mesma largura dos campos */
+  width: 350px;              /* mesma largura do botão Entrar */
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -83,7 +98,7 @@ label input[type="checkbox"] {
   color: #444;
   font-weight: 500;
   cursor: pointer;
-  margin: 14px auto;
+  margin: 12px auto;
 }
 
 .google-btn img {
@@ -94,16 +109,21 @@ label input[type="checkbox"] {
   background-color: #f2f2f2;
 }
 
-/* Link "Entrar" */
-.forgot {
-  display: block;
-  text-align: center;
-  font-size: 13px;
-  margin-top: 10px;
-  color: #0039a6;
+/* Botão principal */
+.btn-entrar {
+  display: inline-block;
+  width: 350px;
+  background-color: #D9661c;
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
   text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 12px;
+  text-align: center;
 }
 
-.forgot:hover {
-  text-decoration: underline;
+.btn-entrar:hover {
+  background-color: #c35418;
 }
