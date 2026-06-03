@@ -9,7 +9,6 @@
 body{
     background:#f4f6f9;
 }
-
 /* Cabeçalho */
 header{
     background:#f38f51;
@@ -19,11 +18,9 @@ header{
     align-items:center;
     gap:15px;
 }
-
 header img{
     width:70px;
 }
-
 .container{
     max-width:1000px;
     margin:30px auto;
