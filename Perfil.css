@@ -42,14 +42,14 @@ button{
     padding:12px 24px;
     border:none;
     border-radius:30px;
-    background:#D9661c;
+    background:#eb6e25;
     color:white;
     cursor:pointer;
     font-size:16px;
 }
 
 button:hover{
-    background:#D9661c;
+    background:#eb6e25;
 }
 
 .titulo{
@@ -62,9 +62,73 @@ button:hover{
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid #D9661c;
+    border: 5px solid #eb6e25;
     padding: 5px;
     background-color: white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     margin: 15px 0;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+}
+
+/* Menu lateral na direita */
+.menu-lateral{
+    position: fixed;
+    top: 0;
+    right: -280px; /* escondido */
+    width: 280px;
+    height: 100%;
+    background-color: #ffffff;
+    transition: 0.4s;
+    padding-top: 20px;
+    z-index: 1000;
+    box-shadow: -4px 0 10px rgb(163, 160, 160);
+}
+
+.menu-lateral.ativo{
+    right: 0; /* aparece */
+}
+
+.menu-lateral a:hover{
+color:#eb6e25;
+padding-left:10px;
+}
+
+.menu-lateral a{
+    display: block;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: 0.3s;
+}
+
+
+
+
+/* Botão ☰ */
+.btn-menu{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #eb6e25;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.btn-menu:hover{
+    background: #eb6e25;
 }
