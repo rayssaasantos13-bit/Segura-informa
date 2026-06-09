@@ -36,6 +36,19 @@ namespace SeguraInforma.Controllers
 
             _context.Add(EPI);
             _context.SaveChanges();
+
+            for (int x = 0; x < EPI.exige_epi.Count; x++)
+            {
+                EPI.exige_epi[x].Fk_EPI_Id_Epi = EPI.Id_epi;
+            }
+
+
+            for (int x = 0; x < EPI.exige_epi.Count; x++)
+            {
+                _context.Add(EPI.exige_epi[x]);
+
+            }
+            _context.SaveChanges();
             return Created("", EPI);
         }
         [HttpDelete("{id}")]
