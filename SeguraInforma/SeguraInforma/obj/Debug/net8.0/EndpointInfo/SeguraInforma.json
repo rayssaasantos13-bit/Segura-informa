@@ -5,6 +5,194 @@
     "version": "1.0"
   },
   "paths": {
+    "/Area": {
+      "post": {
+        "tags": [
+          "Area"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Area"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Area"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Area"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Area/{id}": {
+      "delete": {
+        "tags": [
+          "Area"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Area"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Area"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Area"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Area"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Epi": {
+      "post": {
+        "tags": [
+          "Epi"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Epi"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Epi"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Epi"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Epi/{id}": {
+      "delete": {
+        "tags": [
+          "Epi"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Epi"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Epi"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Epi"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Epi"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Risco": {
       "post": {
         "tags": [
@@ -52,6 +240,46 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Risco"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Risco"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Risco"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Risco"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -159,6 +387,67 @@
   },
   "components": {
     "schemas": {
+      "Area": {
+        "type": "object",
+        "properties": {
+          "id_Area": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome_Area": {
+            "type": "string",
+            "nullable": true
+          },
+          "descricao": {
+            "type": "string",
+            "nullable": true
+          },
+          "riscos_da_area": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Area_Contem_Risco"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Area_Contem_Risco": {
+        "type": "object",
+        "properties": {
+          "fk_Area_Id_Area": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fk_Id_Risco": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Epi": {
+        "type": "object",
+        "properties": {
+          "id_epi": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "type": "string",
+            "nullable": true
+          },
+          "qntd_Estoque": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descricao": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Risco": {
         "type": "object",
         "properties": {
