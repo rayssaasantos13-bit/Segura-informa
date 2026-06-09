@@ -1,48 +1,44 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-BR">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recuperação de Senha</title>
 
-    <title>Esqueci minha senha</title>
-
-    <link rel="stylesheet" type="text/css" href="estilo.css">
+<link rel="stylesheet" href="recuperacaoSenha.css">
 </head>
-
 <body>
 
+<div class="container">
 
-    <main>
+<div class="card">
 
+<img src="img/logo.png" width="300px" alt="MonitorÁgua">
 
+<h1>Recuperar Senha</h1>
 
-        <h1>Recuperação de Senha</h1>
+<p>
+Informe seu e-mail para receber as instruções de recuperação.
+</p>
 
-        <p>Esqueceu sua senha? Digite o e-mail cadastrado e verifique sua caixa de entrada ou spam para redefinir
-            sua senha.</p>
+<input
+type="email"
+id="email"
+placeholder="Digite seu e-mail">
 
-        <form action="recuperar_senha.php" method="POST">
-            <input class="input-mail" type="email" name="email" placeholder="Digite seu e-mail*" required>
-            <button class="btn-enviar" type="submit">Enviar link de recuperação</button>
-        </form>
-        <br><br>
-        <br><br>
+<button onclick="recuperarSenha()">
+Enviar Código
+</button>
 
-        <div class="botoes">
+<a href="login.html" class="voltar">
+Voltar para Login
+</a>
 
-            <a href="login.html" class="btn-voltar">
-                Voltar
-            </a>
+</div>
 
-            <a href="login.html" class="btn-continuar">
-                Continuar
-            </a>
-        </div>
+</div>
 
-
-    </main>
-
-
+<script src="recuperacaoSenha.js"></script>
 
 </body>
-
 </html>
