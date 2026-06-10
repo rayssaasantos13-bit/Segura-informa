@@ -102,7 +102,7 @@ namespace SeguraInforma.Controllers
             var areaDoBanco = _context.Area.Find(id);
             if (areaDoBanco == null)
             {
-                return NotFound("Risco não existe no banco!");
+                return NotFound("Área não existe no banco!");
             }
             areaDoBanco.Nome_Area = area.Nome_Area;
             areaDoBanco.Descricao = area.Descricao;

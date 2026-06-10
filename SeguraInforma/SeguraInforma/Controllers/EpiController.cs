@@ -104,7 +104,7 @@ namespace SeguraInforma.Controllers
             var epiDoBanco = _context.EPI.Find(id);
             if (epiDoBanco == null)
             {
-                return NotFound("Risco não existe no banco!");
+                return NotFound("EPI não existe no banco!");
             }
             epiDoBanco.Nome = epi.Nome;
             epiDoBanco.Qntd_Estoque = epi.Qntd_Estoque;
