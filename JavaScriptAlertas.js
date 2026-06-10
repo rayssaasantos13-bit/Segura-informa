@@ -1,7 +1,6 @@
 function abrirMenu(){
 const menu = document.getElementById("menu");
 menu.classList.toggle("ativo");
-
 }
 function mostrarInformacoes(){
 const area = document.getElementById("areas").value;
