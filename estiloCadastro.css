@@ -66,7 +66,7 @@ input:focus, select:focus {
 
 /* Checkbox */
 label input[type="checkbox"] {
-  margin-right: 6px;
+  margin-left: 6px;
 }
 
 /* Botão Google */
