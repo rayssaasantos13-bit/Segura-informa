@@ -292,3 +292,4 @@ E:\Ana Vitória\SeguraInforma\Segura-informa\SeguraInforma\SeguraInforma\obj\Deb
 E:\Ana Vitória\SeguraInforma\Segura-informa\SeguraInforma\SeguraInforma\obj\Debug\net8.0\SeguraInforma.pdb
 E:\Ana Vitória\SeguraInforma\Segura-informa\SeguraInforma\SeguraInforma\obj\Debug\net8.0\SeguraInforma.genruntimeconfig.cache
 E:\Ana Vitória\SeguraInforma\Segura-informa\SeguraInforma\SeguraInforma\obj\Debug\net8.0\ref\SeguraInforma.dll
+E:\Ana Vitória\SeguraInforma\Segura-informa\SeguraInforma\SeguraInforma\bin\Debug\net8.0\SeguraInforma.staticwebassets.runtime.json

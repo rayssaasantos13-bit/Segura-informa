@@ -160,16 +160,76 @@
   },
   {
     "ContainingType": "SeguraInforma.Controllers.Mapa_De_RiscoController",
-    "Method": "CadastrarRisco",
+    "Method": "CriarMapadeRisco",
     "RelativePath": "Mapa_De_Risco",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "mapa_de_risco",
-        "Type": "SeguraInforma.Models.Mapa_De_Risco",
-        "IsRequired": true
+        "Name": "id_mapa",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "descricao",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "data_criacao",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      },
+      {
+        "Name": "data_atualizacao",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      },
+      {
+        "Name": "fk_area_id_area",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "fk_usuario_id_usuario",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "nome_foto",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ContentType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ContentDisposition",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Headers",
+        "Type": "Microsoft.AspNetCore.Http.IHeaderDictionary",
+        "IsRequired": false
+      },
+      {
+        "Name": "Length",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FileName",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -204,9 +264,44 @@
         "IsRequired": true
       },
       {
-        "Name": "mapa_de_risco",
-        "Type": "SeguraInforma.Models.Mapa_De_Risco",
-        "IsRequired": true
+        "Name": "Id_Mapa",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Descricao",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Data_Criacao",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      },
+      {
+        "Name": "Data_Atualizacao",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      },
+      {
+        "Name": "Fk_Usuario_Id_Usuario",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Fk_Area_Id_Area",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Nome_Foto",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ArquivoFoto",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

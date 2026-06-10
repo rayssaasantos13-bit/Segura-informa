@@ -13,6 +13,60 @@ namespace SeguraInforma.Controllers
             _context = context;
         }
 
+        [HttpPost]
+
+        public async Task<IActionResult> CriarMapadeRisco([FromForm] int id_mapa, [FromForm] string descricao, [FromForm] DateOnly data_criacao, [FromForm] DateOnly data_atualizacao, [FromForm] int fk_area_id_area, [FromForm] int fk_usuario_id_usuario, [FromForm] string nome_foto, [FromForm] IFormFile arquivoFoto)
+        {
+            var idLogado = HttpContext.Session.GetString("IdLogado");
+            if (idLogado == null)
+            {
+                return Unauthorized("Faça o login antes");
+            }
+            var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
+            if (usuarioLogado != null)
+            {
+
+
+                if (!usuarioLogado.Cargo.Trim().Equals("gestao"))
+                {
+                    return Unauthorized("Apenas gestores podem cadastrar.");
+                }
+            }
+
+            Mapa_De_Risco mapa_de_risco = new Mapa_De_Risco( id_mapa, descricao ,  data_criacao,  data_atualizacao, fk_usuario_id_usuario,  fk_area_id_area,  nome_foto);
+            var usuario = HttpContext.Session.GetString("IdLogado");
+            if (usuario == null)
+                return Unauthorized("Não autenticado");
+
+            mapa_de_risco.ArquivoFoto = arquivoFoto;
+            if (mapa_de_risco.ArquivoFoto != null)
+            {
+                var nomeArquivo = Guid.NewGuid().ToString() + Path.GetExtension(mapa_de_risco.ArquivoFoto.FileName);
+
+                var caminho = Path.Combine("wwwroot/Uploads", nomeArquivo);
+
+                using (var stream = new FileStream(caminho, FileMode.Create))
+                {
+                    await mapa_de_risco.ArquivoFoto.CopyToAsync(stream);
+                }
+
+                mapa_de_risco.Nome_Foto = nomeArquivo;
+                mapa_de_risco.Fk_Usuario_Id_Usuario = int.Parse(usuario);
+            }
+
+            _context.Add(mapa_de_risco);
+            _context.SaveChanges();
+            return Created("Teste", mapa_de_risco);
+        }
+
+
+
+
+
+
+
+
+
 
         [HttpGet("areasMapa")]
         public IActionResult AreasMapa( string nomeArea)
@@ -29,7 +83,7 @@ namespace SeguraInforma.Controllers
 
             return Ok(resultado.ToList());
         }
-        [HttpPost]
+       /* [HttpPost]
 
         public IActionResult CadastrarRisco(Mapa_De_Risco mapa_de_risco)
         {
@@ -52,7 +106,7 @@ namespace SeguraInforma.Controllers
             _context.Add(mapa_de_risco);
             _context.SaveChanges();
             return Created("", mapa_de_risco);
-        }
+        }*/
 
 
         [HttpDelete("{id}")]
