@@ -63,47 +63,41 @@ input:focus, select:focus {
   box-shadow: 0 0 5px rgba(217, 102, 28, 0.5);
   outline: none;
 }
-
-/* Checkbox */
-label input[type="checkbox"] {
-  margin-left: 6px;
+.checkbox-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
 }
 
-/* Botão Google */
-.google-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;        /* mesma largura dos campos */
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  background-color: white;
-  color: #444;
-  font-weight: 500;
-  cursor: pointer;
-  margin: 14px auto;
+.checkbox-container label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    cursor: pointer;
 }
 
-.google-btn img {
-  width: 18px;
+.checkbox-container input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
 }
-
-.google-btn:hover {
-  background-color: #f2f2f2;
-}
-
 /* Link "Entrar" */
-.forgot {
-  display: block;
-  text-align: center;
-  font-size: 13px;
-  margin-top: 10px;
-  color: #0039a6;
-  text-decoration: none;
+
+button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background-color: #FF6B00; /* Laranja */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
 }
 
-.forgot:hover {
-  text-decoration: underline;
+button[type="submit"]:hover {
+    background-color: #E55A00; /* Laranja mais escuro no hover */
 }
