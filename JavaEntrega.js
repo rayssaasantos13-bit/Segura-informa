@@ -1,71 +1,23 @@
-function abrirMenu(){
-const menu = document.getElementById("menu");
-menu.classList.toggle("ativo");
-}
+document.getElementById('formEPI').addEventListener('submit', function (event) {
+        event.preventDefault(); // Impede de recarregar a página
 
-hamburguerBtn.addEventListener("click", () => {
-    menuLateral.classList.toggle("ativo");
-});
-document.addEventListener("DOMContentLoaded", () => {
-
-    const formulario = document.querySelector("form");
-    const tabela = document.querySelector("tbody");
-
-    formulario.addEventListener("submit", function (event) {
-
-        event.preventDefault();
-
-        const nome = document.querySelector('input[placeholder="Digite o nome"]').value;
-        const matricula = document.querySelector('input[placeholder="Número da matrícula"]').value;
-
-        const setor = document.querySelectorAll("select")[0].value;
-
-        const data = document.querySelector('input[type="date"]').value;
-
-        const epi = document.querySelectorAll("select")[1].value;
-
-        const quantidade = document.querySelector('input[type="number"]').value;
-
-        const observacao = document.querySelector("textarea").value;
-
-        if (
-            nome === "" ||
-            matricula === "" ||
-            setor === "Selecione" ||
-            epi === "Selecione" ||
-            data === ""
-        ) {
-            alert("Preencha todos os campos obrigatórios.");
-            return;
-        }
-
-        const dataFormatada = new Date(data).toLocaleDateString("pt-BR");
-
-        const novaLinha = document.createElement("tr");
-
-        novaLinha.innerHTML = `
-            <td>${nome}</td>
-            <td>${setor}</td>
-            <td>${epi}</td>
-            <td>${quantidade}</td>
-            <td>${dataFormatada}</td>
-        `;
-
-        tabela.appendChild(novaLinha);
-
-        alert("Entrega registrada com sucesso!");
-
-        formulario.reset();
-
-        console.log({
-            nome,
-            matricula,
-            setor,
-            epi,
-            quantidade,
-            data,
-            observacao
-        });
-    });
-
-});
+        // Pega os valores dos campos    
+        const nome = document.getElementById('nome').value;
+        const setor = document.getElementById('setor').value;
+        const epi = document.getElementById('epi').value;
+        const qtd = document.getElementById('qtd').value; 
+        const dataInput = document.getElementById('data').value;
+     // Formata a data de yyyy-mm-dd pra dd/mm/yyyy  
+     const data = dataInput.split('-').reverse().join('/');
+// Pega o tbody da tabela   
+ const tbody = document.querySelector('#tabelaHistorico tbody');
+  // Cria uma nova linha 
+   const novaLinha = tbody.insertRow();
+   // Insere as células   
+    novaLinha.insertCell(0).textContent = nome;
+    novaLinha.insertCell(1).textContent = setor;
+    novaLinha.insertCell(2).textContent = epi;
+    novaLinha.insertCell(3).textContent = qtd;
+    novaLinha.insertCell(4).textContent = data;
+// Limpa o formulário depois de registrar  
+ document.getElementById('formEPI').reset();});
