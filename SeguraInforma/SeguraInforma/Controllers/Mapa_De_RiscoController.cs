@@ -59,15 +59,6 @@ namespace SeguraInforma.Controllers
             return Created("Teste", mapa_de_risco);
         }
 
-
-
-
-
-
-
-
-
-
         [HttpGet("areasMapa")]
         public IActionResult AreasMapa( string nomeArea)
         {
@@ -164,7 +155,7 @@ namespace SeguraInforma.Controllers
             var mapaBanco = _context.Mapa_De_Risco.Find(id);
             if (mapaBanco == null)
             {
-                return NotFound("Mapa não existe no banco!");
+                return NotFound("O Mapa de Risco não existe no banco!");
             }
             mapaBanco.Descricao = mapa_de_risco.Descricao;
             mapaBanco.Data_Criacao = mapa_de_risco.Data_Criacao;
