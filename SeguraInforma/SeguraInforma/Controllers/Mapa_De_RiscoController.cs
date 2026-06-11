@@ -74,30 +74,48 @@ namespace SeguraInforma.Controllers
 
             return Ok(resultado.ToList());
         }
-       /* [HttpPost]
 
-        public IActionResult CadastrarRisco(Mapa_De_Risco mapa_de_risco)
+        [HttpGet]
+        public IActionResult BuscaMapadeRisco()
+
         {
-            var idLogado = HttpContext.Session.GetString("IdLogado");
-            if (idLogado == null)
-            {
-                return Unauthorized("Faça o login antes");
-            }
-            var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
-            if (usuarioLogado != null)
+            var mapa_de_risco = _context.Mapa_De_Risco.ToList();
+
+            for (int i = 0; i < mapa_de_risco.Count; i++)
             {
 
-
-                if (!usuarioLogado.Cargo.Trim().Equals("gestao"))
-                {
-                    return Unauthorized("Apenas gestores podem cadastrar.");
-                }
+                var pastaBase = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                var caminho = Path.Combine(pastaBase, mapa_de_risco[i].Nome_Foto);
+                var nomeArquivo = Path.GetFileName(mapa_de_risco[i].Nome_Foto);
+                mapa_de_risco[i].Nome_Foto = $"{Request.Scheme}://{Request.Host}/uploads/{nomeArquivo}";
             }
+            return Ok(mapa_de_risco);
+        }
 
-            _context.Add(mapa_de_risco);
-            _context.SaveChanges();
-            return Created("", mapa_de_risco);
-        }*/
+        /* [HttpPost]
+
+         public IActionResult CadastrarRisco(Mapa_De_Risco mapa_de_risco)
+         {
+             var idLogado = HttpContext.Session.GetString("IdLogado");
+             if (idLogado == null)
+             {
+                 return Unauthorized("Faça o login antes");
+             }
+             var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
+             if (usuarioLogado != null)
+             {
+
+
+                 if (!usuarioLogado.Cargo.Trim().Equals("gestao"))
+                 {
+                     return Unauthorized("Apenas gestores podem cadastrar.");
+                 }
+             }
+
+             _context.Add(mapa_de_risco);
+             _context.SaveChanges();
+             return Created("", mapa_de_risco);
+         }*/
 
 
         [HttpDelete("{id}")]
@@ -165,6 +183,9 @@ namespace SeguraInforma.Controllers
 
             _context.SaveChanges();
             return Ok("Atualizado");
+
+
+            
         }
 
 

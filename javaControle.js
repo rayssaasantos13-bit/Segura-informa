@@ -49,3 +49,4 @@ botao.addEventListener("click", () => {
     document.querySelector('input[type="number"]').value = "";
     document.querySelector('input[type="date"]').value = "";
 });
+

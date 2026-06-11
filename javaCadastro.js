@@ -9,6 +9,12 @@ document.querySelector("form").addEventListener("submit", function (e) {
     let senha = document.getElementById("senha").value;
     let confirmar = document.getElementById("confirmar").value;
 
+
+
+
+
+
+    
     if (
         nome === "" ||
         sobrenome === "" ||
