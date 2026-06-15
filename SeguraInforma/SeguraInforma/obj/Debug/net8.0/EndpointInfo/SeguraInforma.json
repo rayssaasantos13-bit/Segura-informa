@@ -99,6 +99,100 @@
         }
       }
     },
+    "/Entrega_Epi": {
+      "post": {
+        "tags": [
+          "Entrega_Epi"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Entrega_epi"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Entrega_epi"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Entrega_epi"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Entrega_Epi/{id}": {
+      "delete": {
+        "tags": [
+          "Entrega_Epi"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entrega_Epi"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Entrega_epi"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Entrega_epi"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Entrega_epi"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Epi": {
       "post": {
         "tags": [
@@ -182,6 +276,121 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/Epi"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Mapa_De_Risco/areasMapa": {
+      "get": {
+        "tags": [
+          "Mapa_De_Risco"
+        ],
+        "parameters": [
+          {
+            "name": "nomeArea",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Mapa_De_Risco": {
+      "post": {
+        "tags": [
+          "Mapa_De_Risco"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mapa_De_Risco"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mapa_De_Risco"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mapa_De_Risco"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Mapa_De_Risco/{id}": {
+      "delete": {
+        "tags": [
+          "Mapa_De_Risco"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Mapa_De_Risco"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mapa_De_Risco"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mapa_De_Risco"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mapa_De_Risco"
               }
             }
           }
@@ -426,6 +635,63 @@
         },
         "additionalProperties": false
       },
+      "Area_Exige_Epi": {
+        "type": "object",
+        "properties": {
+          "fk_Area_Id_Area": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fk_EPI_Id_Epi": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Entrega_Tem_Epi": {
+        "type": "object",
+        "properties": {
+          "fk_Epi_Id_Epi": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fk_Entrega_Epi_Id_Entrega_Epi": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Entrega_epi": {
+        "type": "object",
+        "properties": {
+          "id_Entrega_EPI": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data_Entrega": {
+            "type": "string",
+            "format": "date"
+          },
+          "data_Devolucao": {
+            "type": "string",
+            "format": "date"
+          },
+          "fk_Usuario_Id_Usuario": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "entrega_de_epi": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Entrega_Tem_Epi"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Epi": {
         "type": "object",
         "properties": {
@@ -444,6 +710,43 @@
           "descricao": {
             "type": "string",
             "nullable": true
+          },
+          "exige_epi": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Area_Exige_Epi"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Mapa_De_Risco": {
+        "type": "object",
+        "properties": {
+          "id_Mapa": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descricao": {
+            "type": "string",
+            "nullable": true
+          },
+          "data_Criacao": {
+            "type": "string",
+            "format": "date"
+          },
+          "data_Atualizacao": {
+            "type": "string",
+            "format": "date"
+          },
+          "fk_Usuario_Id_Usuario": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fk_Area_Id_Area": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

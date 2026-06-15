@@ -1,70 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contorole de EPIs</title>
 
-  <link rel="stylesheet" type="text/css" href="estiloMapa.css">
-
 </head>
-
+  <link rel="stylesheet" type="text/css" href="estiloControle.css">
 <body>
 </body> 
+<head>
   <div class="menu-hamburguer">
     <div class="hamburguer-icon" id="hamburguer-btn">
       <span></span>
       <span></span>
       <span></span>
     </div>
+<div class="container">
 
-    <nav class="menu-lateral" id="menu-lateral">
-      <header>
+<div class="menu-lateral" id="menu">
 
-        <div class="menu-icon" onclick="toggleMenu()">
-          ☰
-          
-        </div>
+<img src="img/logo.png" width="150px" alt="MonitorÁgua">
+  <a href="mapa de risco.html">Mapa de Risco</a>
+  <a href="alertas.html">Alertas</a>
+  <a href="Controle de EPIs.html">Controle de EPIs</a>
+  <a href="tela de perfil.html">Tela de Perfil</a>
+  <a href="login.html">Sair</a>
+</div>
 
-
-        <nav id="menu">
-
-          <a href="mapa de risco.html">Mapa de Risco</a>
-          <a href="alertas.html">Alertas</a>
-          <a href="Controle de EPIs.html">Controle de EPIs</a>
-          <a href="Quiz segurança do trabalho.html">Quiz</a>
-          <a href="tela de perfil.html">Tela de perfil</a>
-          <a href="login.html">Sair</a>
-
-        </nav>
-        <br><br>
-        <br><br>
-      </header>
-      <br><br>
-      <br><br>
-      <h1>Contorole de EPIs por área</h1>
-
-      <label for="info">
-        <h2>Selecione a área que deseja</h2>
-      </label>
-      <select id="episSelect" onchange="mostrarInfEpis()">
-        <option value="" selected disabled>Selecionar</option>
-        <option value="almoxarifado">Almoxarifado</option>
-        <option value="lazer">Área de lazer</option>
-        <option value="depesito">Depósito de equipamentos pesados</option>
-        <option value="gerador">Gerador</option>
-        <option value="logistica">Logística</option>
-        <option value="marketing">Marketing Digital</option>
-        <option value="p1">Produção 1</option>
-        <option value="p2">Produção 2</option>
-        <option value="rh">Recursos Humanos/RH</option>
-        <option value="ti">TI</option>
-        <option value="pq">Produção química</option>
-      </select>
-      <div id="Infoepis"></div>
+<div class="card">
+<div class="topo">
+<button class="btn-menu" onclick="abrirMenu()">
+☰
+</button>
+</div>
+</head>
+  <div class="container">
+    <!-- Indicadores -->
+  <div class="cards">
+  <div class="card">
+      <h3>EPIs em Estoque</h3>
+    <span>325</span>
   </div>
-
-  <script src="JavaScript.js"></script>
-
+  <div class="card">
+      <h3>Entregas Hoje</h3>
+    <span>18</span>
+  </div>
+  <div class="card">
+      <h3>EPIs Vencendo</h3>
+    <span>07</span>
+  </div>
+  <div class="card">
+      <h3>Funcionários Atendidos</h3>
+      <span>142</span>
+  </div>
+  </div>
+    <!-- Cadastro -->
+  <div class="painel">
+      <h2>Registrar Entrega de EPI</h2>
+  <div class="form-grid">
+  <div>
+      <label>Funcionário</label>
+      <input type="text" placeholder="Nome do colaborador">
+  </div>
+  <div>
+    <label>Setor</label>
+<select>
+    <option>Selecione</option>
+    <option>Produção</option>
+    <option>Logística</option>
+    <option>Almoxarifado</option>
+    <option>TI</option>
+    <option>RH</option>
+</select>
+  </div>
+  <div>
+      <label>EPI</label>
+<select>
+    <option>Selecione</option>
+    <option>Capacete</option>
+    <option>Luva</option>
+    <option>Óculos</option>
+    <option>Botina</option>
+    <option>Máscara</option>
+</select>
+    </div>
+    <div>
+          <label>Quantidade</label>
+          <input type="number" min="1">
+    </div>
+    <div>
+        <label>Data da Entrega</label>
+        <input type="date">
+    </div>
+    </div>
+<button>Registrar Entrega</button>
+    </div>
+    <!-- Tabela -->
+    <div class="painel" style="margin-top:25px;">
+    <h2>Controle de Estoque de EPIs</h2>
+<table>
+<thead>
+    <tr>
+      <th>EPI</th>
+      <th>Estoque</th>
+      <th>Entregues</th>
+      <th>Validade</th>
+      <th>Status</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+      <td>Capacete</td>
+      <td>80</td>
+      <td>120</td>
+      <td>12/2027</td>
+      <td class="status-ok">OK</td>
+    </tr>
+    <tr>
+      <td>Óculos de Proteção</td>
+      <td>55</td>
+      <td>90</td>
+      <td>08/2026</td>
+      <td class="status-alerta">Baixo Estoque</td>
+    </tr>
+    <tr>
+      <td>Luva de Segurança</td>
+      <td>120</td>
+      <td>300</td>
+      <td>05/2027</td>
+      <td class="status-ok">OK</td>
+    </tr>
+    <tr>
+      <td>Botina</td>
+      <td>20</td>
+      <td>150</td>
+      <td>09/2026</td>
+      <td class="status-alerta">Reposição</td>
+    </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
+   <script src="javaControle.js"></script>
+</body>
 </html>

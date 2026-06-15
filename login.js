@@ -1,28 +1,30 @@
-function fazerLogin() {
+const myFormLogin = document.getElementById('loginUsuario');
+if (myFormLogin !=null){
+myFormLogin.addEventListener('submit', function (event) {
+    // 1. Prevenir o recarregamento da página ao submeter form
+    event.preventDefault();
 
-const email = document.getElementById("email").value;
-const senha = document.getElementById("senha").value;
+    fetch('https://localhost:7175/Usuario/login', {
+        method: 'POST', //Para outros métodos, basta alterar aqui. Obs: Delete remove a parte do body e headers, e no get é conforme todos os exemploes feitos na Unidade interação com API 
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            nome: " ",
+            email: document.getElementById("email").value,
+            senha: document.getElementById("senha").value,
+            cargo: " "
+        }),
+    }).then(response => {
+        console.log(response);
+        if (response.status == 401) {
+            alert("Email ou senha Incorretos!");
+        } else {
+            alert("Logado com suceeso");
+          window.location.href = "mapa de risco.html";
+        }
+    })
 
-if(email === "" || senha === ""){
-
-alert("Preencha todos os campos.");
-
-return;
-}
-
-if(!email.includes("@")){
-
-alert("Digite um e-mail válido.");
-
-return;
-}
-
-alert("Login realizado com sucesso!");
-
-window.location.href = "alertas.html";
-}
-
-function criarConta(){
-
-window.location.href = "cadastro.html";
+});
 }

@@ -8,7 +8,6 @@ namespace SeguraInforma.Models
     {
         
         public int Fk_Area_Id_Area { get; set; }
-       
         public int Fk_Id_Risco { get; set; }
     }
 }
