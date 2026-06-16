@@ -53,6 +53,59 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SeguraInforma.Controllers.Entrega_EpiController",
+    "Method": "CadastrarEntregaEpi",
+    "RelativePath": "Entrega_Epi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "entrega_epi",
+        "Type": "SeguraInforma.Models.Entrega_epi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SeguraInforma.Controllers.Entrega_EpiController",
+    "Method": "DeletarEntregaEpi",
+    "RelativePath": "Entrega_Epi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SeguraInforma.Controllers.Entrega_EpiController",
+    "Method": "AtualizarEpi",
+    "RelativePath": "Entrega_Epi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "entrega_epi",
+        "Type": "SeguraInforma.Models.Entrega_epi",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SeguraInforma.Controllers.EpiController",
     "Method": "CadastrarEpi",
     "RelativePath": "Epi",
@@ -179,6 +232,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SeguraInforma.Controllers.Mapa_De_RiscoController",
+    "Method": "BuscaMapadeRisco",
+    "RelativePath": "Mapa_De_Risco",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
