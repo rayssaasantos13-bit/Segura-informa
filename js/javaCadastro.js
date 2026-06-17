@@ -17,10 +17,13 @@ myForm.addEventListener('submit', function (event) {
             senha: document.getElementById("senha").value,
             cargo: document.getElementById("cargo").value
         }),
-    }).then(response => response.json())
+    }).then(response => {
+        console.log(response);
+        response.json();
+})
         .then(data => {
             alert("Conta cadastrada com suceeso");
-            window.location.href = "login.html";      
+           window.location.href = "login.html";      
         })
 });
 }
