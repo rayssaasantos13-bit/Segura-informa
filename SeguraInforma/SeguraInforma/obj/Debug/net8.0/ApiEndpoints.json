@@ -183,6 +183,16 @@
   },
   {
     "ContainingType": "SeguraInforma.Controllers.Mapa_De_RiscoController",
+    "Method": "BuscaMapadeRisco",
+    "RelativePath": "Mapa_De_Risco",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SeguraInforma.Controllers.Mapa_De_RiscoController",
     "Method": "DeletarMapa",
     "RelativePath": "Mapa_De_Risco/{id}",
     "HttpMethod": "DELETE",
