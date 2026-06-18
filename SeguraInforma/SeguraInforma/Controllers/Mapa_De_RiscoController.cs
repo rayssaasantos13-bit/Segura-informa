@@ -92,7 +92,7 @@ namespace SeguraInforma.Controllers
             return Ok(mapa_de_risco);
         }
 
-        /* [HttpPost]
+         /*[HttpPost]
 
          public IActionResult CadastrarRisco(Mapa_De_Risco mapa_de_risco)
          {
@@ -115,7 +115,7 @@ namespace SeguraInforma.Controllers
              _context.Add(mapa_de_risco);
              _context.SaveChanges();
              return Created("", mapa_de_risco);
-         }*/
+         */
 
 
         [HttpDelete("{id}")]
