@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f9f9f9;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+/* Logo centralizada */
+img {
+  display: block;
+  margin: 0 auto 20px auto;
+  width: 200px;
+}
+
+/* Título e subtítulo centralizados */
+h1 {
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Formulário centralizado */
+form {
+  width: 400px;       /* largura fixa para desktop */
+  max-width: 90%;     /* responsivo em telas menores */
+  text-align: left;   /* rótulos alinhados à esquerda */
+  margin: 0 auto;
+}
+
+/* Campos */
+.field {
+  margin-bottom: 12px;
+}
+
+label {
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 4px;
+  display: block;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+input:focus, select:focus {
+  border-color: #D9661c;
+  box-shadow: 0 0 5px rgba(217, 102, 28, 0.5);
+  outline: none;
+}
+.checkbox-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkbox-container label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+}
+/* Link "Entrar" */
+
+button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background-color: #FF6B00; /* Laranja */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+    background-color: #E55A00; /* Laranja mais escuro no hover */
+}

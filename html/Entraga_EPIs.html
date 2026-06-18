@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrega de EPIs</title>
+  <link rel="stylesheet" type="text/css" href="/css/estiloEntrega.css">
+  <style>
+  </style>
+</head>
+<body>
+<div class="container">
+
+<div class="menu-lateral" id="menu">
+<img src="img/logo.png" width="150px" alt="MonitorÁgua">
+  <a href="mapa de risco.html">Mapa de Risco</a>
+  <a href="alertas.html">Alertas</a>
+  <a href="Controle de EPIs.html">Controle de EPIs</a>
+  <a href="tela de perfil.html">Tela de Perfil</a>
+  <a href="login.html">Sair</a>
+</div>
+
+<div class="card">
+<div class="topo">
+<button class="btn-menu" onclick="abrirMenu()">
+☰
+</button>
+</div>
+<br><br>
+<br><br>
+<h1>Entrega de EPIs</h1>
+<form>
+<div class="form-grid">
+<div class="form-group">
+    <label>Nome do Colaborador</label>
+    <input type="text" placeholder="Digite o nome">
+</div>
+    <div class="form-group">
+    <label>Matrícula</label>
+    <input type="text" placeholder="Número da matrícula">
+</div>
+<div class="form-group">
+  <label>Setor</label>
+<select>
+    <option>Selecione</option>
+    <option>Produção</option>
+    <option>Almoxarifado</option>
+    <option>Logística</option>
+    <option>TI</option>
+    <option>RH</option>
+</select>
+</div>
+<div class="form-group">
+  <label>Data da Entrega</label>
+  <input type="date">
+</div>
+<div class="form-group">
+  <label>EPI Entregue</label>
+  <select>
+      <option>Selecione</option>
+      <option>Capacete</option>
+      <option>Luva de Segurança</option>
+      <option>Óculos de Proteção</option>
+      <option>Protetor Auricular</option>
+      <option>Botina</option>
+      <option>Máscara Respiratória</option>
+  </select>
+</div>
+<div class="form-group">
+    <label>Quantidade</label>
+    <input type="number" min="1" value="1">
+</div>
+<div class="form-group full">
+    <label>Observações</label>
+    <textarea rows="5"></textarea>
+</div>
+<br>
+<div class="form-group full">
+    <button type="submit">
+      Registrar Entrega
+    </button>
+</div>
+</div>
+</form>
+</div>
+<div class="card" style="margin-top:25px;">
+  <h2>Histórico de Entregas</h2>
+  <table>
+  <thead>
+    <tr>
+  <th>Colaborador</th>
+  <th>Setor</th>
+  <th>EPI</th>
+  <th>Qtd.</th>
+  <th>Data</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+  <td>João Silva</td>
+  <td>Produção</td>
+  <td>Capacete</td>
+  <td>1</td>
+  <td>02/06/2026</td>
+  </tr>
+<tr>
+  <td>Maria Santos</td>
+  <td>Logística</td>
+  <td>Botina</td>
+  <td>1</td>
+  <td>02/06/2026</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<script src="/js/JavaEntrega.js"></script>
+</body>
+</html>

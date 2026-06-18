@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Usuário</title>
+  <link rel="stylesheet" type="text/css" href="../css/estiloCadastro.css">
+  <style>
+    </style>
+</head>
+<body>
+  <img src="img/logo.png" width="200px" alt="MonitorÁgua">
+  <h1>Criar sua conta</h1>
+  <p>Preencha seus dados para começar. É rápido e seguro.</p>
+  <form id="cadastroUsuario">
+    <div class="submit">
+      <label for="nome">Nome</label>
+      <input id="nome" name="nome" type="text" placeholder="Seu nome" required />
+    </div>
+    <div class="submit">
+      <label for="email">E-mail</label>
+      <input id="email" name="email" type="email" placeholder="E-mail" required />
+    </div>
+    <div class="submit">
+      <label for="cargo">Cargo</label>
+      <select id="cargo" name="cargo" required>
+        <option value="" disabled selected>Selecione</option>
+        <option>Funcionário</option>
+        <option>gestao</option>
+      </select>
+    </div>
+
+    <div class="submit">
+      <label for="senha">Senha</label>
+      <input id="senha" name="senha" type="password" placeholder="Senha" minlength="8" required />
+    </div>
+    <div class="checkbox-container">
+    <input type="checkbox" required>
+    <span>Eu concordo com os Termos de Uso e a Política de Privacidade .</span>
+</div>    
+<br>
+ <button onclick="window.location.href='login.html'">Cadastrar</button>
+</div>
+        <button href="#" class="google-btn">
+            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google">
+            Continuar com o Google
+        </button>
+
+        <br>
+ <button>Cadastrar</button>
+    </div>
+<script src="../js/javaCadastro.js"></script>
+  </form>
+</body>
+</html>
