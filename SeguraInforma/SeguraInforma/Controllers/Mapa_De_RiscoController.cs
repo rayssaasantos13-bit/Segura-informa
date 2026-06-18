@@ -13,7 +13,7 @@ namespace SeguraInforma.Controllers
             _context = context;
         }
 
-        [HttpPost]
+       /* [HttpPost]
 
         public async Task<IActionResult> CriarMapadeRisco([FromForm] int id_mapa, [FromForm] string descricao, [FromForm] DateOnly data_criacao, [FromForm] DateOnly data_atualizacao, [FromForm] int fk_area_id_area, [FromForm] int fk_usuario_id_usuario, [FromForm] string nome_foto, [FromForm] IFormFile arquivoFoto)
         {
@@ -58,7 +58,7 @@ namespace SeguraInforma.Controllers
             _context.SaveChanges();
             return Created("Teste", mapa_de_risco);
         }
-
+       */
         [HttpGet("areasMapa")]
         public IActionResult AreasMapa( string nomeArea)
         {
