@@ -22,7 +22,7 @@ myForm.addEventListener('submit', function (event) {
             alert("Email ou senha Incorretos!");
         } else {
             alert("Logado com suceeso");
-            window.location.href = "index.html";
+            window.location.href = "alertas.html";
         }
 })
        
