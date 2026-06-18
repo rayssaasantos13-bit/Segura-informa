@@ -1,341 +1,118 @@
-body
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'Segoe UI', sans-serif;
 }
 
 body{
-    background:#f4f6f9;
-}
-/* Cabeçalho */
-header{
-    background: #d9661c;;
-    color:white;
-    padding:15px 25px;
-    display:flex;
-    align-items:center;
-    gap:15px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+    background:#f5f7fa;
 }
 
-header img{
-    width:70px;
-}
-
-header h1{
-    font-size:28px;
-}
-
-/* Layout */
+/* CONTAINER */
 .container{
-    display:flex;
-    min-height:calc(100vh - 100px);
+    padding:25px;
 }
 
-/* Menu */
-.navbar {
-    background: #333;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.menu-icon {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    font-size: 28px;
-    cursor: pointer;
-    z-index: 1000;
-}
-
-
-
-#menu {
-    display: none;
-    flex-direction: column;
-    background: #f2f2f2;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 200px;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-#menu a {
-    padding: 10px;
-    text-decoration: none;
-    color: #333;
-}
-
-#menu a:hover {
-    background: #ddd;
-}
-
-
-/* Conteúdo */
-.content{
-    flex:1;
-    padding:40px;
+/* CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-bottom:30px;
 }
 
 .card{
     background:white;
-    max-width:700px;
-    margin:auto;
-    padding:30px;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
 }
 
-.card h2{
-    color: #D9661c;;
-    margin-bottom:20px;
-}
-
-label{
-    font-weight:bold;
-    display:block;
+.card h3{
+    color:#555;
     margin-bottom:10px;
 }
 
+.card span{
+    font-size:30px;
+    font-weight:bold;
+    color:#c97a2b;
+}
+
+/* PAINEL */
+.painel{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+h2{
+    color:#c97a2b;
+    margin-bottom:20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+label{
+    display:block;
+    margin-bottom:5px;
+    font-weight:600;
+}
+
+input,
 select{
     width:100%;
-    padding:12px;
+    padding:10px;
     border:1px solid #ccc;
     border-radius:8px;
-    font-size:16px;
 }
 
-#Infoepis{
-    margin-top:25px;
-    padding:20px;
-    background:#eef4ff;
-    border-left:5px solid #D9661c;
+button{
+    background:#ffc107;
+    border:none;
+    padding:12px 20px;
     border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    margin-top:15px;
 }
 
-/* Responsivo */
-@media(max-width:768px){
-
-.container{
-    flex-direction:column;
+button:hover{
+    background:#e0a800;
 }
 
-.sidebar{
+/* TABELA */
+
+table{
     width:100%;
+    margin-top:30px;
+    border-collapse:collapse;
 }
 
-.content{
-    padding:20px;
+th{
+    background:#c97a2b;
+    color:white;
+    padding:12px;
 }
 
-header h1{
-    font-size:22px;
+td{
+    padding:10px;
+    border:1px solid #ddd;
+    text-align:center;
 }
 
+.status-ok{
+    color:green;
+    font-weight:bold;
 }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', sans-serif;
-    }
-
-    body {
-        background: #f5f7fa;
-    }
-
-    /* CABEÇALHO */
-    .logo {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .logo img {
-        width: 60px;
-    }
-
-    .logo h1 {
-        font-size: 24px;
-    }
-
-    /* CONTAINER */
-    .container {
-        padding: 25px;
-    }
-
-    /* CARDS */
-    .cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 20px;
-        margin-bottom: 30px;
-    }
-
-    .card {
-        background: white;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .card h3 {
-        color: #555;
-        margin-bottom: 10px;
-    }
-
-    .card span {
-        font-size: 30px;
-        font-weight: bold;
-        color: #000000;
-    }
-    /* Menu */
-    
-.btn-menu{
-border:none;
-background:none;
-
-font-size:35px;
-
-cursor:pointer;
-
-position:absolute;
-top:40px;
-right:40px;
+.status-alerta{
+    color:red;
+    font-weight:bold;
 }
-
-.informacoes p{
-font-size:20px;
-
-margin-bottom:15px;
-
-color:#444;
-
-line-height:1.6;
-}
-
-.menu-lateral{
-position:fixed;
-
-top:0;
-right:-300px;
-
-width:280px;
-height:100vh;
-
-background:white;
-
-padding:30px;
-
-box-shadow:-2px 0 15px rgba(0,0,0,0.15);
-
-transition:0.4s;
-
-z-index:1000;
-}
-
-.menu-lateral.ativo{
-right:0;
-}
-.menu-lateral a{
-display:block;
-
-text-decoration:none;
-
-color:#333;
-
-font-size:20px;
-
-margin-bottom:25px;
-
-transition:0.3s;
-}
-
-.menu-lateral a:hover{
-color:#eb6e25;
-padding-left:10px;
-}
-
-
-    /* PAINEL */
-    .painel {
-        background: white;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-        color: #000000;
-        margin-bottom: 20px;
-    }
-
-    .form-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 15px;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: 600;
-    }
-
-    input,
-    select {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-    }
-
-    button {
-        background: #D9661c;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: bold;
-        margin-top: 15px;
-    }
-
-    button:hover {
-        background: #fcfcfc;
-    }
-
-    /* TABELA */
-    table {
-        width: 100%;
-        margin-top: 30px;
-        border-collapse: collapse;
-    }
-
-    th {
-        background: #D9661c;
-        color: white;
-        padding: 12px;
-    }
-
-    td {
-        padding: 10px;
-        border: 1px solid #ddd;
-        text-align: center;
-    }
-
-    .status-ok {
-        color: green;
-        font-weight: bold;
-    }
-
-    .status-alerta {
-        color: red;
-        font-weight: bold;
-    }
