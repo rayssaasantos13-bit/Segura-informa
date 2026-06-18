@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-
 *{
     margin:0;
     padding:0;
@@ -12,7 +10,7 @@ body{
 }
 /* Cabeçalho */
 header{
-    background:#f38f51;
+    background:#eb6e25;;
     color:white;
     padding:15px 30px;
     display:flex;
@@ -92,7 +90,7 @@ table{
 }
 
 table th{
-    background: #d9661c;;
+    background: #eb6e25;;
     color:white;
     padding:12px;
 }
@@ -110,7 +108,7 @@ table td{
 }
 
 }
-=======
+
     * {
         margin: 0;
         padding: 0;
@@ -267,7 +265,7 @@ padding-left:10px;
     }
 
     button {
-        background: #D9661c;
+        background: #eb6e25;;
         border: none;
         padding: 12px 20px;
         border-radius: 8px;
@@ -288,7 +286,7 @@ padding-left:10px;
     }
 
     th {
-        background: #D9661c;
+        background: #eb6e25;;
         color: white;
         padding: 12px;
     }
@@ -308,4 +306,3 @@ padding-left:10px;
         color: red;
         font-weight: bold;
     }
->>>>>>> Stashed changes
