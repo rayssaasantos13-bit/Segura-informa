@@ -1,52 +1,119 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro de Usuário</title>
-  <link rel="stylesheet" type="text/css" href="../css/estiloCadastro.css">
-  <style>
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cadastro - Segura Informa</title>
+
+<link rel="stylesheet" href="../css/estiloCadastro.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 <body>
-  <img src="img/logo.png" width="200px" alt="MonitorÁgua">
-  <h1>Criar sua conta</h1>
-  <p>Preencha seus dados para começar. É rápido e seguro.</p>
-  <form id="cadastroUsuario">
-    <div class="submit">
-      <label for="nome">Nome</label>
-      <input id="nome" name="nome" type="text" placeholder="Seu nome" required />
-    </div>
-    <div class="submit">
-      <label for="email">E-mail</label>
-      <input id="email" name="email" type="email" placeholder="E-mail" required />
-    </div>
-    <div class="submit">
-      <label for="cargo">Cargo</label>
-      <select id="cargo" name="cargo" required>
-        <option value="" disabled selected>Selecione</option>
-        <option>Funcionário</option>
-        <option>gestao</option>
-      </select>
-    </div>
 
-    <div class="submit">
-      <label for="senha">Senha</label>
-      <input id="senha" name="senha" type="password" placeholder="Senha" minlength="8" required />
-    </div>
-    <div class="checkbox-container">
-    <input type="checkbox" required>
-    <span>Eu concordo com os Termos de Uso e a Política de Privacidade .</span>
-</div>    
-<br>
+<div class="container">
+
+<div class="card">
+
+<h1>Criar Conta</h1>
+
+<p class="subtitulo">
+Cadastre-se para acessar alertas, mapas de risco,
+controle de EPIs e treinamentos de segurança.
+</p>
+
+<div class="info-box">
+⚠️ Seus dados serão utilizados apenas para acesso ao sistema Segura Informa.
+</div>
+
+<form id="formCadastro">
+
+<div class="linha">
+
+<div class="campo">
+<label>Nome</label>
+<div class="input-icon">
+<i class="fa-solid fa-user"></i>
+<input type="text" id="nome" placeholder="Seu nome">
+</div>
+</div>
+
+<div class="campo">
+<label>Sobrenome</label>
+<div class="input-icon">
+<i class="fa-solid fa-user"></i>
+<input type="text" id="sobrenome" placeholder="Seu sobrenome">
+</div>
+</div>
 
 </div>
-    <button type="submit">Cadastra</button>
 
- 
-    </div>
+<div class="linha">
+
+<div class="campo">
+<label>E-mail</label>
+<div class="input-icon">
+<i class="fa-solid fa-envelope"></i>
+<input type="email" id="email" placeholder="Digite seu e-mail">
+</div>
+</div>
+
+<div class="campo">
+<label>Telefone</label>
+<div class="input-icon">
+<i class="fa-solid fa-phone"></i>
+<input type="text" id="telefone" placeholder="(79) 99999-9999">
+</div>
+</div>
+
+</div>
+
+<div class="linha">
+
+<div class="campo">
+<label>Perfil</label>
+<select id="perfil">
+<option value="">Selecionar Perfil</option>
+<option>Administrador</option>
+<option>Funcionário</option>
+</select>
+</div>
+
+<div class="campo">
+<label>Senha</label>
+<div class="input-icon">
+<i class="fa-solid fa-lock"></i>
+<input type="password" id="senha" placeholder="Digite sua senha">
+</div>
+</div>
+
+</div>
+
+<label>Confirmar Senha</label>
+
+<div class="input-icon">
+<i class="fa-solid fa-lock"></i>
+<input type="password" id="confirmarSenha" placeholder="Confirme sua senha">
+</div>
+
+<button type="submit" class="btn-cadastrar">
+Cadastrar
+</button>
+
+</form>
+
+<a href="login.html" class="login-link">
+Já possui conta? Entrar
+</a>
+
+</div>
+
+</div>
+
 <script src="../js/javaCadastro.js"></script>
-  </form>
+
 </body>
 </html>
