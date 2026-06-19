@@ -1,3 +1,7 @@
+function abrirMenu(){
+const menu = document.getElementById("menu");
+menu.classList.toggle("ativo");
+}
 const formEntrega = document.getElementById('formEntrega');
 
 if (formEntrega != null) {
