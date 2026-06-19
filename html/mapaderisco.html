@@ -3,37 +3,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> Mapa de risco </title>
-
+<head>
   <link rel="stylesheet" type="text/css" href="../css/estiloMapa.css">
+   <style>
+  </style>
 </head>
-  <div class="menu-hamburguer">
-    <div class="hamburguer-icon" id="hamburguer-btn">
-      <span></span>
-      <span></span>
-      <span></span>
+<body>
+   <div class="container">
+
+
+    <div class="menu-lateral" id="menu">
+
+      <img src="../img/logo.png" width="150px" alt="MonitorÁgua">
+
+      <a href="../html/mapaderisco.html">Mapa de Risco</a>
+      <a href="../html/alertas.html">Alertas</a>
+      <a href="../html/Controle de EPIs.html de EPIs.html">Controle de EPIs</a>
+      <a href="../html/Entrega_EPIs.html">Entrega de EPIs</a>
+      <a href="../html/tela de perfil.html de perfil.html">Tela de Perfil</a>
+      <a href="../html/login.html">Sair</a>
+
     </div>
+    <div class="card">
 
-    <nav class="menu-lateral" id="menu-lateral">
-    
+      <button class="btn-menu" onclick="abrirMenu()">
+        ☰
+      </button>
 
-        <div class="menu-icon" onclick="toggleMenu()">
-          ☰
-        </div>
-
-
-        <nav id="menu">
-
-          <a href="/mapa de risco.html">Mapa de Risco</a>
-          <a href="/alertas.html">Alertas</a>
-          <a href="../html/Controle de EPIs.html">Controle de EPIs</a>
-          <a href="../html/Quiz segurança do trabalho.html">Quiz</a>
-          <a href="../html/tela de perfil.html">Tela de perfil</a>
-          <a href="../html/login.html">Sair</a>
-
-        </nav>
+    </div>
       <h1>Mapa de Risco</h1>
       <p> Pesquise a área para visualizar os risco do ambiente</p>
-
 
       <div class="pesquisar">
         <input type="text" id="campoPesquisa" placeholder="Pesquisar áreas...">

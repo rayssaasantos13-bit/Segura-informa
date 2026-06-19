@@ -1,9 +1,9 @@
 function imprimir() {
     window.print();
 }
-function toggleMenu() {
-    const menu = document.getElementById("menu-lateral");
-    menu.style.left = (menu.style.left === "0px") ? "-250px" : "0px";
+function abrirMenu(){
+const menu = document.getElementById("menu");
+menu.classList.toggle("ativo");
 }
 
 function pesquisarArea(){
