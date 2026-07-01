@@ -287,6 +287,95 @@
         }
       }
     },
+    "/Mapa_De_Risco": {
+      "post": {
+        "tags": [
+          "Mapa_De_Risco"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Id_Mapa": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Descricao": {
+                    "type": "string"
+                  },
+                  "Data_Criacao": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "Data_Atualizacao": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "Fk_Usuario_Id_Usuario": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Fk_Area_Id_Area": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Nome_Foto": {
+                    "type": "string"
+                  },
+                  "ArquivoFoto": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "Id_Mapa": {
+                  "style": "form"
+                },
+                "Descricao": {
+                  "style": "form"
+                },
+                "Data_Criacao": {
+                  "style": "form"
+                },
+                "Data_Atualizacao": {
+                  "style": "form"
+                },
+                "Fk_Usuario_Id_Usuario": {
+                  "style": "form"
+                },
+                "Fk_Area_Id_Area": {
+                  "style": "form"
+                },
+                "Nome_Foto": {
+                  "style": "form"
+                },
+                "ArquivoFoto": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Mapa_De_Risco"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Mapa_De_Risco/areasMapa": {
       "get": {
         "tags": [
@@ -300,18 +389,6 @@
               "type": "string"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/Mapa_De_Risco": {
-      "get": {
-        "tags": [
-          "Mapa_De_Risco"
         ],
         "responses": {
           "200": {
@@ -718,6 +795,9 @@
             "type": "integer",
             "format": "int32"
           },
+          "aceito": {
+            "type": "boolean"
+          },
           "entrega_de_epi": {
             "type": "array",
             "items": {
@@ -746,6 +826,10 @@
           "descricao": {
             "type": "string",
             "nullable": true
+          },
+          "numero_Ca": {
+            "type": "integer",
+            "format": "int32"
           },
           "exige_epi": {
             "type": "array",

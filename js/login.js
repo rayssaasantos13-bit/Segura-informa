@@ -1,5 +1,39 @@
 
 const myForm = document.getElementById('loginUsuario');
+
+if (myForm != null) {
+    myForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        fetch('https://localhost:7175/usuario/login', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                nome: "",
+                email: document.getElementById("email").value,
+                senha: document.getElementById("senha").value,
+                cargo: ""
+            }),
+        })
+        .then(response => {
+            if (response.status == 401) {
+                alert("Email ou senha incorretos!");
+            } else if (response.ok) {
+                alert("Logado com sucesso");
+                window.location.href = "mapaderisco.html";
+            } else {
+                alert("Erro no servidor: " + response.status);
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Erro ao conectar com o servidor");
+        });
+    });
+}/*const myForm = document.getElementById('loginUsuario');
 if (myForm!=null){
 myForm.addEventListener('submit', function (event) {
     // 1. Prevenir o recarregamento da página ao submeter form
@@ -27,4 +61,4 @@ myForm.addEventListener('submit', function (event) {
 })
        
 });
-}
+}*/

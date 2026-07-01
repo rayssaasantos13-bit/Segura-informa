@@ -14,8 +14,8 @@ namespace SeguraInforma.Controllers
         }
 
         [HttpPost]
-
-        public async Task<IActionResult> CriarMapadeRisco([FromForm] int id_mapa, [FromForm] string descricao, [FromForm] DateOnly data_criacao, [FromForm] DateOnly data_atualizacao, [FromForm] int fk_area_id_area, [FromForm] int fk_usuario_id_usuario, [FromForm] string nome_foto, [FromForm] IFormFile arquivoFoto)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> CriarMapadeRisco([FromForm] Mapa_De_Risco mapa)
         {
             var idLogado = HttpContext.Session.GetString("IdLogado");
             if (idLogado == null)
@@ -27,18 +27,19 @@ namespace SeguraInforma.Controllers
             {
 
 
-                if (!usuarioLogado.Cargo.Trim().Equals("gestao"))
+                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
                 {
                     return Unauthorized("Apenas gestores podem cadastrar.");
                 }
             }
 
-            Mapa_De_Risco mapa_de_risco = new Mapa_De_Risco( id_mapa, descricao ,  data_criacao,  data_atualizacao, fk_usuario_id_usuario,  fk_area_id_area,  nome_foto);
+            //Mapa_De_Risco mapa_de_risco = new Mapa_De_Risco(mapa.Id_Mapa, mapa.Descricao, mapa.Data_Criacao, mapa.Data_Atualizacao, mapa.Fk_Usuario_Id_Usuario, mapa.Fk_Area_Id_Area, mapa.Nome_Foto);
+            Mapa_De_Risco mapa_de_risco = mapa;
             var usuario = HttpContext.Session.GetString("IdLogado");
             if (usuario == null)
                 return Unauthorized("Não autenticado");
 
-            mapa_de_risco.ArquivoFoto = arquivoFoto;
+            mapa_de_risco.ArquivoFoto = mapa.ArquivoFoto;
             if (mapa_de_risco.ArquivoFoto != null)
             {
                 var nomeArquivo = Guid.NewGuid().ToString() + Path.GetExtension(mapa_de_risco.ArquivoFoto.FileName);
@@ -59,10 +60,6 @@ namespace SeguraInforma.Controllers
             return Created("Teste", mapa_de_risco);
         }
        
-
-
-
-
 
         [HttpGet("areasMapa")]
         public IActionResult AreasMapa( string nomeArea)
@@ -137,7 +134,7 @@ namespace SeguraInforma.Controllers
             {
 
 
-                if (!usuarioLogado.Cargo.Trim().Equals("gestao"))
+                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
                 {
                     return Unauthorized("Apenas gestores podem deletar.");
                 }
@@ -169,7 +166,7 @@ namespace SeguraInforma.Controllers
             {
 
 
-                if (!usuarioLogado.Cargo.Trim().Equals("gestao"))
+                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
                 {
                     return Unauthorized("Apenas gestores podem deletar.");
                 }

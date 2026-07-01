@@ -17,7 +17,7 @@ namespace SeguraInforma.Models
         [NotMapped]
         public IFormFile? ArquivoFoto { get; set; }
 
-        public Mapa_De_Risco(int id_Mapa, string descricao, DateOnly data_Criacao, DateOnly data_Atualizacao, int fk_Usuario_Id_Usuario, int fk_Area_Id_Area, string nome_Foto)
+       /* public Mapa_De_Risco(int id_Mapa, string descricao, DateOnly data_Criacao, DateOnly data_Atualizacao, int fk_Usuario_Id_Usuario, int fk_Area_Id_Area, string nome_Foto)
         {
             Id_Mapa = id_Mapa;
             Descricao = descricao;
@@ -26,6 +26,6 @@ namespace SeguraInforma.Models
             Fk_Usuario_Id_Usuario = fk_Usuario_Id_Usuario;
             Fk_Area_Id_Area = fk_Area_Id_Area;
             Nome_Foto = nome_Foto;
-        }
+        }*/
     }
 }

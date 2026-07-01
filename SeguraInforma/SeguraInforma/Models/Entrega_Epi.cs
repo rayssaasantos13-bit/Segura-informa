@@ -10,6 +10,7 @@ namespace SeguraInforma.Models
         public DateOnly Data_Entrega { get; set; }
         public DateOnly Data_Devolucao { get; set; }
         public int Fk_Usuario_Id_Usuario{ get; set; }
+        public bool Aceito { get; set; }
 
         [NotMapped]
         public List<Entrega_Tem_Epi> entrega_de_epi { get; set;}

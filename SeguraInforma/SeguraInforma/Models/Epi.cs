@@ -10,6 +10,7 @@ namespace SeguraInforma.Models
         public string Nome { get; set; }
         public int Qntd_Estoque { get; set; }
         public string Descricao { get; set; }
+        public int Numero_Ca { get; set; }
 
 
         [NotMapped]

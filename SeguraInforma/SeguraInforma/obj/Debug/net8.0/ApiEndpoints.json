@@ -160,6 +160,57 @@
   },
   {
     "ContainingType": "SeguraInforma.Controllers.Mapa_De_RiscoController",
+    "Method": "CriarMapadeRisco",
+    "RelativePath": "Mapa_De_Risco",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id_Mapa",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Descricao",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Data_Criacao",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      },
+      {
+        "Name": "Data_Atualizacao",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      },
+      {
+        "Name": "Fk_Usuario_Id_Usuario",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Fk_Area_Id_Area",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Nome_Foto",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ArquivoFoto",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SeguraInforma.Controllers.Mapa_De_RiscoController",
     "Method": "BuscaMapadeRisco",
     "RelativePath": "Mapa_De_Risco",
     "HttpMethod": "GET",

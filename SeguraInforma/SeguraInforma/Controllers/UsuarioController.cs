@@ -66,7 +66,7 @@ namespace SeguraInforma.Controllers
             {
            
 
-                if (!usuarioLogado.Cargo.Trim().Equals("gestao"))
+                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
                 {
                     return Unauthorized("Apenas gestores podem deletar usuários.");
                 }
