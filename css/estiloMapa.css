@@ -102,57 +102,52 @@ p a:hover {
     color: #333;
     margin-top: 10px;
 }
-
-
-.navbar {
-    background: #333;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.btn-menu{
+    border:none;
+    background:none;
+    font-size:35px;
+    cursor:pointer;
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:1001;
 }
 
-.menu-icon {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    font-size: 28px;
-    cursor: pointer;
-    z-index: 1000;
+.menu-lateral{
+    position:fixed;
+    top:0;
+    right:-300px;
+    width:280px;
+    height:100vh;
+    background:white;
+    padding:30px;
+    box-shadow:-2px 0 15px rgba(0,0,0,0.15);
+    transition:0.4s;
+    z-index:1000;
 }
 
-
-
-#menu {
-    display: none;
-    flex-direction: column;
-    background: #f2f2f2;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 200px;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+.menu-lateral.ativo{
+    right:0;
 }
 
-#menu a {
-    padding: 10px;
-    text-decoration: none;
-    color: #333;
+.logo{
+    width:100px;
+    display:block;
+    margin:0 auto 40px;
 }
 
-#menu a:hover {
-    background: #ddd;
+.menu-lateral a{
+    display:block;
+    text-decoration:none;
+    color:#333;
+    font-size:20px;
+    margin-bottom:25px;
+    transition:0.3s;
 }
 
-.btn-entrar {
-    display: inline-block;
-    background-color: #d2691e;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    text-align: center;
+.menu-lateral a:hover{
+    color:#eb6e25;
+    padding-left:10px;
 }
 .linha-fina {
     border: none;

@@ -1,3 +1,7 @@
+function abrirMenu(){
+const menu = document.getElementById("menu");
+menu.classList.toggle("ativo");
+}
 document.getElementById('formEPI').addEventListener('submit', function (event) {
         event.preventDefault(); // Impede de recarregar a página
 

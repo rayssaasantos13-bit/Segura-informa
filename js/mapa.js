@@ -1,8 +1,8 @@
+function imprimir() {
+    window.print();
+}
 function abrirMenu(){
-
-const menu =
-document.getElementById("menu");
-
+const menu = document.getElementById("menu");
 menu.classList.toggle("ativo");
 }
 
