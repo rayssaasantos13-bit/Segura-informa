@@ -102,52 +102,46 @@ p a:hover {
     color: #333;
     margin-top: 10px;
 }
-.btn-menu{
-    border:none;
-    background:none;
-    font-size:35px;
-    cursor:pointer;
-    position:fixed;
-    top:20px;
-    right:20px;
-    z-index:1001;
+/* Botão do menu */
+.menu-btn{
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    font-size: 42px;
+    cursor: pointer;
+    z-index: 1001;
+    color: #000;
 }
 
+/* Menu lateral */
 .menu-lateral{
-    position:fixed;
-    top:0;
-    right:-300px;
-    width:280px;
-    height:100vh;
-    background:white;
-    padding:30px;
-    box-shadow:-2px 0 15px rgba(0,0,0,0.15);
-    transition:0.4s;
-    z-index:1000;
+    position: fixed;
+    top: 0;
+    right: -260px;
+    width: 250px;
+    height: 100%;
+    background: #ffffff;
+    transition: 0.3s;
+    padding-top: 70px;
+    z-index: 1000;
+    box-shadow: -4px 0 10px rgba(0,0,0,.3);
 }
 
 .menu-lateral.ativo{
-    right:0;
-}
-
-.logo{
-    width:100px;
-    display:block;
-    margin:0 auto 40px;
+    right: 0;
 }
 
 .menu-lateral a{
-    display:block;
-    text-decoration:none;
-    color:#333;
-    font-size:20px;
-    margin-bottom:25px;
-    transition:0.3s;
+    display: block;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 18px 25px;
+    font-size: 18px;
+    transition: .3s;
 }
 
 .menu-lateral a:hover{
-    color:#eb6e25;
-    padding-left:10px;
+    background: rgba(255,255,255,.2);
 }
 .linha-fina {
     border: none;
@@ -215,19 +209,4 @@ p a:hover {
       margin:10px 0;
       color:#444;
       font-size:15px;
-    }
-
-    .btn{
-      display:inline-block;
-      margin-top:20px;
-      padding:12px 25px;
-      background:#ffffff;
-      color:#fff;
-      text-decoration:none;
-      border-radius:10px;
-      transition:0.3s;
-    }
-
-    .btn:hover{
-      background:#1e3c72;
     }

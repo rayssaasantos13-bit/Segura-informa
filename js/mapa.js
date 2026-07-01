@@ -1,11 +1,10 @@
 function imprimir() {
     window.print();
 }
-function abrirMenu(){
-const menu = document.getElementById("menu");
-menu.classList.toggle("ativo");
+function toggleMenu() {
+document.getElementById("menuLateral")
+.classList.toggle("ativo");
 }
-
 function pesquisarArea(){
 
 const area =

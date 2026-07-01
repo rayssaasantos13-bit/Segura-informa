@@ -16,10 +16,7 @@ function editarPerfil() {
         document.getElementById("telefone").textContent = "📱 " + telefone;
     }
 }
-function abrirMenu(){
-const menu = document.getElementById("menu");
-menu.classList.toggle("ativo");
-}
-function abrirMenu() {
-    document.getElementById("menu").classList.toggle("ativo");
+function toggleMenu() {
+document.getElementById("menuLateral")
+.classList.toggle("ativo");
 }
