@@ -70,8 +70,7 @@
               "RelativeToolTip": "SeguraInforma\\Controllers\\Entrega_EpiController.cs",
               "ViewState": "AgIAAFwAAAAAAAAAAAAIwGQAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-01T12:01:07.83Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-01T12:01:07.83Z"
             },
             {
               "$type": "Document",
@@ -83,8 +82,7 @@
               "RelativeToolTip": "SeguraInforma\\Controllers\\EpiController.cs",
               "ViewState": "AgIAAFYAAAAAAAAAAAAIwGEAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-01T12:00:54.206Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-01T12:00:54.206Z"
             },
             {
               "$type": "Document",
@@ -96,8 +94,7 @@
               "RelativeToolTip": "SeguraInforma\\Controllers\\RiscoController.cs",
               "ViewState": "AgIAAFMAAAAAAAAAAAAIwFgAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-01T12:00:13.62Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-01T12:00:13.62Z"
             },
             {
               "$type": "Document",
@@ -107,7 +104,7 @@
               "RelativeDocumentMoniker": "SeguraInforma\\Controllers\\UsuarioController.cs",
               "ToolTip": "E:\\Ana Vit\u00F3ria\\SeguraInforma\\Segura-informa\\SeguraInforma\\SeguraInforma\\Controllers\\UsuarioController.cs",
               "RelativeToolTip": "SeguraInforma\\Controllers\\UsuarioController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowDIAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAcwFEAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-01T11:26:04.61Z",
               "EditorCaption": ""
@@ -122,8 +119,7 @@
               "RelativeToolTip": "SeguraInforma\\Models\\Entrega_Epi.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-01T11:47:41.697Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-01T11:47:41.697Z"
             },
             {
               "$type": "Document",
@@ -135,8 +131,7 @@
               "RelativeToolTip": "SeguraInforma\\Models\\Epi.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-01T11:47:06.133Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-01T11:47:06.133Z"
             },
             {
               "$type": "Document",
@@ -148,8 +143,7 @@
               "RelativeToolTip": "SeguraInforma\\Models\\Mapa_De_Risco.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAxwBQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-01T11:15:44.284Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-01T11:15:44.284Z"
             },
             {
               "$type": "Document",
@@ -161,8 +155,7 @@
               "RelativeToolTip": "SeguraInforma\\Controllers\\Mapa_De_RiscoController.cs",
               "ViewState": "AgIAAKMAAAAAAAAAAAAcwKgAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T13:13:57.3Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-18T13:13:57.3Z"
             },
             {
               "$type": "Document",
@@ -186,8 +179,7 @@
               "RelativeToolTip": "SeguraInforma\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T11:45:01.212Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-18T11:45:01.212Z"
             },
             {
               "$type": "Document",
@@ -211,8 +203,7 @@
               "RelativeToolTip": "SeguraInforma\\Controllers\\AreaController.cs",
               "ViewState": "AgIAAFwAAAAAAAAAAAAIwGgAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T11:30:48.7Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-18T11:30:48.7Z"
             }
           ]
         }
