@@ -40,7 +40,7 @@
               "RelativeDocumentMoniker": "SeguraInforma\\Controllers\\Mapa_De_RiscoController.cs",
               "ToolTip": "E:\\Ana Vit\u00F3ria\\SeguraInforma\\Segura-informa\\SeguraInforma\\SeguraInforma\\Controllers\\Mapa_De_RiscoController.cs",
               "RelativeToolTip": "SeguraInforma\\Controllers\\Mapa_De_RiscoController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA1wBcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-18T13:13:57.3Z",
               "EditorCaption": ""
@@ -55,8 +55,7 @@
               "RelativeToolTip": "SeguraInforma\\Models\\Area.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T13:07:41.719Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-18T13:07:41.719Z"
             },
             {
               "$type": "Document",
@@ -68,8 +67,7 @@
               "RelativeToolTip": "SeguraInforma\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T11:45:01.212Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-18T11:45:01.212Z"
             },
             {
               "$type": "Document",
@@ -81,8 +79,7 @@
               "RelativeToolTip": "SeguraInforma\\Data\\SeguraInformaContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T11:45:05.185Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-18T11:45:05.185Z"
             },
             {
               "$type": "Document",
@@ -94,8 +91,7 @@
               "RelativeToolTip": "SeguraInforma\\Controllers\\AreaController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T11:30:48.7Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-18T11:30:48.7Z"
             }
           ]
         }
