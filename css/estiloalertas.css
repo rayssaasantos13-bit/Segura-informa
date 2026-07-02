@@ -10,32 +10,38 @@ background:#f3f4f6;
 }
 
 .container{
-width:100%;
-min-height:100vh;
 
-display:flex;
-justify-content:center;
-align-items:center;
+    width:100%;
 
-padding:30px;
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
 }
-
 
 .card{
-width:1200px;
-min-height:700px;
 
-background:#ffffff;
+    width:1200px;
 
-border-radius:20px;
+    min-height:700px;
 
-padding:40px;
+    background:#fff;
 
-box-shadow:0 0 25px rgba(0,0,0,0.10);
+    border-radius:20px;
 
-position:relative;
+    padding:40px;
+
+    box-shadow:0 0 25px rgba(0,0,0,.10);
+
+    position:relative;
+
 }
-
 
 .topo{
 display:flex;
