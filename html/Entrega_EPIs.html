@@ -1,111 +1,213 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Entrega de EPIs</title>
-  <link rel="stylesheet" type="text/css" href="/css/estiloEntrega.css">
-  <style>
-  </style>
+  <title>Gestão de EPIs</title>
+ <link rel="stylesheet" href="../css/estiloEntrega.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 <body>
- <div class="container">
 
-    <div class="menu-lateral" id="menu">
-
-      <img src="../img/logo.png" width="150px" alt="MonitorÁgua">
-
-      <a href="../html/mapaderisco.html">Mapa de Risco</a>
-      <a href="../html/alertas.html">Alertas</a>
-      <a href="../html/Controle de EPIs.html de EPIs.html">Controle de EPIs</a>
-      <a href="../html/Entrega_EPIs.html">Entrega de EPIs</a>
-      <a href="../html/tela de perfil.html">Tela de Perfil</a>
-      <a href="../html/login.html">Sair</a>
-
+  <header>
+    <div class="logo-area">
+      <i class="fa-solid fa-helmet-safety"></i>
+      <span>Gestão de EPIs</span>
     </div>
+    <div class="user-area">
+      <i class="fa-solid fa-user-tie"></i>
+      <span>Administrador</span>
+      <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
+    </div>
+  </header>
+
+
     <div class="card">
+      <div class="card-title">
+        <i class="fa-regular fa-clipboard"></i> Cadastro de EPIs
+      </div>
 
-      <button class="btn-menu" onclick="abrirMenu()">
-        ☰
-      </button>
+      <form id="Entrega_Epi">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Código do EPI <span>*</span></label>
+            <input type="text" id="codigo" placeholder="Ex.: 0001" required>
+          </div>
+          <div class="form-group">
+            <label>CA (Certificado de Aprovação) <span>*</span></label>
+            <input type="text" id="ca" placeholder="Ex.: 12345" required>
+          </div>
+          <div class="form-group">
+            <label>Nome do EPI <span>*</span></label>
+            <input type="text" id="nome" placeholder="Ex.: Luva de Segurança" required>
+          </div>
+          <div class="form-group">
+            <label>Categoria <span>*</span></label>
+            <select id="categoria" required>
+              <option value="" disabled selected>Selecione uma categoria</option>
+              <option value="Luva">Luva</option>
+              <option value="Óculos">Óculos</option>
+              <option value="Capacete">Capacete</option>
+              <option value="Protetor Auricular">Protetor Auricular</option>
+              <option value="Máscara">Máscara</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Fabricante</label>
+            <input type="text" id="fabricante" placeholder="Ex.: Danny">
+          </div>
+          <div class="form-group">
+            <label>Quantidade</label>
+            <input type="number" id="quantidade" placeholder="Ex.: 10">
+          </div>
+          <div class="form-group">
+            <label>Unidade</label>
+            <select id="unidade">
+              <option value="Unidade" selected>Unidade</option>
+              <option value="Par">Par</option>
+              <option value="Caixa">Caixa</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Data de Validade</label>
+            <input type="date" id="validade">
+          </div>
+          <div class="form-group full-width">
+            <label>Descrição</label>
+            <input type="text" id="descricao" placeholder="Ex.: Luva de segurança confeccionada em...">
+          </div>
+        </div>
 
-<h1>Entrega de EPIs</h1>
-<form>
-<div class="submit">
-      <label for="Nome">Nome do EPI:</label>
-      <input id="nome" name="nome" type="text" placeholder="E-mail" required />
+        <div class="actions-bar">
+          <button type="button" class="btn btn-success" id="btnCadastrar"><i class="fa-solid fa-plus"></i>
+            Cadastrar</button>
+          <button type="button" class="btn btn-primary" id="btnAtualizar"><i class="fa-solid fa-pen"></i>
+            Atualizar</button>
+          <button type="button" class="btn btn-danger" id="btnExcluir"><i class="fa-solid fa-trash-can"></i>
+            Excluir</button>
+          <button type="button" class="btn btn-secondary" id="btnLimpar"><i class="fa-solid fa-broom"></i>
+            Limpar</button>
+        </div>
+      </form>
     </div>
 
-    <div class="form-group">
-    <label>Descrição</label>
-    <input type="text" placeholder="Descrição">
+    <div class="card">
+      <div class="table-header">
+        <div class="table-title">
+          <i class="fa-solid fa-list-ul"></i> Lista de EPIs Cadastrados
+        </div>
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="search" placeholder="Pesquisar...">
+        </div>
+      </div>
 
-    <div class="form-group">
-  <label>Data da Entrega</label>
-  <input type="date">
-</div>
-<div class="form-group">
-  <label>Data da Devolução</label>
-  <input type="date">
-</div>
-<div class="form-group">
-   <label for="EPI">Nome do EPI:</label>
-      <input id="EPI" name="EPI" type="text" placeholder="Digite o Nome do EPI" required />
+      <div class="table-wrapper">
+        <table id="epiTable">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>CA</th>
+              <th>Nome do EPI</th>
+              <th>Categoria</th>
+              <th>Fabricante</th>
+              <th>Quantidade</th>
+              <th>Validade</th>
+              <th style="width: 100px;">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-id="0001">
+              <td>0001</td>
+              <td>12345</td>
+              <td>Luva de Segurança</td>
+              <td>Luva</td>
+              <td>Danny</td>
+              <td>50</td>
+              <td>31/12/2026</td>
+              <td>
+                <div class="table-actions">
+                  <button class="action-btn act-edit" onclick="editRow('0001')"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn act-delete" onclick="deleteRow('0001')"><i
+                      class="fa-solid fa-trash-can"></i></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="0002">
+              <td>0002</td>
+              <td>23456</td>
+              <td>Óculos de Proteção</td>
+              <td>Óculos</td>
+              <td>Kalipso</td>
+              <td>30</td>
+              <td>20/08/2027</td>
+              <td>
+                <div class="table-actions">
+                  <button class="action-btn act-edit" onclick="editRow('0002')"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn act-delete" onclick="deleteRow('0002')"><i
+                      class="fa-solid fa-trash-can"></i></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="0003">
+              <td>0003</td>
+              <td>34567</td>
+              <td>Capacete de Segurança</td>
+              <td>Capacete</td>
+              <td>3M</td>
+              <td>15</td>
+              <td>10/05/2026</td>
+              <td>
+                <div class="table-actions">
+                  <button class="action-btn act-edit" onclick="editRow('0003')"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn act-delete" onclick="deleteRow('0003')"><i
+                      class="fa-solid fa-trash-can"></i></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="0004">
+              <td>0004</td>
+              <td>45678</td>
+              <td>Protetor Auricular</td>
+              <td>Protetor Auricular</td>
+              <td>MSA</td>
+              <td>25</td>
+              <td>15/03/2027</td>
+              <td>
+                <div class="table-actions">
+                  <button class="action-btn act-edit" onclick="editRow('0004')"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn act-delete" onclick="deleteRow('0004')"><i
+                      class="fa-solid fa-trash-can"></i></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="0005">
+              <td>0005</td>
+              <td>56789</td>
+              <td>Máscara PFF2</td>
+              <td>Máscara</td>
+              <td>Carbografite</td>
+              <td>40</td>
+              <td>28/02/2026</td>
+              <td>
+                <div class="table-actions">
+                  <button class="action-btn act-edit" onclick="editRow('0005')"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn act-delete" onclick="deleteRow('0005')"><i
+                      class="fa-solid fa-trash-can"></i></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-</div>
-<div class="form-group">
-    <label>Quantidade</label>
-    <input type="number" min="1" value="1">
-</div>
-</div>
-<div class="form-group">
-
   </div>
 
-</div>
-
-
-
-<div class="form-group full">
-    <button type="submit">
-      Registrar Entrega
-    </button>
-</div>
-</div>
-</form>
-</div>
-
-<!--<div class="card" style="margin-top:25px;">
-  <h2>Histórico de Entregas</h2>
-  <table>
-  <thead>
-    <tr>
-  <th>Colaborador</th>
-  <th>Setor</th>
-  <th>EPI</th>
-  <th>Qtd.</th>
-  <th>Data</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-  <td>João Silva</td>
-  <td>Produção</td>
-  <td>Capacete</td>
-  <td>1</td>
-  <td>02/06/2026</td>
-  </tr>
-<tr>
-  <td>Maria Santos</td>
-  <td>Logística</td>
-  <td>Botina</td>
-  <td>1</td>
-  <td>02/06/2026</td>
-</tr>
-</tbody>
-</table>
-</div>-->
-</div>
-<script src="../js/JavaEntrega.js"></script>
+  <script src="../js/JavaEntrega.js"></script>
 </body>
+
 </html>
