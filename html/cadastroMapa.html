@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro de Mapa</title>
+
+    <link rel="stylesheet" href="../css/cadastroMapa.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- MENU -->
+
+    <div class="menu-lateral" id="menu">
+
+        <img src="../img/logo.png" width="150" alt="MonitorÁgua">
+
+        <a href="mapaderisco.html">Mapa de Risco</a>
+        <a href="alertas.html">Alertas</a>
+        <a href="ControleEPIs.html">Controle de EPIs</a>
+        <a href="Entrega_EPIs.html">Entrega de EPIs</a>
+        <a href="tela de perfil.html">Tela de Perfil</a>
+        <a href="login.html">Sair</a>
+
+    </div>
+
+    <!-- CARD -->
+
+    <div class="card">
+
+        <button class="btn-menu" onclick="abrirMenu()">
+            ☰
+        </button>
+
+        <h1>Cadastro de Mapa de Risco</h1>
+
+        <form id="formMapa">
+
+          
+
+            <!-- DESCRIÇÃO -->
+
+            <div class="campo">
+
+                <label for="descricao">Descrição</label>
+
+                <textarea
+                    id="descricao"
+                    rows="5"
+                    placeholder="Digite uma descrição do mapa de risco..."></textarea>
+
+            </div>
+
+            <!-- IMAGEM -->
+
+            <div class="campo">
+
+                <label>Mapa de Risco</label>
+
+                <label for="imagemMapa" class="btnUpload">
+
+                    📁 Selecionar imagem
+
+                </label>
+
+                <input
+                    type="file"
+                    id="imagemMapa"
+                    accept=".png,.jpg,.jpeg"
+                    hidden>
+
+                <p id="nomeArquivo">
+
+                    Nenhuma imagem selecionada.
+
+                </p>
+
+            </div>
+
+            <!-- PRÉ-VISUALIZAÇÃO -->
+
+            <div class="campo">
+
+                <label>Pré-visualização</label>
+
+                <img
+                    id="previewMapa"
+                    src="../img/sem-imagem.png"
+                    alt="Pré-visualização do mapa">
+
+            </div>
+
+            <!-- DATAS -->
+
+            <div class="linha">
+
+                <div class="campo">
+
+                    <label for="dataCriacao">Data de Criação</label>
+
+                    <input
+                        type="date"
+                        id="dataCriacao">
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="dataAtualizacao">Data de Atualização</label>
+
+                    <input
+                        type="date"
+                        id="dataAtualizacao">
+
+                </div>
+
+            </div>
+
+            <!-- BOTÕES -->
+
+            <div class="botoes">
+
+                <button
+                    type="button"
+                    class="salvar"
+                    onclick="cadastrarMapa()">
+
+                    Cadastrar
+
+                </button>
+
+                <button
+                    type="button"
+                    class="editar"
+                    onclick="atualizarMapa()">
+
+                    Atualizar
+
+                </button>
+
+                <button
+                    type="button"
+                    class="deletar"
+                    onclick="deletarMapa()">
+
+                    Deletar
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="../js/cadastrarMapa.js"></script>
+
+</body>
+
+</html>

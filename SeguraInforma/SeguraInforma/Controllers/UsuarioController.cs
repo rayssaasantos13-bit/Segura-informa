@@ -31,7 +31,7 @@ namespace SeguraInforma.Controllers
                      Secure = true,
                      SameSite = SameSiteMode.None
                  });
-            return Ok("Login realizado com sucesso!");
+            return Ok(usuarioBanco[0].Cargo.Trim());
         }
 
         [HttpGet("logout")]

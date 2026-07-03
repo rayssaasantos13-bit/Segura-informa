@@ -1,4 +1,4 @@
-function imprimir() {
+/*function imprimir() {
     window.print();
 }
 function toggleMenu() {
@@ -71,4 +71,19 @@ Tente pesquisar Produção ou TI.
 </p>
 `;
 }
+}*/
+
+function toggleMenu() {
+
+    const menu = document.getElementById("menuLateral");
+
+    menu.classList.toggle("ativo");
+
 }
+
+function CadastrarMapa() {
+
+    window.location.href = "../html/cadastroMapa.html";
+
+}
+
