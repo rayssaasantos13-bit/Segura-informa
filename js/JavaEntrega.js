@@ -1,162 +1,153 @@
-const myForm1 = document.getElementById('Entrga_Epi');
-if (myForm1 != null) {
-myForm1.addEventListener('submit', function (event) {
-    // 1. Prevenir o recarregamento da página ao submeter form
-    event.preventDefault();
+// URL da sua API (ajustada para a porta 7175 conforme seu último arquivo)
+const myForm = document.getElementById('loginUsuario');
+if (myForm != null) {
+const API_URL = 'https://localhost:7175/Entrega_Epi';
 
-    fetch('https://localhost:7175/Entrga_Epi/', {
-        method: 'POST', //Para outros métodos, basta alterar aqui. Obs: Delete remove a parte do body e headers, e no get é conforme todos os exemploes feitos na Unidade interação com API 
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-})
-});
-// Seletores de Elementos
-const form = document.getElementById('epiForm');
-const tableBody = document.querySelector('#epiTable tbody');
-const searchInput = document.getElementById('search');
+document.addEventListener("DOMContentLoaded", ( ) => {
+    // Mapeia o formulário e os botões do seu HTML
+    const myForm = document.getElementById('Entrega_Epi'); 
+    const btnCadastrar = document.getElementById("btnCadastrar");
+    const btnAtualizar = document.getElementById("btnAtualizar");
+    const btnExcluir = document.getElementById("btnExcluir");
+    const btnLimpar = document.getElementById("btnLimpar");
 
-// Botões do Form
-const btnCadastrar = document.getElementById('btnCadastrar');
-const btnAtualizar = document.getElementById('btnAtualizar');
-const btnExcluir = document.getElementById('btnExcluir');
-const btnLimpar = document.getElementById('btnLimpar');
-
-// Auxiliar para formatar data (AAAA-MM-DD para DD/MM/AAAA)
-function formatDateToBR(dateString) {
-    if (!dateString) return '';
-    const [year, month, day] = dateString.split('-');
-    return `${day}/${month}/${year}`;
-}
-
-// Auxiliar para formatar data invertida (DD/MM/AAAA para AAAA-MM-DD)
-function formatDateToISO(dateString) {
-    if (!dateString) return '';
-    const [day, month, year] = dateString.split('/');
-    return `${year}-${month}-${day}`;
-}
-
-// Limpar Formulário
-btnLimpar.addEventListener('click', () => {
-    form.reset();
-    document.getElementById('codigo').disabled = false; // re-habilita ID caso estivesse editando
-});
-
-// Cadastrar Novo EPI
-btnCadastrar.addEventListener('click', () => {
-    const codigo = document.getElementById('codigo').value;
-    const ca = document.getElementById('ca').value;
-    const nome = document.getElementById('nome').value;
-    const categoria = document.getElementById('categoria').value;
-    const fabricante = document.getElementById('fabricante').value || '-';
-    const quantidade = document.getElementById('quantidade').value || '0';
-    const validade = formatDateToBR(document.getElementById('validade').value) || '-';
-
-    if (!codigo || !ca || !nome || !categoria) {
-        alert('Por favor, preencha todos os campos obrigatórios (*)');
-        return;
+    // 1. Prevenir o recarregamento da página e disparar o cadastro
+    if (myForm != null) {
+        myForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            cadastrarEPI();
+        });
     }
 
-    // Verifica se o código já existe
-    if (document.querySelector(`tr[data-id="${codigo}"]`)) {
-        alert('Este código de EPI já está cadastrado!');
-        return;
+    // 2. Adiciona os eventos de clique aos botões
+    if (btnCadastrar) {
+        btnCadastrar.addEventListener("click", () => {
+            // Se o form existir, dispara o evento submit dele
+            if (myForm) myForm.dispatchEvent(new Event('submit'));
+            else cadastrarEPI();
+        });
     }
 
-    const newRow = document.createElement('tr');
-    newRow.setAttribute('data-id', codigo);
-    newRow.innerHTML = `
-                <td>${codigo}</td>
-                <td>${ca}</td>
-                <td>${nome}</td>
-                <td>${categoria}</td>
-                <td>${fabricante}</td>
-                <td>${quantidade}</td>
-                <td>${validade}</td>
-                <td>
-                    <div class="table-actions">
-                        <button class="action-btn act-edit" onclick="editRow('${codigo}')"><i class="fa-solid fa-pen"></i></button>
-                        <button class="action-btn act-delete" onclick="deleteRow('${codigo}')"><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
-                </td>
-            `;
-    tableBody.appendChild(newRow);
-    form.reset();
+    if (btnAtualizar) btnAtualizar.addEventListener("click", atualizarEPI);
+    if (btnExcluir) btnExcluir.addEventListener("click", excluirEPI);
+    if (btnLimpar) btnLimpar.addEventListener("click", limparFormulario);
 });
 
-// Editar linha (Preenche formulário para atualização)
-function editRow(id) {
-    const row = document.querySelector(`tr[data-id="${id}"]`);
-    const cells = row.querySelectorAll('td');
-
-    document.getElementById('codigo').value = cells[0].innerText;
-    document.getElementById('codigo').disabled = true; // Chave primária travada na edição
-    document.getElementById('ca').value = cells[1].innerText;
-    document.getElementById('nome').value = cells[2].innerText;
-    document.getElementById('categoria').value = cells[3].innerText;
-    document.getElementById('fabricante').value = cells[4].innerText === '-' ? '' : cells[4].innerText;
-    document.getElementById('quantidade').value = cells[5].innerText === '0' ? '' : cells[5].innerText;
-    document.getElementById('validade').value = formatDateToISO(cells[6].innerText);
-}
-
-// Atualizar Registro Existente
-btnAtualizar.addEventListener('click', () => {
-    const codigo = document.getElementById('codigo').value;
-    const row = document.querySelector(`tr[data-id="${codigo}"]`);
-
-    if (!row) {
-        alert('Selecione um EPI existente na tabela (clicando no ícone de lápis) para atualizar.');
-        return;
-    }
-
-    const cells = row.querySelectorAll('td');
-    cells[1].innerText = document.getElementById('ca').value;
-    cells[2].innerText = document.getElementById('nome').value;
-    cells[3].innerText = document.getElementById('categoria').value;
-    cells[4].innerText = document.getElementById('fabricante').value || '-';
-    cells[5].innerText = document.getElementById('quantidade').value || '0';
-    cells[6].innerText = formatDateToBR(document.getElementById('validade').value) || '-';
-
-    document.getElementById('codigo').disabled = false;
-    form.reset();
-    alert('EPI atualizado com sucesso!');
-});
-
-// Excluir via Botão do Formulário
-btnExcluir.addEventListener('click', () => {
-    const codigo = document.getElementById('codigo').value;
-    if (!codigo) {
-        alert('Insira ou selecione um código de EPI para excluir.');
-        return;
-    }
-    deleteRow(codigo);
-});
-
-// Função de Excluir Linha Geral
-function deleteRow(id) {
-    const row = document.querySelector(`tr[data-id="${id}"]`);
-    if (row) {
-        if (confirm(`Tem certeza que deseja excluir o EPI com código ${id}?`)) {
-            row.remove();
-            if (document.getElementById('codigo').value === id) {
-                document.getElementById('codigo').disabled = false;
-                form.reset();
+// Função para capturar os dados do formulário e montar o objeto para o C#
+function getFormData() {
+    return {
+        id_Entrega_EPI: 0, 
+        data_Entrega: new Date().toISOString(), 
+        data_Devolucao: document.getElementById("validade").value || null,
+        // O seu controller espera uma lista 'entrega_de_epi'
+        entrega_de_epi: [
+            {
+                nome_epi: document.getElementById("nome").value,
+                ca_epi: document.getElementById("ca").value,
+                codigo_epi: document.getElementById("codigo").value,
+                categoria: document.getElementById("categoria").value,
+                fabricante: document.getElementById("fabricante").value,
+                quantidade: parseInt(document.getElementById("quantidade").value) || 0,
+                unidade: document.getElementById("unidade").value,
+                descricao: document.getElementById("descricao").value
             }
+        ]
+    };
+}
+
+// [POST] - Cadastrar no Banco de Dados SQL
+async function cadastrarEPI() {
+    const dados = getFormData();
+
+    try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            credentials: 'include', // Mantém a sessão de login do usuário
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dados)
+        });
+
+        if (response.ok) {
+            alert("EPI cadastrado com sucesso no SQL!");
+            limparFormulario();
+            window.location.reload(); 
+        } else if (response.status == 401) {
+            alert("Faça login antes de cadastrar!");
+            window.location.href = "login.html";
+        } else {
+            const erro = await response.text();
+            alert("Erro ao cadastrar: " + erro);
         }
-    } else {
-        alert('EPI não encontrado.');
+    } catch (error) {
+        console.error("Erro na requisição:", error);
+        alert("Não foi possível conectar ao servidor da API.");
     }
 }
 
-// Filtro Dinâmico de Pesquisa (Filtra por qualquer coluna)
-searchInput.addEventListener('input', function () {
-    const searchTerm = this.value.toLowerCase();
-    const rows = tableBody.querySelectorAll('tr');
+// [PUT] - Atualizar no Banco de Dados
+async function atualizarEPI() {
+    const id = document.getElementById("codigo").value; 
+    const dados = {
+        data_Entrega: new Date().toISOString(),
+        data_Devolucao: document.getElementById("validade").value
+    };
 
-    rows.forEach(row => {
-        const text = row.innerText.toLowerCase();
-        row.style.display = text.includes(searchTerm) ? '' : 'none';
-    });
-})
-};
+    if (!id) {
+        alert("Informe o código do EPI para atualizar.");
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: "PUT",
+            credentials: 'include',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(dados)
+        });
+
+        if (response.ok) {
+            alert("Registro atualizado no banco!");
+            window.location.reload();
+        } else if (response.status == 401) {
+            alert("Faça login antes de editar!");
+        } else {
+            alert("Erro ao atualizar.");
+        }
+    } catch (error) {
+        console.error("Erro:", error);
+    }
+}
+
+// [DELETE] - Excluir do Banco de Dados
+async function excluirEPI() {
+    const id = document.getElementById("codigo").value;
+    if (!id || !confirm("Deseja excluir este registro?")) return;
+
+    try {
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: "DELETE",
+            credentials: 'include'
+        });
+
+        if (response.ok) {
+            alert("Excluído com sucesso!");
+            limparFormulario();
+            window.location.reload();
+        } else if (response.status == 401) {
+            alert("Faça login antes de excluir!");
+        } else {
+            alert("Erro ao excluir.");
+        }
+    } catch (error) {
+        console.error("Erro:", error);
+    }
+}
+
+function limparFormulario() {
+    const form = document.getElementById("Entrega_Epi");
+    if (form) form.reset();
+}
+
+}
