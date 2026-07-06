@@ -6,12 +6,12 @@
 }
 
 body{
-    background:#f5f7fa;
+    background:#fff;
 }
 
 /* CONTAINER */
 .container{
-    padding:25px;
+    padding:18px;
 }
 
 /* CARDS */
@@ -42,12 +42,16 @@ body{
 
 /* PAINEL */
 .painel{
-    background:white;
-    padding:22px;
-    border-radius:10px;
-    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+    background: #fff;
+    width: 85%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 18px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
-
 h2{
     color:#eb6e25;
     margin-bottom:20px;
@@ -163,4 +167,7 @@ td{
 .menu-lateral a:hover{
     color:#eb6e25;
     padding-left:10px;
+}
+header h1{
+    text-align: center;
 }
