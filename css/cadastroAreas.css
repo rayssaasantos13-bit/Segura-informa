@@ -1,0 +1,301 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background:#f3f3f3;
+}
+
+.container{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+/* CARD */
+
+.card{
+    width:1100px;
+    background:#ffffff;
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 4px 15px rgba(0,0,0,.15);
+    position:relative;
+}
+
+/* BOTÃO MENU */
+
+.btn-menu{
+    position:absolute;
+    top:20px;
+    right:25px;
+    border:none;
+    background:none;
+    font-size:35px;
+    cursor:pointer;
+    z-index:1001;
+}
+
+/* BONECA */
+
+.boneca{
+    position:absolute;
+    top:18px;
+    right:80px;
+    width:60px;
+    border-radius:50%;
+}
+
+/* TÍTULO */
+
+h1{
+    text-align:center;
+    color:#333;
+    margin-bottom:10px;
+}
+
+.subtitulo{
+    text-align:center;
+    color:#777;
+    margin-bottom:25px;
+}
+
+hr{
+    border:none;
+    border-top:1px solid #ddd;
+    margin:20px 0;
+}
+
+/* FORMULÁRIO */
+
+.formulario{
+    width:100%;
+}
+
+.linha{
+    display:flex;
+    gap:20px;
+}
+
+.campo{
+    flex:1;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#444;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    margin-bottom:20px;
+    font-size:15px;
+}
+
+textarea{
+    resize:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    outline:none;
+    border:1px solid #eb6e25;
+}
+/* BOTÕES */
+
+.botoes{
+    display:flex;
+    justify-content:flex-end;
+    gap:15px;
+    margin-top:10px;
+}
+
+.btnCadastrar,
+.btnAtualizar,
+.btnCancelar{
+    padding:12px 25px;
+    border:none;
+    border-radius:8px;
+    font-size:15px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btnCadastrar{
+    background:#eb6e25;
+    color:#fff;
+}
+
+.btnCadastrar:hover{
+    background:#eb6e25;
+}
+
+.btnAtualizar{
+    background:#0d6efd;
+    color:#fff;
+}
+
+.btnAtualizar:hover{
+    background:#0b5ed7;
+}
+
+.btnCancelar{
+    background:#6c757d;
+    color:#fff;
+}
+
+.btnCancelar:hover{
+    background:#5c636a;
+}
+
+/* TABELA */
+
+h2{
+    margin-bottom:20px;
+    color:#333;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead{
+    background:#eb6e25;
+    color:white;
+}
+
+th{
+    padding:15px;
+}
+
+td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+tbody tr:hover{
+    background:#f7f7f7;
+}
+
+/* BOTÕES DA TABELA */
+
+.editar{
+    background:#ffc107;
+    color:#000;
+    border:none;
+    padding:8px 14px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-right:5px;
+}
+
+.editar:hover{
+    background:#e0a800;
+}
+
+.excluir{
+    background:#dc3545;
+    color:#fff;
+    border:none;
+    padding:8px 14px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.excluir:hover{
+    background:#bb2d3b;
+}
+
+/* MENU LATERAL */
+
+.menu-lateral{
+    position:fixed;
+    top:0;
+    right:-280px;
+    width:260px;
+    height:100%;
+    background:#ffffff;
+    box-shadow:-5px 0 15px rgba(0,0,0,.20);
+    transition:.4s;
+    padding:25px;
+    z-index:999;
+}
+
+.menu-lateral.ativo{
+    right:0;
+}
+
+.topo-menu{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.logo{
+    width:120px;
+    margin-bottom:10px;
+}
+
+.topo-menu h2{
+    color:#eb6e25;
+    font-size:20px;
+}
+
+.menu-lateral a{
+    display:block;
+    text-decoration:none;
+    color:#444;
+    padding:12px;
+    border-radius:8px;
+    margin-bottom:10px;
+    transition:.3s;
+}
+
+.menu-lateral a:hover{
+    background:#eb6e25;
+    color:#fff;
+}
+
+.menu-lateral .ativo{
+    background:#eb6e25;
+    color:#fff;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:900px){
+
+    .card{
+        width:100%;
+        padding:20px;
+    }
+
+    .linha{
+        flex-direction:column;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+    }
+
+    .boneca{
+        width:50px;
+    }
+
+}

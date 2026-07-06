@@ -1,4 +1,3 @@
-
 const myForm = document.getElementById('cadastroUsuario');
 if (myForm!=null){
 myForm.addEventListener('submit', function (event) {

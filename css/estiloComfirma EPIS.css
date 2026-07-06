@@ -43,8 +43,8 @@ body{
 /* PAINEL */
 .painel{
     background:white;
-    padding:25px;
-    border-radius:12px;
+    padding:22px;
+    border-radius:10px;
     box-shadow:0 3px 10px rgba(0,0,0,0.1);
 }
 
