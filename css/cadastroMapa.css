@@ -177,15 +177,16 @@ button{
 
 }
 
-/* menu */
+/* BOTÃO MENU */
+
 .btn-menu{
+    position:absolute;
+    top:20px;
+    right:25px;
     border:none;
     background:none;
     font-size:35px;
     cursor:pointer;
-    position:fixed;
-    top:20px;
-    right:20px;
     z-index:1001;
 }
 
@@ -207,7 +208,7 @@ button{
 }
 
 .logo{
-    width:100px;
+    width:150px;
     display:block;
     margin:0 auto 40px;
 }

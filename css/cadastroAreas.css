@@ -21,7 +21,7 @@ body{
 /* CARD */
 
 .card{
-    width:1100px;
+    width:1200px;
     background:#ffffff;
     border-radius:20px;
     padding:35px;
@@ -222,80 +222,52 @@ tbody tr:hover{
     background:#bb2d3b;
 }
 
-/* MENU LATERAL */
+/* BOTÃO MENU */
+
+.btn-menu{
+    position:absolute;
+    top:20px;
+    right:25px;
+    border:none;
+    background:none;
+    font-size:35px;
+    cursor:pointer;
+    z-index:1001;
+}
 
 .menu-lateral{
     position:fixed;
     top:0;
-    right:-280px;
-    width:260px;
-    height:100%;
-    background:#ffffff;
-    box-shadow:-5px 0 15px rgba(0,0,0,.20);
-    transition:.4s;
-    padding:25px;
-    z-index:999;
+    right:-300px;
+    width:280px;
+    height:100vh;
+    background:white;
+    padding:30px;
+    box-shadow:-2px 0 15px rgba(0,0,0,0.15);
+    transition:0.4s;
+    z-index:1000;
 }
 
 .menu-lateral.ativo{
     right:0;
 }
 
-.topo-menu{
-    text-align:center;
-    margin-bottom:30px;
-}
-
 .logo{
-    width:120px;
-    margin-bottom:10px;
-}
-
-.topo-menu h2{
-    color:#eb6e25;
-    font-size:20px;
+    width: 150px;
+    display:block;
+    margin:0 auto 40px;
 }
 
 .menu-lateral a{
     display:block;
     text-decoration:none;
-    color:#444;
-    padding:12px;
-    border-radius:8px;
-    margin-bottom:10px;
-    transition:.3s;
+    color:#333;
+    font-size:20px;
+    margin-bottom:25px;
+    transition:0.3s;
 }
 
 .menu-lateral a:hover{
-    background:#eb6e25;
-    color:#fff;
-}
-
-.menu-lateral .ativo{
-    background:#eb6e25;
-    color:#fff;
-}
-
-/* RESPONSIVO */
-
-@media(max-width:900px){
-
-    .card{
-        width:100%;
-        padding:20px;
-    }
-
-    .linha{
-        flex-direction:column;
-    }
-
-    table{
-        display:block;
-        overflow-x:auto;
-    }
-
-    .boneca{
-        width:50px;
-    }
-
+    color:#eb6e25;
+    padding-left:10px;
 }
