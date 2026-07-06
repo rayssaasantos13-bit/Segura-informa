@@ -81,6 +81,27 @@ namespace SeguraInforma.Controllers
             _context.SaveChanges();
             return Ok("Deletado");
         }
+        [HttpGet("perfil")]
+        public IActionResult Perfil()
+        {
+            var idLogado = HttpContext.Session.GetString("IdLogado");
+
+            if (idLogado == null)
+                return Unauthorized("Faça login.");
+
+            var usuario = _context.Usuarios.Find(int.Parse(idLogado));
+
+            if (usuario == null)
+                return NotFound();
+
+            return Ok(new
+            {
+                usuario.Id_Usuario,
+                usuario.Nome,
+                usuario.Email,
+                usuario.Cargo
+            });
+        }
     }
 
    /*somos as mais mais!!!! <33333 wow
