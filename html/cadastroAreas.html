@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Áreas de Risco</title>
+
+    <link rel="stylesheet" href="../css/cadastroAreas.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  
+    <div class="card">
+        <button class="btn-menu" onclick="abrirMenu()">
+            ☰
+        </button>
+
+        <img src="../img/boneca.png" class="boneca" alt="Perfil">
+
+        <h1>Cadastro de Áreas de Risco</h1>
+
+        <p class="subtitulo">
+            Cadastre e gerencie as áreas de risco da empresa.
+        </p>
+
+        <hr>
+
+        <div class="formulario">
+
+            <div class="linha">
+
+                <div class="campo">
+
+                    <label>Nome da Área</label>
+
+                    <input
+                        type="text"
+                        id="nomeArea"
+                        placeholder="Digite o nome da área">
+
+                </div>
+
+                <div class="campo">
+
+                    <label>Grau de Risco</label>
+
+                    <select id="grau">
+
+                        <option>Baixo</option>
+                        <option>Médio</option>
+                        <option>Alto</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <label>Descrição</label>
+
+            <textarea
+                id="descricaoArea"
+                rows="5"
+                placeholder="Descreva os riscos encontrados"></textarea>
+
+            <div class="botoes">
+
+                <button
+                    id="btnCadastrar"
+                    class="btnCadastrar"
+                    onclick="cadastrarArea()">
+
+                    Cadastrar
+
+                </button>
+
+                <button
+                    id="btnAtualizar"
+                    class="btnAtualizar"
+                    onclick="atualizarArea()"
+                    style="display:none;">
+
+                    Atualizar
+
+                </button>
+
+                <button
+                    class="btnCancelar"
+                    onclick="limparCampos()">
+
+                    Cancelar
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <h2>Áreas Cadastradas</h2>
+
+        <table id="tabelaAreas">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Área</th>
+                    <th>Grau</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="menu-lateral" id="menu">
+        <div class="topo-menu">
+            <img src="../img/logo.png" class="logo">
+        </div>
+        <a href="mapaDeRisco.html">
+            🗺️ Mapa de Risco
+        </a>
+        <a href="">
+            🚨 Alertas
+        </a>
+        <a href="..//html/cadastroAreas.html" class="ativo">
+            ⚠️ Cadastro de Áreas
+        </a>
+        <a href="..//html/cadastroEPIs.html">
+            🦺 Cadastro de EPIs
+        </a>
+        <a href="..//html/confirmaEPIs.html">
+            📦 Confirmação de EPIs
+        </a>
+        <a href="..//html/tela de perfil.html">
+            👤 Perfil
+        </a>
+        <a href="login.html">
+            🚪 Sair
+        </a>
+
+    </div>
+
+</div>
+<script src="..//js/cadastrarAreas.js"></script>
+
+</body>
+</html>

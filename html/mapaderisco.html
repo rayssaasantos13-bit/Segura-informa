@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Risco</title>
+
+    <link rel="stylesheet" href="../css/mapa.css">
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <nav id="menuLateral" class="menu-lateral">
+
+        <img src="../img/logo.png" class="logo" alt="Logo">
+
+        <a href="mapaderisco.html">Mapa de Risco</a>
+        <a href="areas.html">Áreas</a>
+        <a href="ControleEPIs.html">Controle de EPIs</a>
+        <a href="Entrega_EPIs.html">Entrega de EPIs</a>
+        <a href="tela de perfil.html">Perfil</a>
+        <a href="login.html">Sair</a>
+
+    </nav>
+
+    <!-- Botão Menu -->
+    <button class="btn-menu" onclick="toggleMenu()">
+        ☰
+    </button>
+
+    <!-- Conteúdo -->
+    <div class="container">
+
+        <div class="card">
+
+            <h1>Mapa de Risco</h1>
+
+            <p class="subtitulo">
+                Selecione uma área para visualizar o mapa de risco.
+            </p>
+
+            <!-- Pesquisa -->
+            <div class="pesquisa">
+
+                <select id="areas">
+                    <option value="">Selecione uma área</option>
+                </select>
+
+               <button id="btnPesquisar" class="btn-pesquisar">
+    Pesquisar
+</button>
+
+            </div>
+
+
+            <!-- Resultado -->
+            <div class="resultado">
+
+                <h2>Mapa da Área</h2>
+
+                <p id="textoResultado">
+                    Selecione uma área e clique em pesquisar.
+                </p>
+
+                <div id="conteudoMapa">
+
+                    <img id="imagemMapa"
+                         src=""
+                         alt="Mapa de Risco"
+                         style="display:none;">
+
+                </div>
+
+            </div>
+
+            <!-- Imprimir -->
+            <button class="imprimir" onclick="imprimir()">
+                🖨 Imprimir
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="../js/mapa.js"></script>
+
+</body>
+
+</html>

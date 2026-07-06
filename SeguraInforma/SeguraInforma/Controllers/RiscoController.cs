@@ -16,7 +16,7 @@ namespace SeguraInforma.Controllers
 
         [HttpPost]
         
-        public IActionResult CadastraRisco(Risco risco)
+        public IActionResult CadastrarRisco(Risco risco)
         {
             var idLogado = HttpContext.Session.GetString("IdLogado");
             if (idLogado == null)
@@ -28,7 +28,7 @@ namespace SeguraInforma.Controllers
             {
 
 
-                if (!usuarioLogado.Cargo.Trim().Equals("gestao"))
+                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
                 {
                     return Unauthorized("Apenas gestores podem cadastrar.");
                 }
@@ -41,7 +41,7 @@ namespace SeguraInforma.Controllers
 
 
         [HttpDelete("{id}")]
-        public IActionResult DeletaRisco(int id)
+        public IActionResult DeletarRisco(int id)
 
         {
             var idLogado = HttpContext.Session.GetString("IdLogado");
@@ -54,7 +54,7 @@ namespace SeguraInforma.Controllers
             {
            
 
-                if (!usuarioLogado.Cargo.Trim().Equals("gestao"))
+                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
                 {
                     return Unauthorized("Apenas gestores podem deletar.");
                 }
@@ -72,25 +72,25 @@ namespace SeguraInforma.Controllers
 
 
         [HttpPut("{id}")]
-        public IActionResult AtualizaReserva(int id, Risco risco)
+        public IActionResult AtualizarRisco(int id, Risco risco)
         {
 
 
-            var sessaoUsuario = HttpContext.Session.GetString("IdLogado");
+            var sessaoUsuario = "1";
             if (sessaoUsuario == null)
             {
                 return Unauthorized("Faça login Antes");
             }
-          /*  var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
+           var usuarioLogado = _context.Usuarios.Find(int.Parse(sessaoUsuario));
             if (usuarioLogado != null)
             {
 
 
-                if (!usuarioLogado.Cargo.Trim().Equals("gestao"))
+                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
                 {
                     return Unauthorized("Apenas gestores podem deletar.");
                 }
-            }*/
+            }
 
             var riscoDoBanco = _context.Risco.Find(id);
             if (riscoDoBanco == null)
@@ -105,8 +105,9 @@ namespace SeguraInforma.Controllers
             _context.SaveChanges();
             return Ok("Atualizado");
         }
-    }
 
+
+    }
 
 }
     

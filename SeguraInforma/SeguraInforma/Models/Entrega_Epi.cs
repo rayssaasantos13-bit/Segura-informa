@@ -1,8 +1,18 @@
-﻿namespace SeguraInforma.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SeguraInforma.Models
 {
     public class Entrega_epi
     {
-        public int Fk_EPI_Id_Epi {  get; set; }
-        public int Fk_Entrega_Epi_Id_Entrega { get; set; }
+        [Key]
+        public int Id_Entrega_EPI {  get; set; }
+        public DateOnly Data_Entrega { get; set; }
+        public DateOnly Data_Devolucao { get; set; }
+        public int Fk_Usuario_Id_Usuario{ get; set; }
+        public bool Aceito { get; set; }
+
+        [NotMapped]
+        public List<Entrega_Tem_Epi> entrega_de_epi { get; set;}
     }
 }

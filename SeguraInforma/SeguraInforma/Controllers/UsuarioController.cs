@@ -31,7 +31,7 @@ namespace SeguraInforma.Controllers
                      Secure = true,
                      SameSite = SameSiteMode.None
                  });
-            return Ok("Login realizado com sucesso!");
+            return Ok(usuarioBanco[0].Cargo.Trim());
         }
 
         [HttpGet("logout")]
@@ -66,7 +66,7 @@ namespace SeguraInforma.Controllers
             {
            
 
-                if (!usuarioLogado.Cargo.Trim().Equals("gestao"))
+                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
                 {
                     return Unauthorized("Apenas gestores podem deletar usuários.");
                 }
@@ -81,9 +81,31 @@ namespace SeguraInforma.Controllers
             _context.SaveChanges();
             return Ok("Deletado");
         }
+        [HttpGet("perfil")]
+        public IActionResult Perfil()
+        {
+            var idLogado = HttpContext.Session.GetString("IdLogado");
+
+            if (idLogado == null)
+                return Unauthorized("Faça login.");
+
+            var usuario = _context.Usuarios.Find(int.Parse(idLogado));
+
+            if (usuario == null)
+                return NotFound();
+
+            return Ok(new
+            {
+                usuario.Id_Usuario,
+                usuario.Nome,
+                usuario.Email,
+                usuario.Cargo
+            });
+        }
     }
 
-
+   /*somos as mais mais!!!! <33333 wow
+    safadinhas gostosinhas */
 }
     
 
