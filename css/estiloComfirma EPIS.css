@@ -42,13 +42,12 @@ body{
 
 /* PAINEL */
 .painel{
-    background: #fff;
+    background:#fff;
     width: 85%;
     max-width: 800px;
     margin: 20px auto;
-    padding: 18px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 18px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
 }
@@ -140,7 +139,7 @@ td{
     height:100vh;
     background:white;
     padding:30px;
-    box-shadow:-2px 0 15px rgba(0,0,0,0.15);
+    box-shadow:-2px 0 15px#eb6e25(0,0,0,0.15);
     transition:0.4s;
     z-index:1000;
 }
@@ -171,3 +170,5 @@ td{
 header h1{
     text-align: center;
 }
+
+

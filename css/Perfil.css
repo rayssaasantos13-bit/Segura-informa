@@ -70,6 +70,7 @@ body{
 
 /* Menu lateral na direita */
 .menu-btn{
+<<<<<<< Updated upstream
   position:absolute;
 
     top:20px;
@@ -77,6 +78,13 @@ body{
 
     width:48px;
     height:48px;
+=======
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+>>>>>>> Stashed changes
 
     display:flex;
     justify-content:center;
