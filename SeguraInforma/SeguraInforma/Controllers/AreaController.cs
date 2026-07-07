@@ -49,6 +49,8 @@ namespace SeguraInforma.Controllers
             _context.SaveChanges();
             return Created("", area);
         }
+      
+     
         [HttpDelete("{id}")]
         public IActionResult DeletarArea(int id)
 
@@ -111,6 +113,14 @@ namespace SeguraInforma.Controllers
 
             _context.SaveChanges();
             return Ok("Atualizado");
+        }
+
+        [HttpGet]
+        public IActionResult ListarAreas()
+        {
+            var areas = _context.Area.ToList();
+
+            return Ok(areas);
         }
     }
 

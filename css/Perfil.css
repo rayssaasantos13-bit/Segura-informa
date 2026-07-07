@@ -11,7 +11,6 @@ body{
 
 /* ================= MENU ================= */
 
-<<<<<<< Updated upstream
 .foto{
     width:140px;
     height:140px;
@@ -71,26 +70,29 @@ body{
 
 /* Menu lateral na direita */
 .menu-btn{
-=======
-/* menu */
-.btn-menu{
->>>>>>> Stashed changes
-    position: fixed;
-    top: 15px;
-    right: 20px;
-    width: 45px;
-    height: 45px;
+  position:absolute;
+
+    top:20px;
+    right:20px;
+
+    width:48px;
+    height:48px;
 
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
 
-    font-size:38px;
+    border:none;
+    border-radius:10px;
+
+    background:#eb6e25;
+    color:#fff;
+
+    font-size:28px;
+
     cursor:pointer;
 
-    z-index:2000;
-
-    color:#222;
+    transition:.3s;
 }
 .menu-lateral{
     position:fixed;
@@ -132,6 +134,7 @@ body{
 /* ================= CONTAINER ================= */
 
 .container{
+    position: relative;
     width:90%;
     max-width:1200px;
     margin:35px auto;

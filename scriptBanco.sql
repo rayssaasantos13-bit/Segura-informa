@@ -4,11 +4,11 @@ GO
 USE SeguraInforma;
 GO
 
-CREATE TABLE usuario (
+CREATE TABLE usuarios (
     id_usuario INTEGER IDENTITY PRIMARY KEY,
     nome VARCHAR(100),
     email NCHAR(50),
-    senha INTEGER,
+    senha NCHAR(50),
     cargo NCHAR(50),
    
 );
@@ -71,7 +71,7 @@ CREATE TABLE area (
  
 ALTER TABLE Mapa_De_Risco ADD CONSTRAINT FK_Mapa_De_Risco_2
     FOREIGN KEY (fk_usuario_id_usuario)
-    REFERENCES usuario (id_usuario);
+    REFERENCES usuarios (id_usuario);
  
 ALTER TABLE Mapa_De_Risco ADD CONSTRAINT FK_Mapa_De_Risco_3
     FOREIGN KEY (fk_area_id_area)
@@ -79,7 +79,7 @@ ALTER TABLE Mapa_De_Risco ADD CONSTRAINT FK_Mapa_De_Risco_3
  
 ALTER TABLE entrega_epi ADD CONSTRAINT FK_entrega_epi_2
     FOREIGN KEY (fk_usuario_id_usuario)
-    REFERENCES usuario (id_usuario)
+    REFERENCES usuarios (id_usuario)
     ON DELETE CASCADE;
  
 ALTER TABLE area_contem_risco ADD CONSTRAINT FK_area_contem_risco_1
@@ -113,7 +113,7 @@ ALTER TABLE entrega_tem_epi ADD CONSTRAINT FK_entrega_tem_epi_2
 
 
     -- USUÁRIOS
-INSERT INTO usuario (nome, email, senha, cargo)
+INSERT INTO usuarios (nome, email, senha, cargo)
 VALUES
 ('João Silva', 'joao@email.com', 123456, 'Técnico de Segurança'),
 ('Maria Souza', 'maria@email.com', 654321, 'Engenheira de Segurança'),

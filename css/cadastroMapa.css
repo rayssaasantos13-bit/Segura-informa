@@ -311,3 +311,19 @@ button{
     color:#333;
 
 }
+#areas{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+    background:#fff;
+    margin-top:6px;
+    outline:none;
+    transition:0.3s;
+}
+
+#areas:focus{
+    border-color:#f57c00;
+    box-shadow:0 0 5px rgba(245,124,0,.3);
+}

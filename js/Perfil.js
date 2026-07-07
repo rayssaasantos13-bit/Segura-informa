@@ -87,10 +87,3 @@ function logout(){
 }
 
 
-document
-.querySelector(".btn-editar")
-.addEventListener("click", function(){
-
-    alert("A edição de perfil será implementada em breve!");
-
-});

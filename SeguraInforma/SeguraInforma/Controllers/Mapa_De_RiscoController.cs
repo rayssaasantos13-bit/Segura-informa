@@ -40,13 +40,21 @@ namespace SeguraInforma.Controllers
                 return Unauthorized("Não autenticado");
 
             mapa_de_risco.ArquivoFoto = mapa.ArquivoFoto;
+
             if (mapa_de_risco.ArquivoFoto != null)
             {
                 var nomeArquivo = Guid.NewGuid().ToString() + Path.GetExtension(mapa_de_risco.ArquivoFoto.FileName);
 
-                var caminho = Path.Combine("wwwroot/Uploads", nomeArquivo);
+                var pastaUploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
 
-                using (var stream = new FileStream(caminho, FileMode.Create))
+                if (!Directory.Exists(pastaUploads))
+                {
+                    Directory.CreateDirectory(pastaUploads);
+                }
+
+                var caminhoArquivo = Path.Combine(pastaUploads, nomeArquivo);
+
+                using (var stream = new FileStream(caminhoArquivo, FileMode.Create))
                 {
                     await mapa_de_risco.ArquivoFoto.CopyToAsync(stream);
                 }
@@ -222,6 +230,29 @@ namespace SeguraInforma.Controllers
             var nomeArquivo = Path.GetFileName(mapa.Nome_Foto);
 
             mapa.Nome_Foto = $"{Request.Scheme}://{Request.Host}/uploads/{nomeArquivo}";
+
+            return Ok(mapa);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult BuscarMapaPorId(int id)
+        {
+            var mapa = _context.Mapa_De_Risco
+                .FirstOrDefault(m => m.Id_Mapa == id);
+
+
+            if (mapa == null)
+            {
+                return NotFound("Mapa não encontrado.");
+            }
+
+
+            if (mapa.Nome_Foto != null)
+            {
+                mapa.Nome_Foto =
+                $"{Request.Scheme}://{Request.Host}/uploads/{mapa.Nome_Foto}";
+            }
+
 
             return Ok(mapa);
         }

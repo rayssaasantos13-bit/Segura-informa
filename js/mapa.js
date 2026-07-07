@@ -19,7 +19,10 @@ function imprimir() {
 // ============================
 
 function CadastrarMapa() {
-    window.location.href = "../html/cadastroMapa.html";
+
+    const area = document.getElementById("areas").value;
+    window.location.href = "../html/cadastroMapa.html?area=" + area;
+
 }
 
 // ============================
@@ -111,5 +114,253 @@ function buscarMapa() {
             alert("Não existe mapa cadastrado para esta área.");
 
         });
+
+}
+function PesquisarMapa() {
+
+    const area = document.getElementById("areas").value;
+
+    if (area == "") {
+        alert("Selecione uma área.");
+        return;
+    }
+
+    fetch("https://localhost:7175/Mapa_De_Risco", {
+        credentials: "include"
+    })
+    .then(response => response.json())
+    .then(mapas => {
+
+        const mapa = mapas.find(m => m.fk_Area_Id_Area == area);
+
+        if (!mapa) {
+
+            document.getElementById("textoResultado").innerHTML =
+                "Nenhum mapa encontrado.";
+
+            document.getElementById("conteudoMapa").innerHTML =
+                "<p>Essa área não possui mapa.</p>";
+
+            return;
+        }
+
+        document.getElementById("textoResultado").innerHTML =
+            "Mapa encontrado.";
+
+        const caminhoImagem = (mapa.nome_Foto || mapa.arquivoFoto || "").trim();
+
+        if (caminhoImagem == "") {
+
+            document.getElementById("conteudoMapa").innerHTML =
+                "<p>Este mapa não possui imagem cadastrada.</p>";
+
+            return;
+        }
+
+        document.getElementById("conteudoMapa").innerHTML = `
+            <img
+                src="${caminhoImagem}"
+                alt="Mapa de Risco"
+                style="max-width:100%; border-radius:10px;">
+        `;
+
+    })
+    .catch(error => {
+
+        console.log(error);
+
+        document.getElementById("textoResultado").innerHTML =
+            "Erro ao buscar o mapa.";
+
+        document.getElementById("conteudoMapa").innerHTML =
+            "<p>Erro ao carregar o mapa.</p>";
+
+    });
+
+}
+function PesquisarMapa() {
+
+    const area = document.getElementById("areas").value;
+
+
+    if (area == "") {
+
+        alert("Selecione uma área.");
+
+        return;
+
+    }
+
+
+    fetch("https://localhost:7175/Mapa_De_Risco", {
+
+        credentials: "include"
+
+    })
+
+
+    .then(response => response.json())
+
+
+    .then(mapas => {
+
+
+        const mapa = mapas.find(m => 
+            m.fk_Area_Id_Area == area
+        );
+
+
+        if (!mapa) {
+
+
+            document.getElementById("textoResultado").innerHTML =
+                "Nenhum mapa encontrado.";
+
+
+            document.getElementById("conteudoMapa").innerHTML =
+                "<p>Essa área não possui mapa.</p>";
+
+
+            return;
+
+        }
+
+
+
+        document.getElementById("textoResultado").innerHTML =
+            "Mapa encontrado.";
+
+
+
+        const caminhoImagem = (mapa.nome_Foto || "").trim();
+
+
+
+        document.getElementById("conteudoMapa").innerHTML = `
+
+
+            <img 
+            src="${caminhoImagem}"
+            alt="Mapa de risco"
+            style="max-width:100%; border-radius:10px;">
+
+
+
+            <br><br>
+
+
+            <button 
+            class="editarMapa"
+            onclick="editarMapaTela(${mapa.id_Mapa})">
+
+                ✏️ Editar Mapa
+
+            </button>
+
+
+
+            <button 
+            class="deletarMapa"
+            onclick="deletarMapaTela(${mapa.id_Mapa})">
+
+                🗑️ Excluir Mapa
+
+            </button>
+
+
+        `;
+
+
+    })
+
+
+    .catch(error => {
+
+        console.log(error);
+
+
+        alert("Erro ao buscar mapa.");
+
+    });
+
+
+}
+
+
+
+
+
+// ============================
+// IR PARA EDITAR MAPA
+// ============================
+
+function editarMapaTela(id){
+
+
+    window.location.href =
+    "../html/cadastroMapa.html?id=" + id;
+
+
+}
+
+
+
+
+
+// ============================
+// EXCLUIR MAPA
+// ============================
+
+function deletarMapaTela(id){
+
+
+    if(!confirm("Deseja excluir este mapa?")){
+
+        return;
+
+    }
+
+
+
+    fetch("https://localhost:7175/Mapa_De_Risco/" + id, {
+
+
+        method:"DELETE",
+
+        credentials:"include"
+
+
+    })
+
+
+    .then(response=>{
+
+
+        if(response.ok){
+
+
+            alert("Mapa excluído com sucesso!");
+
+            location.reload();
+
+
+        }
+
+        else{
+
+
+            alert("Erro ao excluir mapa.");
+
+        }
+
+
+    });
+
+
+}
+function editarMapaTela(id){
+
+    window.location.href =
+    "cadastroMapa.html?id=" + id;
 
 }

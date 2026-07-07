@@ -26,12 +26,12 @@ if (myForm != null) {
               return response.text();
             }
         }).then (data => {
-        
+        console.log(data);
               if (data == "Gestão") {
-                 window.location.href = "mapaderiscoGest.html";
+               window.location.href = "mapaderiscoGest.html";
                 }
                 else {
-                 window.location.href = "mapaderisco.html";
+                window.location.href = "mapaderisco.html";
                 }
         })
 
