@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f9f9f9;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+/* Logo centralizada */
+img {
+  display: block;
+  margin: 0 auto 20px auto;
+  width: 200px;
+}
+
+/* Título e subtítulo centralizados */
+h1 {
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Formulário centralizado */
+form {
+  width: 400px;       /* largura fixa para desktop */
+  max-width: 90%;     /* responsivo em telas menores */
+  text-align: left;   /* rótulos alinhados à esquerda */
+  margin: 0 auto;
+}
+
+/* Campos */
+.field {
+  margin-bottom: 12px;
+}
+
+label {
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 4px;
+  display: block;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+input:focus, select:focus {
+  border-color: #D9661c;
+  box-shadow: 0 0 5px rgba(217, 102, 28, 0.5);
+  outline: none;
+}
+
+/* Checkbox */
+  .check{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      font-size: 13px;
+      color: #374151;
+    }
+    .check input{
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+    }
+
+    .actions{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+/* Botão Google com mesma largura do botão Entrar */
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 350px;              /* mesma largura do botão Entrar */
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: white;
+  color: #444;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 12px auto;
+}
+
+.google-btn img {
+  width: 18px;
+}
+
+.google-btn:hover {
+  background-color: #f2f2f2;
+}
+
+/* Botão principal */
+.btn-entrar {
+  display: inline-block;
+  width: 350px;
+  background-color: #D9661c;
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.btn-entrar:hover {
+  background-color: #c35418;
+}

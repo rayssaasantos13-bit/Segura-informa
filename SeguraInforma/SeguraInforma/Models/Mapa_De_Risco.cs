@@ -12,7 +12,7 @@ namespace SeguraInforma.Models
         public DateOnly Data_Atualizacao { get; set; }
         public int Fk_Usuario_Id_Usuario { get; set; }
         public int Fk_Area_Id_Area { get; set; }
-        public string Nome_Foto { get; set; }
+        public string? Nome_Foto { get; set; }
 
         [NotMapped]
         public IFormFile? ArquivoFoto { get; set; }

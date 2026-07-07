@@ -1,67 +1,92 @@
-const myForm1 = document.getElementById('Entrega_EPIs');
+const myForm1 = document.getElementById('Entrega');
 if (myForm1 != null) {
 myForm1.addEventListener('submit', function (event) {
     // 1. Prevenir o recarregamento da página ao submeter form
     event.preventDefault();
 
-    fetch('https://localhost:7230/Tarefa/Cadastrar', {
+    fetch('https://localhost:7175/Entrega/Cadastrar', {
         method: 'POST', //Para outros métodos, basta alterar aqui. Obs: Delete remove a parte do body e headers, e no get é conforme todos os exemploes feitos na Unidade interação com API 
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            codigodoepi: document.getElementById("Codigo so EPI").value,
-            CertificadodeAprovação: document.getElementById("CA").value,
+            codigodoepi: document.getElementById("Codigo do EPI").value,
+            ca: document.getElementById("ca").value,
             nomedoepi: document.getElementById("Nome do EPI").value,
             categoria: document.getElementById("Categoria").value,
             fabricante: document.getElementById("Fabricante").value,
             quantidade: document.getElementById("Quantidade").value,
-            Unidade: document.getElementById("Unidade").value,
-            datadevalidade: document.getElementById("Data de validade").value,
+            unidade: document.getElementById("Unidade").value,
+            datadevalidade: document.getElementById("Data de Validade").value,
             descrição: document.getElementById("Descrição").value
-           
+
+
         }),
     }).then(response => {
         if (response.status ==401){
-            alert ("Faça login antes da tarefa!");
+            alert ("Faça login antes de cadastrar o EPI!");
             window.location.href="Login.html";
         }
         response.json();})
         .then(data => {
-            document.getElementById("respostaTarefa").innerHTML ="<h4>Tarefa cadastrada com sucesso!</h4>";        
+            document.getElementById("respostaEntrega").innerHTML ="<h4>EPI cadastrado com sucesso!</h4>";        
         })
 });
 }
 
-fetch('https://localhost:7230/Tarefa',
+fetch('https://localhost:7175/Entrega',
     { 
         credentials: 'include' 
     }).then(response => {
         if (response.status ==401){
-            alert ("Faça login antes da tarefa!");
+            alert ("Faça login antes de cadastrar o EPI!");
             window.location.href="Login.html";
         }
-        return response.json();})
-   .then(data => {
-        if(data.length >0){
-        var resposta = document.getElementById("respostaConsulta");
-        resposta.innerHTML = "<h4>Segue Lista de suas tarefas</h4> ";
-        for (i = 0; i < data.length; i++) {
-            resposta.innerHTML += "<li> Usuario: " + data[i].usuario + "</li>";
-            resposta.innerHTML += "Descrição : <input type='text' id='Descricao"+data[i].id+"' value='" + data[i].tarefa + "'>";
-            resposta.innerHTML += "statuss: <input type='text' id='statuss"+data[i].id+"' value='" + data[i].statuss+ "'>";
-            resposta.innerHTML += "<button onclick='AtualizarTarefa("+data[i].id+")'>Atualizar Tarefa </button>";
-            resposta.innerHTML += "<button onclick='deletarTarefa("+data[i].id+")'>Deletar Tarefa </button> <hr>";
-       }
-    }
-    });
+ return response.json();
+})
+.then(data => {
+    if (data.length > 0) {
 
-  function deletarTarefa(id) {
+        var resposta = document.getElementById("respostaConsulta");
+        resposta.innerHTML = "<h4>Segue a Lista dos EPIs</h4>";
+
+        for (let i = 0; i < data.length; i++) {
+
+            resposta.innerHTML += "<hr>";
+
+            resposta.innerHTML += "Código do EPI: <input type='text' id='codigodoepi" + data[i].id + "' value='" + data[i].codigodoepi + "'><br><br>";
+
+            resposta.innerHTML += "CA: <input type='text' id='ca" + data[i].id + "' value='" + data[i].ca + "'><br><br>";
+
+            resposta.innerHTML += "Nome do EPI: <input type='text' id='nomedoepi" + data[i].id + "' value='" + data[i].nomedoepi + "'><br><br>";
+
+            resposta.innerHTML += "Categoria: <input type='text' id='categoria" + data[i].id + "' value='" + data[i].categoria + "'><br><br>";
+
+            resposta.innerHTML += "Fabricante: <input type='text' id='fabricante" + data[i].id + "' value='" + data[i].fabricante + "'><br><br>";
+
+            resposta.innerHTML += "Quantidade: <input type='number' id='quantidade" + data[i].id + "' value='" + data[i].quantidade + "'><br><br>";
+
+            resposta.innerHTML += "Unidade: <input type='text' id='unidade" + data[i].id + "' value='" + data[i].unidade + "'><br><br>";
+
+            resposta.innerHTML += "Data de Validade: <input type='date' id='datadevalidade" + data[i].id + "' value='" + data[i].datadevalidade + "'><br><br>";
+
+            resposta.innerHTML += "Descrição: <input type='text' id='descricao" + data[i].id + "' value='" + data[i].descricao + "'><br><br>";
+
+            resposta.innerHTML += "<button onclick='AtualizarEPI(" + data[i].id + ")'>Atualizar EPI</button> ";
+
+            resposta.innerHTML += "<button onclick='deletarEPI(" + data[i].id + ")'>Deletar EPI</button>";
+        }
+
+    } else {
+        document.getElementById("respostaConsulta").innerHTML = "<h4>Nenhum EPI encontrado.</h4>";
+    }
+});
+  function deletarEntrega(id) {
 
     console.log(id);
 
-    fetch('https://localhost:7230/tarefa/Deletar/' + id, {
+    fetch('https://localhost:7175/Entrega/Deletar/' + id, {
 
         method: "DELETE",
         credentials: "include"
@@ -88,9 +113,9 @@ fetch('https://localhost:7230/Tarefa',
 
 
 
-function AtualizarTarefa(idTarefa) {
-console.log(idTarefa);
-    fetch('https://localhost:7230/Tarefa/Atualizar/' + idTarefa, {
+function AtualizarEntrega(idEntrega) {
+console.log(idEntrega);
+    fetch('https://localhost:7175/Entrega/Atualizar/' + idEntrega, {
 
         method: 'PUT',
 
@@ -102,7 +127,7 @@ console.log(idTarefa);
 
         body: JSON.stringify({
 
-            Descrição: document.getElementById("Descricao"+idTarefa).value,
+            Descrição: document.getElementById("Descricao"+idEntrega).value,
             statuss: "Pendente"
 
         }),

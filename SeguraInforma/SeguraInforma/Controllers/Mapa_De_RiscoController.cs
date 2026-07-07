@@ -190,6 +190,40 @@ namespace SeguraInforma.Controllers
             
         }
 
+        [HttpGet("AreasComMapa")]
+        public IActionResult AreasComMapa()
+        {
+            var areas = (from mapa in _context.Mapa_De_Risco
+                         join area in _context.Area
+                         on mapa.Fk_Area_Id_Area equals area.Id_Area
+                         select new
+                         {
+                             area.Id_Area,
+                             area.Nome_Area
+                         })
+                         .Distinct()
+                         .ToList();
 
+            return Ok(areas);
+        }
+        [HttpGet("BuscarPorArea/{idArea}")]
+        public IActionResult BuscarPorArea(int idArea)
+        {
+            var mapa = _context.Mapa_De_Risco
+                .Where(m => m.Fk_Area_Id_Area == idArea && m.Nome_Foto != null)
+                .OrderByDescending(m => m.Id_Mapa)
+                .FirstOrDefault();
+
+            if (mapa == null)
+            {
+                return NotFound("Nenhum mapa encontrado para esta área.");
+            }
+
+            var nomeArquivo = Path.GetFileName(mapa.Nome_Foto);
+
+            mapa.Nome_Foto = $"{Request.Scheme}://{Request.Host}/uploads/{nomeArquivo}";
+
+            return Ok(mapa);
+        }
     }
 }
