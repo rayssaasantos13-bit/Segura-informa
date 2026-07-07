@@ -1,50 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Segura-informa\\SeguraInforma\\",
+  "WorkspaceRootPath": "E:\\Ana Vit\u00F3ria\\SeguraInforma\\Segura-informa\\SeguraInforma\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|e:\\segura-informa\\segurainforma\\segurainforma\\controllers\\epicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|solutionrelative:segurainforma\\controllers\\epicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|e:\\segura-informa\\segurainforma\\segurainforma\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|solutionrelative:segurainforma\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|e:\\segura-informa\\segurainforma\\segurainforma\\controllers\\entrega_epicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|solutionrelative:segurainforma\\controllers\\entrega_epicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|e:\\segura-informa\\segurainforma\\segurainforma\\controllers\\mapa_de_riscocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|solutionrelative:segurainforma\\controllers\\mapa_de_riscocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|e:\\segura-informa\\segurainforma\\segurainforma\\controllers\\riscocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|solutionrelative:segurainforma\\controllers\\riscocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|e:\\segura-informa\\segurainforma\\segurainforma\\models\\entrega_epi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|solutionrelative:segurainforma\\models\\entrega_epi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|e:\\segura-informa\\segurainforma\\segurainforma\\models\\mapa_de_risco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|e:\\ana vit\u00F3ria\\segurainforma\\segura-informa\\segurainforma\\segurainforma\\models\\mapa_de_risco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|solutionrelative:segurainforma\\models\\mapa_de_risco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|e:\\segura-informa\\segurainforma\\segurainforma\\models\\epi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|solutionrelative:segurainforma\\models\\epi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|e:\\segura-informa\\segurainforma\\segurainforma\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|solutionrelative:segurainforma\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|e:\\segura-informa\\segurainforma\\segurainforma\\models\\area.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|solutionrelative:segurainforma\\models\\area.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|e:\\segura-informa\\segurainforma\\segurainforma\\data\\segurainformacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|solutionrelative:segurainforma\\data\\segurainformacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|e:\\ana vit\u00F3ria\\segurainforma\\segura-informa\\segurainforma\\segurainforma\\controllers\\mapa_de_riscocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A27FA084-947F-4E8B-8183-3A0D9B9C92AC}|SeguraInforma\\SeguraInforma.csproj|solutionrelative:segurainforma\\controllers\\mapa_de_riscocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,146 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Entrega_EpiController.cs",
-              "DocumentMoniker": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Controllers\\Entrega_EpiController.cs",
-              "RelativeDocumentMoniker": "SeguraInforma\\Controllers\\Entrega_EpiController.cs",
-              "ToolTip": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Controllers\\Entrega_EpiController.cs",
-              "RelativeToolTip": "SeguraInforma\\Controllers\\Entrega_EpiController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-01T12:01:07.83Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "EpiController.cs",
-              "DocumentMoniker": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Controllers\\EpiController.cs",
-              "RelativeDocumentMoniker": "SeguraInforma\\Controllers\\EpiController.cs",
-              "ToolTip": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Controllers\\EpiController.cs",
-              "RelativeToolTip": "SeguraInforma\\Controllers\\EpiController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwGEAAAA+AAAAAAAAAA==",
+              "Title": "Mapa_De_Risco.cs",
+              "DocumentMoniker": "E:\\Ana Vit\u00F3ria\\SeguraInforma\\Segura-informa\\SeguraInforma\\SeguraInforma\\Models\\Mapa_De_Risco.cs",
+              "RelativeDocumentMoniker": "SeguraInforma\\Models\\Mapa_De_Risco.cs",
+              "ToolTip": "E:\\Ana Vit\u00F3ria\\SeguraInforma\\Segura-informa\\SeguraInforma\\SeguraInforma\\Models\\Mapa_De_Risco.cs",
+              "RelativeToolTip": "SeguraInforma\\Models\\Mapa_De_Risco.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-01T12:00:54.206Z",
+              "WhenOpened": "2026-07-07T10:45:19.042Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "RiscoController.cs",
-              "DocumentMoniker": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Controllers\\RiscoController.cs",
-              "RelativeDocumentMoniker": "SeguraInforma\\Controllers\\RiscoController.cs",
-              "ToolTip": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Controllers\\RiscoController.cs",
-              "RelativeToolTip": "SeguraInforma\\Controllers\\RiscoController.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAIwFgAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-01T12:00:13.62Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Controllers\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "SeguraInforma\\Controllers\\UsuarioController.cs",
-              "ToolTip": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Controllers\\UsuarioController.cs",
-              "RelativeToolTip": "SeguraInforma\\Controllers\\UsuarioController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAowFQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-01T11:26:04.61Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Entrega_Epi.cs",
-              "DocumentMoniker": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Models\\Entrega_Epi.cs",
-              "RelativeDocumentMoniker": "SeguraInforma\\Models\\Entrega_Epi.cs",
-              "ToolTip": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Models\\Entrega_Epi.cs",
-              "RelativeToolTip": "SeguraInforma\\Models\\Entrega_Epi.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-01T11:47:41.697Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Epi.cs",
-              "DocumentMoniker": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Models\\Epi.cs",
-              "RelativeDocumentMoniker": "SeguraInforma\\Models\\Epi.cs",
-              "ToolTip": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Models\\Epi.cs",
-              "RelativeToolTip": "SeguraInforma\\Models\\Epi.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-01T11:47:06.133Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Mapa_De_Risco.cs",
-              "DocumentMoniker": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Models\\Mapa_De_Risco.cs",
-              "RelativeDocumentMoniker": "SeguraInforma\\Models\\Mapa_De_Risco.cs",
-              "ToolTip": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Models\\Mapa_De_Risco.cs",
-              "RelativeToolTip": "SeguraInforma\\Models\\Mapa_De_Risco.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-01T11:15:44.284Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Mapa_De_RiscoController.cs",
-              "DocumentMoniker": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Controllers\\Mapa_De_RiscoController.cs",
+              "DocumentMoniker": "E:\\Ana Vit\u00F3ria\\SeguraInforma\\Segura-informa\\SeguraInforma\\SeguraInforma\\Controllers\\Mapa_De_RiscoController.cs",
               "RelativeDocumentMoniker": "SeguraInforma\\Controllers\\Mapa_De_RiscoController.cs",
-              "ToolTip": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Controllers\\Mapa_De_RiscoController.cs",
+              "ToolTip": "E:\\Ana Vit\u00F3ria\\SeguraInforma\\Segura-informa\\SeguraInforma\\SeguraInforma\\Controllers\\Mapa_De_RiscoController.cs",
               "RelativeToolTip": "SeguraInforma\\Controllers\\Mapa_De_RiscoController.cs",
-              "ViewState": "AgIAAKMAAAAAAAAAAAAcwKgAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAALIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T13:13:57.3Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Area.cs",
-              "DocumentMoniker": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Models\\Area.cs",
-              "RelativeDocumentMoniker": "SeguraInforma\\Models\\Area.cs",
-              "ToolTip": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Models\\Area.cs",
-              "RelativeToolTip": "SeguraInforma\\Models\\Area.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T13:07:41.719Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Program.cs",
-              "RelativeDocumentMoniker": "SeguraInforma\\Program.cs",
-              "ToolTip": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Program.cs",
-              "RelativeToolTip": "SeguraInforma\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T11:45:01.212Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "SeguraInformaContext.cs",
-              "DocumentMoniker": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Data\\SeguraInformaContext.cs",
-              "RelativeDocumentMoniker": "SeguraInforma\\Data\\SeguraInformaContext.cs",
-              "ToolTip": "E:\\Segura-informa\\SeguraInforma\\SeguraInforma\\Data\\SeguraInformaContext.cs",
-              "RelativeToolTip": "SeguraInforma\\Data\\SeguraInformaContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T11:45:05.185Z"
+              "WhenOpened": "2026-07-07T10:45:00.301Z"
             }
           ]
         }
