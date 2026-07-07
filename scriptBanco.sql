@@ -131,7 +131,7 @@ VALUES
 ('Manutenção', 'Manutenção de equipamentos');
 
 -- EPIs
-INSERT INTO EPI (nome, descricao, qntd_estoque)
+INSERT INTO EPI (nome, numero_ca,descricao, qntd_estoque)
 VALUES
 ('Capacete', 12,'Proteção da cabeça', 50),
 ('Óculos de Proteção',50, 'Proteção ocular', 80),
@@ -150,7 +150,7 @@ VALUES
 
 -- MAPAS DE RISCO
 INSERT INTO Mapa_De_Risco
-(descricao, data_criacao, data_atualizacao, fk_usuario_id_usuario, fk_area_id_area)
+(descricao, data_criacao, data_atualizacao, fk_usuario_id_usuario, fk_area_id_area, nome_foto)
 VALUES
 ('Mapa da área de Soldagem', '2026-01-10', '2026-03-15', 1, 1, 'ft.jpg'),
 ('Mapa da área de Pintura', '2026-01-15', '2026-03-20', 2, 2, 'ft1.jpg'),
@@ -160,7 +160,7 @@ VALUES
 
 -- ENTREGA DE EPI
 INSERT INTO entrega_epi
-(data_entrega, data_devolucao, fk_usuario_id_usuario)
+(data_entrega, data_devolucao, aceito, fk_usuario_id_usuario)
 VALUES
 ('2026-04-01', '2026-10-01', 0, 3),
 ('2026-04-02', '2026-10-02', 0,4),
