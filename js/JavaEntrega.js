@@ -1,153 +1,125 @@
-// URL da sua API (ajustada para a porta 7175 conforme seu último arquivo)
-const myForm = document.getElementById('loginUsuario');
-if (myForm != null) {
-const API_URL = 'https://localhost:7175/Entrega_Epi';
+const myForm1 = document.getElementById('Entrega_EPIs');
+if (myForm1 != null) {
+myForm1.addEventListener('submit', function (event) {
+    // 1. Prevenir o recarregamento da página ao submeter form
+    event.preventDefault();
 
-document.addEventListener("DOMContentLoaded", ( ) => {
-    // Mapeia o formulário e os botões do seu HTML
-    const myForm = document.getElementById('Entrega_Epi'); 
-    const btnCadastrar = document.getElementById("btnCadastrar");
-    const btnAtualizar = document.getElementById("btnAtualizar");
-    const btnExcluir = document.getElementById("btnExcluir");
-    const btnLimpar = document.getElementById("btnLimpar");
-
-    // 1. Prevenir o recarregamento da página e disparar o cadastro
-    if (myForm != null) {
-        myForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            cadastrarEPI();
-        });
-    }
-
-    // 2. Adiciona os eventos de clique aos botões
-    if (btnCadastrar) {
-        btnCadastrar.addEventListener("click", () => {
-            // Se o form existir, dispara o evento submit dele
-            if (myForm) myForm.dispatchEvent(new Event('submit'));
-            else cadastrarEPI();
-        });
-    }
-
-    if (btnAtualizar) btnAtualizar.addEventListener("click", atualizarEPI);
-    if (btnExcluir) btnExcluir.addEventListener("click", excluirEPI);
-    if (btnLimpar) btnLimpar.addEventListener("click", limparFormulario);
+    fetch('https://localhost:7230/Tarefa/Cadastrar', {
+        method: 'POST', //Para outros métodos, basta alterar aqui. Obs: Delete remove a parte do body e headers, e no get é conforme todos os exemploes feitos na Unidade interação com API 
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            codigodoepi: document.getElementById("Codigo so EPI").value,
+            CertificadodeAprovação: document.getElementById("CA").value,
+            nomedoepi: document.getElementById("Nome do EPI").value,
+            categoria: document.getElementById("Categoria").value,
+            fabricante: document.getElementById("Fabricante").value,
+            quantidade: document.getElementById("Quantidade").value,
+            Unidade: document.getElementById("Unidade").value,
+            datadevalidade: document.getElementById("Data de validade").value,
+            descrição: document.getElementById("Descrição").value
+           
+        }),
+    }).then(response => {
+        if (response.status ==401){
+            alert ("Faça login antes da tarefa!");
+            window.location.href="Login.html";
+        }
+        response.json();})
+        .then(data => {
+            document.getElementById("respostaTarefa").innerHTML ="<h4>Tarefa cadastrada com sucesso!</h4>";        
+        })
 });
-
-// Função para capturar os dados do formulário e montar o objeto para o C#
-function getFormData() {
-    return {
-        id_Entrega_EPI: 0, 
-        data_Entrega: new Date().toISOString(), 
-        data_Devolucao: document.getElementById("validade").value || null,
-        // O seu controller espera uma lista 'entrega_de_epi'
-        entrega_de_epi: [
-            {
-                nome_epi: document.getElementById("nome").value,
-                ca_epi: document.getElementById("ca").value,
-                codigo_epi: document.getElementById("codigo").value,
-                categoria: document.getElementById("categoria").value,
-                fabricante: document.getElementById("fabricante").value,
-                quantidade: parseInt(document.getElementById("quantidade").value) || 0,
-                unidade: document.getElementById("unidade").value,
-                descricao: document.getElementById("descricao").value
-            }
-        ]
-    };
 }
 
-// [POST] - Cadastrar no Banco de Dados SQL
-async function cadastrarEPI() {
-    const dados = getFormData();
-
-    try {
-        const response = await fetch(API_URL, {
-            method: "POST",
-            credentials: 'include', // Mantém a sessão de login do usuário
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(dados)
-        });
-
-        if (response.ok) {
-            alert("EPI cadastrado com sucesso no SQL!");
-            limparFormulario();
-            window.location.reload(); 
-        } else if (response.status == 401) {
-            alert("Faça login antes de cadastrar!");
-            window.location.href = "login.html";
-        } else {
-            const erro = await response.text();
-            alert("Erro ao cadastrar: " + erro);
+fetch('https://localhost:7230/Tarefa',
+    { 
+        credentials: 'include' 
+    }).then(response => {
+        if (response.status ==401){
+            alert ("Faça login antes da tarefa!");
+            window.location.href="Login.html";
         }
-    } catch (error) {
-        console.error("Erro na requisição:", error);
-        alert("Não foi possível conectar ao servidor da API.");
+        return response.json();})
+   .then(data => {
+        if(data.length >0){
+        var resposta = document.getElementById("respostaConsulta");
+        resposta.innerHTML = "<h4>Segue Lista de suas tarefas</h4> ";
+        for (i = 0; i < data.length; i++) {
+            resposta.innerHTML += "<li> Usuario: " + data[i].usuario + "</li>";
+            resposta.innerHTML += "Descrição : <input type='text' id='Descricao"+data[i].id+"' value='" + data[i].tarefa + "'>";
+            resposta.innerHTML += "statuss: <input type='text' id='statuss"+data[i].id+"' value='" + data[i].statuss+ "'>";
+            resposta.innerHTML += "<button onclick='AtualizarTarefa("+data[i].id+")'>Atualizar Tarefa </button>";
+            resposta.innerHTML += "<button onclick='deletarTarefa("+data[i].id+")'>Deletar Tarefa </button> <hr>";
+       }
     }
-}
+    });
 
-// [PUT] - Atualizar no Banco de Dados
-async function atualizarEPI() {
-    const id = document.getElementById("codigo").value; 
-    const dados = {
-        data_Entrega: new Date().toISOString(),
-        data_Devolucao: document.getElementById("validade").value
-    };
+  function deletarTarefa(id) {
 
-    if (!id) {
-        alert("Informe o código do EPI para atualizar.");
-        return;
-    }
+    console.log(id);
 
-    try {
-        const response = await fetch(`${API_URL}/${id}`, {
-            method: "PUT",
-            credentials: 'include',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(dados)
-        });
+    fetch('https://localhost:7230/tarefa/Deletar/' + id, {
 
-        if (response.ok) {
-            alert("Registro atualizado no banco!");
-            window.location.reload();
-        } else if (response.status == 401) {
-            alert("Faça login antes de editar!");
-        } else {
-            alert("Erro ao atualizar.");
+        method: "DELETE",
+        credentials: "include"
+
+    })
+
+    .then(async response => {
+
+        console.log(response.status);
+
+        const texto = await response.text();
+
+        console.log(texto);
+
+        if(response.ok){
+            location.reload();
         }
-    } catch (error) {
-        console.error("Erro:", error);
-    }
+
+    })
+
+    .catch(error => console.log(error));
+
 }
 
-// [DELETE] - Excluir do Banco de Dados
-async function excluirEPI() {
-    const id = document.getElementById("codigo").value;
-    if (!id || !confirm("Deseja excluir este registro?")) return;
 
-    try {
-        const response = await fetch(`${API_URL}/${id}`, {
-            method: "DELETE",
-            credentials: 'include'
-        });
 
-        if (response.ok) {
-            alert("Excluído com sucesso!");
-            limparFormulario();
-            window.location.reload();
-        } else if (response.status == 401) {
-            alert("Faça login antes de excluir!");
-        } else {
-            alert("Erro ao excluir.");
-        }
-    } catch (error) {
-        console.error("Erro:", error);
-    }
+function AtualizarTarefa(idTarefa) {
+console.log(idTarefa);
+    fetch('https://localhost:7230/Tarefa/Atualizar/' + idTarefa, {
+
+        method: 'PUT',
+
+        credentials: 'include',
+
+        headers: {
+            'Content-Type': 'application/json',
+        },
+
+        body: JSON.stringify({
+
+            Descrição: document.getElementById("Descricao"+idTarefa).value,
+            statuss: "Pendente"
+
+        }),
+
+    })
+
+    .then(response => response.text())
+
+  
+
 }
 
-function limparFormulario() {
-    const form = document.getElementById("Entrega_Epi");
-    if (form) form.reset();
-}
-
+function logout() {
+    fetch('https://localhost:7230/Usuario/logout/', { 
+        credentials: 'include' })
+        .then(response => {
+            console.log(response);
+            window.location.href = "Login.html"
+        })
 }
