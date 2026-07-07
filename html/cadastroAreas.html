@@ -4,45 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Áreas</title>
+    <title>Cadastro de Áreas de Risco</title>
 
     <link rel="stylesheet" href="../css/cadastroAreas.css">
 </head>
 
 <body>
 
-    <div class="container">
+<div class="container">
 
+  
+    <div class="card">
+        <button class="btn-menu" onclick="abrirMenu()">
+            ☰
+        </button>
 
-        <div class="menu-lateral" id="menu">
+        <img src="../img/boneca.png" class="boneca" alt="Perfil">
 
-            <img src="../img/logo.png" width="150px" alt="MonitorÁgua">
-
-            <a href="mapaderisco.html">Mapa de Risco</a>
-            <a href="areas.html">Áreas</a>
-            <a href="Confirma EPIs.html">Confirmação de EPIs</a>
-            <a href="Entrega_EPIs.html">Entrega de EPIs</a>
-            <a href="tela de perfil.html">Tela de Perfil</a>
-            <a href="login.html">Sair</a>
-
-        </div>
-        <div class="card">
-
-            <button class="btn-menu" onclick="abrirMenu()">
-                ☰
-            </button>
-
-            <h1>Cadastro de Áreas de Risco</h1>
+        <h1>Cadastro de Áreas de Risco</h1>
 
         <p class="subtitulo">
             Cadastre e gerencie as áreas de risco da empresa.
         </p>
+
         <hr>
+
         <div class="formulario">
+
             <div class="linha">
+
                 <div class="campo">
+
                     <label>Nome da Área</label>
+
                     <input
                         type="text"
                         id="nomeArea"
@@ -61,44 +55,67 @@
                         <option>Alto</option>
 
                     </select>
+
                 </div>
+
             </div>
+
             <label>Descrição</label>
+
             <textarea
                 id="descricaoArea"
                 rows="5"
                 placeholder="Descreva os riscos encontrados"></textarea>
+
             <div class="botoes">
+
                 <button
                     id="btnCadastrar"
                     class="btnCadastrar"
                     onclick="cadastrarArea()">
+
                     Cadastrar
+
                 </button>
+
                 <button
                     id="btnAtualizar"
                     class="btnAtualizar"
                     onclick="atualizarArea()"
                     style="display:none;">
+
                     Atualizar
+
                 </button>
+
                 <button
                     class="btnCancelar"
                     onclick="limparCampos()">
+
                     Cancelar
+
                 </button>
+
             </div>
+
         </div>
+
         <hr>
+
         <h2>Áreas Cadastradas</h2>
+
         <table id="tabelaAreas">
+
             <thead>
+
                 <tr>
+
                     <th>ID</th>
                     <th>Área</th>
                     <th>Grau</th>
                     <th>Descrição</th>
                     <th>Ações</th>
+
                 </tr>
 
             </thead>
@@ -107,9 +124,24 @@
             </tbody>
 
         </table>
+
     </div>
 
-    <script src="..//js/cadastrarAreas.js"></script>
+    <div class="menu-lateral" id="menu">
+        <img src="../img/logo.png" width="150" alt="MonitorÁgua">
+        
+        <a href="mapaderisco.html">Mapa de Risco</a>
+            <a href="areasGest.html">Áreas</a>
+            <a href="../html/Controle de EPIs.html de EPIs.html">Confirma EPIs</a>
+            <a href="Entrega_EPIs.html">Entrega de EPIs</a>
+            <a href="../html/tela de perfil.html">Tela de Perfil</a>
+            <a href="login.html">Sair</a>
+
+
+    </div>
+
+</div>
+<script src="..//js/cadastrarAreas.js"></script>
 
 </body>
 </html>
