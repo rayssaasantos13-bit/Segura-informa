@@ -14,10 +14,7 @@ myForm1.addEventListener('submit', function (event) {
             codigodoepi: document.getElementById("Codigo do EPI").value,
             ca: document.getElementById("ca").value,
             nomedoepi: document.getElementById("Nome do EPI").value,
-            categoria: document.getElementById("Categoria").value,
-            fabricante: document.getElementById("Fabricante").value,
             quantidade: document.getElementById("Quantidade").value,
-            unidade: document.getElementById("Unidade").value,
             datadevalidade: document.getElementById("Data de Validade").value,
             descrição: document.getElementById("Descrição").value
 
@@ -55,19 +52,13 @@ fetch('https://localhost:7175/Entrega',
 
             resposta.innerHTML += "<hr>";
 
-            resposta.innerHTML += "Código do EPI: <input type='text' id='codigodoepi" + data[i].id + "' value='" + data[i].codigodoepi + "'><br><br>";
+            resposta.innerHTML += "Id do EPI: <input type='text' id='iddoepi" + data[i].id + "' value='" + data[i].iddoepi + "'><br><br>";
 
             resposta.innerHTML += "CA: <input type='text' id='ca" + data[i].id + "' value='" + data[i].ca + "'><br><br>";
 
             resposta.innerHTML += "Nome do EPI: <input type='text' id='nomedoepi" + data[i].id + "' value='" + data[i].nomedoepi + "'><br><br>";
 
-            resposta.innerHTML += "Categoria: <input type='text' id='categoria" + data[i].id + "' value='" + data[i].categoria + "'><br><br>";
-
-            resposta.innerHTML += "Fabricante: <input type='text' id='fabricante" + data[i].id + "' value='" + data[i].fabricante + "'><br><br>";
-
             resposta.innerHTML += "Quantidade: <input type='number' id='quantidade" + data[i].id + "' value='" + data[i].quantidade + "'><br><br>";
-
-            resposta.innerHTML += "Unidade: <input type='text' id='unidade" + data[i].id + "' value='" + data[i].unidade + "'><br><br>";
 
             resposta.innerHTML += "Data de Validade: <input type='date' id='datadevalidade" + data[i].id + "' value='" + data[i].datadevalidade + "'><br><br>";
 
