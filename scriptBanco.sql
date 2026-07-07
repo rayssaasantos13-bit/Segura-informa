@@ -106,51 +106,51 @@ ALTER TABLE entrega_tem_epi ADD CONSTRAINT FK_entrega_tem_epi_2
     REFERENCES entrega_epi (id_entrega_epi)
     ON DELETE SET NULL;
 
-    -- USUÁRIOS
+    -- USUï¿½RIOS
 INSERT INTO usuarios (nome, email, senha, cargo)
 VALUES
-('João Silva', 'joao@email.com', 123456, 'Técnico de Segurança'),
-('Maria Souza', 'maria@email.com', 654321, 'Engenheira de Segurança'),
+('Joï¿½o Silva', 'joao@email.com', 123456, 'Tï¿½cnico de Seguranï¿½a'),
+('Maria Souza', 'maria@email.com', 654321, 'Engenheira de Seguranï¿½a'),
 ('Carlos Santos', 'carlos@email.com', 111222, 'Operador'),
 ('Ana Oliveira', 'ana@email.com', 333444, 'Supervisora'),
 ('Pedro Lima', 'pedro@email.com', 555666, 'Operador');
 
--- ÁREAS
+-- ï¿½REAS
 INSERT INTO area (nome_area, descricao)
 VALUES
-('Soldagem', 'Área destinada a serviços de soldagem'),
-('Pintura', 'Área destinada a pintura industrial'),
+('Soldagem', 'ï¿½rea destinada a serviï¿½os de soldagem'),
+('Pintura', 'ï¿½rea destinada a pintura industrial'),
 ('Almoxarifado', 'Armazenamento de materiais'),
-('Produção', 'Linha de produção principal'),
-('Manutenção', 'Manutenção de equipamentos');
+('Produï¿½ï¿½o', 'Linha de produï¿½ï¿½o principal'),
+('Manutenï¿½ï¿½o', 'Manutenï¿½ï¿½o de equipamentos');
 
 -- EPIs
 INSERT INTO EPI (nome, descricao, qntd_estoque)
 VALUES
-('Capacete', 'Proteção da cabeça', 50),
-('Óculos de Proteção', 'Proteção ocular', 80),
-('Luva de Raspa', 'Proteção das mãos', 100),
-('Protetor Auricular', 'Proteção auditiva', 120),
-('Máscara Respiratória', 'Proteção respiratória', 60);
+('Capacete', 'Proteï¿½ï¿½o da cabeï¿½a', 50),
+('ï¿½culos de Proteï¿½ï¿½o', 'Proteï¿½ï¿½o ocular', 80),
+('Luva de Raspa', 'Proteï¿½ï¿½o das mï¿½os', 100),
+('Protetor Auricular', 'Proteï¿½ï¿½o auditiva', 120),
+('Mï¿½scara Respiratï¿½ria', 'Proteï¿½ï¿½o respiratï¿½ria', 60);
 
 -- RISCOS
 INSERT INTO Risco (tipo_risco, grau_risco, descricao)
 VALUES
-('Físico', 'Alto', 'Exposição a ruídos intensos'),
-('Químico', 'Médio', 'Contato com solventes'),
-('Biológico', 'Baixo', 'Contato com microrganismos'),
-('Ergonômico', 'Médio', 'Postura inadequada'),
+('Fï¿½sico', 'Alto', 'Exposiï¿½ï¿½o a ruï¿½dos intensos'),
+('Quï¿½mico', 'Mï¿½dio', 'Contato com solventes'),
+('Biolï¿½gico', 'Baixo', 'Contato com microrganismos'),
+('Ergonï¿½mico', 'Mï¿½dio', 'Postura inadequada'),
 ('Acidente', 'Alto', 'Risco de quedas');
 
 -- MAPAS DE RISCO
 INSERT INTO Mapa_De_Risco
 (descricao, data_criacao, data_atualizacao, nome_foto, fk_usuario_id_usuario, fk_area_id_area)
 VALUES
-('Mapa da área de Soldagem', '2026-01-10', '2026-03-15', 'foto1.jpg', 1, 1),
-('Mapa da área de Pintura', '2026-01-15', '2026-03-20','foto2.jpg',  2, 2),
+('Mapa da ï¿½rea de Soldagem', '2026-01-10', '2026-03-15', 'foto1.jpg', 1, 1),
+('Mapa da ï¿½rea de Pintura', '2026-01-15', '2026-03-20','foto2.jpg',  2, 2),
 ('Mapa do Almoxarifado', '2026-02-01', '2026-03-25','foto3.jpg',  1, 3),
-('Mapa da Produção', '2026-02-10', '2026-04-01','foto4.jpg',  2, 4),
-('Mapa da Manutenção', '2026-02-20', '2026-04-05', 'foto5.jpg', 1, 5);
+('Mapa da Produï¿½ï¿½o', '2026-02-10', '2026-04-01','foto4.jpg',  2, 4),
+('Mapa da Manutenï¿½ï¿½o', '2026-02-20', '2026-04-05', 'foto5.jpg', 1, 5);
 
 -- ENTREGA DE EPI
 INSERT INTO entrega_epi
@@ -162,7 +162,7 @@ VALUES
 ('2026-04-04', '2026-10-04', 3),
 ('2026-04-05', '2026-10-05', 4);
 
--- ÁREA CONTÉM RISCO
+-- ï¿½REA CONTï¿½M RISCO
 INSERT INTO area_contem_risco
 (fk_area_id_area, fk_id_risco)
 VALUES
@@ -174,7 +174,7 @@ VALUES
 (4,4),
 (5,5);
 
--- ÁREA EXIGE EPI
+-- ï¿½REA EXIGE EPI
 INSERT INTO area_exige_epi
 (fk_area_id_area, fk_EPI_id_epi)
 VALUES
