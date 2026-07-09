@@ -114,5 +114,13 @@ namespace SeguraInforma.Controllers
             _context.SaveChanges();
             return Ok("Atualizado");
         }
+        [HttpGet]
+        public IActionResult ListarEpis()
+        {
+            var lista = _context.EPI.ToList();
+
+            return Ok(lista);
+        }
     }
+
 }

@@ -1,3 +1,166 @@
+
+const formulario = document.getElementById("Entrega");
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    carregarUsuarios();
+    carregarEpis();
+    listarEntregas();
+
+});
+
+formulario.addEventListener("submit", cadastrarEntrega);
+
+
+
+function carregarUsuarios() {
+
+    fetch("https://localhost:7175/Usuario", {
+        method: "GET",
+        credentials: "include"
+    })
+
+    .then(response => response.json())
+
+    .then(usuarios => {
+
+        const select = document.getElementById("usuario");
+
+        select.innerHTML = "<option value=''>Selecione...</option>";
+
+        usuarios.forEach(usuario => {
+
+            select.innerHTML +=
+            `<option value="${usuario.id_Usuario}">
+                ${usuario.nome}
+            </option>`;
+
+        });
+
+    })
+
+    .catch(error => console.log(error));
+
+}
+
+
+function carregarEpis() {
+
+    fetch("https://localhost:7175/Epi", {
+        method: "GET",
+        credentials: "include"
+    })
+
+    .then(response => response.json())
+
+    .then(epis => {
+
+        const select = document.getElementById("idEpi");
+
+        select.innerHTML = "<option value=''>Selecione...</option>";
+
+        epis.forEach(epi => {
+
+            select.innerHTML +=
+            `<option value="${epi.id_epi}">
+                ${epi.nome}
+            </option>`;
+
+        });
+
+    })
+
+    .catch(error => console.log(error));
+
+}
+
+
+
+
+
+function cadastrarEntrega(event){
+
+    event.preventDefault();
+
+    const entrega = {
+
+        data_Entrega: document.getElementById("dataEntrega").value,
+
+        data_Devolucao: document.getElementById("dataDevolucao").value,
+
+        fk_Usuario_Id_Usuario:
+            parseInt(document.getElementById("usuario").value),
+
+        aceito:
+            document.getElementById("aceito").value === "true",
+
+        entrega_de_epi: [
+
+            {
+
+                fk_Epi_Id_Epi:
+                parseInt(document.getElementById("idEpi").value)
+
+            }
+
+        ]
+
+    };
+
+    fetch("https://localhost:7175/Entrega_Epi",{
+
+        method:"POST",
+
+        credentials:"include",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify(entrega)
+
+    })
+
+    .then(response=>{
+
+        if(response.status==401){
+
+            alert("Faça login.");
+
+            return;
+
+        }
+
+        if(!response.ok){
+
+            throw new Error("Erro ao cadastrar.");
+
+        }
+
+        return response.json();
+
+    })
+
+    .then(data=>{
+
+        alert("Entrega cadastrada com sucesso!");
+
+        formulario.reset();
+
+        listarEntregas();
+
+    })
+
+    .catch(error=>{
+
+        console.log(error);
+
+        alert("Erro ao cadastrar.");
+
+    });
+
+}
+/*
 const myForm1 = document.getElementById('Entrega');
 if (myForm1 != null) {
 myForm1.addEventListener('submit', function (event) {
@@ -139,3 +302,4 @@ function logout() {
             window.location.href = "Login.html"
         })
 }
+        */
