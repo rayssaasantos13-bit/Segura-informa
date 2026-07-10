@@ -1,305 +1,141 @@
-
 const formulario = document.getElementById("Entrega");
 
-document.addEventListener("DOMContentLoaded", () => {
+// Listas na memória para cruzar Nome -> ID
+let listaUsuariosBanco = [];
+let listaEpisBanco = [];
 
+document.addEventListener("DOMContentLoaded", () => {
     carregarUsuarios();
     carregarEpis();
-    listarEntregas();
-
 });
 
-formulario.addEventListener("submit", cadastrarEntrega);
+if (formulario) {
+    formulario.addEventListener("submit", cadastrarEntrega);
+}
 
-
-
+// 1. BUSCA OS USUÁRIOS DO BANCO PARA CRIAR AS SUGESTÕES
 function carregarUsuarios() {
-
-    fetch("https://localhost:7175/Usuario", {
+    fetch("http://localhost:7175/Usuario", {
         method: "GET",
         credentials: "include"
     })
-
-    .then(response => response.json())
-
-    .then(usuarios => {
-
-        const select = document.getElementById("usuario");
-
-        select.innerHTML = "<option value=''>Selecione...</option>";
-
-        usuarios.forEach(usuario => {
-
-            select.innerHTML +=
-            `<option value="${usuario.id_Usuario}">
-                ${usuario.nome}
-            </option>`;
-
-        });
-
+    .then(response => {
+        if (!response.ok) throw new Error("Não autorizado ou erro na rota /Usuario");
+        return response.json();
     })
+    .then(usuarios => {
+        listaUsuariosBanco = usuarios; // Salva a lista completa (com IDs e Nomes)
+        const datalist = document.getElementById("listaUsuarios");
+        if (!datalist) return;
 
-    .catch(error => console.log(error));
-
+        datalist.innerHTML = "";
+        usuarios.forEach(u => {
+            // Adiciona o nome como opção de autocompletar
+            datalist.innerHTML += `<option value="${u.nome}"></option>`;
+        });
+    })
+    .catch(error => {
+        console.warn("Aviso: Não foi possível listar os usuários do banco (você está logado?):", error);
+    });
 }
 
-
+// 2. BUSCA OS EPIS DO BANCO PARA CRIAR AS SUGESTÕES
 function carregarEpis() {
-
     fetch("https://localhost:7175/Epi", {
         method: "GET",
         credentials: "include"
     })
-
-    .then(response => response.json())
-
-    .then(epis => {
-
-        const select = document.getElementById("idEpi");
-
-        select.innerHTML = "<option value=''>Selecione...</option>";
-
-        epis.forEach(epi => {
-
-            select.innerHTML +=
-            `<option value="${epi.id_epi}">
-                ${epi.nome}
-            </option>`;
-
-        });
-
+    .then(response => {
+        if (!response.ok) throw new Error("Não autorizado ou erro na rota /Epi");
+        return response.json();
     })
+    .then(epis => {
+        listaEpisBanco = epis; // Salva a lista completa (com IDs e Nomes)
+        const datalist = document.getElementById("listaEpis");
+        if (!datalist) return;
 
-    .catch(error => console.log(error));
-
+        datalist.innerHTML = "";
+        epis.forEach(e => {
+            // Adiciona o nome como opção de autocompletar
+            datalist.innerHTML += `<option value="${e.nome}"></option>`;
+        });
+    })
+    .catch(error => {
+        console.warn("Aviso: Não foi possível listar os EPIs do banco (você está logado?):", error);
+    });
 }
 
-
-
-
-
-function cadastrarEntrega(event){
-
+// 3. FAZ O CADASTRO ENVIANDO OS IDS CORRETOS
+function cadastrarEntrega(event) {
     event.preventDefault();
 
-    const entrega = {
+    const nomeDigitadoUsuario = document.getElementById("nomeFuncionario").value.trim();
+    const nomeDigitadoEpi = document.getElementById("idEpi").value.trim();
+    const dataEntrega = document.getElementById("dataEntrega").value;
+    const dataDevolucao = document.getElementById("dataDevolucao").value;
+    const aceito = document.getElementById("aceito").value === "true";
 
-        data_Entrega: document.getElementById("dataEntrega").value,
+    // Procura na lista o usuário que tem o mesmo nome digitado
+    const usuarioEncontrado = listaUsuariosBanco.find(
+        u => u.nome.toLowerCase() === nomeDigitadoUsuario.toLowerCase()
+    );
 
-        data_Devolucao: document.getElementById("dataDevolucao").value,
+    // Procura na lista o EPI que tem o mesmo nome digitado
+    const epiEncontrado = listaEpisBanco.find(
+        e => e.nome.toLowerCase() === nomeDigitadoEpi.toLowerCase()
+    );
 
-        fk_Usuario_Id_Usuario:
-            parseInt(document.getElementById("usuario").value),
+    // Validação: Se o usuário digitou um nome que não existe no sistema, avisa ele
+    if (!usuarioEncontrado) {
+        alert(`O funcionário "${nomeDigitadoUsuario}" não foi encontrado no sistema. Cadastre-o primeiro.`);
+        return;
+    }
+    if (!epiEncontrado) {
+        alert(`O EPI "${nomeDigitadoEpi}" não foi encontrado no sistema. Cadastre-o primeiro.`);
+        return;
+    }
 
-        aceito:
-            document.getElementById("aceito").value === "true",
+    // Extrai os IDs corretos do banco de dados
+    const idUsuario = usuarioEncontrado.id_Usuario || usuarioEncontrado.id;
+    const idEpi = epiEncontrado.id_epi || epiEncontrado.id;
 
+    // Monta o payload idêntico à sua classe Entrega_epi do C#
+    const entregaPayload = {
+        Data_Entrega: dataEntrega,
+        Data_Devolucao: dataDevolucao || dataEntrega,
+        Fk_Usuario_Id_Usuario: parseInt(idUsuario),
+        Aceito: aceito,
         entrega_de_epi: [
-
             {
-
-                fk_Epi_Id_Epi:
-                parseInt(document.getElementById("idEpi").value)
-
+                Fk_Epi_Id_Epi: parseInt(idEpi)
             }
-
         ]
-
     };
 
-    fetch("https://localhost:7175/Entrega_Epi",{
-
-        method:"POST",
-
-        credentials:"include",
-
-        headers:{
-            "Content-Type":"application/json"
+    fetch("https://localhost:7175/Entrega_Epi", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
         },
-
-        body:JSON.stringify(entrega)
-
+        body: JSON.stringify(entregaPayload)
     })
-
-    .then(response=>{
-
-        if(response.status==401){
-
-            alert("Faça login.");
-
+    .then(response => {
+        if (response.status === 401) {
+            alert("Sessão inválida ou expirada. Por favor, refaça o login.");
             return;
-
         }
-
-        if(!response.ok){
-
-            throw new Error("Erro ao cadastrar.");
-
-        }
-
+        if (!response.ok) throw new Error("Erro de validação 400 no servidor.");
         return response.json();
-
     })
-
-    .then(data=>{
-
-        alert("Entrega cadastrada com sucesso!");
-
-        formulario.reset();
-
-        listarEntregas();
-
+    .then(data => {
+        if (data) {
+            alert("Entrega de EPI cadastrada com sucesso!");
+            formulario.reset();
+        }
     })
-
-    .catch(error=>{
-
-        console.log(error);
-
-        alert("Erro ao cadastrar.");
-
+    .catch(error => {
+        console.error("Erro ao enviar cadastro:", error);
+        alert("Falha ao salvar. Verifique se o seu usuário possui permissão de 'Gestão'.");
     });
-
 }
-/*
-const myForm1 = document.getElementById('Entrega');
-if (myForm1 != null) {
-myForm1.addEventListener('submit', function (event) {
-    // 1. Prevenir o recarregamento da página ao submeter form
-    event.preventDefault();
-
-    fetch('https://localhost:7175/Entrega/Cadastrar', {
-        method: 'POST', //Para outros métodos, basta alterar aqui. Obs: Delete remove a parte do body e headers, e no get é conforme todos os exemploes feitos na Unidade interação com API 
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            codigodoepi: document.getElementById("Codigo do EPI").value,
-            ca: document.getElementById("ca").value,
-            nomedoepi: document.getElementById("Nome do EPI").value,
-            quantidade: document.getElementById("Quantidade").value,
-            datadevalidade: document.getElementById("Data de Validade").value,
-            descrição: document.getElementById("Descrição").value
-
-
-        }),
-    }).then(response => {
-        if (response.status ==401){
-            alert ("Faça login antes de cadastrar o EPI!");
-            window.location.href="Login.html";
-        }
-        response.json();})
-        .then(data => {
-            document.getElementById("respostaEntrega").innerHTML ="<h4>EPI cadastrado com sucesso!</h4>";        
-        })
-});
-}
-
-fetch('https://localhost:7175/Entrega',
-    { 
-        credentials: 'include' 
-    }).then(response => {
-        if (response.status ==401){
-            alert ("Faça login antes de cadastrar o EPI!");
-            window.location.href="Login.html";
-        }
- return response.json();
-})
-.then(data => {
-    if (data.length > 0) {
-
-        var resposta = document.getElementById("respostaConsulta");
-        resposta.innerHTML = "<h4>Segue a Lista dos EPIs</h4>";
-
-        for (let i = 0; i < data.length; i++) {
-
-            resposta.innerHTML += "<hr>";
-
-            resposta.innerHTML += "Id do EPI: <input type='text' id='iddoepi" + data[i].id + "' value='" + data[i].iddoepi + "'><br><br>";
-
-            resposta.innerHTML += "CA: <input type='text' id='ca" + data[i].id + "' value='" + data[i].ca + "'><br><br>";
-
-            resposta.innerHTML += "Nome do EPI: <input type='text' id='nomedoepi" + data[i].id + "' value='" + data[i].nomedoepi + "'><br><br>";
-
-            resposta.innerHTML += "Quantidade: <input type='number' id='quantidade" + data[i].id + "' value='" + data[i].quantidade + "'><br><br>";
-
-            resposta.innerHTML += "Data de Validade: <input type='date' id='datadevalidade" + data[i].id + "' value='" + data[i].datadevalidade + "'><br><br>";
-
-            resposta.innerHTML += "Descrição: <input type='text' id='descricao" + data[i].id + "' value='" + data[i].descricao + "'><br><br>";
-
-            resposta.innerHTML += "<button onclick='AtualizarEPI(" + data[i].id + ")'>Atualizar EPI</button> ";
-
-            resposta.innerHTML += "<button onclick='deletarEPI(" + data[i].id + ")'>Deletar EPI</button>";
-        }
-
-    } else {
-        document.getElementById("respostaConsulta").innerHTML = "<h4>Nenhum EPI encontrado.</h4>";
-    }
-});
-  function deletarEntrega(id) {
-
-    console.log(id);
-
-    fetch('https://localhost:7175/Entrega/Deletar/' + id, {
-
-        method: "DELETE",
-        credentials: "include"
-
-    })
-
-    .then(async response => {
-
-        console.log(response.status);
-
-        const texto = await response.text();
-
-        console.log(texto);
-
-        if(response.ok){
-            location.reload();
-        }
-
-    })
-
-    .catch(error => console.log(error));
-
-}
-
-
-
-function AtualizarEntrega(idEntrega) {
-console.log(idEntrega);
-    fetch('https://localhost:7175/Entrega/Atualizar/' + idEntrega, {
-
-        method: 'PUT',
-
-        credentials: 'include',
-
-        headers: {
-            'Content-Type': 'application/json',
-        },
-
-        body: JSON.stringify({
-
-            Descrição: document.getElementById("Descricao"+idEntrega).value,
-            statuss: "Pendente"
-
-        }),
-
-    })
-
-    .then(response => response.text())
-
-  
-
-}
-
-function logout() {
-    fetch('https://localhost:7230/Usuario/logout/', { 
-        credentials: 'include' })
-        .then(response => {
-            console.log(response);
-            window.location.href = "Login.html"
-        })
-}
-        */
