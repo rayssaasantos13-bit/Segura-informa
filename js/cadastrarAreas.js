@@ -20,10 +20,11 @@ function cadastrarArea() {
     }
 
     var area = {
-        nome_Area: nome,
-        descricao: descricao,
-        riscos_da_area: []
-    };
+    Nome_Area: nome,
+    Grau: grau,
+    Descricao: descricao,
+    riscos_da_area: []
+};
 
             fetch("https://localhost:7175/Area", {
             method: "POST",
@@ -55,11 +56,18 @@ function cadastrarArea() {
             alert("Área cadastrada com sucesso!");
 
         }
-        else{
+       else {
 
-            alert("Erro ao cadastrar área.");
+    response.text().then(function (msg) {
 
-        }
+        console.log(msg);
+        alert(msg);
+
+    });
+
+
+
+}
 
     })
 
