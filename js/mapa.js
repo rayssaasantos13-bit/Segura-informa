@@ -64,9 +64,7 @@ fetch("https://localhost:7175/Mapa_De_Risco/AreasComMapa")
 // PESQUISAR MAPA
 // ============================
 
-document
-    .getElementById("btnPesquisar")
-    .addEventListener("click", buscarMapa);
+
 
 function buscarMapa() {
 
@@ -75,7 +73,6 @@ function buscarMapa() {
     if (idArea == "") {
 
         alert("Selecione uma área.");
-
         return;
 
     }
@@ -93,14 +90,57 @@ function buscarMapa() {
 
         .then(mapa => {
 
-            const imagem = document.getElementById("imagemMapa");
-
-            imagem.src = mapa.nome_Foto;
-
-            imagem.style.display = "block";
-
             document.getElementById("textoResultado").innerText =
                 "Mapa encontrado para esta área.";
+
+            // Imagem
+            const imagem = document.getElementById("imagemMapa");
+            imagem.src = mapa.nome_Foto;
+            imagem.style.display = "block";
+
+            // Exibe painel
+            document.getElementById("infoMapa").style.display = "flex";
+
+            // Área
+            document.getElementById("nomeArea").textContent =
+                mapa.nomeArea;
+
+            // Descrição
+            document.getElementById("descricaoMapa").textContent =
+                mapa.descricao;
+
+            // Datas
+            document.getElementById("dataCriacao").textContent =
+                mapa.data_Criacao;
+
+            document.getElementById("dataAtualizacao").textContent =
+                mapa.data_Atualizacao;
+
+            // Lista de riscos
+            const lista = document.getElementById("listaRiscos");
+
+            lista.innerHTML = "";
+
+            mapa.riscos.forEach(risco => {
+
+                lista.innerHTML += `
+                    <div class="risco">
+
+                        <strong>${risco.tipo_Risco}</strong>
+
+                        <br>
+
+                        Grau:
+                        <b>${risco.grau_Risco}</b>
+
+                        <br>
+
+                        ${risco.descricao}
+
+                    </div>
+                `;
+
+            });
 
         })
 
@@ -108,76 +148,17 @@ function buscarMapa() {
 
             document.getElementById("imagemMapa").style.display = "none";
 
+            document.getElementById("infoMapa").style.display = "none";
+
             document.getElementById("textoResultado").innerText =
-                "Nenhum mapa cadastrado para esta área.";
+                "Nenhum mapa encontrado.";
 
             alert("Não existe mapa cadastrado para esta área.");
 
         });
 
 }
-function PesquisarMapa() {
 
-    const area = document.getElementById("areas").value;
-
-    if (area == "") {
-        alert("Selecione uma área.");
-        return;
-    }
-
-    fetch("https://localhost:7175/Mapa_De_Risco", {
-        credentials: "include"
-    })
-    .then(response => response.json())
-    .then(mapas => {
-
-        const mapa = mapas.find(m => m.fk_Area_Id_Area == area);
-
-        if (!mapa) {
-
-            document.getElementById("textoResultado").innerHTML =
-                "Nenhum mapa encontrado.";
-
-            document.getElementById("conteudoMapa").innerHTML =
-                "<p>Essa área não possui mapa.</p>";
-
-            return;
-        }
-
-        document.getElementById("textoResultado").innerHTML =
-            "Mapa encontrado.";
-
-        const caminhoImagem = (mapa.nome_Foto || mapa.arquivoFoto || "").trim();
-
-        if (caminhoImagem == "") {
-
-            document.getElementById("conteudoMapa").innerHTML =
-                "<p>Este mapa não possui imagem cadastrada.</p>";
-
-            return;
-        }
-
-        document.getElementById("conteudoMapa").innerHTML = `
-            <img
-                src="${caminhoImagem}"
-                alt="Mapa de Risco"
-                style="max-width:100%; border-radius:10px;">
-        `;
-
-    })
-    .catch(error => {
-
-        console.log(error);
-
-        document.getElementById("textoResultado").innerHTML =
-            "Erro ao buscar o mapa.";
-
-        document.getElementById("conteudoMapa").innerHTML =
-            "<p>Erro ao carregar o mapa.</p>";
-
-    });
-
-}
 function PesquisarMapa() {
 
     const area = document.getElementById("areas").value;
@@ -356,11 +337,5 @@ function deletarMapaTela(id){
 
     });
 
-
-}
-function editarMapaTela(id){
-
-    window.location.href =
-    "cadastroMapa.html?id=" + id;
 
 }

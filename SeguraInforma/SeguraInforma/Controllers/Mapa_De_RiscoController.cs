@@ -142,7 +142,7 @@ namespace SeguraInforma.Controllers
             {
 
 
-                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
+                if (!usuarioLogado.Cargo.Trim().Equals("Gestão", StringComparison.OrdinalIgnoreCase))
                 {
                     return Unauthorized("Apenas gestores podem deletar.");
                 }
@@ -160,44 +160,59 @@ namespace SeguraInforma.Controllers
 
 
         [HttpPut("{id}")]
-        public IActionResult AtualizarMapa(int id, Mapa_De_Risco mapa_de_risco)
+        public IActionResult AtualizarMapa(int id, [FromForm] Mapa_De_Risco mapa)
         {
+            var idLogado = HttpContext.Session.GetString("IdLogado");
 
-
-            var sessaoUsuario = "1";
-            if (sessaoUsuario == null)
+            if (idLogado == null)
             {
-                return Unauthorized("Faça login Antes");
+                return Unauthorized("Faça login antes.");
             }
-            var usuarioLogado = _context.Usuarios.Find(int.Parse(sessaoUsuario));
-            if (usuarioLogado != null)
+
+            var usuario = _context.Usuarios.Find(int.Parse(idLogado));
+
+            if (usuario == null || !usuario.Cargo.Trim().Equals("Gestão"))
             {
-
-
-                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
-                {
-                    return Unauthorized("Apenas gestores podem deletar.");
-                }
+                return Unauthorized("Apenas gestores podem atualizar.");
             }
 
             var mapaBanco = _context.Mapa_De_Risco.Find(id);
+
             if (mapaBanco == null)
             {
-                return NotFound("O Mapa de Risco não existe no banco!");
+                return NotFound("Mapa não encontrado.");
             }
-            mapaBanco.Descricao = mapa_de_risco.Descricao;
-            mapaBanco.Data_Criacao = mapa_de_risco.Data_Criacao;
-            mapaBanco.Data_Atualizacao = mapa_de_risco.Data_Atualizacao;
-           
 
+            mapaBanco.Descricao = mapa.Descricao;
+            mapaBanco.Data_Criacao = mapa.Data_Criacao;
+            mapaBanco.Data_Atualizacao = mapa.Data_Atualizacao;
+            mapaBanco.Fk_Area_Id_Area = mapa.Fk_Area_Id_Area;
+
+            if (mapa.ArquivoFoto != null)
+            {
+                var pasta = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+
+                if (!Directory.Exists(pasta))
+                {
+                    Directory.CreateDirectory(pasta);
+                }
+
+                var nomeArquivo = Guid.NewGuid() + Path.GetExtension(mapa.ArquivoFoto.FileName);
+
+                var caminho = Path.Combine(pasta, nomeArquivo);
+
+                using (var stream = new FileStream(caminho, FileMode.Create))
+                {
+                    mapa.ArquivoFoto.CopyTo(stream);
+                }
+
+                mapaBanco.Nome_Foto = nomeArquivo;
+            }
 
             _context.SaveChanges();
-            return Ok("Atualizado");
 
-
-            
+            return Ok("Mapa atualizado com sucesso.");
         }
-
         [HttpGet("AreasComMapa")]
         public IActionResult AreasComMapa()
         {
@@ -218,22 +233,43 @@ namespace SeguraInforma.Controllers
         public IActionResult BuscarPorArea(int idArea)
         {
             var mapa = _context.Mapa_De_Risco
-                .Where(m => m.Fk_Area_Id_Area == idArea && m.Nome_Foto != null)
+                .Where(m => m.Fk_Area_Id_Area == idArea)
                 .OrderByDescending(m => m.Id_Mapa)
                 .FirstOrDefault();
 
             if (mapa == null)
-            {
-                return NotFound("Nenhum mapa encontrado para esta área.");
-            }
+                return NotFound("Nenhum mapa encontrado.");
+
+            var area = _context.Area
+                .FirstOrDefault(a => a.Id_Area == idArea);
+
+            var riscos = (from ar in _context.Area_Contem_Risco
+                          join r in _context.Risco
+                            on ar.Fk_Id_Risco equals r.Id_Risco
+                          where ar.Fk_Area_Id_Area == idArea
+                          select new
+                          {
+                              r.Tipo_Risco,
+                              r.Grau_Risco,
+                              r.Descricao
+                          }).ToList();
 
             var nomeArquivo = Path.GetFileName(mapa.Nome_Foto);
 
-            mapa.Nome_Foto = $"{Request.Scheme}://{Request.Host}/uploads/{nomeArquivo}";
+            return Ok(new
+            {
+                mapa.Id_Mapa,
+                mapa.Descricao,
+                mapa.Data_Criacao,
+                mapa.Data_Atualizacao,
 
-            return Ok(mapa);
+                Nome_Foto = $"{Request.Scheme}://{Request.Host}/uploads/{nomeArquivo}",
+
+                NomeArea = area?.Nome_Area,
+
+                Riscos = riscos
+            });
         }
-
         [HttpGet("{id}")]
         public IActionResult BuscarMapaPorId(int id)
         {

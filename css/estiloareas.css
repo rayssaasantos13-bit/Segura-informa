@@ -274,8 +274,9 @@ width:100%;
 
 }
 .btn-nova-area {
-    width: 100%;
+    width: 50%;
     height: 60px;
+   
     background: #E8752A;
     border: none;
     border-radius: 14px;
@@ -313,4 +314,9 @@ width:100%;
     font-size: 28px;
     font-weight: bold;
     line-height: 1;
+}
+.acoes {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
 }

@@ -327,3 +327,124 @@ button{
     border-color:#f57c00;
     box-shadow:0 0 5px rgba(245,124,0,.3);
 }
+/*=========================
+RISCOS
+==========================*/
+
+.grupoRiscos{
+
+    margin-top:25px;
+}
+
+.grupoRiscos label{
+
+    display:block;
+
+    margin-bottom:12px;
+
+    color:#eb6e25;
+
+    font-size:18px;
+
+    font-weight:bold;
+}
+
+#listaRiscos{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+}
+
+.risco-card{
+
+    background:#fff7f2;
+
+    border-left:6px solid #eb6e25;
+
+    border-radius:10px;
+
+    padding:15px 18px;
+
+    min-width:220px;
+
+    box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+
+.risco-card h4{
+
+    color:#eb6e25;
+
+    margin-bottom:8px;
+}
+
+.risco-card span{
+
+    display:block;
+
+    color:#444;
+
+    margin-top:4px;
+}
+
+.semRisco{
+
+    color:#777;
+}
+.grupo{
+
+    margin-top:20px;
+
+}
+
+#descricaoArea{
+
+    width:100%;
+
+    min-height:90px;
+
+    padding:12px;
+
+    border:2px solid #eb6e25;
+
+    border-radius:10px;
+
+    resize:none;
+
+    background:#f8f8f8;
+
+}
+
+#listaRiscos{
+
+    margin-top:10px;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+}
+
+.risco{
+
+    background:#fff7f2;
+
+    border-left:5px solid #eb6e25;
+
+    border-radius:10px;
+
+    padding:15px;
+
+    width:220px;
+
+}
+
+.risco strong{
+
+    color:#eb6e25;
+
+}

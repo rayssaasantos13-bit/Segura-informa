@@ -122,6 +122,50 @@ namespace SeguraInforma.Controllers
 
             return Ok(areas);
         }
+        [HttpGet("RiscosDaArea/{idArea}")]
+        public IActionResult RiscosDaArea(int idArea)
+        {
+            var riscos = (from ar in _context.Area_Contem_Risco
+                          join r in _context.Risco
+                          on ar.Fk_Id_Risco equals r.Id_Risco
+                          where ar.Fk_Area_Id_Area == idArea
+                          select new
+                          {
+                              r.Id_Risco,
+                              r.Tipo_Risco,
+                              r.Grau_Risco,
+                              r.Descricao
+                          }).ToList();
+
+            return Ok(riscos);
+        }
+        [HttpGet("DadosArea/{idArea}")]
+        public IActionResult DadosArea(int idArea)
+        {
+            var area = _context.Area
+                .FirstOrDefault(a => a.Id_Area == idArea);
+
+            if (area == null)
+                return NotFound();
+
+            var riscos = (from ar in _context.Area_Contem_Risco
+                          join r in _context.Risco
+                          on ar.Fk_Id_Risco equals r.Id_Risco
+                          where ar.Fk_Area_Id_Area == idArea
+                          select new
+                          {
+                              r.Tipo_Risco,
+                              r.Grau_Risco,
+                              r.Descricao
+                          }).ToList();
+
+            return Ok(new
+            {
+                area.Nome_Area,
+                area.Descricao,
+                Riscos = riscos
+            });
+        }
     }
 
 }

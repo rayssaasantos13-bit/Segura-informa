@@ -22,8 +22,8 @@
 
         <a href="mapaderiscoGest.html">Mapa de Risco</a>
         <a href="areasGest.html">Áreas</a>
-        <a href="Confirma EPIs.html">Confirma EPIs</a>
-        <a href="Entrega_EPIs.html">Entrega de EPIs</a>
+        <a href="cadastroAreas.html">Cadastro Área</a>
+        <a href="cadastroEPIs.html">Cadastro EPIs</a>
         <a href="tela de perfil.html">Tela de Perfil</a>
         <a href="login.html">Sair</a>
 
@@ -40,55 +40,63 @@
         <h1>Cadastro de Mapa de Risco</h1>
 
 
-        <form id="formMapa">
+     <form id="formMapa">
 
+    <input type="hidden" id="idMapa">
 
-            <!-- ID DO MAPA PARA EDITAR -->
-            <input type="hidden" id="idMapa">
+    <div class="layoutMapa">
 
-
-            <!-- ÁREA -->
+        <!-- COLUNA ESQUERDA -->
+        <div class="colunaEsquerda">
 
             <div class="campo">
-
                 <label for="areas">Área</label>
 
                 <select id="areas">
-
-                    <option value="">
-                        Selecione uma área
-                    </option>
-
+                    <option value="">Selecione uma área</option>
                 </select>
-
             </div>
 
+            <div class="campo">
+                <label>Descrição da Área</label>
 
-            <!-- DESCRIÇÃO -->
+                <textarea
+                    id="descricaoArea"
+                    rows="4"
+                    readonly>
+                </textarea>
+            </div>
+
+            <div class="campo">
+                <label>Riscos da Área</label>
+
+                <div id="listaRiscos">
+
+                    <p>Selecione uma área.</p>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- COLUNA DIREITA -->
+        <div class="colunaDireita">
 
             <div class="campo">
 
-                <label for="descricao">
-                    Descrição
-                </label>
+                <label>Descrição do Mapa</label>
 
-                <textarea 
+                <textarea
                     id="descricao"
                     rows="5"
-                    placeholder="Digite uma descrição do mapa de risco...">
+                    placeholder="Digite uma descrição do mapa">
                 </textarea>
 
             </div>
 
-
-            <!-- IMAGEM -->
-
             <div class="campo">
 
-                <label>
-                    Mapa de Risco
-                </label>
-
+                <label>Mapa de Risco</label>
 
                 <label for="imagemMapa" class="btnUpload">
 
@@ -96,101 +104,82 @@
 
                 </label>
 
-
-                <input 
+                <input
                     type="file"
                     id="imagemMapa"
                     accept=".png,.jpg,.jpeg"
                     hidden>
 
-
                 <p id="nomeArquivo">
+
                     Nenhuma imagem selecionada.
+
                 </p>
 
-
             </div>
-
-
-            <!-- PREVIEW -->
 
             <div class="campo">
 
-                <label>
-                    Pré-visualização
-                </label>
+                <label>Pré-visualização</label>
 
-
-                <img 
-                id="previewMapa"
-                src="../img/sem-imagem.png"
-                alt="Pré-visualização do mapa">
-
+                <img
+                    id="previewMapa"
+                    src=""
+                    alt="Mapa">
 
             </div>
-
-
-
-            <!-- DATAS -->
 
             <div class="linha">
 
-
                 <div class="campo">
 
-                    <label>
-                        Data de Criação
-                    </label>
+                    <label>Data de Criação</label>
 
-                    <input 
-                    type="date"
-                    id="dataCriacao">
+                    <input
+                        type="date"
+                        id="dataCriacao">
 
                 </div>
 
-
-
                 <div class="campo">
 
-                    <label>
-                        Data de Atualização
-                    </label>
+                    <label>Data de Atualização</label>
 
-                    <input 
-                    type="date"
-                    id="dataAtualizacao">
+                    <input
+                        type="date"
+                        id="dataAtualizacao">
 
                 </div>
-
 
             </div>
 
+            <div class="botoes">
 
+                <button type="button" class="salvar" onclick="cadastrarMapa()">
 
-            <!-- BOTÕES -->
+                    Cadastrar
 
+                </button>
 
-           <div class="botoes">
+                <button type="button" class="editar" onclick="editarMapa()">
 
-<button type="button" class="salvar" onclick="cadastrarMapa()">
-    Cadastrar
-</button>
+                    Atualizar
 
+                </button>
 
-<button type="button" class="editar" onclick="editarMapa()">
-    Atualizar
-</button>
+                <button type="button" class="deletar" onclick="deletarMapa()">
 
+                    Deletar
 
-<button type="button" class="deletar" onclick="deletarMapa()">
-    Deletar
-</button>
+                </button>
 
-</div>
+            </div>
 
+        </div>
 
-        </form>
+    </div>
 
+</form>
 
     </div>
 
