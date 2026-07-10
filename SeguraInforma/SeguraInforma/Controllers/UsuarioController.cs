@@ -103,13 +103,7 @@ namespace SeguraInforma.Controllers
             });
         }
 
-        [HttpGet]
-        private static IActionResult ListarUsuarios(UsuarioController @this)
-        {
-            var lista = @this._context.Usuarios.ToList();
-
-            return @this.Ok(lista);
-        }
+       
     }
 
    /*somos as mais mais!!!! <33333 wow

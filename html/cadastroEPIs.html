@@ -55,28 +55,16 @@
 
     <form id="Entrega">
 <div class="form-group">
-
-    <label>Nome do Funcionário</label>
-
-    <input type="text"
-           id="nomeFuncionario"
-           placeholder="Digite o nome do funcionário"
-           required>
-
+    <label for="nomeFuncionario">Nome do Funcionário</label>
+    <input type="text" id="nomeFuncionario" list="listaUsuarios" placeholder="Digite o nome do funcionário..." required class="form-control">
+    <datalist id="listaUsuarios"></datalist>
 </div>
 
-      <div class="form-group">
-
-        <label>EPI</label>
-
-        <select id="idEpi" required>
-
-          <option value="">Selecione o EPI...</option>
-
-        </select>
-
-      </div>
-
+<div class="form-group">
+    <label for="idEpi">Nome do EPI</label>
+    <input type="text" id="idEpi" list="listaEpis" placeholder="Digite o nome do EPI..." required class="form-control">
+    <datalist id="listaEpis"></datalist>
+</div>
       <div class="form-group">
 
         <label>Data da Entrega</label>
