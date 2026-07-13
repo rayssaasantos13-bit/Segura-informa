@@ -283,6 +283,9 @@ namespace SeguraInforma.Controllers
             }
 
 
+            Console.WriteLine("Foto salva no banco: " + mapa.Nome_Foto);
+
+
             if (mapa.Nome_Foto != null)
             {
                 mapa.Nome_Foto =
@@ -292,5 +295,6 @@ namespace SeguraInforma.Controllers
 
             return Ok(mapa);
         }
+
     }
 }

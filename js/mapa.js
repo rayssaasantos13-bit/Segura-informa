@@ -164,112 +164,48 @@ function PesquisarMapa() {
     const area = document.getElementById("areas").value;
 
 
-    if (area == "") {
-
+    if(area == ""){
         alert("Selecione uma área.");
-
         return;
-
     }
 
 
-    fetch("https://localhost:7175/Mapa_De_Risco", {
+    fetch(`https://localhost:7175/Mapa_De_Risco/BuscarPorArea/${area}`, {
+        credentials:"include"
+    })
 
-        credentials: "include"
+    .then(response => {
+
+        if(!response.ok){
+            throw new Error("Mapa não encontrado");
+        }
+
+        return response.json();
 
     })
 
 
-    .then(response => response.json())
+    .then(mapa => {
 
 
-    .then(mapas => {
-
-
-        const mapa = mapas.find(m => 
-            m.fk_Area_Id_Area == area
-        );
-
-
-        if (!mapa) {
-
-
-            document.getElementById("textoResultado").innerHTML =
-                "Nenhum mapa encontrado.";
-
-
-            document.getElementById("conteudoMapa").innerHTML =
-                "<p>Essa área não possui mapa.</p>";
-
-
-            return;
-
-        }
-
+        console.log("MAPA RECEBIDO:", mapa);
 
 
         document.getElementById("textoResultado").innerHTML =
-            "Mapa encontrado.";
-
-
-
-        const caminhoImagem = (mapa.nome_Foto || "").trim();
-
-
-
-        document.getElementById("conteudoMapa").innerHTML = `
-
-
-            <img 
-            src="${caminhoImagem}"
-            alt="Mapa de risco"
-            style="max-width:100%; border-radius:10px;">
-
-
-
-            <br><br>
-
-
-            <button 
-            class="editarMapa"
-            onclick="editarMapaTela(${mapa.id_Mapa})">
-
-                ✏️ Editar Mapa
-
-            </button>
-
-
-
-            <button 
-            class="deletarMapa"
-            onclick="deletarMapaTela(${mapa.id_Mapa})">
-
-                🗑️ Excluir Mapa
-
-            </button>
-
-
-        `;
+            mapa.descricao;
 
 
     })
 
 
-    .catch(error => {
+    .catch(error=>{
 
         console.log(error);
-
-
-        alert("Erro ao buscar mapa.");
+        alert("Nenhum mapa encontrado para essa área.");
 
     });
 
-
 }
-
-
-
-
 
 // ============================
 // IR PARA EDITAR MAPA
