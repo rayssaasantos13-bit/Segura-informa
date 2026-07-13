@@ -15,7 +15,7 @@ if (formulario) {
 
 // 1. BUSCA OS USUÁRIOS DO BANCO PARA CRIAR AS SUGESTÕES
 function carregarUsuarios() {
-    fetch("http://localhost:7175/Usuario", {
+    fetch("https://localhost:7175/Usuario", {
         method: "GET",
         credentials: "include"
     })
@@ -65,6 +65,49 @@ function carregarEpis() {
     });
 }
 
+// =========================================================================
+// NOVA FUNÇÃO: PEGA O NOME QUE VOCÊ DIGITOU E CADASTRA DIRETO NO BANCO SQL
+// =========================================================================
+async function cadastrarEpiRapido() {
+    const nomeDigitadoEpi = document.getElementById("idEpi").value.trim();
+
+    if (!nomeDigitadoEpi) {
+        alert("Digite o nome do EPI no campo antes de clicar no botão '+'.");
+        return;
+    }
+
+    // Monta o objeto idêntico à sua classe 'Epi' do C#
+    const novoEpiPayload = {
+        Nome: nomeDigitadoEpi,
+        Qntd_Estoque: 10,
+        Descricao: "Cadastrado de forma rápida",
+        exige_epi: [] // Array vazio para não quebrar o count no backend
+    };
+
+    try {
+        const resposta = await fetch("https://localhost:7175/Epi", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(novoEpiPayload)
+        });
+
+        if (resposta.status === 201 || resposta.ok) {
+            alert(`O EPI "${nomeDigitadoEpi}" foi adicionado com sucesso ao Banco SQL!`);
+            // Recarrega os EPIs do banco para atualizar a 'listaEpisBanco' e a datalist automaticamente
+            carregarEpis();
+        } else {
+            const erroTexto = await resposta.text();
+            alert("Erro do servidor ao cadastrar EPI: " + erroTexto);
+        }
+    } catch (error) {
+        console.error("Erro na requisição:", error);
+        alert("Erro de conexão. Verifique se realizou o login como 'Gestão' no sistema!");
+    }
+}
+
 // 3. FAZ O CADASTRO ENVIANDO OS IDS CORRETOS
 function cadastrarEntrega(event) {
     event.preventDefault();
@@ -91,7 +134,7 @@ function cadastrarEntrega(event) {
         return;
     }
     if (!epiEncontrado) {
-        alert(`O EPI "${nomeDigitadoEpi}" não foi encontrado no sistema. Cadastre-o primeiro.`);
+        alert(`O EPI "${nomeDigitadoEpi}" não foi encontrado no sistema. Clique no botão '+' ao lado do campo para cadastrá-lo agora.`);
         return;
     }
 

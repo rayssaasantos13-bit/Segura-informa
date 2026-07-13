@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SeguraInforma.Data;
 using SeguraInforma.Models;
+using System.Linq;
 namespace SeguraInforma.Controllers
 {
     [ApiController]
@@ -12,7 +13,19 @@ namespace SeguraInforma.Controllers
         {
             _context = context;
         }
+        [HttpGet]
+        public IActionResult ListarUsuarios()
+        {
+            var usuarios = _context.Usuarios
+                .Select(u => new
+                {
+                    Id = u.Id_Usuario,
+                    Nome = u.Nome
+                })
+                .ToList();
 
+            return Ok(usuarios);
+        }
         [HttpPost("login")]
         public IActionResult Login(Usuario usuario)
         {
