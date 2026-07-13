@@ -8,11 +8,8 @@
   <link rel="stylesheet" type="text/css" href="../css/estiloComfirma EPIS.css">
   <style>
   </style>
-  </head>
- <header>
- <h1>Confirmação de EPIs</h1>
+</head>
 
-</header>
 
 <body>
 
@@ -31,72 +28,60 @@
       <a href="../html/login.html">Sair</a>
 
     </div>
-    <div class="card">
+    <div class="container">
 
-      <button class="btn-menu" onclick="abrirMenu()">
-        ☰
-      </button>
+      <div class="card">
 
-      <div class="container">
-        <!-- Cadastro -->
-        <div class="painel">
+        <button class="btn-menu" onclick="abrirMenu()">
+          ☰
+        </button>
 
-          <h2>Comfirma entrega de EPI</h2>
+        <h2>Confirmação de entrega de EPI</h2>
 
-          <div class="form-grid">
+        <div class="form-grid">
 
-            <div>
-              <label>Funcionário</label>
-              <input type="text" placeholder="Nome do colaborador">
-            </div>
-
-            <div>
-              <label>Setor</label>
-              <select>
-                <option>Selecione</option>
-                <option>Produção</option>
-                <option>Logística</option>
-                <option>Almoxarifado</option>
-                <option>TI</option>
-                <option>RH</option>
-                <option>Manutenção</option>
-              </select>
-            </div>
-
-            <div>
-              <label>EPI</label>
-              <select>
-                <option>Selecione</option>
-                <option>Capacete</option>
-                <option>Luva</option>
-                <option>Óculos</option>
-                <option>Botina</option>
-                <option>Máscara</option>
-                <option>Protetor Auditivo</option>
-                <option>Colete refletido</option>
-                <option>Respirador com filtro</option>
-              </select>
-            </div>
-
-            <div>
-              <label>Quantidade</label>
-              <input type="number" min="1">
-            </div>
-
-            <div>
-              <label>Data da Entrega</label>
-              <input type="date">
-            </div>
-
+          <div>
+            <label>Funcionário</label>
+            <input type="text" placeholder="Nome do colaborador">
           </div>
-          <label>Nº do Termo</label>
-          <input type="number" id="numeroTermo" placeholder="Ex: 0001">
 
-          <button>Comfirmação de entrega</button>
+
+          <div>
+            <label>EPI</label>
+            <select>
+              <option>Selecione</option>
+              <option>Capacete</option>
+              <option>Luva</option>
+              <option>Óculos</option>
+              <option>Botina</option>
+              <option>Máscara</option>
+              <option>Protetor Auditivo</option>
+              <option>Colete refletido</option>
+              <option>Respirador com filtro</option>
+            </select>
           </div>
+
      
-        <!-- Tabela -->
-        <div class="painel" style="margin-top:25px;">
+          <div>
+            <label>Data da Entrega</label>
+            <input type="date">
+          </div>
+          
+           <div>
+            <label>Data de Devolução</label>
+            <input type="date">
+          </div>
+
+        </div>
+        <label>Nº do Termo</label>
+        <input type="number" id="numeroTermo" placeholder="Ex: 0001">
+
+        <button>Confirmar entrega</button>
+      </div>
+
+      <!-- Tabela -->
+
       <script src="../js/javaComfirma EPIS.js"></script>
 </body>
+
 </html>

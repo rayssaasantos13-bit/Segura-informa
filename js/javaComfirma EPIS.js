@@ -1,6 +1,6 @@
-function abrirMenu(){
-const menu = document.getElementById("menu");
-menu.classList.toggle("ativo");
+function abrirMenu() {
+    const menu = document.getElementById("menu");
+    menu.classList.toggle("ativo");
 }
 const formEntrega = document.getElementById('formEntrega');
 
@@ -19,33 +19,31 @@ if (formEntrega != null) {
 
             body: JSON.stringify({
                 colaborador: document.getElementById("nome").value,
-                matricula: document.getElementById("matricula").value,
-                setor: document.getElementById("setor").value,
                 epi: document.getElementById("epi").value,
-                quantidade: parseInt(document.getElementById("quantidade").value),
                 dataEntrega: document.getElementById("dataEntrega").value,
-                observacoes: document.getElementById("observacoes").value
+                dataDevolucao: document.getElementById("dataDevolucao").value,
+
             }),
         })
 
-        .then(response => {
+            .then(response => {
 
-            if (response.status == 401) {
+                if (response.status == 401) {
 
-                alert("Faça login antes de registrar uma entrega!");
-                window.location.href = "login.html";
-                return;
-            }
+                    alert("Faça login antes de registrar uma entrega!");
+                    window.location.href = "login.html";
+                    return;
+                }
 
-            return response.json();
-        })
+                return response.json();
+            })
 
-        .then(data => {
+            .then(data => {
 
-            document.getElementById("respostaEntrega").innerHTML =
-                "<h4>Entrega de EPI registrada com sucesso!</h4>";
+                document.getElementById("respostaEntrega").innerHTML =
+                    "<h4>Entrega de EPI registrada com sucesso!</h4>";
 
-        });
+            });
 
     });
 
