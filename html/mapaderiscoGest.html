@@ -75,12 +75,82 @@
                 Nenhuma área selecionada.
             </p>
 
-            <div id="conteudoMapa">
+           <div id="conteudoMapa">
 
-                <span>O mapa aparecerá aqui.</span>
+    <div class="mapa-grid">
+
+        <div class="mapa-imagem">
+
+            <img id="imagemMapa"
+                 src=""
+                 alt="Mapa de Risco"
+                 style="display:none;">
+
+        </div>
+
+
+        <div id="infoMapa" class="mapa-info">
+
+            <h3 id="nomeArea"></h3>
+
+
+            <div class="caixa-info">
+
+                <h4>Descrição da Área</h4>
+
+                <p id="descricaoAreaMapa"></p>
 
             </div>
 
+
+            <div class="caixa-info">
+
+                <h4>Descrição do Mapa</h4>
+
+                <p id="descricaoMapa"></p>
+
+            </div>
+
+
+            <div class="duas-caixas">
+
+
+                <div class="caixa-info">
+
+                    <h4>Data de Criação</h4>
+
+                    <p id="dataCriacao"></p>
+
+                </div>
+
+
+                <div class="caixa-info">
+
+                    <h4>Última Atualização</h4>
+
+                    <p id="dataAtualizacao"></p>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="caixa-info">
+
+                <h4>Riscos da Área</h4>
+
+                <div id="listaRiscos"></div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
         </div> <br>
  <button class="imprimir" onclick="window.print()">
                 🖨 Imprimir
