@@ -26,13 +26,44 @@ function abrirMenu(){
 // INICIAR PÁGINA
 // ============================
 
-document.addEventListener("DOMContentLoaded", function(){
-
+document.addEventListener("DOMContentLoaded", () => {
 
     carregarAreas();
-
     carregarMapas();
 
+    // Preview da imagem
+    const inputImagem = document.getElementById("imagemMapa");
+    const preview = document.getElementById("previewMapa");
+    const nomeArquivo = document.getElementById("nomeArquivo");
+
+    preview.style.display = "none";
+
+    inputImagem.addEventListener("change", function () {
+
+        if (!this.files.length) {
+
+            preview.src = "";
+            preview.style.display = "none";
+            nomeArquivo.textContent = "Nenhuma imagem selecionada.";
+            return;
+        }
+
+        const arquivo = this.files[0];
+
+        nomeArquivo.textContent = arquivo.name;
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+
+            preview.src = e.target.result;
+            preview.style.display = "block";
+
+        };
+
+        reader.readAsDataURL(arquivo);
+
+    });
 
 });
 
@@ -223,7 +254,7 @@ function selecionarMapa(id){
     const imagem =
     document.getElementById("previewMapa");
 
-
+    console.log("nome_Foto:", mapa.nome_Foto);
     imagem.src = mapa.nome_Foto;
 
 

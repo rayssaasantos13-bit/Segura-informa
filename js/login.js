@@ -1,39 +1,121 @@
 const myForm = document.getElementById('loginUsuario');
+
 if (myForm != null) {
+
+
     myForm.addEventListener('submit', function (event) {
-        // 1. Prevenir o recarregamento da página ao submeter form
+
+
         event.preventDefault();
 
+
+
         fetch('https://localhost:7175/usuario/login', {
+
             method: 'POST',
+
             credentials: 'include',
+
             headers: {
+
                 'Content-Type': 'application/json',
+
             },
+
+
             body: JSON.stringify({
-                nome: " ",
+
+                nome: "",
+
                 email: document.getElementById("email").value,
+
                 senha: document.getElementById("senha").value,
-                cargo: " "
+
+                cargo: ""
+
             }),
-        }).then(response => {
-            if (response.status == 401) {
-                alert("Email ou senha Incorretos!");
-            } else {
-                alert("Logado com sucesso");
-                console.log(response);
-                // console.log(response.text());
-              return response.text();
-            }
-        }).then (data => {
-        console.log(data);
-              if (data == "Gestão") {
-               window.location.href = "mapaderiscoGest.html";
-                }
-                else {
-                window.location.href = "mapaderisco.html";
-                }
+
+
         })
 
+
+        .then(response => {
+
+
+            if (!response.ok) {
+
+
+                throw new Error("Login inválido");
+
+
+            }
+
+
+
+            return response.text();
+
+
+        })
+
+
+
+        .then(data => {
+
+
+            console.log("Cargo recebido:", data);
+
+
+
+            alert("Logado com sucesso");
+
+
+
+            if (data.trim() === "Gestão") {
+
+
+                window.location.href =
+                    "mapaderiscoGest.html";
+
+
+            }
+
+
+            else if(data.trim() === "Funcionário") {
+
+
+                window.location.href =
+                    "mapaderisco.html";
+
+
+            }
+
+
+            else {
+
+
+                alert("Cargo não identificado.");
+
+            }
+
+
+
+        })
+
+
+
+        .catch(error => {
+
+
+            alert("Email ou senha incorretos!");
+
+            console.log(error);
+
+
+        });
+
+
+
     });
+
+
 }
