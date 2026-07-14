@@ -5,22 +5,14 @@
 let mapaEdicao = null;
 
 
+
 // ============================
 // MENU
 // ============================
 
-function abrirMenu(){
-
-    const menu = document.getElementById("menu");
-
-    if(menu){
-
-        menu.classList.toggle("ativo");
-
-    }
-
+function toggleMenu() {
+    document.getElementById("menuLateral").classList.toggle("ativo");
 }
-
 
 // ============================
 // INICIAR PÁGINA

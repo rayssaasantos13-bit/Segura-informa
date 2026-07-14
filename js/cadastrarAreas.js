@@ -1,11 +1,11 @@
 var linhaSelecionada = null;
 
-function abrirMenu() {
+// ============================
+// MENU
+// ============================
 
-    var menu = document.getElementById("menu");
-
-    menu.classList.toggle("ativo");
-
+function toggleMenu() {
+    document.getElementById("menuLateral").classList.toggle("ativo");
 }
 
 function cadastrarArea() {

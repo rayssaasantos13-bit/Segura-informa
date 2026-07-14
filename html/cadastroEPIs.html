@@ -3,173 +3,179 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>Cadastro de Mapa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../css/estiloEntrega.css">
+<title>Entrega de EPIs</title>
+
+<link rel="stylesheet" href="../css/estiloEntrega.css">
 
 </head>
+
 
 <body>
 
 <div class="container">
 
-    <div class="menu-lateral" id="menu">
+    <!-- MENU LATERAL -->
 
-        <img src="../img/logo.png" width="150" alt="MonitorÁgua">
+    <div class="menu-lateral" id="menuLateral">
+
+        <img src="../img/logo.png" class="logo">
 
         <a href="mapaderiscoGest.html">Mapa de Risco</a>
-        <a href="areasGest.html">Áreas</a>
-        <a href="Confirma EPIs.html">Confirma EPIs</a>
-        <a href="Entrega_EPIs.html">Entrega de EPIs</a>
-        <a href="tela de perfil.html">Tela de Perfil</a>
+        <a href="cadastroAreas.html">Cadastro de Áreas</a>
+        <a href="cadastroEPIs.html">Cadastro de EPIs</a>
+        <a href="teladeperfilADM.html">Perfil</a>
         <a href="login.html">Sair</a>
 
     </div>
 
+    <!-- CARD -->
 
     <div class="card">
 
-        <button class="btn-menu" onclick="abrirMenu()">
+        <button class="btn-menu" onclick="toggleMenu()">
             ☰
         </button>
-  
+<div class="container">
 
-    <header>
 
-      <div class="form-group">
-    <label for="idEpi">Nome do EPI</label>
-    <div style="display: flex; gap: 10px;">
-        <input type="text" id="idEpi" list="listaEpis" placeholder="Digite o nome do EPI..." required class="form-control">
-        <button type="button" onclick="cadastrarEpiRapido()" class="btn btn-primary" style="padding: 0 15px;" title="Cadastrar este EPI no Banco">+</button>
-    </div>
-    <datalist id="listaEpis"></datalist>
-</div>
+<div class="card">
 
-      <div class="logo-area">
-        <i class="fa-solid fa-helmet-safety"></i>
-        <span>Entrega de EPIs</span>
-      </div>
 
-      <div class="user-area">
-        <i class="fa-solid fa-user"></i>
-        <span>Administrador</span>
-      </div>
+<h2>
+Entrega de EPI
+</h2>
 
-    </header>
 
-    <h2>Cadastro de Entrega de EPIs</h2>
 
-    <form id="Entrega">
-<div class="form-group">
-    <label for="nomeFuncionario">Nome do Funcionário</label>
-    <input type="text" id="nomeFuncionario" list="listaUsuarios" placeholder="Digite o nome do funcionário..." required class="form-control">
-    <datalist id="listaUsuarios"></datalist>
-</div>
+<form id="Entrega">
+
+
 
 <div class="form-group">
-    <label for="idEpi">Nome do EPI</label>
-    <input type="text" id="idEpi" list="listaEpis" placeholder="Digite o nome do EPI..." required class="form-control">
-    <datalist id="listaEpis"></datalist>
-</div>
-      <div class="form-group">
 
-        <label>Data da Entrega</label>
+<label>
+Funcionário
+</label>
 
-        <input type="date" id="dataEntrega" required>
 
-      </div>
+<select id="funcionario" required>
 
-      <div class="form-group">
+<option value="">
+Selecione o funcionário
+</option>
 
-        <label>Data da Devolução</label>
-
-        <input type="date" id="dataDevolucao">
-
-      </div>
-
-      <div class="form-group">
-
-        <label>Entrega Aceita?</label>
-
-        <select id="aceito">
-
-          <option value="true">Sim</option>
-
-          <option value="false">Não</option>
-
-        </select>
-
-      </div>
-
-      <div class="actions-bar">
-
-        <button type="submit" class="btn btn-success">
-
-          <i class="fa-solid fa-plus"></i>
-
-          Cadastrar
-
-        </button>
-
-        <button type="button" id="btnAtualizar" class="btn btn-primary">
-
-          Atualizar
-
-        </button>
-
-        <button type="button" id="btnExcluir" class="btn btn-danger">
-
-          Excluir
-
-        </button>
-
-        <button type="reset" class="btn btn-secondary">
-
-          Limpar
-
-        </button>
-
-      </div>
-
-    </form>
-
-  </div>
-
-  <div class="card">
-
-    <h2>Entregas Cadastradas</h2>
-
-    <table id="tabelaEntrega">
-
-      <thead>
-
-        <tr>
-
-          <th>ID</th>
-          <th>Funcionário</th>
-          <th>EPI</th>
-          <th>Entrega</th>
-          <th>Devolução</th>
-          <th>Aceito</th>
-          <th>Ações</th>
-
-        </tr>
-
-      </thead>
-
-      <tbody>
-
-      </tbody>
-
-    </table>
-
-  </div>
+</select>
 
 </div>
 
-<div id="respostaEntrega"></div>
+
+
+
+
+<div class="form-group">
+
+<label>
+EPI
+</label>
+
+
+<select id="epi" required>
+
+<option value="">
+Selecione o EPI
+</option>
+
+</select>
+
+
+</div>
+
+
+
+
+
+<div class="form-group">
+
+<label>
+Número CA
+</label>
+
+
+<input 
+type="text"
+id="numeroCA"
+readonly>
+
+
+</div>
+
+
+
+
+
+<div class="form-group">
+
+<label>
+Data da entrega
+</label>
+
+
+<input 
+type="date"
+id="dataEntrega"
+required>
+
+
+</div>
+
+
+
+
+
+<div class="form-group">
+
+<label>
+Data de devolução
+</label>
+
+
+<input 
+type="date"
+id="dataDevolucao">
+
+
+</div>
+
+
+
+
+
+<button 
+type="submit">
+
+Entregar EPI
+
+</button>
+
+
+
+</form>
+
+
+</div>
+
+
+</div>
+
+
 
 <script src="../js/JavaEntrega.js"></script>
+
+
+</body>
+
+</html>
