@@ -4,40 +4,42 @@ using SeguraInforma.Models;
 
 namespace SeguraInforma.Controllers
 {
-        [ApiController]
-        [Route("[controller]")]
-        public class Entrega_EpiController : ControllerBase
+    [ApiController]
+    [Route("[controller]")]
+    public class Entrega_EpiController : ControllerBase
+    {
+        private readonly SeguraInformaContext _context;
+        public Entrega_EpiController(SeguraInformaContext context)
         {
-            private readonly SeguraInformaContext _context;
-            public Entrega_EpiController(SeguraInformaContext context)
+            _context = context;
+        }
+
+
+        [HttpPost]
+
+        public IActionResult CadastrarEntregaEpi(Entrega_epi entrega_epi)
+        {
+            var idLogado = HttpContext.Session.GetString("IdLogado");
+            if (idLogado == null)
             {
-                _context = context;
+                return Unauthorized("Faça o login antes");
+            }
+            var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
+            if (usuarioLogado != null)
+                entrega_epi.Fk_Usuario_Id_Usuario = int.Parse(idLogado);
+
+            {
+
+
+                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
+                {
+                    return Unauthorized("Apenas gestores podem cadastrar.");
+                }
             }
 
 
-            [HttpPost]
-
-            public IActionResult CadastrarEntregaEpi(Entrega_epi entrega_epi)
-            {
-                var idLogado = HttpContext.Session.GetString("IdLogado");
-                if (idLogado == null)
-                {
-                    return Unauthorized("Faça o login antes");
-                }
-                var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
-                if (usuarioLogado != null)
-                {
-
-
-                    if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
-                    {
-                        return Unauthorized("Apenas gestores podem cadastrar.");
-                    }
-                }
-
-
-                _context.Add(entrega_epi);
-                _context.SaveChanges();
+            _context.Add(entrega_epi);
+            _context.SaveChanges();
 
 
             for (int x = 0; x < entrega_epi.entrega_de_epi.Count; x++)
@@ -53,72 +55,127 @@ namespace SeguraInforma.Controllers
             }
             _context.SaveChanges();
             return Created("", entrega_epi);
-            }
-            [HttpDelete("{id}")]
-            public IActionResult DeletarEntregaEpi(int id)
+        }
+        [HttpDelete("{id}")]
+        public IActionResult DeletarEntregaEpi(int id)
 
+        {
+            var idLogado = HttpContext.Session.GetString("IdLogado");
+            if (idLogado == null)
             {
-                var idLogado = HttpContext.Session.GetString("IdLogado");
-                if (idLogado == null)
-                {
-                    return Unauthorized("Faça o login antes");
-                }
-                var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
-                if (usuarioLogado != null)
-                {
-
-
-                    if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
-                    {
-                        return Unauthorized("Apenas gestores podem deletar.");
-                    }
-                }
-
-                var entregaEpiBanco = _context.Entrega_Epi.Find(id);
-                if (entregaEpiBanco == null)
-                {
-                    return NotFound("Não encontrado");
-                }
-                _context.Remove(entregaEpiBanco);
-                _context.SaveChanges();
-                return Ok("Deletado");
+                return Unauthorized("Faça o login antes");
             }
-            [HttpPut("{id}")]
-            public IActionResult AtualizarEpi(int id, Entrega_epi entrega_epi)
+
+            var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
+            if (usuarioLogado != null)
             {
 
 
-                var sessaoUsuario = "1";
-                if (sessaoUsuario == null)
+                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
                 {
-                    return Unauthorized("Faça login Antes");
+                    return Unauthorized("Apenas gestores podem deletar.");
                 }
-                var usuarioLogado = _context.Usuarios.Find(int.Parse(sessaoUsuario));
-                if (usuarioLogado != null)
-                {
+            }
+
+            var entregaEpiBanco = _context.Entrega_Epi.Find(id);
+            if (entregaEpiBanco == null)
+            {
+                return NotFound("Não encontrado");
+            }
+            _context.Remove(entregaEpiBanco);
+            _context.SaveChanges();
+            return Ok("Deletado");
+        }
+        [HttpPut("{id}")]
+        public IActionResult AtualizarEpi(int id, Entrega_epi entrega_epi)
+        {
 
 
-                    if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
-                    {
-                        return Unauthorized("Apenas gestores podem deletar.");
-                    }
-                }
+            var sessaoUsuario = "1";
+            if (sessaoUsuario == null)
+            {
+                return Unauthorized("Faça login Antes");
+            }
+            var usuarioLogado = _context.Usuarios.Find(int.Parse(sessaoUsuario));
+            if (usuarioLogado != null)
+            {
 
-                var entregaEpiBanco = _context.Entrega_Epi.Find(id);
-                if (entregaEpiBanco == null)
+
+                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
                 {
-                    return NotFound("Entrega não existe no banco!");
+                    return Unauthorized("Apenas gestores podem deletar.");
                 }
+            }
+
+            var entregaEpiBanco = _context.Entrega_Epi.Find(id);
+            if (entregaEpiBanco == null)
+            {
+                return NotFound("Entrega não existe no banco!");
+            }
             entregaEpiBanco.Data_Entrega = entrega_epi.Data_Entrega;
             entregaEpiBanco.Data_Devolucao = entrega_epi.Data_Devolucao;
-                        
+
 
 
 
             _context.SaveChanges();
-                return Ok("Atualizado");
+            return Ok("Atualizado");
+        }
+
+
+        [HttpGet("minhas-entregas")]
+        public IActionResult MinhasEntregas()
+        {
+            var idLogado = HttpContext.Session.GetString("IdLogado");
+
+            if (idLogado == null)
+            {
+                return Unauthorized("Faça login");
             }
-        
+
+            var entregas = _context.Entrega_Epi
+                .Where(e => e.Fk_Usuario_Id_Usuario == int.Parse(idLogado))
+                .ToList();
+
+            return Ok(entregas);
+        }
+
+    [HttpPut("confirmar/{id}")]
+        public IActionResult ConfirmarEntrega(int id)
+        {
+
+            var idLogado = HttpContext.Session.GetString("IdLogado");
+
+
+            if (idLogado == null)
+            {
+                return Unauthorized("Faça login.");
+            }
+
+
+            var entrega = _context.Entrega_Epi.Find(id);
+
+
+            if (entrega == null)
+            {
+                return NotFound();
+            }
+
+
+            if (entrega.Fk_Usuario_Id_Usuario != int.Parse(idLogado))
+            {
+                return Unauthorized("Essa entrega não pertence a você.");
+            }
+
+
+            entrega.Aceito = true;
+
+
+            _context.SaveChanges();
+
+
+            return Ok("Entrega confirmada.");
+        }
     }
-    }
+}
 
