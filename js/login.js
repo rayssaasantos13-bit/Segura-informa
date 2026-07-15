@@ -48,12 +48,9 @@ if (myForm != null) {
                 throw new Error("Login inválido");
 
 
+            } else{
+                   return response.text();
             }
-
-
-
-            return response.text();
-
 
         })
 
@@ -61,12 +58,10 @@ if (myForm != null) {
 
         .then(data => {
 
+console.log("Cargo recebido:", data);
+            
 
-            console.log("Cargo recebido:", data);
-
-
-
-            alert("Logado com sucesso");
+                   alert("Logado com sucesso");
 
 
 

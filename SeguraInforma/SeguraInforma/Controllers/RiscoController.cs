@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SeguraInforma.Data;
 using SeguraInforma.Models;
+
 namespace SeguraInforma.Controllers
 {
     [ApiController]
@@ -8,107 +9,128 @@ namespace SeguraInforma.Controllers
     public class RiscoController : ControllerBase
     {
         private readonly SeguraInformaContext _context;
+
         public RiscoController(SeguraInformaContext context)
         {
             _context = context;
         }
 
-
+        // CADASTRAR
         [HttpPost]
-        
         public IActionResult CadastrarRisco(Risco risco)
         {
             var idLogado = HttpContext.Session.GetString("IdLogado");
-            if (idLogado == null)
+
+            if (string.IsNullOrEmpty(idLogado))
             {
-                return Unauthorized("Faça o login antes");
+                return Unauthorized("Faça o login antes.");
             }
+
             var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
-            if (usuarioLogado != null)
+
+            if (usuarioLogado == null)
             {
-
-
-                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
-                {
-                    return Unauthorized("Apenas gestores podem cadastrar.");
-                }
+                return Unauthorized("Usuário não encontrado.");
             }
 
-            _context.Add(risco);
+            if (!usuarioLogado.Cargo.Trim().Equals("Gestão", StringComparison.OrdinalIgnoreCase))
+            {
+                return Unauthorized("Apenas gestores podem cadastrar.");
+            }
+
+            _context.Risco.Add(risco);
             _context.SaveChanges();
+
             return Created("", risco);
         }
 
-
-        [HttpDelete("{id}")]
-        public IActionResult DeletarRisco(int id)
-
+        // LISTAR
+        [HttpGet]
+        public IActionResult ListarRiscos()
         {
             var idLogado = HttpContext.Session.GetString("IdLogado");
-            if (idLogado == null)
-            {
-                return Unauthorized("Faça o login antes");
-            }
-            var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
-            if (usuarioLogado != null)
-            {
-           
 
-                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
-                {
-                    return Unauthorized("Apenas gestores podem deletar.");
-                }
-            }
-    
-            var riscoBanco = _context.Risco.Find(id);
-            if (riscoBanco == null)
+            if (string.IsNullOrEmpty(idLogado))
             {
-                return NotFound("Não encontrado");
+                return Unauthorized("Faça o login antes.");
             }
-            _context.Remove(riscoBanco);
-            _context.SaveChanges();
-            return Ok("Deletado");
+
+            return Ok(_context.Risco.ToList());
         }
 
-
+        // ATUALIZAR
         [HttpPut("{id}")]
         public IActionResult AtualizarRisco(int id, Risco risco)
         {
+            var idLogado = HttpContext.Session.GetString("IdLogado");
 
-
-            var sessaoUsuario = "1";
-            if (sessaoUsuario == null)
+            if (string.IsNullOrEmpty(idLogado))
             {
-                return Unauthorized("Faça login Antes");
-            }
-           var usuarioLogado = _context.Usuarios.Find(int.Parse(sessaoUsuario));
-            if (usuarioLogado != null)
-            {
-
-
-                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
-                {
-                    return Unauthorized("Apenas gestores podem deletar.");
-                }
+                return Unauthorized("Faça o login antes.");
             }
 
-            var riscoDoBanco = _context.Risco.Find(id);
-            if (riscoDoBanco == null)
+            var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
+
+            if (usuarioLogado == null)
             {
-                return NotFound("Risco não existe no banco!");
+                return Unauthorized("Usuário não encontrado.");
             }
-            riscoDoBanco.Tipo_Risco = risco.Tipo_Risco;
-            riscoDoBanco.Grau_Risco = risco.Grau_Risco;
-            riscoDoBanco.Descricao = risco.Descricao;
-          
+
+            if (!usuarioLogado.Cargo.Trim().Equals("Gestão", StringComparison.OrdinalIgnoreCase))
+            {
+                return Unauthorized("Apenas gestores podem atualizar.");
+            }
+
+            var riscoBanco = _context.Risco.Find(id);
+
+            if (riscoBanco == null)
+            {
+                return NotFound("Risco não encontrado.");
+            }
+
+            riscoBanco.Tipo_Risco = risco.Tipo_Risco;
+            riscoBanco.Grau_Risco = risco.Grau_Risco;
+            riscoBanco.Descricao = risco.Descricao;
 
             _context.SaveChanges();
-            return Ok("Atualizado");
+
+            return Ok(riscoBanco);
         }
 
+        // EXCLUIR
+        [HttpDelete("{id}")]
+        public IActionResult DeletarRisco(int id)
+        {
+            var idLogado = HttpContext.Session.GetString("IdLogado");
 
+            if (string.IsNullOrEmpty(idLogado))
+            {
+                return Unauthorized("Faça o login antes.");
+            }
+
+            var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
+
+            if (usuarioLogado == null)
+            {
+                return Unauthorized("Usuário não encontrado.");
+            }
+
+            if (!usuarioLogado.Cargo.Trim().Equals("Gestão", StringComparison.OrdinalIgnoreCase))
+            {
+                return Unauthorized("Apenas gestores podem excluir.");
+            }
+
+            var riscoBanco = _context.Risco.Find(id);
+
+            if (riscoBanco == null)
+            {
+                return NotFound("Risco não encontrado.");
+            }
+
+            _context.Risco.Remove(riscoBanco);
+            _context.SaveChanges();
+
+            return Ok("Risco excluído com sucesso.");
+        }
     }
-
 }
-    
-

@@ -3,111 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Áreas de Risco</title>
+    <title>Cadastro de Riscos</title>
+
     <link rel="stylesheet" href="../css/cadastroAreas.css">
 </head>
+
 <body>
+
 <div class="container">
 
     <!-- MENU LATERAL -->
 
-    <div class="menu-lateral" id="menuLateral">
+    <div class="menu-lateral" id="menu">
 
         <img src="../img/logo.png" class="logo">
 
-       <a href="mapaderiscoGest.html">Mapa de Risco</a>
+        <a href="mapaderiscoGest.html">Mapa de Risco</a>
         <a href="cadastroAreas.html">Cadastro de Áreas</a>
         <a href="cadastroEPIs.html">Cadastro de EPIs</a>
         <a href="cadastroDeEntrega.html">Entregas de EPIs</a>
         <a href="teladeperfilADM.html">Perfil</a>
         <a href="login.html">Sair</a>
+
     </div>
 
     <!-- CARD -->
 
     <div class="card">
 
-        <button class="btn-menu" onclick="toggleMenu()">
+        <button class="btn-menu" onclick="abrirMenu()">
             ☰
         </button>
 
+        <h1>Cadastro de Riscos</h1>
 
-        <h1>Cadastro de Áreas de Risco</h1>
         <p class="subtitulo">
-            Cadastre e gerencie as áreas de risco da empresa.
+            Cadastre e gerencie os riscos da empresa.
         </p>
+
         <hr>
+
         <div class="formulario">
+
             <div class="linha">
+
+                <!-- ÁREA -->
+
                 <div class="campo">
-                    <label>Nome da Área</label>
-                    <input
-                        type="text"
-                        id="nomeArea"
-                        placeholder="Digite o nome da área">
+
+                    <label>Área</label>
+
+                    <select id="area">
+
+                        <option value="">Selecione a área</option>
+
+                        <option>Soldagem</option>
+                        <option>Pintura</option>
+                        <option>Almoxarifado</option>
+                        <option>Produção</option>
+                        <option>Manutenção</option>
+
+                    </select>
+
                 </div>
+
+                <!-- TIPO -->
+
                 <div class="campo">
+
+                    <label>Tipo de Risco</label>
+
+                    <select id="nomeArea">
+
+                        <option value="">Selecione o tipo</option>
+
+                        <option>Físico</option>
+                        <option>Químico</option>
+                        <option>Biológico</option>
+                        <option>Ergonômico</option>
+                        <option>Acidente</option>
+
+                    </select>
+
+                </div>
+
+                <!-- GRAU -->
+
+                <div class="campo">
+
                     <label>Grau de Risco</label>
-                    <select id="grau">l  
+
+                    <select id="grau">
+
+                        <option value="">Selecione o grau</option>
+
                         <option>Baixo</option>
                         <option>Médio</option>
                         <option>Alto</option>
+
                     </select>
+
                 </div>
+
             </div>
+
             <label>Descrição</label>
+
             <textarea
                 id="descricaoArea"
                 rows="5"
-                placeholder="Descreva os riscos encontrados"></textarea>
+                placeholder="Descreva o risco encontrado"></textarea>
+
             <div class="botoes">
+
                 <button
                     id="btnCadastrar"
                     class="btnCadastrar"
                     onclick="cadastrarArea()">
+
                     Cadastrar
+
                 </button>
+
                 <button
                     id="btnAtualizar"
                     class="btnAtualizar"
                     onclick="atualizarArea()"
                     style="display:none;">
+
                     Atualizar
+
                 </button>
+
                 <button
                     class="btnCancelar"
                     onclick="limparCampos()">
+
                     Cancelar
+
                 </button>
+
             </div>
+
         </div>
+
         <hr>
-        <h2>Áreas Cadastradas</h2>
+
+        <h2>Riscos Cadastrados</h2>
+
         <table id="tabelaAreas">
+
             <thead>
+
                 <tr>
+
                     <th>ID</th>
                     <th>Área</th>
+                    <th>Tipo</th>
                     <th>Grau</th>
                     <th>Descrição</th>
                     <th>Ações</th>
+
                 </tr>
+
             </thead>
+
             <tbody>
+
             </tbody>
+
         </table>
+
     </div>
-    <div class="menu-lateral" id="menu">
-        <img src="../img/logo.png" width="150" alt="MonitorÁgua">
-        <a href="mapaderisco.html">Mapa de Risco</a>
-            <a href="areasGest.html">Áreas</a>
-            <a href="../html/Controle de EPIs.html de EPIs.html">Confirma EPIs</a>
-            <a href="Entrega_EPIs.html">Entrega de EPIs</a>
-            <a href="../html/tela de perfil.html">Tela de Perfil</a>
-            <a href="login.html">Sair</a>
-    </div>
+
 </div>
-<script src="..//js/cadastrarAreas.js"></script>
+
+<script src="../js/cadastrarAreas.js"></script>
 
 </body>
 </html>

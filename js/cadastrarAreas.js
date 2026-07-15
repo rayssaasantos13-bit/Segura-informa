@@ -1,77 +1,156 @@
 var linhaSelecionada = null;
+var idSelecionado = 0;
 
-// ============================
 // MENU
-// ============================
 
-function toggleMenu() {
-    document.getElementById("menuLateral").classList.toggle("ativo");
+function abrirMenu() {
+
+    var menu = document.getElementById("menu");
+
+    menu.classList.toggle("ativo");
 }
+
+// CARREGAR TABELA
+
+window.onload = function () {
+
+    listarRiscos();
+
+};
+
+// LISTAR
+
+function listarRiscos() {
+
+    fetch("https://localhost:7175/Risco", {
+
+        method: "GET",
+        credentials: "include"
+
+    })
+
+    .then(function (response) {
+
+        if (!response.ok) {
+
+            return response.text().then(function (msg) {
+
+                if (msg.includes("Faça o login antes")) {
+
+                    alert(msg);
+                    window.location.href = "login.html";
+                }
+
+            });
+
+        }
+
+        return response.json();
+
+    })
+
+    .then(function (dados) {
+
+        if (!dados) return;
+
+        var tabela = document
+            .getElementById("tabelaAreas")
+            .getElementsByTagName("tbody")[0];
+
+        tabela.innerHTML = "";
+
+        dados.forEach(function (risco) {
+
+            var linha = tabela.insertRow();
+
+            linha.insertCell(0).innerHTML = risco.id_Risco;
+            linha.insertCell(1).innerHTML = risco.tipo_Risco;
+            linha.insertCell(2).innerHTML = risco.grau_Risco;
+            linha.insertCell(3).innerHTML = risco.descricao;
+
+            linha.insertCell(4).innerHTML =
+                "<button class='editar' onclick='editarArea(this," + risco.id_Risco + ")'>Editar</button> " +
+                "<button class='excluir' onclick='excluirArea(" + risco.id_Risco + ")'>Excluir</button>";
+
+        });
+
+    })
+
+    .catch(function (erro) {
+
+        console.log(erro);
+
+    });
+
+}
+
+// CADASTRAR
 
 function cadastrarArea() {
 
-    var nome = document.getElementById("nomeArea").value;
-    var descricao = document.getElementById("descricaoArea").value;
+    var tipo = document.getElementById("nomeArea").value;
     var grau = document.getElementById("grau").value;
+    var descricao = document.getElementById("descricaoArea").value;
 
-    if (nome == "" || descricao == "") {
+    if (tipo == "" || descricao == "") {
+
         alert("Preencha todos os campos!");
         return;
     }
 
-    var area = {
-    Nome_Area: nome,
-    Grau: grau,
-    Descricao: descricao,
-    riscos_da_area: []
-};
+    var risco = {
 
-            fetch("https://localhost:7175/Area", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: "include",
-            body: JSON.stringify(area)
-        })
-    .then(function(response){
+        Tipo_Risco: tipo,
+        Grau_Risco: grau,
+        Descricao: descricao
 
-        if(response.ok){
+    };
 
-            var tabela = document.getElementById("tabelaAreas").getElementsByTagName("tbody")[0];
+    fetch("https://localhost:7175/Risco", {
 
-            var linha = tabela.insertRow();
+        method: "POST",
 
-            linha.insertCell(0).innerHTML = tabela.rows.length;
-            linha.insertCell(1).innerHTML = nome;
-            linha.insertCell(2).innerHTML = grau;
-            linha.insertCell(3).innerHTML = descricao;
+        headers: {
+            "Content-Type": "application/json"
+        },
 
-            linha.insertCell(4).innerHTML =
-                "<button class='editar' onclick='editarArea(this)'>Editar</button> " +
-                "<button class='excluir' onclick='excluirArea(this)'>Excluir</button>";
+        credentials: "include",
 
-            limparCampos();
-
-            alert("Área cadastrada com sucesso!");
-
-        }
-       else {
-
-    response.text().then(function (msg) {
-
-        console.log(msg);
-        alert(msg);
-
-    });
-
-
-
-}
+        body: JSON.stringify(risco)
 
     })
 
-    .catch(function(erro){
+    .then(function (response) {
+
+        if (response.ok) {
+
+            alert("Risco cadastrado com sucesso!");
+
+            limparCampos();
+
+            listarRiscos();
+
+        }
+
+        else {
+
+            response.text().then(function (msg) {
+
+                alert(msg);
+
+                if (msg.includes("Faça o login antes")) {
+
+                    window.location.href = "login.html";
+
+                }
+
+            });
+
+        }
+
+    })
+
+    .catch(function (erro) {
 
         console.log(erro);
 
@@ -80,8 +159,11 @@ function cadastrarArea() {
     });
 
 }
+// EDITAR
 
-function editarArea(botao){
+function editarArea(botao, id) {
+
+    idSelecionado = id;
 
     linhaSelecionada = botao.parentNode.parentNode;
 
@@ -95,71 +177,142 @@ function editarArea(botao){
         linhaSelecionada.cells[3].innerHTML;
 
     document.getElementById("btnCadastrar").style.display = "none";
-
     document.getElementById("btnAtualizar").style.display = "inline-block";
 
 }
 
-function atualizarArea(){
+// ATUALIZAR
 
-    if(linhaSelecionada == null){
+function atualizarArea() {
 
-        alert("Selecione uma área.");
+    var risco = {
+
+        Tipo_Risco: document.getElementById("nomeArea").value,
+        Grau_Risco: document.getElementById("grau").value,
+        Descricao: document.getElementById("descricaoArea").value
+
+    };
+
+    fetch("https://localhost:7175/Risco/" + idSelecionado, {
+
+        method: "PUT",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        credentials: "include",
+
+        body: JSON.stringify(risco)
+
+    })
+
+    .then(function(response){
+
+        if(response.ok){
+
+            alert("Risco atualizado com sucesso!");
+
+            limparCampos();
+
+            listarRiscos();
+
+        }
+
+        else{
+
+            response.text().then(function(msg){
+
+                alert(msg);
+
+                if(msg.includes("Faça o login antes")){
+
+                    window.location.href = "login.html";
+
+                }
+
+            });
+
+        }
+
+    })
+
+    .catch(function(erro){
+
+        console.log(erro);
+
+        alert("Erro ao atualizar.");
+
+    });
+
+}
+
+// EXCLUIR
+
+function excluirArea(id){
+
+    if(!confirm("Deseja excluir este risco?")){
 
         return;
 
     }
 
-    linhaSelecionada.cells[1].innerHTML =
-        document.getElementById("nomeArea").value;
+    fetch("https://localhost:7175/Risco/" + id,{
 
-    linhaSelecionada.cells[2].innerHTML =
-        document.getElementById("grau").value;
+        method:"DELETE",
 
-    linhaSelecionada.cells[3].innerHTML =
-        document.getElementById("descricaoArea").value;
+        credentials:"include"
 
-    limparCampos();
+    })
 
-    linhaSelecionada = null;
+    .then(function(response){
 
-    alert("Área atualizada!");
+        if(response.ok){
+
+            alert("Risco excluído com sucesso!");
+
+            listarRiscos();
+
+        }
+
+        else{
+
+            response.text().then(function(msg){
+
+                alert(msg);
+
+                if(msg.includes("Faça o login antes")){
+
+                    window.location.href = "login.html";
+
+                }
+
+            });
+
+        }
+
+    })
+
+    .catch(function(erro){
+
+        console.log(erro);
+
+        alert("Erro ao excluir.");
+
+    });
 
 }
 
-function excluirArea(botao){
-
-    if(confirm("Deseja excluir esta área?")){
-
-        var linha = botao.parentNode.parentNode;
-
-        linha.remove();
-
-        atualizarIds();
-
-    }
-
-}
-
-function atualizarIds(){
-
-    var tabela =
-        document.getElementById("tabelaAreas")
-        .getElementsByTagName("tbody")[0];
-
-    for(var i = 0; i < tabela.rows.length; i++){
-
-        tabela.rows[i].cells[0].innerHTML = i + 1;
-
-    }
-
-}
+// LIMPAR
 
 function limparCampos(){
 
     document.getElementById("nomeArea").value = "";
-    document.getElementById("descricaoArea").value = "";
     document.getElementById("grau").selectedIndex = 0;
+    document.getElementById("descricaoArea").value = "";
+
+    idSelecionado = 0;
+    linhaSelecionada = null;
 
     document.getElementById("btnCadastrar").style.display = "inline-block";
     document.getElementById("btnAtualizar").style.display = "none";
