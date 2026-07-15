@@ -7,14 +7,14 @@ namespace SeguraInforma.Models
     {
         [Key]
         public int Id_epi { get; set; }
-        public string Nome { get; set; }
+        public string Nome { get; set; } = "";
         public int Qntd_Estoque { get; set; }
-        public string Descricao { get; set; }
+        public string Descricao { get; set; } = "";
         public int Numero_Ca { get; set; }
 
 
         [NotMapped]
-        public List<Area_Exige_Epi> exige_epi { get; set; }
+        public List<Area_Exige_Epi>? exige_epi { get; set; }
 
     }
 }

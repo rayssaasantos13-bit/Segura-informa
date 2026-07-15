@@ -151,7 +151,7 @@ select.innerHTML +=
 
 <option 
 value="${e.id_epi}"
-data-ca="${e.numero_CA}">
+data-ca="${e.numero_Ca}">
 
 ${e.nome}
 
