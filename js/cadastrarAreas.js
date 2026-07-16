@@ -2,73 +2,43 @@ var linhaSelecionada = null;
 var idSelecionado = 0;
 
 // MENU
-
 function abrirMenu() {
-
-    var menu = document.getElementById("menu");
-
-    menu.classList.toggle("ativo");
+    document.getElementById("menu").classList.toggle("ativo");
 }
 
-// CARREGAR TABELA
-
+// CARREGAR
 window.onload = function () {
-
     listarRiscos();
-
 };
 
 // LISTAR
-
 function listarRiscos() {
 
     fetch("https://localhost:7175/Risco", {
-
         method: "GET",
         credentials: "include"
-
     })
 
-    .then(function (response) {
+    .then(response => response.json())
 
-        if (!response.ok) {
+    .then(dados => {
 
-            return response.text().then(function (msg) {
+        console.log(dados);
 
-                if (msg.includes("Faça o login antes")) {
-
-                    alert(msg);
-                    window.location.href = "login.html";
-                }
-
-            });
-
-        }
-
-        return response.json();
-
-    })
-
-    .then(function (dados) {
-
-        if (!dados) return;
-
-        var tabela = document
-            .getElementById("tabelaAreas")
-            .getElementsByTagName("tbody")[0];
-
+        var tabela = document.querySelector("#tabelaAreas tbody");
         tabela.innerHTML = "";
 
-        dados.forEach(function (risco) {
+        dados.forEach(risco => {
 
             var linha = tabela.insertRow();
 
             linha.insertCell(0).innerHTML = risco.id_Risco;
-            linha.insertCell(1).innerHTML = risco.tipo_Risco;
-            linha.insertCell(2).innerHTML = risco.grau_Risco;
-            linha.insertCell(3).innerHTML = risco.descricao;
+            linha.insertCell(1).innerHTML = risco.area;
+            linha.insertCell(2).innerHTML = risco.tipo_Risco;
+            linha.insertCell(3).innerHTML = risco.grau_Risco;
+            linha.insertCell(4).innerHTML = risco.descricao;
 
-            linha.insertCell(4).innerHTML =
+            linha.insertCell(5).innerHTML =
                 "<button class='editar' onclick='editarArea(this," + risco.id_Risco + ")'>Editar</button> " +
                 "<button class='excluir' onclick='excluirArea(" + risco.id_Risco + ")'>Excluir</button>";
 
@@ -76,33 +46,19 @@ function listarRiscos() {
 
     })
 
-    .catch(function (erro) {
-
-        console.log(erro);
-
-    });
+    .catch(erro => console.log(erro));
 
 }
 
 // CADASTRAR
-
 function cadastrarArea() {
-
-    var tipo = document.getElementById("nomeArea").value;
-    var grau = document.getElementById("grau").value;
-    var descricao = document.getElementById("descricaoArea").value;
-
-    if (tipo == "" || descricao == "") {
-
-        alert("Preencha todos os campos!");
-        return;
-    }
 
     var risco = {
 
-        Tipo_Risco: tipo,
-        Grau_Risco: grau,
-        Descricao: descricao
+        Tipo_Risco: document.getElementById("nomeArea").value,
+        Grau_Risco: document.getElementById("grau").value,
+        Descricao: document.getElementById("descricaoArea").value,
+        Id_Area: parseInt(document.getElementById("area").value)
 
     };
 
@@ -120,9 +76,9 @@ function cadastrarArea() {
 
     })
 
-    .then(function (response) {
+    .then(response => {
 
-        if (response.ok) {
+        if(response.ok){
 
             alert("Risco cadastrado com sucesso!");
 
@@ -130,88 +86,64 @@ function cadastrarArea() {
 
             listarRiscos();
 
-        }
+        }else{
 
-        else {
-
-            response.text().then(function (msg) {
-
-                alert(msg);
-
-                if (msg.includes("Faça o login antes")) {
-
-                    window.location.href = "login.html";
-
-                }
-
-            });
+            response.text().then(msg=>alert(msg));
 
         }
-
-    })
-
-    .catch(function (erro) {
-
-        console.log(erro);
-
-        alert("Erro ao conectar com a API.");
 
     });
 
 }
+
 // EDITAR
+function editarArea(botao,id){
 
-function editarArea(botao, id) {
+    idSelecionado=id;
 
-    idSelecionado = id;
+    linhaSelecionada=botao.parentNode.parentNode;
 
-    linhaSelecionada = botao.parentNode.parentNode;
+    document.getElementById("area").value=linhaSelecionada.cells[1].dataset.idArea;
+    document.getElementById("nomeArea").value=linhaSelecionada.cells[2].innerHTML;
+    document.getElementById("grau").value=linhaSelecionada.cells[3].innerHTML;
+    document.getElementById("descricaoArea").value=linhaSelecionada.cells[4].innerHTML;
 
-    document.getElementById("nomeArea").value =
-        linhaSelecionada.cells[1].innerHTML;
-
-    document.getElementById("grau").value =
-        linhaSelecionada.cells[2].innerHTML;
-
-    document.getElementById("descricaoArea").value =
-        linhaSelecionada.cells[3].innerHTML;
-
-    document.getElementById("btnCadastrar").style.display = "none";
-    document.getElementById("btnAtualizar").style.display = "inline-block";
+    document.getElementById("btnCadastrar").style.display="none";
+    document.getElementById("btnAtualizar").style.display="inline-block";
 
 }
 
 // ATUALIZAR
+function atualizarArea(){
 
-function atualizarArea() {
+    var risco={
 
-    var risco = {
-
-        Tipo_Risco: document.getElementById("nomeArea").value,
-        Grau_Risco: document.getElementById("grau").value,
-        Descricao: document.getElementById("descricaoArea").value
+        Id_Area:parseInt(document.getElementById("area").value),
+        Tipo_Risco:document.getElementById("nomeArea").value,
+        Grau_Risco:document.getElementById("grau").value,
+        Descricao:document.getElementById("descricaoArea").value
 
     };
 
-    fetch("https://localhost:7175/Risco/" + idSelecionado, {
+    fetch("https://localhost:7175/Risco/"+idSelecionado,{
 
-        method: "PUT",
+        method:"PUT",
 
-        headers: {
-            "Content-Type": "application/json"
+        headers:{
+            "Content-Type":"application/json"
         },
 
-        credentials: "include",
+        credentials:"include",
 
-        body: JSON.stringify(risco)
+        body:JSON.stringify(risco)
 
     })
 
-    .then(function(response){
+    .then(response=>{
 
         if(response.ok){
 
-            alert("Risco atualizado com sucesso!");
+            alert("Atualizado!");
 
             limparCampos();
 
@@ -219,45 +151,16 @@ function atualizarArea() {
 
         }
 
-        else{
-
-            response.text().then(function(msg){
-
-                alert(msg);
-
-                if(msg.includes("Faça o login antes")){
-
-                    window.location.href = "login.html";
-
-                }
-
-            });
-
-        }
-
-    })
-
-    .catch(function(erro){
-
-        console.log(erro);
-
-        alert("Erro ao atualizar.");
-
     });
 
 }
 
 // EXCLUIR
-
 function excluirArea(id){
 
-    if(!confirm("Deseja excluir este risco?")){
+    if(!confirm("Deseja excluir?")) return;
 
-        return;
-
-    }
-
-    fetch("https://localhost:7175/Risco/" + id,{
+    fetch("https://localhost:7175/Risco/"+id,{
 
         method:"DELETE",
 
@@ -265,56 +168,32 @@ function excluirArea(id){
 
     })
 
-    .then(function(response){
+    .then(response=>{
 
         if(response.ok){
 
-            alert("Risco excluído com sucesso!");
+            alert("Excluído!");
 
             listarRiscos();
 
         }
-
-        else{
-
-            response.text().then(function(msg){
-
-                alert(msg);
-
-                if(msg.includes("Faça o login antes")){
-
-                    window.location.href = "login.html";
-
-                }
-
-            });
-
-        }
-
-    })
-
-    .catch(function(erro){
-
-        console.log(erro);
-
-        alert("Erro ao excluir.");
 
     });
 
 }
 
 // LIMPAR
-
 function limparCampos(){
 
-    document.getElementById("nomeArea").value = "";
-    document.getElementById("grau").selectedIndex = 0;
-    document.getElementById("descricaoArea").value = "";
+    document.getElementById("area").selectedIndex=0;
+    document.getElementById("nomeArea").selectedIndex=0;
+    document.getElementById("grau").selectedIndex=0;
+    document.getElementById("descricaoArea").value="";
 
-    idSelecionado = 0;
-    linhaSelecionada = null;
+    idSelecionado=0;
+    linhaSelecionada=null;
 
-    document.getElementById("btnCadastrar").style.display = "inline-block";
-    document.getElementById("btnAtualizar").style.display = "none";
+    document.getElementById("btnCadastrar").style.display="inline-block";
+    document.getElementById("btnAtualizar").style.display="none";
 
 }

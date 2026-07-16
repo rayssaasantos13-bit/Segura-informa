@@ -8,6 +8,6 @@ namespace SeguraInforma.Models
         public int Id_Risco { get; set; }
         public string Tipo_Risco { get; set; }
         public string Grau_Risco { get; set; }
-        public string Descricao {  get; set; }
+        public string Descricao { get; set; }
     }
 }
