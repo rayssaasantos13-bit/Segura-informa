@@ -1,114 +1,100 @@
 // ============================
+// VARIÁVEL DE EDIÇÃO
+// ============================
+
+let mapaEdicao = null;
+
+
+
+// ============================
 // MENU
 // ============================
 
-function abrirMenu() {
-
-    const menu = document.getElementById("menu");
-
-    if(menu){
-        menu.classList.toggle("ativo");
-    }
-
+function toggleMenu() {
+    document.getElementById("menuLateral").classList.toggle("ativo");
 }
 
+// ============================
+// INICIAR PÁGINA
+// ============================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    carregarAreas();
+    carregarMapas();
+
+    // Preview da imagem
+    const inputImagem = document.getElementById("imagemMapa");
+    const preview = document.getElementById("previewMapa");
+    const nomeArquivo = document.getElementById("nomeArquivo");
+
+    preview.style.display = "none";
+
+    inputImagem.addEventListener("change", function () {
+
+        if (!this.files.length) {
+
+            preview.src = "";
+            preview.style.display = "none";
+            nomeArquivo.textContent = "Nenhuma imagem selecionada.";
+            return;
+        }
+
+        const arquivo = this.files[0];
+
+        nomeArquivo.textContent = arquivo.name;
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+
+            preview.src = e.target.result;
+            preview.style.display = "block";
+
+        };
+
+        reader.readAsDataURL(arquivo);
+
+    });
+
+});
+
+
+
 
 // ============================
-// CADASTRAR MAPA
+// CARREGAR MAPAS
 // ============================
 
-function cadastrarMapa() {
+function carregarMapas(){
 
 
-    const area = document.getElementById("areas").value;
-
-
-    if(area === ""){
-
-        alert("Selecione uma área.");
-
-        return;
-
-    }
-
-
-
-    const formData = new FormData();
-
-
-
-    formData.append(
-        "Descricao",
-        document.getElementById("descricao").value
-    );
-
-
-    formData.append(
-        "Data_Criacao",
-        document.getElementById("dataCriacao").value
-    );
-
-
-    formData.append(
-        "Data_Atualizacao",
-        document.getElementById("dataAtualizacao").value
-    );
-
-
-    formData.append(
-        "Fk_Area_Id_Area",
-        area
-    );
-
-
-
-    const imagem =
-    document.getElementById("imagemMapa").files[0];
-
-
-
-    if(imagem){
-
-        formData.append(
-            "ArquivoFoto",
-            imagem
-        );
-
-    }
-
-
-console.log(document.getElementById("dataCriacao").value);
-console.log(document.getElementById("dataAtualizacao").value);
     fetch("https://localhost:7175/Mapa_De_Risco",{
 
-
-        method:"POST",
-
-
-        credentials:"include",
-
-
-        body:formData
-
+        credentials:"include"
 
     })
 
 
-    .then(async response=>{
+    .then(response=>response.json())
 
 
-        if(!response.ok){
+    .then(mapas=>{
 
 
-            const erro =
-            await response.text();
+        const lista =
+        document.getElementById("listaMapas");
 
 
-            console.log("ERRO:",erro);
+        lista.innerHTML="";
 
 
-            alert("Erro: "+erro);
 
+        if(mapas.length == 0){
+
+
+            lista.innerHTML =
+            "<p>Nenhum mapa cadastrado.</p>";
 
             return;
 
@@ -116,10 +102,56 @@ console.log(document.getElementById("dataAtualizacao").value);
 
 
 
-        alert("Mapa cadastrado com sucesso!");
+
+        mapas.forEach(mapa=>{
 
 
-        window.location.href="mapaderiscoGest.html";
+            lista.innerHTML += `
+
+
+            <div class="mapa-card">
+
+
+                <h3>
+                    ${mapa.descricao.trim()}
+                </h3>
+
+
+
+                <p>
+                    Data criação:
+                    ${mapa.data_Criacao.substring(0,10)}
+                </p>
+
+
+
+                <button 
+                onclick="selecionarMapa(${mapa.id_Mapa})">
+
+                    Editar
+
+                </button>
+
+
+
+                <button
+                onclick="deletarMapa(${mapa.id_Mapa})">
+
+                    Excluir
+
+                </button>
+
+
+
+            </div>
+
+
+
+            `;
+
+
+        });
+
 
 
     })
@@ -130,145 +162,10 @@ console.log(document.getElementById("dataAtualizacao").value);
 
         console.log(error);
 
-
-        alert("Erro ao cadastrar mapa.");
+        alert("Erro ao carregar mapas.");
 
 
     });
-
-
-
-}
-
-
-
-// ============================
-// CARREGAR ÁREAS
-// ============================
-
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const selectAreas = document.getElementById("areas");
-
-    if (!selectAreas) {
-        console.log("Select de áreas não encontrado.");
-        return;
-    }
-
-    fetch("https://localhost:7175/Area", {
-        method: "GET",
-        credentials: "include"
-    })
-
-    .then(response => {
-
-        console.log("Status:", response.status);
-
-        if (!response.ok) {
-            throw new Error("Erro ao buscar áreas");
-        }
-
-        return response.json();
-
-    })
-
-    .then(areas => {
-
-        console.log("Áreas recebidas:", areas);
-
-        selectAreas.innerHTML =
-            '<option value="">Selecione uma área</option>';
-
-        areas.forEach(area => {
-
-            const option = document.createElement("option");
-
-            option.value = area.id_Area;
-            option.textContent = area.nome_Area.trim();
-
-            selectAreas.appendChild(option);
-
-        });
-
-        selectAreas.addEventListener("change", carregarDadosArea);
-
-    })
-
-    .catch(error => {
-
-        console.log(error);
-
-        alert("Erro ao carregar áreas.");
-
-    });
-
-});
-// ============================
-// PREVISUALIZAÇÃO DA IMAGEM
-// ============================
-
-
-const inputImagem =
-document.getElementById("imagemMapa");
-
-
-const preview =
-document.getElementById("previewMapa");
-
-
-const nomeArquivo =
-document.getElementById("nomeArquivo");
-
-
-
-if(inputImagem){
-
-
-inputImagem.addEventListener("change",function(){
-
-
-
-    if(this.files.length > 0){
-
-
-
-        const arquivo =
-        this.files[0];
-
-
-
-        nomeArquivo.textContent =
-        arquivo.name;
-
-
-
-        const leitor =
-        new FileReader();
-
-
-
-        leitor.onload=function(e){
-
-
-            preview.src =
-            e.target.result;
-
-
-        }
-
-
-
-        leitor.readAsDataURL(arquivo);
-
-
-
-    }
-
-
-
-});
-
 
 
 }
@@ -277,41 +174,50 @@ inputImagem.addEventListener("change",function(){
 
 
 // ============================
-// CARREGAR MAPA PARA EDITAR
+// NOVO MAPA
+// ============================
+
+function novoMapa(){
+
+
+    limparFormulario();
+
+
+}
+
+
+
+
+// ============================
+// SELECIONAR MAPA PARA EDITAR
 // ============================
 
 
-const parametros =
-new URLSearchParams(window.location.search);
+function selecionarMapa(id){
+
+    console.log("ID do mapa selecionado:", id);
 
 
 
-const idMapa =
-parametros.get("id");
-
-
-
-if(idMapa){
-
-    const campoId = document.getElementById("idMapa");
-
-    if(campoId){
-        campoId.value = idMapa;
-    }
-
-    fetch(`https://localhost:7175/Mapa_De_Risco/${idMapa}`,{
-
+    fetch(
+        "https://localhost:7175/Mapa_De_Risco/" + id,
+        {
 
         credentials:"include"
 
+        }
 
-    })
+    )
 
 
     .then(response=>response.json())
 
 
     .then(mapa=>{
+            console.log("Mapa recebido:", mapa);
+
+
+        mapaEdicao = mapa;
 
 
 
@@ -330,35 +236,37 @@ if(idMapa){
 
 
 
-      document.getElementById("areas").value =
-mapa.fk_Area_Id_Area;
-
-carregarDadosArea();
+        document.getElementById("areas").value =
+        mapa.fk_Area_Id_Area;
 
 
-        if(mapa.nome_Foto){
+
+   if(mapa.nome_Foto){
+
+    const imagem =
+    document.getElementById("previewMapa");
+
+    console.log("nome_Foto:", mapa.nome_Foto);
+    imagem.src = mapa.nome_Foto;
 
 
-            document.getElementById("previewMapa").src =
-            mapa.nome_Foto;
+    imagem.style.display = "block";
 
 
-        }
+}
+else{
+
+    document.getElementById("previewMapa").src = "";
+
+}
+
+
+
+        carregarDadosArea();
 
 
 
     })
-
-    .catch(error=>{
-
-
-        console.log(error);
-
-
-        alert("Erro ao carregar mapa.");
-
-
-    });
 
 
 
@@ -368,46 +276,132 @@ carregarDadosArea();
 
 
 // ============================
-// EDITAR MAPA
+// CARREGAR ÁREAS
 // ============================
 
+function carregarAreas(){
 
-function editarMapa() {
 
-    const idMapa = document.getElementById("idMapa").value;
 
-    if (idMapa == "") {
+    fetch("https://localhost:7175/Area",{
 
-        alert("Mapa não encontrado.");
+        credentials:"include"
+
+    })
+
+
+    .then(response=>response.json())
+
+
+    .then(areas=>{
+
+
+        const select =
+        document.getElementById("areas");
+
+
+        select.innerHTML =
+        "<option value=''>Selecione uma área</option>";
+
+
+
+        areas.forEach(area=>{
+
+
+            select.innerHTML += `
+
+            <option value="${area.id_Area}">
+
+                ${area.nome_Area.trim()}
+
+            </option>
+
+            `;
+
+
+        });
+
+
+
+        select.addEventListener(
+            "change",
+            carregarDadosArea
+        );
+
+
+
+    });
+
+
+}
+
+
+
+// ============================
+// CADASTRAR
+// ============================
+
+function cadastrarMapa(){
+
+
+
+    const area =
+    document.getElementById("areas").value;
+
+
+
+    if(area==""){
+
+
+        alert("Selecione uma área.");
 
         return;
+
     }
 
-    const formData = new FormData();
+
+
+
+    const formData =
+    new FormData();
+
+
 
     formData.append(
         "Descricao",
-        document.getElementById("descricao").value
+        document.getElementById("descricao").value.trim()
     );
+
+
 
     formData.append(
         "Data_Criacao",
         document.getElementById("dataCriacao").value
     );
 
+
+
     formData.append(
         "Data_Atualizacao",
         document.getElementById("dataAtualizacao").value
     );
 
+
+
     formData.append(
         "Fk_Area_Id_Area",
-        document.getElementById("areas").value
+        area
     );
 
-    const imagem = document.getElementById("imagemMapa").files[0];
 
-    if (imagem) {
+
+
+    const imagem =
+    document.getElementById("imagemMapa").files[0];
+
+
+
+    if(imagem){
 
         formData.append(
             "ArquivoFoto",
@@ -416,204 +410,335 @@ function editarMapa() {
 
     }
 
-    fetch("https://localhost:7175/Mapa_De_Risco/" + idMapa, {
 
-        method: "PUT",
 
-        credentials: "include",
 
-        body: formData
+    fetch("https://localhost:7175/Mapa_De_Risco",{
+
+        method:"POST",
+
+        credentials:"include",
+
+        body:formData
 
     })
 
-    .then(async response => {
 
-        if (!response.ok) {
+    .then(response=>{
 
-            const erro = await response.text();
 
-            alert(erro);
+        if(!response.ok){
 
-            return;
+            throw new Error();
+
         }
 
-        alert("Mapa atualizado com sucesso!");
 
-        window.location.href = "mapaderiscoGest.html";
+
+        alert("Mapa cadastrado!");
+
+        carregarMapas();
+
+        limparFormulario();
+
 
     })
 
-    .catch(error => {
 
-        console.log(error);
+    .catch(()=>{
 
-        alert("Erro ao atualizar mapa.");
+
+        alert("Erro ao cadastrar mapa.");
 
     });
 
+
+
 }
+
+
+
+
 // ============================
-// DELETAR MAPA
+// EDITAR
 // ============================
 
+function editarMapa(){
 
-function deletarMapa() {
 
-    const idMapa = document.getElementById("idMapa").value;
 
-    if (idMapa == "") {
+    if(!mapaEdicao){
 
-        alert("Nenhum mapa selecionado.");
+
+        alert("Selecione um mapa para editar.");
 
         return;
+
     }
 
-    if (!confirm("Deseja realmente excluir este mapa?")) {
 
-        return;
+
+    const id =
+    mapaEdicao.id_Mapa;
+
+
+
+    const formData =
+    new FormData();
+
+
+
+    formData.append(
+        "Descricao",
+        document.getElementById("descricao").value.trim()
+    );
+
+
+    formData.append(
+        "Data_Criacao",
+        document.getElementById("dataCriacao").value
+    );
+
+
+    formData.append(
+        "Data_Atualizacao",
+        document.getElementById("dataAtualizacao").value
+    );
+
+
+    formData.append(
+        "Fk_Area_Id_Area",
+        document.getElementById("areas").value
+    );
+
+
+
+
+    const imagem =
+    document.getElementById("imagemMapa").files[0];
+
+
+
+    if(imagem){
+
+        formData.append(
+            "ArquivoFoto",
+            imagem
+        );
+
     }
 
-    fetch("https://localhost:7175/Mapa_De_Risco/" + idMapa, {
 
-        method: "DELETE",
 
-        credentials: "include"
 
-    })
 
-    .then(async response => {
+    fetch(
+        "https://localhost:7175/Mapa_De_Risco/" + id,
+        {
 
-        if (!response.ok) {
+        method:"PUT",
 
-            const erro = await response.text();
+        credentials:"include",
 
-            alert(erro);
+        body:formData
 
-            return;
         }
 
-        alert("Mapa excluído com sucesso!");
+    )
 
-        window.location.href = "mapaderiscoGest.html";
+
+    .then(()=>{
+
+
+        alert("Mapa atualizado!");
+
+        carregarMapas();
+
+        limparFormulario();
+
 
     })
 
-    .catch(error => {
 
-        console.log(error);
-
-        alert("Erro ao excluir mapa.");
-
-    });
 
 }
-function carregarRiscos() {
 
-    const idArea = document.getElementById("areas").value;
 
-    if (idArea == "") {
 
-        document.getElementById("listaRiscos").innerHTML =
-            "<p class='semRisco'>Selecione uma área.</p>";
 
-        return;
-    }
+// ============================
+// DELETAR
+// ============================
 
-    fetch("https://localhost:7175/Area/RiscosDaArea/" + idArea)
 
-        .then(response => response.json())
+function deletarMapa(id){
 
-        .then(riscos => {
 
-            const lista = document.getElementById("listaRiscos");
 
-            lista.innerHTML = "";
-
-            if (riscos.length == 0) {
-
-                lista.innerHTML =
-                    "<p class='semRisco'>Nenhum risco cadastrado.</p>";
-
-                return;
-            }
-
-            riscos.forEach(risco => {
-
-                lista.innerHTML += `
-                    <div class="risco-card">
-                        <h4>${risco.tipo_Risco}</h4>
-                        <span><strong>Grau:</strong> ${risco.grau_Risco}</span>
-                        <span>${risco.descricao}</span>
-                    </div>
-                `;
-
-            });
-
-        })
-
-        .catch(error => {
-
-            console.log(error);
-
-        });
-
-}
-function carregarDadosArea(){
-
-    const idArea = document.getElementById("areas").value;
-
-    if(idArea==""){
-
-        document.getElementById("descricaoArea").value="";
-
-        document.getElementById("listaRiscos").innerHTML=
-        "<p>Selecione uma área.</p>";
+    if(!confirm("Excluir mapa?")){
 
         return;
 
     }
 
-    fetch("https://localhost:7175/Area/DadosArea/"+idArea,{
+
+
+
+    fetch(
+        "https://localhost:7175/Mapa_De_Risco/" + id,
+        {
+
+        method:"DELETE",
 
         credentials:"include"
 
-    })
+        }
+
+    )
+
+
+    .then(()=>{
+
+
+        alert("Mapa excluído!");
+
+        carregarMapas();
+
+
+        limparFormulario();
+
+
+    });
+
+
+
+}
+
+
+
+
+// ============================
+// LIMPAR FORMULÁRIO
+// ============================
+
+function limparFormulario(){
+
+
+
+    mapaEdicao=null;
+
+
+
+    document.getElementById("descricao").value="";
+
+
+    document.getElementById("dataCriacao").value="";
+
+
+    document.getElementById("dataAtualizacao").value="";
+
+
+    document.getElementById("areas").value="";
+
+
+    document.getElementById("descricaoArea").value="";
+
+
+    document.getElementById("listaRiscos").innerHTML =
+    "<p>Selecione uma área.</p>";
+
+
+
+    document.getElementById("previewMapa").src="";
+
+
+}
+
+
+
+
+// ============================
+// DADOS DA ÁREA
+// ============================
+
+function carregarDadosArea(){
+
+
+
+    const id =
+    document.getElementById("areas").value;
+
+
+
+    if(id==""){
+
+        return;
+
+    }
+
+
+
+    fetch(
+        "https://localhost:7175/Area/DadosArea/" + id,
+        {
+
+        credentials:"include"
+
+        }
+
+    )
+
 
     .then(response=>response.json())
 
+
     .then(dados=>{
 
-        document.getElementById("descricaoArea").value=
+
+        document.getElementById("descricaoArea").value =
         dados.descricao;
 
-        const lista=
+
+
+        const lista =
         document.getElementById("listaRiscos");
+
 
         lista.innerHTML="";
 
+
+
         dados.riscos.forEach(risco=>{
 
-            lista.innerHTML+=`
 
-                <div class="risco">
+            lista.innerHTML += `
 
-                    <strong>${risco.tipo_Risco}</strong>
+            <div class="risco">
 
-                    <br>
+            <strong>
+            ${risco.tipo_Risco}
+            </strong>
 
-                    Grau:
-                    ${risco.grau_Risco}
+            <br>
 
-                    <br><br>
+            Grau:
+            ${risco.grau_Risco}
 
-                    ${risco.descricao}
+            <br>
 
-                </div>
+            ${risco.descricao}
+
+            </div>
 
             `;
 
+
         });
 
+
+
     });
+
+
 
 }

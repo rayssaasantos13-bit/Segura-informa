@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SeguraInforma.Data;
 using SeguraInforma.Models;
+
 namespace SeguraInforma.Controllers
 {
     [ApiController]
@@ -13,9 +14,14 @@ namespace SeguraInforma.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        public IActionResult ListarEpis()
+        {
+            var lista = _context.EPI.ToList();
+            return Ok(lista);
+        }
 
         [HttpPost]
-
         public IActionResult CadastrarEpi(Epi EPI)
         {
             var idLogado = HttpContext.Session.GetString("IdLogado");
@@ -23,37 +29,40 @@ namespace SeguraInforma.Controllers
             {
                 return Unauthorized("Faça o login antes");
             }
+
             var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
             if (usuarioLogado != null)
             {
-
-
                 if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
                 {
                     return Unauthorized("Apenas gestores podem cadastrar.");
                 }
             }
 
+            // Salva o EPI principal no Banco SQL
             _context.Add(EPI);
             _context.SaveChanges();
 
-            for (int x = 0; x < EPI.exige_epi.Count; x++)
+            // Proteção: Só roda o loop se você tiver enviado dados em 'exige_epi' pela tela
+            if (EPI.exige_epi != null && EPI.exige_epi.Count > 0)
             {
-                EPI.exige_epi[x].Fk_EPI_Id_Epi = EPI.Id_epi;
+                for (int x = 0; x < EPI.exige_epi.Count; x++)
+                {
+                    EPI.exige_epi[x].Fk_EPI_Id_Epi = EPI.Id_epi;
+                }
+
+                for (int x = 0; x < EPI.exige_epi.Count; x++)
+                {
+                    _context.Add(EPI.exige_epi[x]);
+                }
+                _context.SaveChanges();
             }
 
-
-            for (int x = 0; x < EPI.exige_epi.Count; x++)
-            {
-                _context.Add(EPI.exige_epi[x]);
-
-            }
-            _context.SaveChanges();
             return Created("", EPI);
         }
+
         [HttpDelete("{id}")]
         public IActionResult DeletarEpi(int id)
-
         {
             var idLogado = HttpContext.Session.GetString("IdLogado");
             if (idLogado == null)
@@ -63,8 +72,6 @@ namespace SeguraInforma.Controllers
             var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
             if (usuarioLogado != null)
             {
-
-
                 if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
                 {
                     return Unauthorized("Apenas gestores podem deletar.");
@@ -80,11 +87,10 @@ namespace SeguraInforma.Controllers
             _context.SaveChanges();
             return Ok("Deletado");
         }
+
         [HttpPut("{id}")]
-        public IActionResult AtualizarEpi(int id, Epi epi )
+        public IActionResult AtualizarEpi(int id, Epi epi)
         {
-
-
             var sessaoUsuario = "1";
             if (sessaoUsuario == null)
             {
@@ -93,8 +99,6 @@ namespace SeguraInforma.Controllers
             var usuarioLogado = _context.Usuarios.Find(int.Parse(sessaoUsuario));
             if (usuarioLogado != null)
             {
-
-
                 if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
                 {
                     return Unauthorized("Apenas gestores podem deletar.");
@@ -110,12 +114,8 @@ namespace SeguraInforma.Controllers
             epiDoBanco.Qntd_Estoque = epi.Qntd_Estoque;
             epiDoBanco.Descricao = epi.Descricao;
 
-
             _context.SaveChanges();
             return Ok("Atualizado");
         }
-    
     }
-
 }
-

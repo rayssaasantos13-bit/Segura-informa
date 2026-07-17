@@ -6,161 +6,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cadastro de Mapa</title>
+    <title>Cadastro de EPI</title>
 
-    <link rel="stylesheet" href="../css/estiloEntrega.css">
+    <link rel="stylesheet" href="../css/cadastroEPIS.css">
 
 </head>
 
+
 <body>
+
 
 <div class="container">
 
-    <div class="menu-lateral" id="menu">
 
-        <img src="../img/logo.png" width="150" alt="MonitorÁgua">
+    <!-- MENU LATERAL -->
 
-        <a href="mapaderiscoGest.html">Mapa de Risco</a>
-        <a href="areasGest.html">Áreas</a>
-        <a href="Confirma EPIs.html">Confirma EPIs</a>
-        <a href="Entrega_EPIs.html">Entrega de EPIs</a>
-        <a href="tela de perfil.html">Tela de Perfil</a>
+    <div class="menu-lateral" id="menuLateral">
+
+        <img src="../img/logo.png" class="logo">
+
+ <a href="mapaderiscoGest.html">Mapa de Risco</a>
+        <a href="cadastroAreas.html">Cadastro de Áreas</a>
+        <a href="cadastroEPIs.html">Cadastro de EPIs</a>
+        <a href="cadastroDeEntrega.html">Entregas de EPIs</a>
+        <a href="teladeperfilADM.html">Perfil</a>
         <a href="login.html">Sair</a>
 
     </div>
 
 
-    <div class="card">
 
-        <button class="btn-menu" onclick="abrirMenu()">
+    <!-- ÁREA PRINCIPAL -->
+
+
+    <div class="conteudo">
+
+
+        <!-- BOTÃO MENU -->
+
+        <button class="btn-menu" onclick="toggleMenu()">
+
             ☰
-        </button>
-  
-
-    <header>
-
-      <div class="logo-area">
-        <i class="fa-solid fa-helmet-safety"></i>
-        <span>Entrega de EPIs</span>
-      </div>
-
-      <div class="user-area">
-        <i class="fa-solid fa-user"></i>
-        <span>Administrador</span>
-      </div>
-
-    </header>
-
-    <h2>Cadastro de Entrega de EPIs</h2>
-
-    <form id="Entrega">
-<div class="form-group">
-    <label for="nomeFuncionario">Nome do Funcionário</label>
-    <input type="text" id="nomeFuncionario" list="listaUsuarios" placeholder="Digite o nome do funcionário..." required class="form-control">
-    <datalist id="listaUsuarios"></datalist>
-</div>
-
-<div class="form-group">
-    <label for="idEpi">Nome do EPI</label>
-    <input type="text" id="idEpi" list="listaEpis" placeholder="Digite o nome do EPI..." required class="form-control">
-    <datalist id="listaEpis"></datalist>
-</div>
-      <div class="form-group">
-
-        <label>Data da Entrega</label>
-
-        <input type="date" id="dataEntrega" required>
-
-      </div>
-
-      <div class="form-group">
-
-        <label>Data da Devolução</label>
-
-        <input type="date" id="dataDevolucao">
-
-      </div>
-
-      <div class="form-group">
-
-        <label>Entrega Aceita?</label>
-
-        <select id="aceito">
-
-          <option value="true">Sim</option>
-
-          <option value="false">Não</option>
-
-        </select>
-
-      </div>
-
-      <div class="actions-bar">
-
-        <button type="submit" class="btn btn-success">
-
-          <i class="fa-solid fa-plus"></i>
-
-          Cadastrar
 
         </button>
 
-        <button type="button" id="btnAtualizar" class="btn btn-primary">
 
-          Atualizar
 
-        </button>
+        <!-- CARD PRINCIPAL -->
 
-        <button type="button" id="btnExcluir" class="btn btn-danger">
 
-          Excluir
+        <div class="card">
 
-        </button>
 
-        <button type="reset" class="btn btn-secondary">
+            <h1>
+                Cadastro de EPI
+            </h1>
 
-          Limpar
 
-        </button>
+            <p class="subtitulo">
 
-      </div>
+                Cadastre os Equipamentos de Proteção Individual disponíveis.
 
-    </form>
+            </p>
 
-  </div>
 
-  <div class="card">
 
-    <h2>Entregas Cadastradas</h2>
 
-    <table id="tabelaEntrega">
+            <div class="formulario">
 
-      <thead>
 
-        <tr>
 
-          <th>ID</th>
-          <th>Funcionário</th>
-          <th>EPI</th>
-          <th>Entrega</th>
-          <th>Devolução</th>
-          <th>Aceito</th>
-          <th>Ações</th>
+                <div class="campo">
 
-        </tr>
+    <label for="nome">
+        Nome do EPI
+    </label>
 
-      </thead>
-
-      <tbody>
-
-      </tbody>
-
-    </table>
-
-  </div>
+    <input 
+        type="text"
+        id="nome"
+        placeholder="Digite o nome do EPI">
 
 </div>
 
-<div id="respostaEntrega"></div>
 
-<script src="../js/JavaEntrega.js"></script>
+<div class="campo">
+
+    <label for="descricao">
+        Descrição
+    </label>
+
+    <input 
+        type="text"
+        id="descricao"
+        placeholder="Digite a descrição do EPI">
+
+</div>
+
+
+<div class="campo">
+
+    <label for="ca">
+        Número do CA
+    </label>
+
+    <input 
+        type="number"
+        id="ca"
+        placeholder="Digite o número do CA">
+
+</div>
+
+
+<div class="campo">
+
+    <label for="estoque">
+        Quantidade em Estoque
+    </label>
+
+    <input 
+        type="number"
+        id="estoque"
+        placeholder="Informe a quantidade disponível">
+
+</div>
+
+                <div class="botoes">
+
+
+                    <button onclick="CadastrarEpi()">
+
+                        Cadastrar
+
+                    </button>
+
+
+
+                    <button 
+                        class="limpar"
+                        onclick="LimparCampos()">
+
+                        Limpar
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+
+<script src="../js/cadastroEPIS.js"></script>
+
+
+</body>
+
+</html>
