@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mapa de Risco | Segura Informa</title>
+
+    <link rel="stylesheet" href="../css/mapaGest.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- MENU -->
+
+    <aside class="menu-lateral" id="menuLateral">
+
+        <div class="logo-area">
+
+            <img src="../img/logo.png"
+                 class="logo"
+                 alt="Segura Informa">
+
+        </div>
+
+        <nav>
+
+            <a href="mapaderiscoGest.html">
+
+                <i class="fa-solid fa-map-location-dot"></i>
+
+                <span>Mapa de Risco</span>
+
+            </a>
+
+            <a href="cadastroAreas.html">
+
+                <i class="fa-solid fa-industry"></i>
+
+                <span>Cadastro de Áreas</span>
+
+            </a>
+
+            <a href="cadastroEPIs.html">
+
+                <i class="fa-solid fa-helmet-safety"></i>
+
+                <span>Cadastro de EPIs</span>
+
+            </a>
+
+            <a href="cadastroDeEntrega.html">
+
+                <i class="fa-solid fa-box"></i>
+
+                <span>Entrega de EPIs</span>
+
+            </a>
+
+            <a href="teladeperfilADM.html">
+
+                <i class="fa-solid fa-user"></i>
+
+                <span>Perfil</span>
+
+            </a>
+
+            <a href="login.html">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Sair</span>
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <!-- CONTEÚDO -->
+
+    <main class="conteudo">
+
+        <!-- TOPO -->
+
+        <header class="topo">
+
+            <button class="btn-menu"
+                    onclick="toggleMenu()">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+            <div>
+
+                <h1>Mapa de Risco</h1>
+
+                <p>
+
+                    Consulte os mapas cadastrados e visualize
+                    todos os riscos existentes.
+
+                </p>
+
+            </div>
+
+        </header>
+
+        <!-- PESQUISA -->
+
+        <section class="card pesquisa-card">
+
+            <div class="campo">
+
+                <label>
+
+                    Área
+
+                </label>
+
+                <select id="areas">
+
+                    <option value="">
+
+                        Selecione uma área
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button
+                class="btn-pesquisar"
+                onclick="PesquisarMapa()">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                Pesquisar
+
+            </button>
+
+            <button
+                class="novoMapa"
+                onclick="CadastrarMapa()">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Novo Mapa
+
+            </button>
+
+        </section>
+
+        <!-- RESULTADO -->
+
+        <section class="card">
+
+            <h2>
+
+                Resultado
+
+            </h2>
+
+            <p id="textoResultado">
+
+                Nenhuma área selecionada.
+
+            </p>
+
+            <div id="conteudoMapa">
+
+                <div class="mapa-grid">
+
+                    <!-- IMAGEM -->
+
+                    <div class="mapa-imagem">
+
+                        <img
+                            id="imagemMapa"
+                            src=""
+                            alt="Mapa de risco"
+                            style="display:none;">
+
+                    </div>
+
+                    <!-- INFORMAÇÕES -->
+
+                    <div
+                        id="infoMapa"
+                        class="mapa-info">
+
+                        <h2 id="nomeArea">
+
+                        </h2>
+
+                        <div class="caixa-info">
+
+                            <h3>
+
+                                Descrição da Área
+
+                            </h3>
+
+                            <p id="descricaoAreaMapa">
+
+                            </p>
+
+                        </div>
+
+                        <div class="caixa-info">
+
+                            <h3>
+
+                                Descrição do Mapa
+
+                            </h3>
+
+                            <p id="descricaoMapa">
+
+                            </p>
+
+                        </div>
+
+                        <div class="duas-caixas">
+
+                            <div class="caixa-info">
+
+                                <h3>
+
+                                    Data de Criação
+
+                                </h3>
+
+                                <p id="dataCriacao">
+
+                                </p>
+
+                            </div>
+
+                            <div class="caixa-info">
+
+                                <h3>
+
+                                    Última Atualização
+
+                                </h3>
+
+                                <p id="dataAtualizacao">
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="caixa-info">
+
+                            <h3>
+
+                                Riscos
+
+                            </h3>
+
+                            <div id="listaRiscos">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="acoes-finais">
+
+                <button
+                    class="imprimir"
+                    onclick="window.print()">
+
+                    <i class="fa-solid fa-print"></i>
+
+                    Imprimir
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/mapa.js"></script>
+
+</body>
+
+</html>

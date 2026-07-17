@@ -1,0 +1,616 @@
+/* =====================================
+   MAPA DE RISCO - SEGURA INFORMA
+===================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root{
+
+    --laranja:#F28C28;
+    --laranja-hover:#DD7B18;
+
+    --branco:#FFFFFF;
+
+    --cinza:#F4F6F9;
+
+    --cinza-claro:#E5E7EB;
+
+    --texto:#2C3E50;
+
+    --texto-sec:#6B7280;
+
+    --shadow:0 15px 40px rgba(0,0,0,.08);
+
+    --radius:18px;
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+
+}
+
+body{
+
+    background:#F4F6F9;
+    color:var(--texto);
+
+}
+
+/* =====================================
+   CONTAINER PRINCIPAL
+===================================== */
+
+.container{
+
+    display:flex;
+    min-height:100vh;
+
+}
+
+/* =====================================
+   MENU LATERAL
+===================================== */
+
+.menu-lateral{
+
+    width:280px;
+
+    background:#fff;
+
+    box-shadow:4px 0 25px rgba(0,0,0,.05);
+
+    padding:30px 20px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+.logo-area{
+
+    display:flex;
+    justify-content:center;
+
+}
+
+.logo{
+
+    width:180px;
+
+}
+
+.menu-lateral nav{
+
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+}
+
+.menu-lateral a{
+
+    text-decoration:none;
+
+    color:var(--texto);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    transition:.3s;
+
+    font-weight:500;
+
+}
+
+.menu-lateral a i{
+
+    width:20px;
+
+    text-align:center;
+
+}
+
+.menu-lateral a:hover{
+
+    background:#FFF4E8;
+
+    color:var(--laranja);
+
+    transform:translateX(4px);
+
+}
+
+/* =====================================
+   CONTEÚDO
+===================================== */
+
+.conteudo{
+
+    flex:1;
+
+    padding:35px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+/* =====================================
+   TOPO
+===================================== */
+
+.topo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.topo h1{
+
+    font-size:34px;
+
+    color:var(--laranja);
+
+    margin-bottom:4px;
+
+}
+
+.topo p{
+
+    color:var(--texto-sec);
+
+}
+
+/* =====================================
+   BOTÃO MENU
+===================================== */
+
+.btn-menu{
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:var(--laranja);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.3s;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.btn-menu:hover{
+
+    background:var(--laranja-hover);
+
+    transform:translateY(-2px);
+
+}
+
+/* =====================================
+   CARDS
+===================================== */
+
+.card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.card h2{
+
+    margin-bottom:15px;
+
+    color:var(--texto);
+
+}
+
+/*======================
+    RESULTADO DO MAPA
+=======================*/
+
+.resultado{
+
+    margin-top:30px;
+
+}
+
+.resultado h2{
+
+    color:var(--laranja);
+
+    margin-bottom:15px;
+
+    font-size:24px;
+
+}
+
+#textoResultado{
+
+    color:#666;
+
+    margin-bottom:20px;
+
+}
+
+/*======================
+      GRID DO MAPA
+=======================*/
+
+.mapa-grid{
+
+    display:grid;
+
+    grid-template-columns:1.2fr 1fr;
+
+    gap:30px;
+
+    align-items:flex-start;
+
+}
+
+/*======================
+      IMAGEM
+=======================*/
+
+.mapa-imagem{
+
+    background:#f8f8f8;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    min-height:450px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:2px dashed #ddd;
+
+}
+
+.mapa-imagem img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+}
+
+/*======================
+      INFORMAÇÕES
+=======================*/
+
+.mapa-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.mapa-info h3{
+
+    color:var(--laranja);
+
+    font-size:24px;
+
+}
+
+/*======================
+      CAIXAS
+=======================*/
+
+.caixa-info{
+
+    background:#FFF;
+
+    border-left:5px solid var(--laranja);
+
+    border-radius:12px;
+
+    padding:18px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+
+}
+
+.caixa-info h4{
+
+    color:#2C3E50;
+
+    margin-bottom:8px;
+
+    font-size:16px;
+
+}
+
+.caixa-info p{
+
+    color:#666;
+
+    line-height:1.6;
+
+}
+
+/*======================
+     DUAS COLUNAS
+=======================*/
+
+.duas-caixas{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:15px;
+
+}
+
+/*======================
+       LISTA RISCOS
+=======================*/
+
+#listaRiscos{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+#listaRiscos span{
+
+    background:#FFF3E8;
+
+    color:var(--laranja);
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+/*======================
+      BOTÕES
+=======================*/
+
+.acoes{
+
+    display:flex;
+
+    gap:15px;
+
+    margin:25px 0;
+
+    flex-wrap:wrap;
+
+}
+
+.novoMapa,
+.imprimir{
+
+    border:none;
+
+    padding:15px 28px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.novoMapa{
+
+    background:var(--laranja);
+
+    color:#FFF;
+
+}
+
+.novoMapa:hover{
+
+    background:#d97706;
+
+    transform:translateY(-2px);
+
+}
+
+.imprimir{
+
+    background:#374151;
+
+    color:#FFF;
+
+}
+
+.imprimir:hover{
+
+    background:#1f2937;
+
+}
+
+/*======================
+      ANIMAÇÃO
+=======================*/
+
+.card{
+
+    animation:fade .5s ease;
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*======================
+      RESPONSIVO
+=======================*/
+
+@media(max-width:1000px){
+
+    .mapa-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:850px){
+
+    .container{
+
+        flex-direction:column;
+
+    }
+
+    .menu-lateral{
+
+        width:100%;
+
+    }
+
+    .conteudo{
+
+        padding:20px;
+
+    }
+
+}
+
+@media(max-width:700px){
+
+    .pesquisa{
+
+        flex-direction:column;
+
+    }
+
+    .pesquisa select,
+    .btn-pesquisar{
+
+        width:100%;
+
+    }
+
+    .duas-caixas{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .acoes{
+
+        flex-direction:column;
+
+    }
+
+    .novoMapa,
+    .imprimir{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    .topo h1{
+
+        font-size:28px;
+
+    }
+
+    .card{
+
+        padding:20px;
+
+    }
+
+    .mapa-imagem{
+
+        min-height:250px;
+
+    }
+
+}

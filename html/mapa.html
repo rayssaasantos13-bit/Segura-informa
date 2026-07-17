@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mapa de Risco</title>
+
+    <link rel="stylesheet" href="../css/mapa.css">
+
+</head>
+
+
+<body>
+<!-- mapa de risco func-->
+
+    <div class="layout">
+
+
+        <!-- MENU -->
+
+        <aside class="menu">
+
+
+            <img src="../imagens/logo.png" class="logo">
+
+
+            <nav>
+
+
+                <a class="ativo" href="mapaderisco.html">
+                    
+                    Mapa de Risco
+                </a>
+
+
+                <a href="areas.html">
+                   
+                    Áreas
+                </a>
+
+
+                <a href="ControleEPIs.html">
+                    
+                    Controle de EPIs
+                </a>
+
+
+                <a href="Entrega_EPIs.html">
+               
+                    Entrega de EPIs
+                </a>
+
+
+                <a href="tela de perfil.html">
+                    
+                    Perfil
+                </a>
+
+
+                <a href="login.html">
+                    
+                    Sair
+                </a>
+
+
+            </nav>
+
+
+        </aside>
+
+
+
+
+
+        <!-- CONTEÚDO -->
+
+        <main class="principal">
+
+
+            <header class="topo">
+             
+
+                <div class="usuario">
+
+                    👤Funcionário
+
+                </div>
+
+   <div>
+                    <p>
+                        Sistema de Gestão de Segurança
+                    </p>
+                </div>
+            </header>
+
+
+
+
+
+            <section class="conteudo">
+
+
+                <div class="titulo">
+
+
+                    <h1>
+                        Mapa de Risco
+                    </h1>
+
+
+                    <p>
+                        Selecione uma área para visualizar os riscos.
+                    </p>
+
+
+                </div>
+
+
+
+
+
+                <!-- PESQUISA -->
+
+                <div class="pesquisa">
+
+
+                    <select id="areas">
+
+                        <option>
+                            Selecione uma área
+                        </option>
+
+                    </select>
+
+
+
+                    <button id="btnPesquisar">
+
+                        Pesquisar
+
+                    </button>
+
+
+                </div>
+
+
+
+
+
+
+
+                <!-- ÁREA DO MAPA -->
+
+
+                <div class="painel">
+
+
+                    <div class="mapa">
+
+
+                        <div class="titulo-mapa">
+
+                            Mapa da Área
+
+                        </div>
+
+
+                        <img id="imagemMapa" src="" style="display:none;">
+
+
+                        <p id="textoResultado">
+
+                            Nenhuma área selecionada.
+
+                        </p>
+
+
+                    </div>
+
+
+
+
+
+                    <!-- INFORMAÇÕES -->
+
+
+                    <div id="infoMapa" class="informacoes" style="display:none;">
+
+
+
+                        <h2 id="nomeArea">
+
+                        </h2>
+
+
+
+
+                        <div class="box">
+
+
+                            <h4>
+                                Descrição
+                            </h4>
+
+
+                            <p id="descricaoMapa"></p>
+
+
+                        </div>
+
+
+
+
+
+                        <div class="box">
+
+
+                            <h4>
+                                Descrição da Área
+                            </h4>
+
+
+                            <p id="descricaoAreaMapa"></p>
+
+
+                        </div>
+
+
+
+
+
+
+                        <div class="linha">
+
+
+                            <div class="box">
+
+
+                                <h4>
+                                    Criação
+                                </h4>
+
+
+                                <p id="dataCriacao"></p>
+
+
+                            </div>
+
+
+
+                            <div class="box">
+
+
+                                <h4>
+                                    Atualização
+                                </h4>
+
+
+                                <p id="dataAtualizacao"></p>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+
+                        <div class="box">
+
+
+                            <h4>
+                                Riscos
+                            </h4>
+
+
+                            <div id="listaRiscos"></div>
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+                <button class="imprimir" onclick="imprimir()">
+
+                    🖨 Imprimir
+
+                </button>
+
+
+
+            </section>
+
+
+        </main>
+
+
+    </div>
+
+
+
+
+    <script src="../js/mapa.js"></script>
+
+
+</body>
+
+</html>

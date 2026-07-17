@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Entrega de EPIs | Segura Informa</title>
+
+    <link rel="stylesheet" href="../css/episEnt.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- MENU -->
+
+    <aside class="menu-lateral" id="menuLateral">
+
+        <div class="logo-area">
+
+            <img src="../imagens/logo.png"
+                 class="logo"
+                 alt="Segura Informa">
+
+        </div>
+
+        <nav>
+
+            <a href="mapaderiscoGest.html">
+                <i class="fa-solid fa-map-location-dot"></i>
+                Mapa de Risco
+            </a>
+
+            <a href="cadastroAreas.html">
+                <i class="fa-solid fa-industry"></i>
+                Cadastro de Áreas
+            </a>
+
+            <a href="cadastroEPIs.html">
+                <i class="fa-solid fa-helmet-safety"></i>
+                Cadastro de EPIs
+            </a>
+
+            <a href="cadastroDeEntrega.html" class="ativo">
+                <i class="fa-solid fa-box-open"></i>
+                Entrega de EPIs
+            </a>
+
+            <a href="teladeperfilADM.html">
+                <i class="fa-solid fa-user"></i>
+                Perfil
+            </a>
+
+            <a href="login.html">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Sair
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <!-- CONTEÚDO -->
+
+    <main class="conteudo">
+
+        <header class="topo">
+
+            <button class="btn-menu"
+                    onclick="toggleMenu()">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+            <div>
+
+                <h1>Entrega de EPIs</h1>
+
+                <p>
+
+                    Controle de entrega dos Equipamentos de Proteção Individual.
+
+                </p>
+
+            </div>
+
+        </header>
+
+        <section class="card">
+
+            <h2>Nova Entrega</h2>
+
+            <form id="Entrega">
+
+                <div class="formulario">
+
+                    <div class="campo">
+
+                        <label>Funcionário</label>
+
+                        <select id="funcionario" required>
+
+                            <option value="">
+                                Selecione o funcionário
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="campo">
+
+                        <label>EPI</label>
+
+                        <select id="epi" required>
+
+                            <option value="">
+                                Selecione o EPI
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="campo">
+
+                        <label>Número do CA</label>
+
+                        <input
+                            type="text"
+                            id="numeroCA"
+                            readonly>
+
+                    </div>
+
+                    <div class="campo">
+
+                        <label>Data da Entrega</label>
+
+                        <input
+                            type="date"
+                            id="dataEntrega"
+                            required>
+
+                    </div>
+
+                    <div class="campo">
+
+                        <label>Data da Devolução</label>
+
+                        <input
+                            type="date"
+                            id="dataDevolucao">
+
+                    </div>
+
+                </div>
+
+                <div class="botoes">
+
+                    <button type="submit" class="btnEntregar">
+
+                        <i class="fa-solid fa-box"></i>
+
+                        Entregar EPI
+
+                    </button>
+
+                    <button type="reset" class="btnLimpar">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        Limpar
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/JavaEntrega.js"></script>
+
+</body>
+
+</html>
