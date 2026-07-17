@@ -17,37 +17,38 @@ namespace SeguraInforma.Controllers
 
         // CADASTRAR
         [HttpPost]
-        public IActionResult CadastrarRisco(Risco risco, int idArea)
+        public IActionResult CadastrarRisco([FromBody] Risco risco, [FromQuery] int idArea)
         {
             var idLogado = HttpContext.Session.GetString("IdLogado");
 
             if (string.IsNullOrEmpty(idLogado))
-            {
                 return Unauthorized("Faça o login antes.");
-            }
 
             var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
 
             if (usuarioLogado == null)
-            {
                 return Unauthorized("Usuário não encontrado.");
-            }
 
             if (!usuarioLogado.Cargo.Trim().Equals("Gestão", StringComparison.OrdinalIgnoreCase))
-            {
                 return Unauthorized("Apenas gestores podem cadastrar.");
-            }
 
-            // Salva o risco
             // Salva o risco
             _context.Risco.Add(risco);
             _context.SaveChanges();
 
-            return Created("", risco);
+            // Salva a relação Área x Risco
+            Area_Contem_Risco relacao = new Area_Contem_Risco
+            {
+                Fk_Area_Id_Area = idArea,
+                Fk_Id_Risco = risco.Id_Risco
+            };
+
+            _context.Area_Contem_Risco.Add(relacao);
+            _context.SaveChanges();
+
+            return Ok(risco);
         }
 
-        // LISTAR
-        [HttpGet]
         // LISTAR
         [HttpGet]
         public IActionResult ListarRiscos()
@@ -55,23 +56,21 @@ namespace SeguraInforma.Controllers
             var idLogado = HttpContext.Session.GetString("IdLogado");
 
             if (string.IsNullOrEmpty(idLogado))
-            {
                 return Unauthorized("Faça o login antes.");
-            }
 
             var riscos = (from r in _context.Risco
-                          join ar in _context.Area_Contem_Risco
-                          on r.Id_Risco equals ar.Fk_Id_Risco
+                          join rel in _context.Area_Contem_Risco
+                          on r.Id_Risco equals rel.Fk_Id_Risco
                           join a in _context.Area
-                          on ar.Fk_Area_Id_Area equals a.Id_Area
+                          on rel.Fk_Area_Id_Area equals a.Id_Area
                           select new
                           {
                               id_Risco = r.Id_Risco,
                               area = a.Nome_Area,
+                              idArea = a.Id_Area,
                               tipo_Risco = r.Tipo_Risco,
                               grau_Risco = r.Grau_Risco,
-                              descricao = r.Descricao,
-                              idArea = a.Id_Area
+                              descricao = r.Descricao
                           }).ToList();
 
             return Ok(riscos);
@@ -79,33 +78,12 @@ namespace SeguraInforma.Controllers
 
         // ATUALIZAR
         [HttpPut("{id}")]
-        public IActionResult AtualizarRisco(int id, Risco risco)
+        public IActionResult AtualizarRisco(int id, [FromBody] Risco risco)
         {
-            var idLogado = HttpContext.Session.GetString("IdLogado");
-
-            if (string.IsNullOrEmpty(idLogado))
-            {
-                return Unauthorized("Faça o login antes.");
-            }
-
-            var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
-
-            if (usuarioLogado == null)
-            {
-                return Unauthorized("Usuário não encontrado.");
-            }
-
-            if (!usuarioLogado.Cargo.Trim().Equals("Gestão", StringComparison.OrdinalIgnoreCase))
-            {
-                return Unauthorized("Apenas gestores podem atualizar.");
-            }
-
             var riscoBanco = _context.Risco.Find(id);
 
             if (riscoBanco == null)
-            {
                 return NotFound("Risco não encontrado.");
-            }
 
             riscoBanco.Tipo_Risco = risco.Tipo_Risco;
             riscoBanco.Grau_Risco = risco.Grau_Risco;
@@ -118,7 +96,7 @@ namespace SeguraInforma.Controllers
 
         // EXCLUIR
         [HttpDelete("{id}")]
-        public IActionResult DeletarRisco(int id)
+        public IActionResult ExcluirRisco(int id)
         {
             var idLogado = HttpContext.Session.GetString("IdLogado");
 
@@ -133,16 +111,10 @@ namespace SeguraInforma.Controllers
             if (!usuarioLogado.Cargo.Trim().Equals("Gestão", StringComparison.OrdinalIgnoreCase))
                 return Unauthorized("Apenas gestores podem excluir.");
 
-            var riscoBanco = _context.Risco.Find(id);
-
-            if (riscoBanco == null)
-                return NotFound("Risco não encontrado.");
-
+            // Remove as relações Área x Risco primeiro
             var relacoes = _context.Area_Contem_Risco
                 .Where(x => x.Fk_Id_Risco == id)
                 .ToList();
-
-            Console.WriteLine($"Relações encontradas: {relacoes.Count}");
 
             if (relacoes.Any())
             {
@@ -150,7 +122,13 @@ namespace SeguraInforma.Controllers
                 _context.SaveChanges();
             }
 
-            _context.Risco.Remove(riscoBanco);
+            // Depois remove o risco
+            var risco = _context.Risco.Find(id);
+
+            if (risco == null)
+                return NotFound("Risco não encontrado.");
+
+            _context.Risco.Remove(risco);
             _context.SaveChanges();
 
             return Ok("Risco excluído com sucesso.");

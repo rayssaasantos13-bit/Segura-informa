@@ -23,8 +23,6 @@ function listarRiscos() {
 
     .then(dados => {
 
-        console.log(dados);
-
         var tabela = document.querySelector("#tabelaAreas tbody");
         tabela.innerHTML = "";
 
@@ -33,7 +31,11 @@ function listarRiscos() {
             var linha = tabela.insertRow();
 
             linha.insertCell(0).innerHTML = risco.id_Risco;
-            linha.insertCell(1).innerHTML = risco.area;
+
+            var area = linha.insertCell(1);
+            area.innerHTML = risco.area;
+            area.dataset.idArea = risco.idArea;
+
             linha.insertCell(2).innerHTML = risco.tipo_Risco;
             linha.insertCell(3).innerHTML = risco.grau_Risco;
             linha.insertCell(4).innerHTML = risco.descricao;
@@ -53,16 +55,26 @@ function listarRiscos() {
 // CADASTRAR
 function cadastrarArea() {
 
+    var idArea = document.getElementById("area").value;
+
+    if (idArea == "" ||
+        document.getElementById("nomeArea").value == "" ||
+        document.getElementById("grau").value == "" ||
+        document.getElementById("descricaoArea").value == "") {
+
+        alert("Preencha todos os campos!");
+        return;
+    }
+
     var risco = {
 
         Tipo_Risco: document.getElementById("nomeArea").value,
         Grau_Risco: document.getElementById("grau").value,
-        Descricao: document.getElementById("descricaoArea").value,
-        Id_Area: parseInt(document.getElementById("area").value)
+        Descricao: document.getElementById("descricaoArea").value
 
     };
 
-    fetch("https://localhost:7175/Risco", {
+    fetch("https://localhost:7175/Risco?idArea=" + idArea, {
 
         method: "POST",
 
@@ -78,7 +90,7 @@ function cadastrarArea() {
 
     .then(response => {
 
-        if(response.ok){
+        if (response.ok) {
 
             alert("Risco cadastrado com sucesso!");
 
@@ -86,68 +98,86 @@ function cadastrarArea() {
 
             listarRiscos();
 
-        }else{
+        } else {
 
-            response.text().then(msg=>alert(msg));
+            response.text().then(msg => alert(msg));
 
         }
+
+    })
+
+    .catch(erro => {
+
+        console.log(erro);
+
+        alert("Erro ao conectar com a API.");
 
     });
 
 }
 
 // EDITAR
-function editarArea(botao,id){
+function editarArea(botao, id) {
 
-    idSelecionado=id;
+    idSelecionado = id;
 
-    linhaSelecionada=botao.parentNode.parentNode;
+    linhaSelecionada = botao.parentNode.parentNode;
 
-    document.getElementById("area").value=linhaSelecionada.cells[1].dataset.idArea;
-    document.getElementById("nomeArea").value=linhaSelecionada.cells[2].innerHTML;
-    document.getElementById("grau").value=linhaSelecionada.cells[3].innerHTML;
-    document.getElementById("descricaoArea").value=linhaSelecionada.cells[4].innerHTML;
+    document.getElementById("area").value =
+        linhaSelecionada.cells[1].dataset.idArea;
 
-    document.getElementById("btnCadastrar").style.display="none";
-    document.getElementById("btnAtualizar").style.display="inline-block";
+    document.getElementById("nomeArea").value =
+        linhaSelecionada.cells[2].innerHTML;
+
+    document.getElementById("grau").value =
+        linhaSelecionada.cells[3].innerHTML;
+
+    document.getElementById("descricaoArea").value =
+        linhaSelecionada.cells[4].innerHTML;
+
+    document.getElementById("btnCadastrar").style.display = "none";
+    document.getElementById("btnAtualizar").style.display = "inline-block";
 
 }
 
 // ATUALIZAR
-function atualizarArea(){
+function atualizarArea() {
 
-    var risco={
+    var risco = {
 
-        Id_Area:parseInt(document.getElementById("area").value),
-        Tipo_Risco:document.getElementById("nomeArea").value,
-        Grau_Risco:document.getElementById("grau").value,
-        Descricao:document.getElementById("descricaoArea").value
+        Tipo_Risco: document.getElementById("nomeArea").value,
+        Grau_Risco: document.getElementById("grau").value,
+        Descricao: document.getElementById("descricaoArea").value
 
     };
 
-    fetch("https://localhost:7175/Risco/"+idSelecionado,{
+    fetch("https://localhost:7175/Risco/" + idSelecionado, {
 
-        method:"PUT",
+        method: "PUT",
 
-        headers:{
-            "Content-Type":"application/json"
+        headers: {
+            "Content-Type": "application/json"
         },
 
-        credentials:"include",
+        credentials: "include",
 
-        body:JSON.stringify(risco)
+        body: JSON.stringify(risco)
 
     })
 
-    .then(response=>{
+    .then(response => {
 
-        if(response.ok){
+        if (response.ok) {
 
             alert("Atualizado!");
 
             limparCampos();
 
             listarRiscos();
+
+        } else {
+
+            response.text().then(msg => alert(msg));
 
         }
 
@@ -156,25 +186,29 @@ function atualizarArea(){
 }
 
 // EXCLUIR
-function excluirArea(id){
+function excluirArea(id) {
 
-    if(!confirm("Deseja excluir?")) return;
+    if (!confirm("Deseja excluir?")) return;
 
-    fetch("https://localhost:7175/Risco/"+id,{
+    fetch("https://localhost:7175/Risco/" + id, {
 
-        method:"DELETE",
+        method: "DELETE",
 
-        credentials:"include"
+        credentials: "include"
 
     })
 
-    .then(response=>{
+    .then(response => {
 
-        if(response.ok){
+        if (response.ok) {
 
             alert("Excluído!");
 
             listarRiscos();
+
+        } else {
+
+            response.text().then(msg => alert(msg));
 
         }
 
@@ -183,17 +217,17 @@ function excluirArea(id){
 }
 
 // LIMPAR
-function limparCampos(){
+function limparCampos() {
 
-    document.getElementById("area").selectedIndex=0;
-    document.getElementById("nomeArea").selectedIndex=0;
-    document.getElementById("grau").selectedIndex=0;
-    document.getElementById("descricaoArea").value="";
+    document.getElementById("area").selectedIndex = 0;
+    document.getElementById("nomeArea").selectedIndex = 0;
+    document.getElementById("grau").selectedIndex = 0;
+    document.getElementById("descricaoArea").value = "";
 
-    idSelecionado=0;
-    linhaSelecionada=null;
+    idSelecionado = 0;
+    linhaSelecionada = null;
 
-    document.getElementById("btnCadastrar").style.display="inline-block";
-    document.getElementById("btnAtualizar").style.display="none";
+    document.getElementById("btnCadastrar").style.display = "inline-block";
+    document.getElementById("btnAtualizar").style.display = "none";
 
 }
