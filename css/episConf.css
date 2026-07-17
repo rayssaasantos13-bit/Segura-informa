@@ -287,7 +287,74 @@ background:var(--laranjaHover);
 transform:translateY(-2px);
 
 }
+/* ===========================
+   BOTÃO CONFIRMAR ENTREGA
+=========================== */
 
+.card-entrega button{
+
+    background:#F28C28;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    transition:.3s;
+
+    box-shadow:0 8px 18px rgba(242,140,40,.25);
+
+}
+
+
+/* EFEITO PASSAR O MOUSE */
+
+.card-entrega button:hover{
+
+    background:#DD7B18;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 12px 25px rgba(242,140,40,.35);
+
+}
+
+
+
+/* ===========================
+   BOTÃO CONFIRMADO
+=========================== */
+
+.card-entrega button:disabled{
+
+    background:#16A34A;
+
+    color:white;
+
+    cursor:default;
+
+    box-shadow:0 8px 18px rgba(22,163,74,.25);
+
+    transform:none;
+
+}
 /* RESPONSIVO */
 
 @media(max-width:900px){

@@ -41,7 +41,7 @@ function carregarPerfil() {
 
         alert("Faça login novamente.");
 
-        window.location.href = "../html/login.html";
+        window.location.href = "../html/log.html";
 
     });
 
@@ -74,13 +74,13 @@ function logout(){
 
     .then(() => {
 
-        window.location.href = "../html/login.html";
+        window.location.href = "../html/log.html";
 
     })
 
     .catch(() => {
 
-        window.location.href = "../html/login.html";
+        window.location.href = "../html/log.html";
 
     });
 

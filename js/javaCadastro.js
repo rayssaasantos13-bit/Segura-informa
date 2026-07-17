@@ -22,7 +22,7 @@ myForm.addEventListener('submit', function (event) {
 })
         .then(data => {
             alert("Conta cadastrada com sucesso");
-           window.location.href = "login.html";      
+           window.location.href = "../html/log.html";      
         })
 });
 }

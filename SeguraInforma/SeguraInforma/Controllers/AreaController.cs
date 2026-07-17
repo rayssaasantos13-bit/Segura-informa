@@ -13,44 +13,24 @@ namespace SeguraInforma.Controllers
             _context = context;
         }
         [HttpPost]
-
         public IActionResult CadastrarArea(Area area)
         {
             var idLogado = HttpContext.Session.GetString("IdLogado");
+
             if (idLogado == null)
             {
-                return Unauthorized("Faça o login antes");
-            }
-            var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
-            if (usuarioLogado != null)
-            {
-
-
-                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
-                {
-                    return Unauthorized("Apenas gestores podem cadastrar.");
-                }
+                return Unauthorized("Faça login antes.");
             }
 
-            _context.Add(area);
+
+            _context.Area.Add(area);
+
             _context.SaveChanges();
 
-            for (int x = 0; x < area.riscos_da_area.Count;x++)
-            {
-                area.riscos_da_area[x].Fk_Area_Id_Area = area.Id_Area;
-            }
 
-
-           for (int x = 0; x < area.riscos_da_area.Count; x++)
-            {
-                _context.Add(area.riscos_da_area[x]);
-               
-            }
-            _context.SaveChanges();
             return Created("", area);
         }
-      
-     
+
         [HttpDelete("{id}")]
         public IActionResult DeletarArea(int id)
 

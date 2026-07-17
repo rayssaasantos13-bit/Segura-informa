@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../css/areaCad.css">
 
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
@@ -32,38 +31,12 @@
 
         </div>
 
-        <nav>
-
-            <a href="mapaderiscoGest.html">
-                <i class="fa-solid fa-map-location-dot"></i>
-                Mapa de Risco
-            </a>
-
-            <a href="cadastroAreas.html" class="ativo">
-                <i class="fa-solid fa-industry"></i>
-                Cadastro de Áreas
-            </a>
-
-            <a href="cadastroEPIs.html">
-                <i class="fa-solid fa-helmet-safety"></i>
-                Cadastro de EPIs
-            </a>
-
-            <a href="cadastroDeEntrega.html">
-                <i class="fa-solid fa-box"></i>
-                Entregas
-            </a>
-
-            <a href="teladeperfilADM.html">
-                <i class="fa-solid fa-user"></i>
-                Perfil
-            </a>
-
-            <a href="login.html">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                Sair
-            </a>
-
+       <a href="mapaGest.html">Mapa de Risco</a>
+        <a href="areaCad.html">Cadastro de Áreas</a>
+        <a href="episCad.html">Cadastro de EPIs</a>
+        <a href="episEnt.html">Entregas de EPIs</a>
+        <a href="perfilFunc.html">Perfil</a>
+        <a href="log.html">Sair</a>
         </nav>
 
     </aside>
@@ -107,25 +80,25 @@
 
                     <label>Área</label>
 
-                    <select id="area">
+                  <div class="campo">
 
-                        <option value="">Selecione</option>
+    <label>Área</label>
 
-                        <option>Soldagem</option>
-                        <option>Pintura</option>
-                        <option>Produção</option>
-                        <option>Manutenção</option>
-                        <option>Almoxarifado</option>
+    <input 
+    
+    type="text"
+    id="area"
+    placeholder="Digite uma nova área"
+    required>
+</div>
 
-                    </select>
-
-                </div>
+                    
 
                 <div class="campo">
 
                     <label>Tipo de Risco</label>
 
-                    <select id="nomeArea">
+                    <select id="tipoRisco">
 
                         <option value="">Selecione</option>
 

@@ -17,38 +17,24 @@ namespace SeguraInforma.Controllers
 
         // CADASTRAR
         [HttpPost]
-        public IActionResult CadastrarRisco([FromBody] Risco risco, [FromQuery] int idArea)
+        public IActionResult CadastrarRisco(Risco risco)
         {
             var idLogado = HttpContext.Session.GetString("IdLogado");
 
-            if (string.IsNullOrEmpty(idLogado))
-                return Unauthorized("Faça o login antes.");
-
-            var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
-
-            if (usuarioLogado == null)
-                return Unauthorized("Usuário não encontrado.");
-
-            if (!usuarioLogado.Cargo.Trim().Equals("Gestão", StringComparison.OrdinalIgnoreCase))
-                return Unauthorized("Apenas gestores podem cadastrar.");
-
-            // Salva o risco
-            _context.Risco.Add(risco);
-            _context.SaveChanges();
-
-            // Salva a relação Área x Risco
-            Area_Contem_Risco relacao = new Area_Contem_Risco
+            if (idLogado == null)
             {
-                Fk_Area_Id_Area = idArea,
-                Fk_Id_Risco = risco.Id_Risco
-            };
+                return Unauthorized("Faça login antes.");
+            }
 
-            _context.Area_Contem_Risco.Add(relacao);
+
+            _context.Risco.Add(risco);
+
             _context.SaveChanges();
 
-            return Ok(risco);
-        }
 
+            return Created("", risco);
+        }
+    
         // LISTAR
         [HttpGet]
         public IActionResult ListarRiscos()

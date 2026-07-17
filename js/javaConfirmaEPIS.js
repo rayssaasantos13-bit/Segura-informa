@@ -44,11 +44,15 @@ function carregarEntregas(){
 
 
         const div =
-        document.getElementById("lista");
+document.getElementById("lista");
 
 
-        div.innerHTML = "";
+if(!div){
+    return;
+}
 
+
+div.innerHTML = "";
 
 
         if(lista.length === 0){
@@ -94,13 +98,14 @@ function carregarEntregas(){
                 </p>
 
 
+<button 
+id="btn-${entrega.id_Entrega_EPI}"
+onclick="confirmarEntrega(${entrega.id_Entrega_EPI})">
 
-                <button 
-                onclick="confirmarEntrega(${entrega.id_Entrega_EPI})">
+    <i class="fa-solid fa-check"></i>
+    Confirmar recebimento
 
-                    Confirmar recebimento
-
-                </button>
+</button>
 
 
             </div>
@@ -179,20 +184,34 @@ function confirmarEntrega(id){
     })
 
 
-    .then(msg=>{
+   .then(msg=>{
 
 
-        alert(
-        "EPI confirmado com sucesso!"
-        );
+    alert("EPI confirmado com sucesso!");
 
 
-        carregarEntregas();
+    const botao = document.getElementById("btn-" + id);
 
 
-    })
+    if(botao){
+
+        botao.innerHTML =
+        '<i class="fa-solid fa-check"></i> Confirmado';
 
 
+        botao.disabled = true;
+
+
+        botao.style.background = "#16a34a";
+
+
+        botao.style.color = "white";
+
+
+    }
+
+
+})
     .catch(erro=>{
 
 

@@ -69,7 +69,7 @@ console.log("Cargo recebido:", data);
 
 
                 window.location.href =
-                    "mapaderiscoGest.html";
+                    "mapaGest.html";
 
 
             }
@@ -79,7 +79,7 @@ console.log("Cargo recebido:", data);
 
 
                 window.location.href =
-                    "mapaderisco.html";
+                    "mapa.html";
 
 
             }

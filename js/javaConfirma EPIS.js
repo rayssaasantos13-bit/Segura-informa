@@ -31,7 +31,7 @@ if (formEntrega != null) {
                 if (response.status == 401) {
 
                     alert("Faça login antes de registrar uma entrega!");
-                    window.location.href = "login.html";
+                    window.location.href = "log.html";
                     return;
                 }
 

@@ -18,12 +18,7 @@ function imprimir() {
 // CADASTRAR NOVO MAPA
 // ============================
 
-function CadastrarMapa() {
 
-    const area = document.getElementById("areas").value;
-    window.location.href = "../html/cadastroMapa.html?area=" + area;
-
-}
 // ======================================
 // CARREGAR AO ABRIR A PÁGINA
 // ======================================
@@ -56,36 +51,104 @@ document.addEventListener("DOMContentLoaded", function () {
 // CARREGAR ÁREAS
 // ============================
 
-const selectAreas = document.getElementById("areas");
+// ============================
+// CARREGAR ÁREAS
+// ============================
 
-fetch("https://localhost:7175/Mapa_De_Risco/AreasComMapa")
-    .then(response => {
+function carregarAreas(){
 
-        if (!response.ok)
+
+    const selectAreas =
+        document.getElementById("areas");
+
+
+    if(!selectAreas){
+
+        return;
+
+    }
+
+
+
+    fetch("https://localhost:7175/Mapa_De_Risco/AreasComMapa", {
+
+        method:"GET",
+
+        credentials:"include"
+
+    })
+
+
+    .then(response=>{
+
+
+        if(!response.ok){
+
             throw new Error("Erro ao carregar áreas.");
+
+        }
+
 
         return response.json();
 
+
     })
-    .then(areas => {
 
-        areas.forEach(area => {
 
-            const option = document.createElement("option");
+    .then(areas=>{
 
-            option.value = area.id_Area;
-            option.textContent = area.nome_Area.trim();
+
+        selectAreas.innerHTML = "";
+
+
+        let opcao = document.createElement("option");
+
+        opcao.value = "";
+
+        opcao.textContent = "Selecione uma área";
+
+
+        selectAreas.appendChild(opcao);
+
+
+
+        areas.forEach(area=>{
+
+
+            let option =
+            document.createElement("option");
+
+
+            option.value =
+            area.id_Area;
+
+
+            option.textContent =
+            area.nome_Area.trim();
+
+
 
             selectAreas.appendChild(option);
 
+
         });
 
-    })
-    .catch(() => {
 
-        alert("Erro ao carregar as áreas.");
+    })
+
+
+    .catch(erro=>{
+
+
+        console.log("Erro:", erro);
+
+        alert("Erro ao carregar áreas.");
+
 
     });
+
+
+}
 
 // ======================================
 // PESQUISAR MAPA
@@ -531,7 +594,6 @@ function mostrarRiscos(riscos) {
 }
 
 
-
 // ======================================
 // BOTÃO PESQUISAR DA PÁGINA NORMAL
 // ======================================
@@ -556,5 +618,32 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
 
+
+});
+
+function CadastrarMapa(){
+
+    window.location.href = "cadastroMapa.html";
+
+}
+document.addEventListener("DOMContentLoaded", function(){
+
+    const botaoNovoMapa = document.getElementById("btnNovoMapa");
+
+
+    if(botaoNovoMapa){
+
+        botaoNovoMapa.addEventListener("click", function(){
+
+            window.location.href = "cadastroMapa.html";
+
+        });
+
+    }
+    else{
+
+        console.log("Botão não encontrado");
+
+    }
 
 });

@@ -490,6 +490,147 @@ body{
     background:#1f2937;
 
 }
+/* ============================
+   BOTÕES DA PESQUISA
+============================ */
+
+.pesquisa{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+
+
+.btnPesquisar{
+
+    background:#374151;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 28px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+
+.btnPesquisar:hover{
+
+    background:#1f2937;
+
+    transform:translateY(-2px);
+
+}
+.pesquisa-card{
+    display:flex;
+    align-items:end;
+    gap:20px;
+}
+
+
+
+/* BOTÃO NOVO MAPA */
+
+.novoMapa{
+
+    background:#F28C28;
+
+    color:white;
+
+    border:none;
+
+    padding:16px 30px;
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+    box-shadow:0 8px 20px rgba(242,140,40,.25);
+
+}
+
+
+
+.novoMapa:hover{
+
+    background:#DD7B18;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(242,140,40,.35);
+
+}
+
+
+
+/* SELECT ÁREA */
+
+#areas{
+
+    padding:12px 15px;
+
+    border-radius:12px;
+
+    border:2px solid #E5E7EB;
+
+    background:white;
+
+    color:#374151;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+
+#areas:hover{
+
+    border-color:#F28C28;
+
+}
+
+
+#areas:focus{
+
+    border-color:#F28C28;
+
+    box-shadow:0 0 0 3px rgba(242,140,40,.15);
+
+}
 
 /*======================
       ANIMAÇÃO
