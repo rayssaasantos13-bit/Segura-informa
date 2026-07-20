@@ -1,5 +1,7 @@
 var linhaSelecionada = null;
-var idSelecionado = 0;
+
+var idAreaSelecionada = 0;
+var idRiscoSelecionado = 0;
 
 // MENU
 function abrirMenu() {
@@ -11,62 +13,72 @@ window.onload = function () {
     listarRiscos();
 };
 
-// LISTAR
+// ===========================
+// LISTAR RISCOS
+// ===========================
 function listarRiscos() {
 
     fetch("https://localhost:7175/Risco", {
+
         method: "GET",
+
         credentials: "include"
+
     })
 
-    .then(response => response.json())
+    .then(response => {
+
+        if (!response.ok) {
+            throw new Error("Erro ao listar riscos.");
+        }
+
+        return response.json();
+
+    })
 
     .then(dados => {
 
-        var tabela = document.querySelector("#tabelaAreas tbody");
+        const tabela = document.querySelector("#tabelaAreas tbody");
 
         tabela.innerHTML = "";
 
-
         dados.forEach(risco => {
 
+            const linha = tabela.insertRow();
 
-            var linha = tabela.insertRow();
-
+            // Guarda os IDs para editar/excluir depois
+            linha.dataset.idArea = risco.idArea;
+            linha.dataset.idRisco = risco.id_Risco;
 
             linha.insertCell(0).innerHTML = risco.id_Risco;
-
             linha.insertCell(1).innerHTML = risco.area;
-
             linha.insertCell(2).innerHTML = risco.tipo_Risco;
-
             linha.insertCell(3).innerHTML = risco.grau_Risco;
-
             linha.insertCell(4).innerHTML = risco.descricao;
 
-
-
             linha.insertCell(5).innerHTML =
-
-            "<button class='editar' onclick='editarArea(this," 
-            + risco.id_Risco + ")'>Editar</button> " +
-
-            "<button class='excluir' onclick='excluirArea(" 
-            + risco.id_Risco + ")'>Excluir</button>";
-
+                "<button class='editar' onclick='editarArea(this)'>Editar</button> " +
+                "<button class='excluir' onclick='excluirArea(" +
+                risco.idArea + "," +
+                risco.id_Risco +
+                ")'>Excluir</button>";
 
         });
 
-
     })
 
-    .catch(erro => console.log(erro));
+    .catch(error => {
+
+        console.log(error);
+
+    });
 
 }
 
+// ===========================
 // CADASTRAR
-function cadastrarArea(){
-
+// ===========================
+function cadastrarArea() {
 
     let area = {
 
@@ -76,16 +88,9 @@ function cadastrarArea(){
 
     };
 
+    fetch("https://localhost:7175/Area", {
 
-    console.log("AREA ENVIADA:", area);
-
-
-
-    // CADASTRA ÁREA
-
-    fetch("https://localhost:7175/Area",{
-
-        method:"POST",
+        method: "POST",
 
         headers: {
             "Content-Type": "application/json"
@@ -93,346 +98,295 @@ function cadastrarArea(){
 
         credentials: "include",
 
-        body:JSON.stringify(area)
+        body: JSON.stringify(area)
 
     })
 
+    .then(response => {
 
-    .then(response=>{
-
-        if(!response.ok){
-
-            return response.json().then(erro=>{
-
-                throw erro;
-
-            });
-
-        } else {
-
-            response.text().then(msg => alert(msg));
-
+        if (!response.ok) {
+            throw new Error("Erro ao cadastrar área.");
         }
 
         return response.json();
 
     })
 
-
-    .then(areaCriada=>{
-
-
-        console.log("ÁREA CRIADA:", areaCriada);
-
-
+    .then(areaCriada => {
 
         let risco = {
 
+            Tipo_Risco: document.getElementById("tipoRisco").value,
 
-            Tipo_Risco:
-            document.getElementById("tipoRisco").value,
+            Grau_Risco: document.getElementById("grau").value,
 
-
-            Grau_Risco:
-            document.getElementById("grau").value,
-
-
-            Descricao:
-            document.getElementById("descricaoArea").value
+            Descricao: document.getElementById("descricaoArea").value
 
         };
 
+        return fetch("https://localhost:7175/Risco", {
 
-        console.log("RISCO ENVIADO:", risco);
+            method: "POST",
 
-
-
-        // CADASTRA RISCO
-
-        return fetch("https://localhost:7175/Risco",{
-
-            method:"POST",
-
-            headers:{
-                "Content-Type":"application/json"
+            headers: {
+                "Content-Type": "application/json"
             },
 
-            credentials:"include",
+            credentials: "include",
 
-            body:JSON.stringify(risco)
+            body: JSON.stringify(risco)
 
         })
 
+        .then(response => {
 
-        .then(response=>response.json())
+            if (!response.ok) {
+                throw new Error("Erro ao cadastrar risco.");
+            }
 
+            return response.json();
 
-        .then(riscoCriado=>{
+        })
 
-
-            console.log("RISCO CRIADO:", riscoCriado);
-
-
+        .then(riscoCriado => {
 
             let relacao = {
 
+                Fk_Area_Id_Area: areaCriada.id_Area || areaCriada.Id_Area,
 
-                Fk_Area_Id_Area:
-
-                areaCriada.id_Area || areaCriada.Id_Area,
-
-
-
-                Fk_Id_Risco:
-
-                riscoCriado.id_Risco || riscoCriado.Id_Risco
-
+                Fk_Id_Risco: riscoCriado.id_Risco || riscoCriado.Id_Risco
 
             };
 
+            return fetch("https://localhost:7175/Area_Contem_Risco", {
 
+                method: "POST",
 
-            console.log("RELAÇÃO:", relacao);
-
-
-
-            // CRIA RELAÇÃO AREA X RISCO
-
-
-            return fetch("https://localhost:7175/Area_Contem_Risco",{
-
-
-                method:"POST",
-
-
-                headers:{
-
-                    "Content-Type":"application/json"
-
+                headers: {
+                    "Content-Type": "application/json"
                 },
 
+                credentials: "include",
 
-                credentials:"include",
-
-
-                body:JSON.stringify(relacao)
-
+                body: JSON.stringify(relacao)
 
             });
 
-
-
         });
 
-
     })
 
+    .then(response => {
 
-    .then(response=>{
-
-
-        if(!response.ok){
-
+        if (!response.ok) {
             throw new Error("Erro ao criar relação.");
-
         }
 
-
-        return response.json();
-
-
-    })
-
-
-    .then(()=>{
-
-
-        alert("Área e risco cadastrados com sucesso!");
-
+        alert("Cadastro realizado com sucesso!");
 
         limparCampos();
 
-
         listarRiscos();
-
 
     })
 
+    .catch(error => {
 
-    .catch(erro=>{
-
-
-        console.log("ERRO:", erro);
-
+        console.log(error);
 
         alert("Erro ao cadastrar.");
 
     });
 
-
 }
+
+// ===========================
 // EDITAR
-function editarArea(botao,id){
-
-
-    idSelecionado = id;
-
+// ===========================
+function editarArea(botao) {
 
     linhaSelecionada = botao.parentNode.parentNode;
 
+    idAreaSelecionada = linhaSelecionada.dataset.idArea;
 
+    idRiscoSelecionado = linhaSelecionada.dataset.idRisco;
 
     document.getElementById("area").value =
-    linhaSelecionada.cells[1].innerHTML.trim();
-
-
+        linhaSelecionada.cells[1].innerHTML.trim();
 
     document.getElementById("tipoRisco").value =
-    linhaSelecionada.cells[2].innerHTML.trim();
-
-
+        linhaSelecionada.cells[2].innerHTML.trim();
 
     document.getElementById("grau").value =
-    linhaSelecionada.cells[3].innerHTML.trim();
-
-
+        linhaSelecionada.cells[3].innerHTML.trim();
 
     document.getElementById("descricaoArea").value =
-    linhaSelecionada.cells[4].innerHTML.trim();
+        linhaSelecionada.cells[4].innerHTML.trim();
 
+    document.getElementById("btnCadastrar").style.display = "none";
 
-
-    document.getElementById("btnCadastrar").style.display="none";
-
-
-    document.getElementById("btnAtualizar").style.display="inline-block";
-
+    document.getElementById("btnAtualizar").style.display = "inline-block";
 
 }
 
+// ===========================
 // ATUALIZAR
-function atualizarArea(){
+// ===========================
+async function atualizarArea() {
 
+    try {
 
-    let risco = {
+        // Atualiza a Área
+        const respostaArea = await fetch(
+            "https://localhost:7175/Area/" + idAreaSelecionada,
+            {
+                method: "PUT",
 
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-        Tipo_Risco:
-        document.getElementById("tipoRisco").value,
+                credentials: "include",
 
+                body: JSON.stringify({
 
-        Grau_Risco:
-        document.getElementById("grau").value,
+                    Nome_Area: document.getElementById("area").value,
 
+                    Descricao: document.getElementById("descricaoArea").value
 
-        Descricao:
-        document.getElementById("descricaoArea").value
+                })
 
+            }
+        );
 
-    };
-
-
-
-    fetch("https://localhost:7175/Risco/"+idSelecionado,{
-
-
-        method:"PUT",
-
-
-        headers:{
-
-
-            "Content-Type":"application/json"
-
-
-        },
-
-
-        credentials:"include",
-
-
-        body:JSON.stringify(risco)
-
-
-    })
-
-
-    .then(response=>{
-
-
-        if(response.ok){
-
-
-            alert("Risco atualizado!");
-
-
-            limparCampos();
-
-
-            listarRiscos();
-
-
+        if (!respostaArea.ok) {
+            throw new Error("Erro ao atualizar a área.");
         }
 
+        // Atualiza o Risco
+        const respostaRisco = await fetch(
+            "https://localhost:7175/Risco/" + idRiscoSelecionado,
+            {
+                method: "PUT",
 
-    });
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
+                credentials: "include",
+
+                body: JSON.stringify({
+
+                    Tipo_Risco:
+                        document.getElementById("tipoRisco").value,
+
+                    Grau_Risco:
+                        document.getElementById("grau").value,
+
+                    Descricao:
+                        document.getElementById("descricaoArea").value
+
+                })
+
+            }
+        );
+
+        if (!respostaRisco.ok) {
+            throw new Error("Erro ao atualizar o risco.");
+        }
+
+        alert("Área e risco atualizados com sucesso!");
+
+        limparCampos();
+
+        listarRiscos();
+
+    }
+    catch (erro) {
+
+        console.log(erro);
+
+        alert("Erro ao atualizar.");
+
+    }
 
 }
+
+// ===========================
 // EXCLUIR
-function excluirArea(id) {
+// ===========================
+async function excluirArea(idArea, idRisco) {
 
+    if (!confirm("Deseja realmente excluir este registro?")) {
+        return;
+    }
 
-    if(!confirm("Deseja excluir?")) return;
+    try {
 
+        // Exclui o risco (seu controller já remove a relação Area_Contem_Risco)
+        const respostaRisco = await fetch(
+            "https://localhost:7175/Risco/" + idRisco,
+            {
+                method: "DELETE",
+                credentials: "include"
+            }
+        );
 
-
-    fetch("https://localhost:7175/Risco/"+id,{
-
-        method: "DELETE",
-
-        credentials: "include"
-
-    })
-
-
-    .then(response=>{
-
-
-        if(response.ok){
-
-
-            alert("Excluído!");
-
-
-            listarRiscos();
-
-
+        if (!respostaRisco.ok) {
+            throw new Error("Erro ao excluir o risco.");
         }
 
+        // Exclui a área
+        const respostaArea = await fetch(
+            "https://localhost:7175/Area/" + idArea,
+            {
+                method: "DELETE",
+                credentials: "include"
+            }
+        );
 
-    })
+        if (!respostaArea.ok) {
+            throw new Error("Erro ao excluir a área.");
+        }
 
+        alert("Área e risco excluídos com sucesso!");
+
+        limparCampos();
+
+        listarRiscos();
+
+    }
+    catch (erro) {
+
+        console.log(erro);
+
+        alert("Erro ao excluir.");
+
+    }
 
 }
+
+// ===========================
 // LIMPAR
+// ===========================
 function limparCampos() {
 
-    document.getElementById("area").value="";
+    document.getElementById("area").value = "";
 
-    document.getElementById("tipoRisco").selectedIndex=0;
+    document.getElementById("tipoRisco").selectedIndex = 0;
 
-    document.getElementById("grau").selectedIndex=0;
+    document.getElementById("grau").selectedIndex = 0;
 
-    document.getElementById("descricaoArea").value="";
+    document.getElementById("descricaoArea").value = "";
 
+    linhaSelecionada = null;
 
-    idSelecionado=0;
-    linhaSelecionada=null;
+    idAreaSelecionada = 0;
 
+    idRiscoSelecionado = 0;
 
-    document.getElementById("btnCadastrar").style.display="inline-block";
+    document.getElementById("btnCadastrar").style.display = "inline-block";
 
-    document.getElementById("btnAtualizar").style.display="none";
+    document.getElementById("btnAtualizar").style.display = "none";
 
 }

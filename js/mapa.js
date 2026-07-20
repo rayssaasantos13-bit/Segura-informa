@@ -318,7 +318,7 @@ function PesquisarMapa() {
 
 
             descricaoArea.textContent =
-                mapa.descricaoArea || "";
+                mapa.descricao || "";
 
 
         }

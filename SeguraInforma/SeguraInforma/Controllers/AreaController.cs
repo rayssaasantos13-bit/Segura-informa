@@ -63,35 +63,37 @@ namespace SeguraInforma.Controllers
         [HttpPut("{id}")]
         public IActionResult AtualizarArea(int id, Area area)
         {
+            var idLogado = HttpContext.Session.GetString("IdLogado");
 
-
-            var sessaoUsuario = "1";
-            if (sessaoUsuario == null)
+            if (string.IsNullOrEmpty(idLogado))
             {
-                return Unauthorized("Faça login Antes");
+                return Unauthorized("Faça login antes.");
             }
-            var usuarioLogado = _context.Usuarios.Find(int.Parse(sessaoUsuario));
-            if (usuarioLogado != null)
+
+            var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
+
+            if (usuarioLogado == null)
             {
+                return Unauthorized("Usuário não encontrado.");
+            }
 
-
-                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
-                {
-                    return Unauthorized("Apenas gestores podem deletar.");
-                }
+            if (!usuarioLogado.Cargo.Trim().Equals("Gestão", StringComparison.OrdinalIgnoreCase))
+            {
+                return Unauthorized("Apenas gestores podem atualizar.");
             }
 
             var areaDoBanco = _context.Area.Find(id);
+
             if (areaDoBanco == null)
             {
                 return NotFound("Área não existe no banco!");
             }
+
             areaDoBanco.Nome_Area = area.Nome_Area;
             areaDoBanco.Descricao = area.Descricao;
 
-
-
             _context.SaveChanges();
+
             return Ok("Atualizado");
         }
 
