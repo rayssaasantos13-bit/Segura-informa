@@ -1,797 +1,495 @@
-/* =====================================================
-   RESET
-===================================================== */
+/* =====================================
+   MAPA DE RISCO - SEGURA INFORMA
+===================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root{
+
+    --laranja:#F28C28;
+    --laranja-hover:#DD7B18;
+
+    --branco:#FFFFFF;
+
+    --cinza:#F4F6F9;
+
+    --cinza-claro:#E5E7EB;
+
+    --texto:#2C3E50;
+
+    --texto-sec:#6B7280;
+
+    --shadow:0 15px 40px rgba(0,0,0,.08);
+
+    --radius:18px;
+
+}
 
 *{
 
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:"Segoe UI", Arial, sans-serif;
+    font-family:'Poppins',sans-serif;
 
 }
-
-
-:root{
-
-    --laranja:#F58220;
-
-    --laranja-hover:#D96B12;
-
-    --branco:#FFFFFF;
-
-    --fundo:#F7F7F7;
-
-    --cinza:#777;
-
-    --borda:#E8E8E8;
-    
-
-}
-
-
-
-/* =====================================================
-   BODY
-===================================================== */
-
 
 body{
 
-    min-height:100vh;
-
-    background:var(--fundo);
-
-    color:#333;
+    background:#F4F6F9;
+    color:var(--texto);
 
 }
 
+/* =====================================
+   CONTAINER PRINCIPAL
+===================================== */
 
-
-/* =====================================================
-   ESTRUTURA
-===================================================== */
-
-
-.layout{
+.container{
 
     display:flex;
-
     min-height:100vh;
-
-    width:100%;
 
 }
 
-
-
-
-
-/* =====================================================
+/* =====================================
    MENU LATERAL
-===================================================== */
+===================================== */
 
+.menu-lateral{
 
-.menu{
+    width:280px;
 
+    background:#fff;
 
-    width:270px;
+    box-shadow:4px 0 25px rgba(0,0,0,.05);
 
-
-    min-height:100vh;
-
-
-    background:white;
-
-
-    padding:35px 22px;
-
-
-    box-shadow:
-
-
-    5px 0 25px rgba(245,130,32,.12);
-
-
-
-}
-
-
-
-.logo{
-
-
-    width:170px;
-
-
-    display:block;
-
-
-    margin:0 auto 50px;
-
-
-}
-
-
-
-
-
-.menu nav{
-
+    padding:30px 20px;
 
     display:flex;
-
-
     flex-direction:column;
-
-
-    gap:12px;
-
-
-}
-
-
-
-
-.menu a{
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    gap:15px;
-
-
-    padding:16px 20px;
-
-
-    text-decoration:none;
-
-
-    color:#555;
-
-
-    font-size:16px;
-
-
-    font-weight:600;
-
-
-    border-radius:15px;
-
-
-    transition:.3s;
-
-
-}
-
-
-
-
-
-.menu a:hover{
-
-
-    background:#FFF0E3;
-
-
-    color:var(--laranja);
-
-
-    transform:translateX(5px);
-
-
-}
-
-
-
-
-.menu .ativo{
-
-
-background: var(--fundo);
-
-    color:rgb(223, 128, 21);
-
-
-}
-
-
-
-
-
-
-/* =====================================================
-   ÁREA PRINCIPAL
-===================================================== */
-
-
-.principal{
-
-
-    flex:1;
-
-
-}
-
-
-
-/* =====================================================
-   TOPO
-===================================================== */
-
-
-.topo{
-
-
-    height:90px;
-
-
-    background:white;
-
-
-    display:flex;
-
-
-    justify-content:space-between;
-
-
-    align-items:center;
-
-
-    padding:0 45px;
-
-
-    box-shadow:
-
-
-    0 5px 20px rgba(0,0,0,.05);
-
-
-}
-
-
-
-
-.topo h2{
-
-
-    font-size:26px;
-
-
-    color:var(--laranja);
-
-
-}
-
-
-
-
-.topo p{
-
-
-    margin-top:5px;
-
-
-    color:#888;
-
-
-}
-
-
-
-
-
-.usuario{
-
-
-    background:#FFF0E3;
-
-
-    color:var(--laranja);
-
-
-    padding:12px 28px;
-
-
-    border-radius:20px;
-
-
-    font-weight:bold;
-
-
-}
-
-
-
-
-
-
-/* =====================================================
-   CONTEÚDO
-===================================================== */
-
-
-.conteudo{
-
-
-    padding:40px;
-
-
-}
-
-
-
-
-
-.titulo h1{
-
-
-    color:var(--laranja);
-
-
-    font-size:44px;
-
-
-    font-weight:800;
-
-
-}
-
-
-
-
-
-.titulo p{
-
-
-    color:#777;
-
-
-    margin-top:10px;
-
-
-    font-size:17px;
-
-
-}
-
-
-
-
-
-
-/* =====================================================
-   PESQUISA
-===================================================== */
-
-
-.pesquisa{
-
-
-    margin-top:35px;
-
-
-    background:white;
-
-
-    padding:25px;
-
-
-    border-radius:22px;
-
-
-    display:flex;
-
-
-    gap:20px;
-
-
-    box-shadow:
-
-
-    0 10px 30px rgba(0,0,0,.06);
-
-
-}
-
-
-
-
-
-.pesquisa select{
-
-
-    flex:1;
-
-
-    height:58px;
-
-
-    border-radius:14px;
-
-
-    border:1px solid var(--borda);
-
-
-    padding:0 20px;
-
-
-    font-size:16px;
-
-
-    color:#555;
-
-
-    outline:none;
-
-
-}
-
-
-
-
-
-.pesquisa select:focus{
-
-
-    border-color:var(--laranja);
-
-
-}
-
-
-
-
-
-
-.pesquisa button{
-
-
-    width:180px;
-
-
-    border:none;
-
-
-    border-radius:14px;
-
-
-    background:var(--laranja);
-
-
-    color:white;
-
-
-    font-size:17px;
-
-
-    font-weight:bold;
-
-
-    cursor:pointer;
-
-
-    transition:.3s;
-
-
-}
-
-
-
-
-.pesquisa button:hover{
-
-
-    background:var(--laranja-hover);
-
-
-    transform:translateY(-3px);
-
-
-}
-
-
-
-
-
-
-
-/* =====================================================
-   PAINEL DO MAPA
-===================================================== */
-
-
-.painel{
-
-
-    margin-top:35px;
-
-
-    display:grid;
-
-
-    grid-template-columns:
-
-
-    65% 35%;
-
 
     gap:25px;
 
+}
+
+.logo-area{
+
+    display:flex;
+    justify-content:center;
 
 }
 
+.logo{
 
-
-
-
-/* =====================================================
-   MAPA
-===================================================== */
-
-
-.mapa{
-
-
-    background:white;
-
-
-    min-height:600px;
-
-
-    border-radius:25px;
-
-
-    padding:30px;
-
-
-    box-shadow:
-
-
-    0 10px 30px rgba(0,0,0,.06);
-
+    width:180px;
 
 }
 
+.menu-lateral nav{
 
-
-
-
-.titulo-mapa{
-
-
-    color:var(--preto);
-
-
-    font-size:24px;
-
-
-    font-weight:700;
-
-
-    margin-bottom:25px;
-
+    display:flex;
+    flex-direction:column;
+    gap:10px;
 
 }
 
+.menu-lateral a{
 
+    text-decoration:none;
 
+    color:var(--texto);
 
-.mapa img{
+    display:flex;
 
+    align-items:center;
 
-    width:100%;
+    gap:12px;
 
-
-    height:500px;
-
-
-    object-fit:contain;
-
-
-}
-
-
-
-
-#textoResultado{
-
-
-    color:#888;
-
-
-}
-
-
-
-
-
-
-
-/* =====================================================
-   INFORMAÇÕES
-===================================================== */
-
-
-.informacoes{
-
-
-    background:white;
-
-
-    border-radius:25px;
-
-
-    padding:25px;
-
-
-    box-shadow:
-
-
-    0 10px 30px rgba(0,0,0,.06);
-
-
-}
-
-
-
-
-
-.informacoes h2{
-
-
-    color:var(--laranja);
-
-
-    font-size:26px;
-
-
-    margin-bottom:25px;
-
-
-}
-
-
-
-
-
-.box{
-
-
-    background:#FFF9F4;
-
-
-    padding:20px;
-
-
-    border-radius:18px;
-
-
-    margin-bottom:18px;
-
-
-    border-left:
-
-
-    5px solid var(--laranja);
-
-
-}
-
-
-
-
-
-.box h4{
-
-
-    color:var(--laranja);
-
-
-    margin-bottom:10px;
-
-
-}
-
-
-
-
-.box p{
-
-
-    color:#777;
-
-
-    line-height:25px;
-
-
-}
-
-
-
-
-
-.linha{
-
-
-    display:grid;
-
-
-    grid-template-columns:1fr 1fr;
-
-
-    gap:15px;
-
-
-}
-
-
-
-
-
-
-/* =====================================================
-   BOTÃO IMPRIMIR
-===================================================== */
-
-
-.imprimir{
-
-
-    margin-top:30px;
-
-
-    padding:16px 40px;
-
-
-    background:var(--laranja);
-
-
-    color:white;
-
-
-    border:none;
-
+    padding:14px 18px;
 
     border-radius:14px;
 
+    transition:.3s;
 
-    font-size:16px;
+    font-weight:500;
 
+}
 
-    font-weight:bold;
+.menu-lateral a i{
 
+    width:20px;
+
+    text-align:center;
+
+}
+
+.menu-lateral a:hover{
+
+    background:#FFF4E8;
+
+    color:var(--laranja);
+
+    transform:translateX(4px);
+
+}
+
+/* =====================================
+   CONTEÚDO
+===================================== */
+
+.conteudo{
+
+    flex:1;
+
+    padding:35px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+/* =====================================
+   TOPO
+===================================== */
+
+.topo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.topo h1{
+
+    font-size:34px;
+
+    color:var(--laranja);
+
+    margin-bottom:4px;
+
+}
+
+.topo p{
+
+    color:var(--texto-sec);
+
+}
+
+/* =====================================
+   BOTÃO MENU
+===================================== */
+
+.btn-menu{
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:var(--laranja);
+
+    color:white;
 
     cursor:pointer;
 
+    font-size:18px;
 
     transition:.3s;
 
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
 
 }
 
-
-
-
-
-.imprimir:hover{
-
+.btn-menu:hover{
 
     background:var(--laranja-hover);
 
-
-    transform:translateY(-3px);
-
+    transform:translateY(-2px);
 
 }
 
+/* =====================================
+   CARDS
+===================================== */
 
+.card{
 
+    background:white;
 
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.card h2{
+
+    margin-bottom:15px;
+
+    color:var(--texto);
+
+}
+
+/*======================
+    RESULTADO DO MAPA
+=======================*/
+
+.resultado{
+
+    margin-top:30px;
+
+}
+
+.resultado h2{
+
+    color:var(--laranja);
+
+    margin-bottom:15px;
+
+    font-size:24px;
+
+}
+
+#textoResultado{
+
+    color:#666;
+
+    margin-bottom:20px;
+
+}
+
+/*======================
+      GRID DO MAPA
+=======================*/
+
+.mapa-grid{
+
+    display:grid;
+
+    grid-template-columns:1.2fr 1fr;
+
+    gap:30px;
+
+    align-items:flex-start;
+
+}
+
+/*======================
+      IMAGEM
+=======================*/
+
+.mapa-imagem{
+
+    background:#f8f8f8;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    min-height:450px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:2px dashed #ddd;
+
+}
+
+.mapa-imagem img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+}
+
+/*======================
+      INFORMAÇÕES
+=======================*/
+
+.mapa-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.mapa-info h3{
+
+    color:var(--laranja);
+
+    font-size:24px;
+
+}
+
+/*======================
+      CAIXAS
+=======================*/
+
+.caixa-info{
+
+    background:#FFF;
+
+    border-left:5px solid var(--laranja);
+
+    border-radius:12px;
+
+    padding:18px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+
+}
+
+.caixa-info h4{
+
+    color:#2C3E50;
+
+    margin-bottom:8px;
+
+    font-size:16px;
+
+}
+
+.caixa-info p{
+
+    color:#666;
+
+    line-height:1.6;
+
+}
+
+/*======================
+     DUAS COLUNAS
+=======================*/
+
+.duas-caixas{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:15px;
+
+}
+
+/*======================
+       LISTA RISCOS
+=======================*/
+
+#listaRiscos{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+#listaRiscos span{
+
+    background:#FFF3E8;
+
+    color:var(--laranja);
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+/*======================
+      BOTÕES
+=======================*/
+
+.acoes{
+
+    display:flex;
+
+    gap:15px;
+
+    margin:25px 0;
+
+    flex-wrap:wrap;
+
+}
+
+.novoMapa,
+.imprimir{
+
+    border:none;
+
+    padding:15px 28px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.novoMapa{
+
+    background:var(--laranja);
+
+    color:#FFF;
+
+}
+
+.novoMapa:hover{
+
+    background:#d97706;
+
+    transform:translateY(-2px);
+
+}
+
+.imprimir{
+
+    background:#374151;
+
+    color:#FFF;
+
+}
+
+.imprimir:hover{
+
+    background:#1f2937;
+
+}
 /* ============================
    BOTÕES DA PESQUISA
 ============================ */
@@ -810,7 +508,7 @@ background: var(--fundo);
 
 
 
-#btnPesquisar{
+.btnPesquisar{
 
     background:#374151;
 
@@ -818,7 +516,7 @@ background: var(--fundo);
 
     border:none;
 
-    padding:12px 22px;
+    padding:15px 28px;
 
     border-radius:12px;
 
@@ -839,12 +537,17 @@ background: var(--fundo);
 }
 
 
-#btnPesquisar:hover{
+.btnPesquisar:hover{
 
     background:#1f2937;
 
     transform:translateY(-2px);
 
+}
+.pesquisa-card{
+    display:flex;
+    align-items:end;
+    gap:20px;
 }
 
 
@@ -929,114 +632,126 @@ background: var(--fundo);
 
 }
 
+/*======================
+      ANIMAÇÃO
+=======================*/
 
-/* =====================================================
-   RESPONSIVO
-===================================================== */
+.card{
 
+    animation:fade .5s ease;
 
-@media(max-width:1200px){
+}
 
+@keyframes fade{
 
-    .painel{
+    from{
 
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*======================
+      RESPONSIVO
+=======================*/
+
+@media(max-width:1000px){
+
+    .mapa-grid{
 
         grid-template-columns:1fr;
 
-
     }
-
 
 }
 
+@media(max-width:850px){
 
-
-
-@media(max-width:900px){
-
-
-    .layout{
-
+    .container{
 
         flex-direction:column;
 
-
     }
 
-
-
-    .menu{
-
+    .menu-lateral{
 
         width:100%;
 
-
-        min-height:auto;
-
-
     }
-
-
-
-
-    .pesquisa{
-
-
-        flex-direction:column;
-
-
-    }
-
-
-
-    .pesquisa button{
-
-
-        width:100%;
-
-
-        height:58px;
-
-
-    }
-
-
-
-}
-
-
-
-@media(max-width:600px){
-
 
     .conteudo{
 
-
         padding:20px;
 
+    }
+
+}
+
+@media(max-width:700px){
+
+    .pesquisa{
+
+        flex-direction:column;
 
     }
 
+    .pesquisa select,
+    .btn-pesquisar{
 
-
-    .titulo h1{
-
-
-        font-size:34px;
-
+        width:100%;
 
     }
 
-
-
-    .linha{
-
+    .duas-caixas{
 
         grid-template-columns:1fr;
 
+    }
+
+    .acoes{
+
+        flex-direction:column;
 
     }
 
+    .novoMapa,
+    .imprimir{
 
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    .topo h1{
+
+        font-size:28px;
+
+    }
+
+    .card{
+
+        padding:20px;
+
+    }
+
+    .mapa-imagem{
+
+        min-height:250px;
+
+    }
 
 }

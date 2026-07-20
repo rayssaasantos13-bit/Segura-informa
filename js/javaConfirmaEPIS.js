@@ -41,7 +41,7 @@ function carregarEntregas(){
 
 
     .then(lista=>{
-
+console.log(lista);
 
         const div =
 document.getElementById("lista");

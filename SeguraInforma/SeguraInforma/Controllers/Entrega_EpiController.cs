@@ -16,44 +16,40 @@ namespace SeguraInforma.Controllers
 
 
         [HttpPost]
-
         public IActionResult CadastrarEntregaEpi(Entrega_epi entrega_epi)
         {
             var idLogado = HttpContext.Session.GetString("IdLogado");
+
             if (idLogado == null)
             {
                 return Unauthorized("Faça o login antes");
             }
+
             var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
-            if (usuarioLogado != null)
-                entrega_epi.Fk_Usuario_Id_Usuario = int.Parse(idLogado);
 
+            if (usuarioLogado == null)
             {
-
-
-                if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
-                {
-                    return Unauthorized("Apenas gestores podem cadastrar.");
-                }
+                return Unauthorized();
             }
 
+            if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
+            {
+                return Unauthorized("Apenas gestores podem cadastrar.");
+            }
 
             _context.Add(entrega_epi);
             _context.SaveChanges();
 
-
             for (int x = 0; x < entrega_epi.entrega_de_epi.Count; x++)
             {
-                entrega_epi.entrega_de_epi[x].Fk_Entrega_Epi_Id_Entrega_Epi = entrega_epi.Id_Entrega_EPI;
-            }
+                entrega_epi.entrega_de_epi[x].Fk_Entrega_Epi_Id_Entrega_Epi =
+                    entrega_epi.Id_Entrega_EPI;
 
-
-            for (int x = 0; x < entrega_epi.entrega_de_epi.Count; x++)
-            {
                 _context.Add(entrega_epi.entrega_de_epi[x]);
-
             }
+
             _context.SaveChanges();
+
             return Created("", entrega_epi);
         }
         [HttpDelete("{id}")]

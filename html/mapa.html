@@ -4,32 +4,37 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mapa de Risco</title>
+    <title>Mapa de Risco | Segura Informa</title>
 
-    <link rel="stylesheet" href="../css/mapa.css">
+    <link rel="stylesheet" href="../css/mapaGest.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
-
 <body>
-<!-- mapa de risco func-->
 
-    <div class="layout">
+<div class="container">
 
+    <!-- MENU -->
 
-        <!-- MENU -->
+    <aside class="menu-lateral" id="menuLateral">
 
-        <aside class="menu">
+        <div class="logo-area">
 
+            <img src="../img/logo.png"
+                 class="logo"
+                 alt="Segura Informa">
 
-            <img src="../imagens/logo.png" class="logo">
+        </div>
 
+        <nav>
 
-               <nav>
-
-            <a href="mapa.html">
+        <a href="mapa.html">
 
                 <i class="fa-solid fa-map-location-dot"></i>
 
@@ -60,258 +65,218 @@
                 Sair
 
             </a>
-
         </nav>
 
+    </aside>
 
-        </aside>
+    <!-- CONTEÚDO -->
 
+    <main class="conteudo">
 
+        <!-- TOPO -->
 
+        <header class="topo">
 
+       
 
-        <!-- CONTEÚDO -->
+            <div>
 
-        <main class="principal">
+                <h1>Mapa de Risco</h1>
 
+                <p>
 
-            <header class="topo">
-             
+                    Consulte os mapas cadastrados e visualize
+                    todos os riscos existentes.
 
-                <div class="usuario">
+                </p>
 
-                    👤Funcionário
+            </div>
 
-                </div>
+        </header>
 
-   <div>
-                    <p>
-                        Sistema de Gestão de Segurança
-                    </p>
-                </div>
-            </header>
+        <!-- PESQUISA -->
 
+        <section class="card pesquisa-card">
 
+            <div class="campo">
 
+                <label>
 
+                    Área
 
-            <section class="conteudo">
+                </label>
 
+                <select id="areas">
 
-                <div class="titulo">
+                    <option value="">
 
+                        Selecione uma área
 
-                    <h1>
-                        Mapa de Risco
-                    </h1>
+                    </option>
 
+                </select>
 
-                    <p>
-                        Selecione uma área para visualizar os riscos.
-                    </p>
+            </div>
 
+            <button
+                class="btnPesquisar"
+                onclick="PesquisarMapa()">
 
-                </div>
+                <i class="fa-solid fa-magnifying-glass"></i>
 
+                Pesquisar
 
-
-
-
-                <!-- PESQUISA -->
-
-                <div class="pesquisa">
-
-
-                    <select id="areas">
-
-                        <option>
-                            Selecione uma área
-                        </option>
-
-                    </select>
+            </button>
 
 
-
-                <button id="btnPesquisar">
-    Pesquisar
-</button>
+              
 
 
-                </div>
+        </section>
 
+        <!-- RESULTADO -->
 
+        <section class="card">
 
+            <h2>
 
+                Resultado
 
+            </h2>
 
-                <!-- ÁREA DO MAPA -->
+            <p id="textoResultado">
 
+                Nenhuma área selecionada.
 
-                <div class="painel">
+            </p>
 
+            <div id="conteudoMapa">
 
-                    <div class="mapa">
+                <div class="mapa-grid">
 
+                    <!-- IMAGEM -->
 
-                        <div class="titulo-mapa">
+                    <div class="mapa-imagem">
 
-                            Mapa da Área
-
-                        </div>
-
-
-                        <img id="imagemMapa" src="" style="display:none;">
-
-
-                        <p id="textoResultado">
-
-                            Nenhuma área selecionada.
-
-                        </p>
-
+                        <img
+                            id="imagemMapa"
+                            src=""
+                            alt="Mapa de risco"
+                            style="display:none;">
 
                     </div>
 
-
-
-
-
                     <!-- INFORMAÇÕES -->
 
-
-                    <div id="infoMapa" class="informacoes" style="display:none;">
-
-
+                    <div
+                        id="infoMapa"
+                        class="mapa-info">
 
                         <h2 id="nomeArea">
 
                         </h2>
 
+                        <div class="caixa-info">
 
+                            <h3>
 
-
-                        <div class="box">
-
-
-                            <h4>
-                                Descrição
-                            </h4>
-
-
-                            <p id="descricaoMapa"></p>
-
-
-                        </div>
-
-
-
-
-
-                        <div class="box">
-
-
-                            <h4>
                                 Descrição da Área
-                            </h4>
 
+                            </h3>
 
-                            <p id="descricaoAreaMapa"></p>
+                            <p id="descricaoAreaMapa">
 
-
-                        </div>
-
-
-
-
-
-
-                        <div class="linha">
-
-
-                            <div class="box">
-
-
-                                <h4>
-                                    Criação
-                                </h4>
-
-
-                                <p id="dataCriacao"></p>
-
-
-                            </div>
-
-
-
-                            <div class="box">
-
-
-                                <h4>
-                                    Atualização
-                                </h4>
-
-
-                                <p id="dataAtualizacao"></p>
-
-
-                            </div>
-
+                            </p>
 
                         </div>
 
+                        <div class="caixa-info">
 
+                            <h3>
 
+                                Descrição do Mapa
 
+                            </h3>
 
+                            <p id="descricaoMapa">
 
+                            </p>
 
-                        <div class="box">
+                        </div>
 
+                        <div class="duas-caixas">
 
-                            <h4>
+                            <div class="caixa-info">
+
+                                <h3>
+
+                                    Data de Criação
+
+                                </h3>
+
+                                <p id="dataCriacao">
+
+                                </p>
+
+                            </div>
+
+                            <div class="caixa-info">
+
+                                <h3>
+
+                                    Última Atualização
+
+                                </h3>
+
+                                <p id="dataAtualizacao">
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="caixa-info">
+
+                            <h3>
+
                                 Riscos
-                            </h4>
 
+                            </h3>
 
-                            <div id="listaRiscos"></div>
+                            <div id="listaRiscos">
 
+                            </div>
 
                         </div>
-
-
 
                     </div>
 
-
-
                 </div>
 
+            </div>
 
+            <div class="acoes-finais">
 
+                <button
+                    class="imprimir"
+                    onclick="window.print()">
 
+                    <i class="fa-solid fa-print"></i>
 
-
-                <button class="imprimir" onclick="imprimir()">
-
-                    🖨 Imprimir
+                    Imprimir
 
                 </button>
 
+            </div>
 
+        </section>
 
-            </section>
+    </main>
 
+</div>
 
-        </main>
-
-
-    </div>
-
-
-
-
-    <script src="../js/mapa.js"></script>
-
+<script src="../js/mapa.js"></script>
 
 </body>
 
