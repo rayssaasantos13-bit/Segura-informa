@@ -390,3 +390,130 @@ function limparCampos() {
     document.getElementById("btnAtualizar").style.display = "none";
 
 }
+
+// ===========================
+// EDITAR EPI
+// ===========================
+function editarEpi(botao) {
+
+    linhaSelecionada = botao.parentNode.parentNode;
+
+    idEpiSelecionado = linhaSelecionada.dataset.idEpi;
+
+    document.getElementById("nomeEpi").value =
+        linhaSelecionada.cells[1].innerHTML.trim();
+
+    document.getElementById("ca").value =
+        linhaSelecionada.cells[2].innerHTML.trim();
+
+    document.getElementById("validade").value =
+        linhaSelecionada.cells[3].innerHTML.trim();
+
+    document.getElementById("fabricante").value =
+        linhaSelecionada.cells[4].innerHTML.trim();
+
+    document.getElementById("quantidade").value =
+        linhaSelecionada.cells[5].innerHTML.trim();
+
+    document.getElementById("btnCadastrar").style.display = "none";
+
+    document.getElementById("btnAtualizar").style.display = "inline-block";
+
+}
+
+// ===========================
+// ATUALIZAR EPI
+// ===========================
+async function atualizarEpi() {
+
+    try {
+
+        const resposta = await fetch(
+            "https://localhost:7175/Epi/" + idEpiSelecionado,
+            {
+
+                method: "PUT",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                credentials: "include",
+
+                body: JSON.stringify({
+
+                    Nome_Epi: document.getElementById("nomeEpi").value,
+
+                    CA: document.getElementById("ca").value,
+
+                    Validade: document.getElementById("validade").value,
+
+                    Fabricante: document.getElementById("fabricante").value,
+
+                    Quantidade: document.getElementById("quantidade").value
+
+                })
+
+            }
+        );
+
+        if (!resposta.ok) {
+            throw new Error("Erro ao atualizar o EPI.");
+        }
+
+        alert("EPI atualizado com sucesso!");
+
+        limparCampos();
+
+        listarEpis();
+
+    }
+    catch (erro) {
+
+        console.log(erro);
+
+        alert("Erro ao atualizar.");
+
+    }
+
+}
+
+// ===========================
+// EXCLUIR EPI
+// ===========================
+async function excluirEpi(idEpi) {
+
+    if (!confirm("Deseja realmente excluir este EPI?")) {
+        return;
+    }
+
+    try {
+
+        const resposta = await fetch(
+            "https://localhost:7175/Epi/" + idEpi,
+            {
+                method: "DELETE",
+                credentials: "include"
+            }
+        );
+
+        if (!resposta.ok) {
+            throw new Error("Erro ao excluir o EPI.");
+        }
+
+        alert("EPI excluído com sucesso!");
+
+        limparCampos();
+
+        listarEpis();
+
+    }
+    catch (erro) {
+
+        console.log(erro);
+
+        alert("Erro ao excluir.");
+
+    }
+
+}
