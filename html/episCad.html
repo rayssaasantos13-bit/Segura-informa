@@ -11,151 +11,144 @@
 
     <link rel="stylesheet" href="../css/episCad.css">
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <!-- MENU -->
+        <!-- MENU -->
 
-    <aside class="menu-lateral" id="menuLateral">
+        <aside class="menu-lateral" id="menuLateral">
 
-        <div class="logo-area">
+            <div class="logo-area">
 
-            <img src="../imagens/logo.png"
-                 class="logo"
-                 alt="Logo">
-
-        </div>
-
-        <nav>
-
-          <a href="mapaGest.html">Mapa de Risco</a>
-        <a href="areaCad.html">Cadastro de Áreas</a>
-        <a href="episCad.html">Cadastro de EPIs</a>
-        <a href="episEnt.html">Entregas de EPIs</a>
-        <a href="perfilFunc.html">Perfil</a>
-        <a href="log.html">Sair</a>
-        </nav>
-
-    </aside>
-
-    <!-- CONTEÚDO -->
-
-    <main class="conteudo">
-
-        <header class="topo">
-
-            <button
-                class="btn-menu"
-                onclick="toggleMenu()">
-
-                <i class="fa-solid fa-bars"></i>
-
-            </button>
-
-            <div>
-
-                <h1>Cadastro de EPIs</h1>
-
-                <p>
-
-                    Cadastre os Equipamentos de Proteção Individual disponíveis.
-
-                </p>
+                <img src="../imagens/logo.png" class="logo" alt="Logo">
 
             </div>
 
-        </header>
+            <nav>
 
-        <section class="card">
+                <a href="mapaGest.html">Mapa de Risco</a>
+                <a href="areaCad.html">Cadastro de Áreas</a>
+                <a href="episCad.html">Cadastro de EPIs</a>
+                <a href="episEnt.html">Entregas de EPIs</a>
+                <a href="perfilFunc.html">Perfil</a>
+                <a href="log.html">Sair</a>
+            </nav>
 
-            <h2>Novo Equipamento</h2>
+        </aside>
 
-            <div class="formulario">
+        <!-- CONTEÚDO -->
 
-                <div class="campo">
+<main class="conteudo">
 
-                    <label>Nome do EPI</label>
+<header class="topo">
 
-                    <input
-                        type="text"
-                        id="nome"
-                        placeholder="Digite o nome do EPI">
+        <button class="btn-menu" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    <div>
+        <h1>Cadastro de EPIs</h1>
 
-                </div>
+        <p>Cadastre os Equipamentos de Proteção Individual disponíveis.</p>
+    </div>
+</header>
 
-                <div class="campo">
+<section class="card">
 
-                    <label>Descrição</label>
+        <h2>Novo Equipamento</h2>
 
-                    <input
-                        type="text"
-                        id="descricao"
-                        placeholder="Descrição do equipamento">
+    <div class="formulario">
 
-                </div>
+    <div class="campo">
 
-                <div class="campo">
+        <label>Nome do EPI</label>
+        <input type="text" id="nome" placeholder="Digite o nome do EPI">
+    </div>
+    <div class="campo">
+        <label>Descrição</label>
+        <input type="text" id="descricao" placeholder="Descrição do equipamento">
+    </div>
+    <div class="campo">
+        <label>Número do CA</label>
+        <input type="number" id="ca" placeholder="Número do Certificado">
+    </div>
+    <div class="campo">
+        <label>Quantidade em Estoque</label>
+        <input type="number" id="estoque" placeholder="Quantidade disponível">
+    </div>
+    </div>
 
-                    <label>Número do CA</label>
+<!-- BOTÕES -->
 
-                    <input
-                        type="number"
-                        id="ca"
-                        placeholder="Número do Certificado">
+<div class="botoes">
 
-                </div>
+    <button
+        id="btnCadastrar"
+        class="btnCadastrar"
+      onclick="cadastrarEpi()">
 
-                <div class="campo">
+        <i class="fa-solid fa-plus"></i>
 
-                    <label>Quantidade em Estoque</label>
+        Cadastrar
 
-                    <input
-                        type="number"
-                        id="estoque"
-                        placeholder="Quantidade disponível">
+    </button>
 
-                </div>
+    <button
+        id="btnAtualizar"
+        class="btnAtualizar"
+        onclick="atualizarEpi()"
+        style="display:none">
 
-            </div>
+        <i class="fa-solid fa-pen"></i>
 
-            <div class="botoes">
+        Atualizar
 
-                <button
-                    onclick="CadastrarEpi()"
-                    class="btnCadastrar">
+    </button>
+<button
+    class="btnCancelar"
+    onclick="LimparCampos()">
 
-                    <i class="fa-solid fa-plus"></i>
+    <i class="fa-solid fa-trash"></i>
 
-                    Cadastrar
+    Limpar
 
-                </button>
-
-                <button
-                    onclick="LimparCampos()"
-                    class="btnLimpar">
-
-                    <i class="fa-solid fa-trash"></i>
-
-                    Limpar
-
-                </button>
-
-            </div>
-
-        </section>
-
-    </main>
-
+</button>
 </div>
 
-<script src="../js/cadastroEPIS.js"></script>
+</section>
 
+       <!-- TABELA -->
+        
+<input type="hidden" id="idEpi">
+
+<section class="card">
+    <h2>EPIs Cadastrados</h2>
+
+    <div class="tabela">
+
+    <table id="tabelaEpis">
+
+<thead>
+    <tr>
+
+        <th>Nome do EPI</th>
+        <th>Descrição</th>
+        <th>CA</th>
+        <th>Quantidade</th>
+        <th>Ações</th>
+    </tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+</section>
+
+    </main>
+    </div>
+    <script src="../js/cadastroEPIS.js"></script>
 </body>
-
 </html>

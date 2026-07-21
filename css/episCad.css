@@ -359,3 +359,107 @@ padding:20px;
 }
 
 }
+
+/* ================= TABELA ================= */
+
+.tabela{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:900px;
+
+}
+
+thead{
+
+    background:var(--laranja);
+
+    color:white;
+
+}
+
+th{
+
+    padding:18px;
+
+    text-align:left;
+
+}
+
+td{
+
+    padding:16px;
+
+    border-bottom:1px solid var(--cinza2);
+
+}
+
+tbody tr{
+
+    transition:.3s;
+
+}
+
+tbody tr:hover{
+
+    background:#FFF8F2;
+
+}
+
+td button{
+
+    border:none;
+
+    padding:8px 12px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    margin-right:5px;
+
+    color:white;
+
+}
+.btnEditar{
+
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+
+}
+
+.btnEditar:hover{
+
+    background: #1d4ed8;
+
+}
+
+.btnExcluir{
+
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.btnExcluir:hover{
+
+    background: #b91c1c;
+
+}

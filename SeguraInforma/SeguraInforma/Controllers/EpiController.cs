@@ -91,20 +91,22 @@ namespace SeguraInforma.Controllers
         [HttpPut("{id}")]
         public IActionResult AtualizarEpi(int id, Epi epi)
         {
-            var sessaoUsuario = "1";
-            if (sessaoUsuario == null)
+            var idLogado = HttpContext.Session.GetString("IdLogado");
+
+            if (idLogado == null)
             {
-                return Unauthorized("Faça login Antes");
+                return Unauthorized("Faça o login antes");
             }
-            var usuarioLogado = _context.Usuarios.Find(int.Parse(sessaoUsuario));
+
+            var usuarioLogado = _context.Usuarios.Find(int.Parse(idLogado));
+
             if (usuarioLogado != null)
             {
                 if (!usuarioLogado.Cargo.Trim().Equals("Gestão"))
                 {
-                    return Unauthorized("Apenas gestores podem deletar.");
+                    return Unauthorized("Apenas gestores podem atualizar.");
                 }
             }
-
             var epiDoBanco = _context.EPI.Find(id);
             if (epiDoBanco == null)
             {
@@ -113,7 +115,7 @@ namespace SeguraInforma.Controllers
             epiDoBanco.Nome = epi.Nome;
             epiDoBanco.Qntd_Estoque = epi.Qntd_Estoque;
             epiDoBanco.Descricao = epi.Descricao;
-
+            epiDoBanco.Numero_Ca = epi.Numero_Ca;
             _context.SaveChanges();
             return Ok("Atualizado");
         }
