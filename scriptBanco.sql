@@ -53,12 +53,13 @@ CREATE TABLE area_contem_risco (
 
 CREATE TABLE area_exige_epi (
     fk_area_id_area INTEGER,
-    fk_EPI_id_epi INTEGER
+    fk_EPI_id_epi INTEGER,
 );
 
 CREATE TABLE entrega_tem_epi (
     fk_EPI_id_epi INTEGER,
-    fk_entrega_epi_id_entrega_epi INTEGER
+    fk_entrega_epi_id_entrega_epi INTEGER,
+    quantidade INTEGER
 );
 
 CREATE TABLE area (

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SeguraInforma.Models
 
@@ -8,5 +9,7 @@ namespace SeguraInforma.Models
     {
         public int Fk_Epi_Id_Epi { get; set; }
         public int Fk_Entrega_Epi_Id_Entrega_Epi { get; set; }
+        public int Quantidade {  get; set; }
+    
     }
 }

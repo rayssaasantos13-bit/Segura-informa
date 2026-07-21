@@ -355,6 +355,98 @@ transform:translateY(-2px);
     transform:none;
 
 }
+/* ===========================
+   CONTAINER DAS LISTAS
+=========================== */
+
+.listas-epis{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:30px;
+
+    width:100%;
+
+}
+
+
+
+/* cada lado */
+
+.coluna-epis{
+
+    width:100%;
+
+}
+
+
+
+/* caixa com rolagem */
+
+.lista-scroll{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    height:450px;
+
+    overflow-y:auto;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+
+/* cards dentro da caixa */
+
+#listaPendentes,
+#listaConfirmados{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+
+
+/* card */
+
+.card-entrega{
+
+    width:100%;
+
+    background:#fff;
+
+    padding:22px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    border-left:6px solid var(--laranja);
+
+}
+
+
+
+/* confirmados */
+
+#listaConfirmados .card-entrega{
+
+    border-left-color:#16A34A;
+
+}
+
+
 /* RESPONSIVO */
 
 @media(max-width:900px){

@@ -422,6 +422,11 @@ function LimparCampos() {
     document.getElementById("ca").value = "";
 
     document.getElementById("estoque").value = "";
+<<<<<<< Updated upstream
+=======
+    
+ }
+>>>>>>> Stashed changes
 
     idEpiSelecionado = 0;
 

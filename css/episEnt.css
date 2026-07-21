@@ -391,6 +391,80 @@ transform:translateY(-2px);
 color:#9CA3AF;
 
 }
+.lista-entregas{
+
+    margin-top:30px;
+
+}
+
+
+.lista-entregas table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+
+.lista-entregas th{
+
+    background:#ee8b24;
+
+    color:white;
+
+    padding:18px;
+
+    text-align:center;
+
+}
+
+
+
+.lista-entregas td{
+
+    padding:15px;
+
+    text-align:center;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+
+
+.lista-entregas tr:hover{
+
+    background:#fff5e8;
+
+}
+
+
+
+.btnExcluir{
+
+    background:#d9534f;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 15px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+
+
+.btnExcluir:hover{
+
+    opacity:0.8;
+
+}
 
 /*================ RESPONSIVO ================*/
 

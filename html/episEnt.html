@@ -38,8 +38,8 @@
         <a href="areaCad.html">Cadastro de Áreas</a>
         <a href="episCad.html">Cadastro de EPIs</a>
         <a href="episEnt.html">Entregas de EPIs</a>
-        <a href="perfilFunc.html">Perfil</a>
-        <a href="log.html">Sair</a>
+        <a href="perfilAdm.html">Perfil</a>
+                <a href="log.html">Sair</a>
 
         </nav>
 
@@ -71,95 +71,84 @@
 
             <h2>Nova Entrega</h2>
 
-            <form id="Entrega">
+          <form id="Entrega">
 
-                <div class="formulario">
+    <div class="formulario">
 
-                    <div class="campo">
+        <div class="campo">
+            <label>Funcionário</label>
+            <select id="funcionario" required>
+                <option value="">Selecione o funcionário</option>
+            </select>
+        </div>
 
-                        <label>Funcionário</label>
 
-                        <select id="funcionario" required>
+        <div class="campo">
+            <label>EPI</label>
+            <select id="epi" required>
+                <option value="">Selecione o EPI</option>
+            </select>
+        </div>
 
-                            <option value="">
-                                Selecione o funcionário
-                            </option>
 
-                        </select>
+        <div class="campo">
+            <label>Quantidade</label>
+            <input 
+                type="number"
+                id="quantidade"
+                min="1"
+                required>
+        </div>
 
-                    </div>
 
-                    <div class="campo">
+        <div class="campo">
+            <label>Número do CA</label>
+            <input
+                type="text"
+                id="numeroCA"
+                readonly>
+        </div>
 
-                        <label>EPI</label>
 
-                        <select id="epi" required>
+        <div class="campo">
+            <label>Data da Entrega</label>
+            <input
+                type="date"
+                id="dataEntrega"
+                required>
+        </div>
 
-                            <option value="">
-                                Selecione o EPI
-                            </option>
 
-                        </select>
+        <div class="campo">
+            <label>Data da Devolução Prevista</label>
+            <input
+                type="date"
+                id="dataDevolucao">
+        </div>
 
-                    </div>
 
-                    <div class="campo">
+    </div>
 
-                        <label>Número do CA</label>
 
-                        <input
-                            type="text"
-                            id="numeroCA"
-                            readonly>
+    <div class="botoes">
 
-                    </div>
+        <button type="submit" class="btnEntregar">
+            <i class="fa-solid fa-box"></i>
+            Entregar EPI
+        </button>
 
-                    <div class="campo">
 
-                        <label>Data da Entrega</label>
+        <button type="reset" class="btnLimpar">
+            <i class="fa-solid fa-trash"></i>
+            Limpar
+        </button>
 
-                        <input
-                            type="date"
-                            id="dataEntrega"
-                            required>
+    </div>
 
-                    </div>
-
-                    <div class="campo">
-
-                        <label>Data da Devolução Prevista</label>
-
-                        <input
-                            type="date"
-                            id="dataDevolucao">
-
-                    </div>
-
-                </div>
-
-                <div class="botoes">
-
-                    <button type="submit" class="btnEntregar">
-
-                        <i class="fa-solid fa-box"></i>
-
-                        Entregar EPI
-
-                    </button>
-
-                    <button type="reset" class="btnLimpar">
-
-                        <i class="fa-solid fa-trash"></i>
-
-                        Limpar
-
-                    </button>
-
-                </div>
-
-            </form>
+</form>
 
         </section>
+       
 
     </main>
 

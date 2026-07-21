@@ -13,128 +13,101 @@ function toggleMenu() {
 // BUSCAR ENTREGAS DO FUNCIONÁRIO LOGADO
 // ========================
 
-function carregarEntregas(){
+function carregarEntregas() {
 
-
-    fetch("https://localhost:7175/Entrega_Epi/minhas-entregas",
-    {
-        method:"GET",
-
-        credentials:"include"
+    fetch("https://localhost:7175/Entrega_Epi/minhas-entregas", {
+        method: "GET",
+        credentials: "include"
     })
 
+    .then(res => {
 
-    .then(res=>{
-
-
-        if(res.status === 401){
-
+        if (res.status === 401) {
             throw new Error("Usuário não está logado");
-
         }
-
 
         return res.json();
 
-
     })
 
+    .then(lista => {
 
-    .then(lista=>{
-console.log(lista);
+        console.log(lista);
 
-        const div =
-document.getElementById("lista");
+        const pendentes = document.getElementById("listaPendentes");
+        const confirmados = document.getElementById("listaConfirmados");
 
-
-if(!div){
-    return;
-}
-
-
-div.innerHTML = "";
-
-
-        if(lista.length === 0){
-
-
-            div.innerHTML =
-            `
-            <p>
-            Você não possui EPIs pendentes de confirmação.
-            </p>
-            `;
-
-
+        if (!pendentes || !confirmados) {
             return;
-
         }
 
+        pendentes.innerHTML = "";
+        confirmados.innerHTML = "";
 
+        if (lista.length === 0) {
 
-        lista.forEach(entrega=>{
+            pendentes.innerHTML = "<p>Nenhum EPI encontrado.</p>";
+            return;
+        }
 
+        lista.forEach(entrega => {
 
-            div.innerHTML +=
-            `
+            const card = `
+                <div class="card-entrega">
 
-            <div class="card-entrega">
+                    <h3>${entrega.epi}</h3>
 
+                    <p>
+                        Data da entrega:
+                        ${formatarData(entrega.data_Entrega)}
+                    </p>
 
-                <h3>
-                    Entrega de EPI
-                </h3>
+                    <p>
+                        Devolução:
+                        ${formatarData(entrega.data_Devolucao)}
+                    </p>
 
+                    ${
+                        entrega.aceito
+                        ?
+                        `<span class="status-confirmado">
+                            <i class="fa-solid fa-check"></i>
+                            Confirmado
+                        </span>`
+                        :
+                        `<button
+                            id="btn-${entrega.id_Entrega_EPI}"
+                            onclick="confirmarEntrega(${entrega.id_Entrega_EPI})">
 
-                <p>
-                    Data da entrega:
-                    ${formatarData(entrega.data_Entrega)}
-                </p>
+                            <i class="fa-solid fa-check"></i>
+                            Confirmar recebimento
 
+                        </button>`
+                    }
 
-                <p>
-                    Devolução:
-                    ${formatarData(entrega.data_Devolucao)}
-                </p>
-
-
-<button 
-id="btn-${entrega.id_Entrega_EPI}"
-onclick="confirmarEntrega(${entrega.id_Entrega_EPI})">
-
-    <i class="fa-solid fa-check"></i>
-    Confirmar recebimento
-
-</button>
-
-
-            </div>
-
-
+                </div>
             `;
 
+            if (entrega.aceito) {
+                confirmados.innerHTML += card;
+            } else {
+                pendentes.innerHTML += card;
+            }
 
         });
 
-
-
     })
 
-
-    .catch(erro=>{
-
+    .catch(erro => {
 
         console.log(erro);
 
-        alert(
-        "Erro ao carregar suas entregas."
-        );
-
+        alert("Erro ao carregar suas entregas.");
 
     });
 
-
 }
+
 
 
 
@@ -184,34 +157,14 @@ function confirmarEntrega(id){
     })
 
 
-   .then(msg=>{
-
+.then(msg => {
 
     alert("EPI confirmado com sucesso!");
 
-
-    const botao = document.getElementById("btn-" + id);
-
-
-    if(botao){
-
-        botao.innerHTML =
-        '<i class="fa-solid fa-check"></i> Confirmado';
-
-
-        botao.disabled = true;
-
-
-        botao.style.background = "#16a34a";
-
-
-        botao.style.color = "white";
-
-
-    }
-
+    carregarEntregas();
 
 })
+
     .catch(erro=>{
 
 
