@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Devoluções | Segura Informa</title>
+
+
+<link rel="stylesheet" href="../css/devolucoes.css">
+
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<aside class="menu-lateral">
+
+
+<div class="logo-area">
+
+<img src="../imagens/logo.png" class="logo">
+
+</div>
+
+
+<nav>
+
+<a href="mapaGest.html">Mapa de Risco</a>
+
+<a href="areaCad.html">Cadastro de Áreas</a>
+
+<a href="episCad.html">Cadastro de EPIs</a>
+
+<a href="episEnt.html">Entregas de EPIs</a>
+
+<a href="devolucoes.html">
+Devoluções
+</a>
+
+<a href="perfilAdm.html">
+Perfil
+</a>
+
+<a href="log.html">
+Sair
+</a>
+
+
+</nav>
+
+
+</aside>
+
+
+
+
+<main class="conteudo">
+
+
+<header class="topo">
+
+<h1>
+Devoluções de EPIs
+</h1>
+
+<p>
+Avaliação dos equipamentos devolvidos pelos funcionários.
+</p>
+
+
+</header>
+
+
+
+
+<section class="card">
+
+
+<h2>Devoluções pendentes</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Funcionário</th>
+<th>EPI</th>
+<th>Quantidade</th>
+<th>Data</th>
+<th>Status</th>
+<th>Ação</th>
+</tr>
+</thead>
+
+<tbody id="listaPendentes"></tbody>
+
+</table>
+
+
+
+<br><br>
+
+
+<h2>Devoluções avaliadas</h2>
+
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Funcionário</th>
+<th>EPI</th>
+<th>Quantidade</th>
+<th>Data</th>
+<th>Status</th>
+</tr>
+</thead>
+
+
+<tbody id="listaAvaliadas"></tbody>
+
+
+</table>
+
+<div id="modalAvaliacao" class="modal">
+
+    <div class="modal-conteudo">
+
+        <h2>Avaliar EPI devolvido</h2>
+
+
+        <input type="hidden" id="idDevolucao">
+
+
+        <label>
+            Estado do EPI
+        </label>
+
+        <select id="estado">
+
+            <option value="bom">
+                Bom
+            </option>
+
+            <option value="danificado">
+                Danificado
+            </option>
+
+            <option value="inutilizavel">
+                Inutilizável
+            </option>
+
+        </select>
+
+
+
+        <label>
+            Destino
+        </label>
+
+        <select id="destino">
+
+            <option value="estoque">
+                Estoque
+            </option>
+
+            <option value="manutencao">
+                Manutenção
+            </option>
+
+            <option value="descarte">
+                Descarte
+            </option>
+
+        </select>
+
+
+
+        <label>
+            Observação
+        </label>
+
+        <textarea id="observacao"></textarea>
+
+
+
+        <button onclick="salvarAvaliacao()">
+            Finalizar avaliação
+        </button>
+
+
+    </div>
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+
+</div>
+
+
+
+<script src="../js/JavaDevolucao.js"></script>
+
+
+</body>
+
+
+</html>

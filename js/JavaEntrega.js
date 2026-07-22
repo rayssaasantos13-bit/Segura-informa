@@ -1,61 +1,49 @@
-// ============================
-// MENU
-// ============================
-
 function toggleMenu() {
     document.getElementById("menuLateral").classList.toggle("ativo");
 }
 
+
 let formulario;
 
 
-
-// ========================
+// ============================
 // INICIAR
-// ========================
-
+// ============================
 
 window.onload = function(){
 
-
-    formulario =
-    document.getElementById("Entrega");
+    formulario = document.getElementById("Entrega");
 
 
     carregarFuncionarios();
 
-
     carregarEPIs();
 
-       carregarEntregas();
 
+    if(formulario){
 
+        formulario.addEventListener(
+            "submit",
+            cadastrarEntrega
+        );
 
-    formulario.addEventListener(
-        "submit",
-        cadastrarEntrega
-    );
-
+    }
 
 };
 
 
 
 
-
-// ========================
+// ============================
 // BUSCAR FUNCIONÁRIOS
-// ========================
-
+// ============================
 
 function carregarFuncionarios(){
 
 
 fetch("https://localhost:7175/Usuario",
 {
-
 credentials:"include"
-
 })
 
 
@@ -69,15 +57,84 @@ const select =
 document.getElementById("funcionario");
 
 
-
 lista.forEach(usuario=>{
 
 
 select.innerHTML +=
 `
-
 <option value="${usuario.id}">
 ${usuario.nome}
+</option>
+`;
+
+
+});
+
+
+})
+
+
+.catch(erro=>{
+
+console.log(erro);
+
+alert("Erro ao carregar funcionários");
+
+});
+
+
+}
+
+
+
+
+// ============================
+// BUSCAR EPIS
+// ============================
+
+function carregarEPIs(){
+
+
+fetch("https://localhost:7175/Epi",
+{
+credentials:"include"
+})
+
+
+.then(res=>res.json())
+
+
+.then(lista=>{
+
+
+const select =
+document.getElementById("epi");
+
+
+select.innerHTML =
+`
+<option value="">
+Selecione o EPI
+</option>
+`;
+
+
+lista.forEach(e=>{
+
+
+select.innerHTML +=
+`
+
+<option
+
+value="${e.id_epi}"
+
+data-ca="${e.numero_Ca}"
+
+data-estoque="${e.qntd_Estoque}">
+
+${e.nome.trim()}
+
 </option>
 
 `;
@@ -91,11 +148,228 @@ ${usuario.nome}
 
 .catch(erro=>{
 
+console.log(erro);
+
+alert("Erro ao carregar EPIs");
+
+});
+
+
+}
+
+
+
+
+// ============================
+// MOSTRAR CA E ESTOQUE
+// ============================
+
+document.addEventListener("change",function(e){
+
+
+if(e.target.id==="epi"){
+
+
+const opcao =
+e.target.options[e.target.selectedIndex];
+
+
+document.getElementById("numeroCA").value =
+opcao.dataset.ca || "Sem CA";
+
+
+document.getElementById("quantidade").value="";
+
+
+document.getElementById("quantidade").max =
+opcao.dataset.estoque;
+
+
+}
+
+
+});
+
+
+
+
+// ============================
+// CADASTRAR ENTREGA
+// ============================
+
+function cadastrarEntrega(event){
+
+
+event.preventDefault();
+
+
+
+const quantidade =
+Number(
+document.getElementById("quantidade").value
+);
+
+
+
+const epi =
+document.getElementById("epi");
+
+
+
+const estoque =
+Number(
+epi.options[epi.selectedIndex]
+.dataset.estoque
+);
+
+
+
+if(quantidade <=0){
+
+alert("Quantidade inválida");
+
+return;
+
+}
+
+
+
+if(quantidade > estoque){
+
+alert(
+"Estoque insuficiente. Disponível: "
++ estoque
+);
+
+return;
+
+}
+
+
+
+
+const entrega = {
+
+
+Data_Entrega:
+
+document.getElementById("dataEntrega").value,
+
+
+
+Data_Devolucao:
+
+document.getElementById("dataDevolucao").value || null,
+
+
+
+Fk_Usuario_Id_Usuario:
+
+Number(
+document.getElementById("funcionario").value
+),
+
+
+
+Aceito:false,
+
+
+
+entrega_de_epi:[
+
+{
+
+Fk_Epi_Id_Epi:
+
+Number(
+document.getElementById("epi").value
+),
+
+
+Quantidade: quantidade
+
+
+}
+
+]
+
+
+};
+
+
+
+console.log(entrega);
+
+
+
+fetch(
+"https://localhost:7175/Entrega_Epi",
+{
+
+method:"POST",
+
+credentials:"include",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:
+
+JSON.stringify(entrega)
+
+
+})
+
+.then(async res=>{
+
+
+const texto =
+await res.text();
+
+
+if(!res.ok){
+
+throw new Error(texto);
+
+}
+
+
+return texto;
+
+
+})
+
+
+.then(msg=>{
+
+
+alert("Entrega cadastrada com sucesso!");
+
+
+formulario.reset();
+
+
+document.getElementById("numeroCA").value="";
+
+
+carregarGestaoEntregas();
+
+
+})
+
+
+.catch(erro=>{
+
 
 console.log(erro);
 
+
 alert(
-"Erro ao carregar funcionários"
+"Erro ao cadastrar: "
++ erro.message
 );
 
 
@@ -109,328 +383,216 @@ alert(
 
 
 
-// ========================
-// BUSCAR EPIS
-// ========================
+// ============================
+// LISTAR ENTREGAS GESTÃO
+// ============================
+
+function carregarGestaoEntregas(){
 
 
-function carregarEPIs() {
 
-    fetch("https://localhost:7175/Epi", {
-        credentials: "include"
-    })
+fetch(
+"https://localhost:7175/Entrega_Epi/gestao-entregas",
+{
 
-    .then(res => res.json())
-
-    .then(lista => {
-
-        const select = document.getElementById("epi");
-
-        select.innerHTML = `
-            <option value="">
-                Selecione o EPI
-            </option>
-        `;
-
-
-        lista.forEach(e => {
-
-            select.innerHTML += `
-                <option
-                    value="${e.id_epi}"
-                    data-ca="${e.numero_Ca}"
-                    data-estoque="${e.qntd_Estoque}">
-                    ${e.nome.trim()}
-                </option>
-            `;
-
-        });
-
-    })
+credentials:"include"
 
 }
-// MOSTRAR NUMERO CA
-// ========================
+
+)
 
 
-document.addEventListener("change", function(e) {
 
-    if (e.target.id === "epi") {
+.then(async res=>{
 
-        const opcao = e.target.options[e.target.selectedIndex];
 
-        const ca = opcao.dataset.ca;
-        const estoque = Number(opcao.dataset.estoque);
+const texto =
+await res.text();
 
-        document.getElementById("numeroCA").value =
-            ca || "Sem CA cadastrado";
 
-document.getElementById("quantidade").value = "";
 
-document.getElementById("quantidade").max = estoque;
+console.log(
+"RETORNO GESTÃO:",
+texto
+);
 
-    }
+
+
+if(!res.ok){
+
+throw new Error(texto);
+
+}
+
+
+
+return JSON.parse(texto);
+
+
+
+})
+
+
+
+.then(lista=>{
+
+
+const pendentes =
+document.getElementById(
+"listaEntregasPendentes"
+);
+
+
+
+const confirmadas =
+document.getElementById(
+"listaEntregasConfirmadas"
+);
+
+
+
+const devolucoes =
+document.getElementById(
+"listaDevolucoesPendentes"
+);
+
+
+
+
+if(!pendentes){
+
+return;
+
+}
+
+
+
+pendentes.innerHTML="";
+
+confirmadas.innerHTML="";
+
+devolucoes.innerHTML="";
+
+
+
+
+
+lista.forEach(e=>{
+
+
+
+const linha =
+
+`
+
+<tr>
+
+<td>
+${e.funcionario}
+</td>
+
+
+<td>
+${e.epi}
+</td>
+
+
+<td>
+${e.quantidade}
+</td>
+
+
+<td>
+${formatarData(e.data_Entrega)}
+</td>
+
+
+<td>
+${e.aceito ? "Confirmado" : "Aguardando"}
+</td>
+
+
+</tr>
+
+`;
+
+
+
+
+if(e.solicitou_Devolucao){
+
+
+devolucoes.innerHTML += linha;
+
+
+}
+
+else if(e.aceito){
+
+
+confirmadas.innerHTML += linha;
+
+
+}
+
+else{
+
+
+pendentes.innerHTML += linha;
+
+
+}
+
+
 
 });
 
 
 
+})
 
 
-// ========================
-// CADASTRAR ENTREGA
-// ========================
 
+.catch(erro=>{
 
-// ========================
-// CADASTRAR ENTREGA
-// ========================
 
-function cadastrarEntrega(event){
+console.log(
+"ERRO GESTÃO:",
+erro
+);
 
-    event.preventDefault();
 
+alert(
+"Erro ao carregar entregas da gestão"
+);
 
-    const quantidade =
-    Number(document.getElementById("quantidade").value);
 
+});
 
-    const selectEpi =
-    document.getElementById("epi");
-
-
-    const estoque =
-    Number(
-        selectEpi.options[selectEpi.selectedIndex]
-        .dataset.estoque
-    );
-
-
-    console.log("Quantidade digitada:", quantidade);
-    console.log("Estoque disponível:", estoque);
-
-
-
-    // verifica estoque
-
-    if(quantidade <= 0){
-
-        alert("Informe uma quantidade válida.");
-
-        return;
-
-    }
-
-
-
-    if(quantidade > estoque){
-
-        alert(
-            "Quantidade solicitada maior que o estoque disponível! Estoque atual: "
-            + estoque
-        );
-
-        return;
-
-    }
-
-
-
-    const entrega = {
-
-
-        Data_Entrega:
-
-        document.getElementById("dataEntrega").value,
-
-
-
-        Data_Devolucao:
-
-        document.getElementById("dataDevolucao").value || null,
-
-
-
-        Fk_Usuario_Id_Usuario:
-
-        Number(
-            document.getElementById("funcionario").value
-        ),
-
-
-
-        Aceito:false,
-
-
-
-        entrega_de_epi:[
-
-            {
-
-                Fk_Epi_Id_Epi:
-
-                Number(
-                    document.getElementById("epi").value
-                ),
-
-
-                Quantidade:
-
-                quantidade
-
-            }
-
-        ]
-
-    };
-
-
-
-
-    console.log("Dados enviados:", entrega);
-
-
-
-    fetch("https://localhost:7175/Entrega_Epi",
-    {
-
-
-        method:"POST",
-
-
-        credentials:"include",
-
-
-        headers:{
-
-            "Content-Type":"application/json"
-
-        },
-
-
-        body:
-
-        JSON.stringify(entrega)
-
-
-    })
-
-
-
-    .then(async resposta=>{
-
-
-        const texto =
-        await resposta.text();
-
-
-
-        if(!resposta.ok){
-
-            throw new Error(texto);
-
-        }
-
-
-
-        return texto;
-
-
-
-    })
-
-
-
-    .then(()=>{
-
-
-        alert(
-            "Entrega cadastrada com sucesso!"
-        );
-
-
-
-        formulario.reset();
-
-
-        document.getElementById("numeroCA").value="";
-
-
-
-    })
-
-
-
-    .catch(erro=>{
-
-
-        console.log(erro);
-
-
-        alert(
-            "Erro ao cadastrar: " + erro.message
-        );
-
-
-    });
 
 
 }
-function carregarEntregas() {
-
-    fetch("https://localhost:7175/Entrega_Epi", {
-        method: "GET",
-        credentials: "include"
-    })
-
-    .then(response => {
-
-        if (!response.ok) {
-            throw new Error("Erro ao buscar entregas");
-        }
-
-        return response.json();
-
-    })
-
-    .then(entregas => {
-
-        const tabela = document.getElementById("listaEntregas");
-
-        tabela.innerHTML = "";
 
 
-        entregas.forEach(entrega => {
 
-            tabela.innerHTML += `
 
-                <tr>
 
-                    <td>${entrega.id_Entrega_EPI}</td>
+// ============================
+// FORMATAR DATA
+// ============================
 
-                    <td>${entrega.usuario?.nome ?? "Não informado"}</td>
+function formatarData(data){
 
-                    <td>${entrega.epi?.nome ?? "Não informado"}</td>
 
-                    <td>${entrega.quantidade ?? "-"}</td>
+if(!data){
 
-                    <td>${formatarData(entrega.data_Entrega)}</td>
-
-                    <td>${formatarData(entrega.data_Devolucao) ?? "-"}</td>
-
-                </tr>
-
-            `;
-
-        });
-
-    })
-
-    .catch(error => {
-
-        console.error("Erro:", error);
-
-    });
+return "-";
 
 }
 
+
+return new Date(data)
+.toLocaleDateString("pt-BR");
+
+
+}

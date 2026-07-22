@@ -12,97 +12,85 @@ function toggleMenu() {
 // ========================
 // BUSCAR ENTREGAS DO FUNCIONÁRIO LOGADO
 // ========================
+console.log("JS DA CONFIRMAÇÃO CARREGOU");
 
-function carregarEntregas() {
+function carregarEntregas(){
 
     fetch("https://localhost:7175/Entrega_Epi/minhas-entregas", {
-        method: "GET",
-        credentials: "include"
+        method:"GET",
+        credentials:"include"
     })
 
-    .then(res => {
-
-        if (res.status === 401) {
-            throw new Error("Usuário não está logado");
-        }
-
-        return res.json();
-
-    })
+    .then(res => res.json())
 
     .then(lista => {
 
-        console.log(lista);
+        console.log("RETORNO API:", lista);
+
 
         const pendentes = document.getElementById("listaPendentes");
         const confirmados = document.getElementById("listaConfirmados");
 
-        if (!pendentes || !confirmados) {
-            return;
-        }
 
         pendentes.innerHTML = "";
         confirmados.innerHTML = "";
 
-        if (lista.length === 0) {
-
-            pendentes.innerHTML = "<p>Nenhum EPI encontrado.</p>";
-            return;
-        }
 
         lista.forEach(entrega => {
 
-            const card = `
-                <div class="card-entrega">
 
-                    <h3>${entrega.epi}</h3>
+            let card = `
 
-                    <p>
-                        Data da entrega:
-                        ${formatarData(entrega.data_Entrega)}
-                    </p>
+            <div class="card-entrega">
 
-                    <p>
-                        Devolução:
-                        ${formatarData(entrega.data_Devolucao)}
-                    </p>
+                <h3>
+                    ${entrega.epi}
+                </h3>
 
-                    ${
-                        entrega.aceito
-                        ?
-                        `<span class="status-confirmado">
-                            <i class="fa-solid fa-check"></i>
-                            Confirmado
-                        </span>`
-                        :
-                        `<button
-                            id="btn-${entrega.id_Entrega_EPI}"
-                            onclick="confirmarEntrega(${entrega.id_Entrega_EPI})">
 
-                            <i class="fa-solid fa-check"></i>
-                            Confirmar recebimento
+                <p>
+                    Data entrega:
+                    ${formatarData(entrega.data_Entrega)}
+                </p>
 
-                        </button>`
-                    }
 
-                </div>
+                <p>
+                    Devolução:
+                    ${formatarData(entrega.data_Devolucao)}
+                </p>
+
+
+                <button onclick="confirmarEntrega(${entrega.id_Entrega_EPI})">
+
+                    Confirmar recebimento
+
+                </button>
+
+
+            </div>
+
             `;
 
-            if (entrega.aceito) {
+
+            if(entrega.aceito == true){
+
                 confirmados.innerHTML += card;
-            } else {
+
+            }else{
+
                 pendentes.innerHTML += card;
+
             }
+
 
         });
 
+
     })
 
-    .catch(erro => {
+    .catch(erro=>{
 
-        console.log(erro);
-
-        alert("Erro ao carregar suas entregas.");
+        console.log("ERRO:", erro);
 
     });
 
@@ -180,6 +168,73 @@ function confirmarEntrega(id){
 
 
 }
+// ========================
+// SOLICITAR DEVOLUÇÃO
+// ========================
+
+
+function solicitarDevolucao(id){
+
+
+fetch(
+
+`https://localhost:7175/Entrega_Epi/solicitar-devolucao/${id}`,
+
+{
+
+method:"PUT",
+
+credentials:"include"
+
+}
+
+)
+
+
+.then(res=>{
+
+
+if(!res.ok){
+
+throw new Error("Erro ao solicitar devolução");
+
+}
+
+
+return res.text();
+
+
+})
+
+
+.then(msg=>{
+
+
+alert(msg);
+
+
+carregarEntregas();
+
+
+})
+
+
+.catch(erro=>{
+
+
+console.log(erro);
+
+
+alert(
+"Erro ao solicitar devolução."
+);
+
+
+});
+
+
+}
+
 
 
 
@@ -214,8 +269,8 @@ function formatarData(data){
 
 window.onload=function(){
 
+    console.log("WINDOW LOAD OK");
 
     carregarEntregas();
-
 
 };

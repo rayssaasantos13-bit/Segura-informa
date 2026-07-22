@@ -16,13 +16,16 @@
 
 </head>
 
+
 <body>
 
 <div class="container">
 
+
     <!-- MENU -->
 
     <aside class="menu-lateral" id="menuLateral">
+
 
         <div class="logo-area">
 
@@ -32,130 +35,319 @@
 
         </div>
 
+
+
         <nav>
 
-            <a href="mapaGest.html">Mapa de Risco</a>
-        <a href="areaCad.html">Cadastro de Áreas</a>
-        <a href="episCad.html">Cadastro de EPIs</a>
-        <a href="episEnt.html">Entregas de EPIs</a>
-        <a href="perfilAdm.html">Perfil</a>
-                <a href="log.html">Sair</a>
+            <a href="mapaGest.html">
+                Mapa de Risco
+            </a>
+
+            <a href="areaCad.html">
+                Cadastro de Áreas
+            </a>
+
+            <a href="episCad.html">
+                Cadastro de EPIs
+            </a>
+
+            <a href="episEnt.html" class="ativo">
+                Entregas de EPIs
+            </a>
+
+            <a href="devolucoes.html">
+                Devoluções de EPIs
+            </a>
+
+            <a href="perfilAdm.html">
+                Perfil
+            </a>
+
+            <a href="log.html">
+                Sair
+            </a>
+
 
         </nav>
 
+
     </aside>
+
+
+
+
 
     <!-- CONTEÚDO -->
 
     <main class="conteudo">
 
+
         <header class="topo">
 
-    
 
             <div>
 
-                <h1>Entrega de EPIs</h1>
+                <h1>
+                    Entrega de EPIs
+                </h1>
+
 
                 <p>
-
                     Controle de entrega dos Equipamentos de Proteção Individual.
-
                 </p>
+
 
             </div>
 
+
         </header>
+
+
+
+
+
+        <!-- CADASTRAR ENTREGA -->
+
 
         <section class="card">
 
-            <h2>Nova Entrega</h2>
 
-          <form id="Entrega">
-
-    <div class="formulario">
-
-        <div class="campo">
-            <label>Funcionário</label>
-            <select id="funcionario" required>
-                <option value="">Selecione o funcionário</option>
-            </select>
-        </div>
+            <h2>
+                Nova Entrega
+            </h2>
 
 
-        <div class="campo">
-            <label>EPI</label>
-            <select id="epi" required>
-                <option value="">Selecione o EPI</option>
-            </select>
-        </div>
+
+            <form id="Entrega">
 
 
-        <div class="campo">
-            <label>Quantidade</label>
-            <input 
-                type="number"
-                id="quantidade"
-                min="1"
-                required>
-        </div>
+                <div class="formulario">
 
 
-        <div class="campo">
-            <label>Número do CA</label>
-            <input
-                type="text"
-                id="numeroCA"
-                readonly>
-        </div>
+                    <div class="campo">
+
+                        <label>
+                            Funcionário
+                        </label>
 
 
-        <div class="campo">
-            <label>Data da Entrega</label>
-            <input
-                type="date"
-                id="dataEntrega"
-                required>
-        </div>
+                        <select id="funcionario" required>
+
+                            <option value="">
+                                Selecione o funcionário
+                            </option>
 
 
-        <div class="campo">
-            <label>Data da Devolução Prevista</label>
-            <input
-                type="date"
-                id="dataDevolucao">
-        </div>
+                        </select>
 
 
-    </div>
+                    </div>
 
 
-    <div class="botoes">
-
-        <button type="submit" class="btnEntregar">
-            <i class="fa-solid fa-box"></i>
-            Entregar EPI
-        </button>
 
 
-        <button type="reset" class="btnLimpar">
-            <i class="fa-solid fa-trash"></i>
-            Limpar
-        </button>
 
-    </div>
+                    <div class="campo">
 
-</form>
+
+                        <label>
+                            EPI
+                        </label>
+
+
+                        <select id="epi" required>
+
+
+                            <option value="">
+                                Selecione o EPI
+                            </option>
+
+
+                        </select>
+
+
+                    </div>
+
+
+
+
+
+                    <div class="campo">
+
+
+                        <label>
+                            Quantidade
+                        </label>
+
+
+                        <input 
+                        type="number"
+                        id="quantidade"
+                        min="1"
+                        required>
+
+
+                    </div>
+
+
+
+
+
+                    <div class="campo">
+
+
+                        <label>
+                            Número do CA
+                        </label>
+
+
+                        <input
+                        type="text"
+                        id="numeroCA"
+                        readonly>
+
+
+                    </div>
+
+
+
+
+
+                    <div class="campo">
+
+
+                        <label>
+                            Data da Entrega
+                        </label>
+
+
+                        <input
+                        type="date"
+                        id="dataEntrega"
+                        required>
+
+
+                    </div>
+
+
+
+
+
+                    <div class="campo">
+
+
+                        <label>
+                            Data da Devolução Prevista
+                        </label>
+
+
+                        <input
+                        type="date"
+                        id="dataDevolucao">
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+                <div class="botoes">
+
+
+                    <button type="submit" class="btnEntregar">
+
+
+                        <i class="fa-solid fa-box"></i>
+
+                        Entregar EPI
+
+
+                    </button>
+
+
+
+
+
+                    <button type="reset" class="btnLimpar">
+
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        Limpar
+
+
+                    </button>
+
+
+
+                </div>
+
+
+
+            </form>
+
 
         </section>
-       
+
+
+
+
+
+
+
+
+    
+
+
+            </table>
+
+
+
+        </section>
+
+
+
+
+
+
+
+
+
+                </thead>
+
+
+
+
+
+
+            </table>
+
+
+
+        </section>
+
+
+
+
 
     </main>
 
+
+
 </div>
+
+
+
 
 <script src="../js/JavaEntrega.js"></script>
 
+
 </body>
+
 
 </html>

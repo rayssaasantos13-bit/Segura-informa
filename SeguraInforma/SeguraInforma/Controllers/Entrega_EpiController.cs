@@ -187,17 +187,67 @@ namespace SeguraInforma.Controllers
                            join epi in _context.EPI
                                 on ete.Fk_Epi_Id_Epi equals epi.Id_epi
                            where e.Fk_Usuario_Id_Usuario == int.Parse(idLogado)
+  && e.Solicitou_Devolucao == false
                            select new
                            {
                                Id_Entrega_EPI = e.Id_Entrega_EPI,
                                Aceito = e.Aceito,
                                Data_Entrega = e.Data_Entrega,
                                Data_Devolucao = e.Data_Devolucao,
-                               Epi = epi.Nome
+                               Epi = epi.Nome,
+                               Solicitou_Devolucao = e.Solicitou_Devolucao
                            };
+
 
             return Ok(entregas);
 
+        }
+        [HttpGet("minhas-devolucoes")]
+        public IActionResult MinhasDevolucoes()
+        {
+            var idLogado = HttpContext.Session.GetString("IdLogado");
+
+            if (idLogado == null)
+            {
+                return Unauthorized("Faça login.");
+            }
+
+
+            var devolucoes = from e in _context.Entrega_Epi
+
+                             join ete in _context.Entrega_Tem_Epi
+                             on e.Id_Entrega_EPI equals ete.Fk_Entrega_Epi_Id_Entrega_Epi
+
+                             join epi in _context.EPI
+                             on ete.Fk_Epi_Id_Epi equals epi.Id_epi
+
+                             where e.Fk_Usuario_Id_Usuario == int.Parse(idLogado)
+
+                             select new
+                             {
+                                 id_Entrega_EPI = e.Id_Entrega_EPI,
+
+                                 epi = epi.Nome,
+
+                                 quantidade = ete.Quantidade,
+
+                                 data_Entrega = e.Data_Entrega,
+
+                                 data_Devolucao = e.Data_Devolucao,
+
+                                 aceito = e.Aceito,
+
+                                 solicitou_Devolucao = e.Solicitou_Devolucao,
+
+                                 recebido_Pela_Gestao = e.Recebido_Pela_Gestao,
+
+                                 estado_Epi = e.Estado_Epi,
+
+                                 destino_Epi = e.Destino_Epi
+                             };
+
+
+            return Ok(devolucoes);
         }
 
         [HttpPut("confirmar/{id}")]
@@ -236,6 +286,189 @@ namespace SeguraInforma.Controllers
 
             return Ok("Entrega confirmada.");
         }
+    
+        // FUNCIONÁRIO SOLICITA DEVOLUÇÃO
+        [HttpPut("solicitar-devolucao/{id}")]
+        public IActionResult SolicitarDevolucao(int id)
+        {
+            var idLogado = HttpContext.Session.GetString("IdLogado");
+
+            if (idLogado == null)
+            {
+                return Unauthorized("Faça login.");
+            }
+
+
+            var entrega = _context.Entrega_Epi.Find(id);
+
+
+            if (entrega == null)
+            {
+                return NotFound("Entrega não encontrada.");
+            }
+
+
+            if (entrega.Fk_Usuario_Id_Usuario != int.Parse(idLogado))
+            {
+                return Unauthorized("Essa entrega não pertence a você.");
+            }
+
+
+            entrega.Solicitou_Devolucao = true;
+
+            entrega.Data_Devolucao = DateOnly.FromDateTime(DateTime.Now);
+
+
+            _context.SaveChanges();
+
+
+            return Ok("Solicitação de devolução enviada.");
+        }
+
+        // GESTÃO CONFIRMA RECEBIMENTO DO EPI
+        [HttpPut("receber-devolucao/{id}")]
+        public IActionResult ReceberDevolucao(int id)
+        {
+
+            var entrega = _context.Entrega_Epi.Find(id);
+
+
+            if (entrega == null)
+            {
+                return NotFound("Entrega não encontrada.");
+            }
+
+
+            entrega.Recebido_Pela_Gestao = true;
+
+
+            _context.SaveChanges();
+
+
+            return Ok("EPI recebido pela gestão.");
+        }
+        // GESTÃO AVALIA O ESTADO DO EPI
+        // GESTÃO AVALIA O ESTADO DO EPI
+        [HttpPut("avaliar-devolucao/{id}")]
+        public IActionResult AvaliarDevolucao(
+            int id,
+            string estado,
+            string destino,
+            string observacao)
+        {
+            var entrega = _context.Entrega_Epi.Find(id);
+
+            if (entrega == null)
+            {
+                return NotFound("Entrega não encontrada.");
+            }
+
+
+            entrega.Estado_Epi = estado;
+
+            entrega.Destino_Epi = destino;
+
+            entrega.Observacao_Devolucao = observacao;
+
+
+
+
+
+
+
+            // Se o EPI voltou para estoque, devolve a quantidade
+            if (destino.ToLower() == "estoque" && entrega.Devolucao_Processada != true)
+            {
+
+                var itens = _context.Entrega_Tem_Epi
+                    .Where(x => x.Fk_Entrega_Epi_Id_Entrega_Epi == id)
+                    .ToList();
+
+
+
+                foreach (var item in itens)
+                {
+
+                    var epi = _context.EPI
+                        .FirstOrDefault(e => e.Id_epi == item.Fk_Epi_Id_Epi);
+
+
+
+                    if (epi != null)
+                    {
+                        epi.Qntd_Estoque += item.Quantidade;
+                    }
+
+                }
+
+
+
+                // impede devolver estoque novamente
+                entrega.Devolucao_Processada = true;
+
+            }
+
+
+
+            _context.SaveChanges();
+
+
+
+            return Ok("Avaliação salva.");
+        }
+        // ============================
+        // LISTAR ENTREGAS PARA GESTÃO
+        // ============================
+
+        
+
+
+        [HttpGet("devolucoes")]
+        public IActionResult ListarDevolucoes()
+        {
+            var devolucoes =
+                from e in _context.Entrega_Epi
+
+                join u in _context.Usuarios
+                on e.Fk_Usuario_Id_Usuario equals u.Id_Usuario
+
+
+                join ete in _context.Entrega_Tem_Epi
+                on e.Id_Entrega_EPI equals ete.Fk_Entrega_Epi_Id_Entrega_Epi
+
+
+                join epi in _context.EPI
+                on ete.Fk_Epi_Id_Epi equals epi.Id_epi
+
+
+                where e.Solicitou_Devolucao == true
+                ||
+                e.Estado_Epi != null
+
+
+                select new
+                {
+                    id_Entrega_EPI = e.Id_Entrega_EPI,
+
+                    funcionario = u.Nome,
+
+                    epi = epi.Nome,
+
+                    quantidade = ete.Quantidade,
+
+                    data_Devolucao = e.Data_Devolucao,
+
+                    status = e.Estado_Epi == null
+                        ? "Aguardando avaliação"
+                        : e.Estado_Epi + " - " + e.Destino_Epi
+                };
+
+
+            return Ok(devolucoes);
+        }
+
+
+
     }
 }
 

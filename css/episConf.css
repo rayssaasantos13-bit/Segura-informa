@@ -446,6 +446,27 @@ transform:translateY(-2px);
 
 }
 
+.status-confirmado{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+background:#16A34A;
+
+color:white;
+
+padding:10px 15px;
+
+border-radius:10px;
+
+font-weight:600;
+
+margin-bottom:15px;
+
+}
 
 /* RESPONSIVO */
 
