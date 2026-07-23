@@ -124,9 +124,9 @@ transform:translateX(4px);
 
 .menu-lateral .ativo{
 
-background:var(--laranja);
 
-color:white;
+
+color:rgb(71, 68, 68);
 
 }
 

@@ -392,7 +392,7 @@ function carregarGestaoEntregas(){
 
 
 fetch(
-"https://localhost:7175/Entrega_Epi/gestao-entregas",
+"https://localhost:7175/Entrega_Epi/minhas-entregas",
 {
 
 credentials:"include"

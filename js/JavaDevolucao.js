@@ -193,10 +193,15 @@ document.getElementById("estado").value;
 const destino =
 document.getElementById("destino").value;
 
-
 const observacao =
 document.getElementById("observacao").value;
+if(observacao.trim() === ""){
 
+    alert("Digite uma descrição da avaliação.");
+
+    return;
+
+}
 
 
 fetch(

@@ -10,216 +10,201 @@
     <title>Cadastro de Áreas | Segura Informa</title>
 
     <link rel="stylesheet" href="../css/areaCad.css">
+<link rel="stylesheet" href="../css/areaCad.css">
 
-    <link rel="stylesheet"
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
-
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <!-- MENU -->
+        <aside class="menu-lateral" id="menu">
 
-    <aside class="menu-lateral" id="menu">
+            <div class="logo-area">
 
-        <div class="logo-area">
+                <img src="../imagens/logo.png" class="logo" alt="Logo">
 
-            <img src="../imagens/logo.png"
-                 class="logo"
-                 alt="Logo">
+            </div>
 
-        </div>
+            <nav>
 
-       <a href="mapaGest.html">Mapa de Risco</a>
-        <a href="areaCad.html">Cadastro de Áreas</a>
-        <a href="episCad.html">Cadastro de EPIs</a>
-        <a href="episEnt.html">Entregas de EPIs</a>
-        <a href="devolucoes.html">Devoluções de EPIs</a>
-        <a href="perfilAdm.html">Perfil</a>
+                <a href="mapaGest.html">Mapa de Risco</a>
+                <a href="areaCad.html">Cadastro de Áreas</a>
+                <a href="episCad.html">Cadastro de EPIs</a>
+                <a href="episEnt.html">Entregas de EPIs</a>
+                <a href="devolucoes.html">Devoluções de EPIs</a>
+                <a href="perfilAdm.html">Perfil</a>
                 <a href="log.html">Sair</a>
-        </nav>
 
-    </aside>
+            </nav>
 
-    <!-- CONTEÚDO -->
+        </aside>
 
-    <main class="conteudo">
+        <!-- CONTEÚDO -->
 
-        <header class="topo">
+        <main class="conteudo">
 
-
-
-            <div>
-
-                <h1>Cadastro de Áreas</h1>
-
-                <p>
-
-                    Cadastre e gerencie todas as áreas de risco da empresa.
-
-                </p>
-
-            </div>
-
-        </header>
-
-        <!-- CARD -->
-
-        <section class="card">
-
-            <h2>Informações da Área</h2>
-
-            <div class="formulario">
-
-                <div class="campo">
-
-                    <label>Área</label>
-
-                  <div class="campo">
+            <header class="topo">
 
 
 
-    <input 
-    
-    type="text"
-    id="area"
-    placeholder="Digite uma nova área"
-    required>
-</div>
+                <div>
 
-                    
+                    <h1>Cadastro de Áreas</h1>
 
-                <div class="campo">
+                    <p>
 
-                    <label>Tipo de Risco</label>
+                        Cadastre e gerencie todas as áreas de risco da empresa.
 
-                    <select id="tipoRisco">
-
-                        <option value="">Selecione</option>
-
-                        <option>Físico</option>
-                        <option>Químico</option>
-                        <option>Biológico</option>
-                        <option>Ergonômico</option>
-                        <option>Acidente</option>
-
-                    </select>
+                    </p>
 
                 </div>
 
-                <div class="campo">
+            </header>
 
-                    <label>Grau</label>
+            <!-- CARD -->
 
-                    <select id="grau">
+            <section class="card">
 
-                        <option value="">Selecione</option>
+                <h2>Informações da Área</h2>
 
-                        <option>Baixo</option>
-                        <option>Médio</option>
-                        <option>Alto</option>
+                <div class="formulario">
 
-                    </select>
+                    <div class="campo">
+
+                        <label>Área</label>
+
+                        <div class="campo">
+
+
+
+                            <input type="text" id="area" placeholder="Digite uma nova área" required>
+                        </div>
+
+
+
+                        <div class="campo">
+
+                            <label>Tipo de Risco</label>
+
+                            <select id="tipoRisco">
+
+                                <option value="">Selecione</option>
+
+                                <option>Físico</option>
+                                <option>Químico</option>
+                                <option>Biológico</option>
+                                <option>Ergonômico</option>
+                                <option>Acidente</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="campo">
+
+                            <label>Grau</label>
+
+                            <select id="grau">
+
+                                <option value="">Selecione</option>
+
+                                <option>Baixo</option>
+                                <option>Médio</option>
+                                <option>Alto</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="campo campo-grande">
+
+                            <label>Descrição</label>
+
+                            <textarea id="descricaoArea" rows="5" placeholder="Descreva o risco encontrado"></textarea>
+
+                        </div>
+                                 <div class="botoes">
+
+                        <button id="btnCadastrar" class="btnCadastrar" onclick="cadastrarArea()">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            Cadastrar
+
+                        </button>
+
+                        <button id="btnAtualizar" class="btnAtualizar" onclick="atualizarArea()" style="display:none">
+
+                            <i class="fa-solid fa-pen"></i>
+
+                            Atualizar
+
+                        </button>
+
+                        <button class="btnCancelar" onclick="limparCampos()">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                            Limpar
+
+                        </button>
+
+                    </div>
+
+                    </div>
+
+
+           
+            </section>
+            
+
+            <!-- TABELA -->
+
+            <section class="card">
+
+                <h2>Áreas Cadastradas</h2>
+
+                <div class="tabela">
+
+                    <table id="tabelaAreas">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Área</th>
+
+                                <th>Tipo</th>
+
+                                <th>Grau</th>
+
+                                <th>Descrição</th>
+
+                                <th>Ações</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        </tbody>
+
+                    </table>
 
                 </div>
 
-                <div class="campo campo-grande">
+            </section>
 
-                    <label>Descrição</label>
+        </main>
 
-                    <textarea id="descricaoArea"
-                              rows="5"
-                              placeholder="Descreva o risco encontrado"></textarea>
+    </div>
 
-                </div>
-
-            </div>
-
-            <div class="botoes">
-
-                <button
-                    id="btnCadastrar"
-                    class="btnCadastrar"
-                    onclick="cadastrarArea()">
-
-                    <i class="fa-solid fa-plus"></i>
-
-                    Cadastrar
-
-                </button>
-
-                <button
-                    id="btnAtualizar"
-                    class="btnAtualizar"
-                    onclick="atualizarArea()"
-                    style="display:none">
-
-                    <i class="fa-solid fa-pen"></i>
-
-                    Atualizar
-
-                </button>
-
-                <button
-                    class="btnCancelar"
-                    onclick="limparCampos()">
-
-                    <i class="fa-solid fa-trash"></i>
-
-                    Limpar
-
-                </button>
-
-            </div>
-
-        </section>
-
-        <!-- TABELA -->
-
-        <section class="card">
-
-            <h2>Áreas Cadastradas</h2>
-
-            <div class="tabela">
-
-                <table id="tabelaAreas">
-
-                    <thead>
-
-                        <tr>
-
-                            <th>ID</th>
-
-                            <th>Área</th>
-
-                            <th>Tipo</th>
-
-                            <th>Grau</th>
-
-                            <th>Descrição</th>
-
-                            <th>Ações</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </section>
-
-    </main>
-
-</div>
-
-<script src="../js/cadastrarAreas.js"></script>
+    <script src="../js/cadastrarAreas.js"></script>
 
 </body>
 

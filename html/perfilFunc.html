@@ -3,154 +3,140 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Perfil | Segura Informa</title>
+    <title>Perfil | Segura Informa</title>
 
-<link rel="stylesheet" href="../css/perfilFunc.css">
+    <link rel="stylesheet" href="../css/perfilFunc.css">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <!-- MENU -->
+        <!-- MENU -->
 
-    <aside class="menu-lateral" id="menuLateral">
+        <aside class="menu-lateral" id="menuLateral">
 
-        <div class="logo-area">
+            <div class="logo-area">
 
-            <img src="../imagens/logo.png"
-            class="logo">
-
-        </div>
-
-        <nav>
-<a href="mapa.html">Mapa de Risco</a>
-<a href="episConf.html">Confirmação de EPIs</a>
-<a href="perfilFunc.html">Perfil</a>
-        <a href="log.html">Sair</a>
-
-
-        </nav>
-
-    </aside>
-
-    <!-- CONTEÚDO -->
-
-    <main class="conteudo">
-
-        <header class="topo">
-
-
-            <div>
-
-                <h1>Meu Perfil</h1>
-
-                <p>
-
-                    Visualize suas informações.
-
-                </p>
+                <img src="../imagens/logo.png" class="logo">
 
             </div>
 
-        </header>
+            <nav>
+                <a href="mapa.html">Mapa de Risco</a>
+                <a href="episConf.html">Confirmação de EPIs</a>
+                <a href="devolverEpi.html">Devolver EPIs</a>
+                <a href="perfilFunc.html">Perfil</a>
+                <a href="log.html">Sair</a>
+            </nav>
 
-        <!-- PERFIL -->
+        </aside>
 
-        <section class="perfil-card">
+        <!-- CONTEÚDO -->
 
-            <div class="perfil-topo">
+        <main class="conteudo">
 
-                <div class="foto">
+            <header class="topo">
 
-                    <i class="fa-solid fa-user"></i>
-
-                </div>
 
                 <div>
 
-                    <h2 id="nome">
+                    <h1>Meu Perfil</h1>
 
-                        Carregando...
+                    <p>
 
-                    </h2>
+                        Visualize suas informações.
 
-                    <span
-                    class="cargo"
-                    id="cargo">
-
-                        Funcionário
-
-                    </span>
+                    </p>
 
                 </div>
 
-            </div>
+            </header>
 
-            <div class="dados">
+            <!-- PERFIL -->
 
-                <div class="campo">
+            <section class="perfil-card">
 
-                    <label>Nome</label>
+                <div class="perfil-topo">
 
-                    <input
-                    id="nomeInput"
-                    readonly>
+                    <div class="foto">
 
-                </div>
+                        <i class="fa-solid fa-user"></i>
 
-                <div class="campo">
+                    </div>
 
-                    <label>E-mail</label>
+                    <div>
 
-                    <input
-                    id="email"
-                    readonly>
+                        <h2 id="nome">
 
-                </div>
+                            Carregando...
 
-                <div class="campo">
+                        </h2>
 
-                    <label>Cargo</label>
+                        <span class="cargo" id="cargo">
 
-                    <input
-                    id="cargoInput"
-                    readonly>
+                            Funcionário
+
+                        </span>
+
+                    </div>
 
                 </div>
 
-            </div>
+                <div class="dados">
 
-            <div class="acoes">
+                    <div class="campo">
 
-                <button
-                class="btn-sair"
-                id="logout">
+                        <label>Nome</label>
 
-                    <i class="fa-solid fa-right-from-bracket"></i>
+                        <input id="nomeInput" readonly>
 
-                    Sair
+                    </div>
 
-                </button>
+                    <div class="campo">
 
-            </div>
+                        <label>E-mail</label>
 
-        </section>
+                        <input id="email" readonly>
 
-    </main>
+                    </div>
 
-</div>
+                    <div class="campo">
 
-<script src="../js/perfil.js"></script>
+                        <label>Cargo</label>
+
+                        <input id="cargoInput" readonly>
+
+                    </div>
+
+                </div>
+
+                <div class="acoes">
+
+                    <button class="btn-sair" id="logout">
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        Sair
+
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="../js/perfil.js"></script>
 
 </body>
 

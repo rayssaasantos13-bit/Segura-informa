@@ -256,45 +256,49 @@ namespace SeguraInforma.Controllers
 
             var nomeArquivo = Path.GetFileName(mapa.Nome_Foto);
 
-            return Ok(new
-            {
-                mapa.Id_Mapa,
-                mapa.Descricao,
-                mapa.Data_Criacao,
-                mapa.Data_Atualizacao,
+                return Ok(new
+                {
+                    mapa.Id_Mapa,
+                    mapa.Descricao,
+                    mapa.Data_Criacao,
+                    mapa.Data_Atualizacao,
 
-                Nome_Foto = $"{Request.Scheme}://{Request.Host}/uploads/{nomeArquivo}",
+                    Nome_Foto = $"{Request.Scheme}://{Request.Host}/uploads/{nomeArquivo}",
 
-                NomeArea = area?.Nome_Area,
+                    NomeArea = area?.Nome_Area,
+                    DescricaoArea = area?.Descricao,
 
-                Riscos = riscos
-            });
+                    Riscos = riscos
+               
+        });
         }
-        [HttpGet("{id}")]
-        public IActionResult BuscarMapaPorId(int id)
-        {
-            var mapa = _context.Mapa_De_Risco
-                .FirstOrDefault(m => m.Id_Mapa == id);
 
+       [HttpGet("{id}")]
+public IActionResult BuscarMapaPorId(int id)
+{
+    var mapa = _context.Mapa_De_Risco
+        .FirstOrDefault(m => m.Id_Mapa == id);
 
-            if (mapa == null)
-            {
-                return NotFound("Mapa não encontrado.");
-            }
+    if (mapa == null)
+        return NotFound();
 
+    var area = _context.Area
+        .FirstOrDefault(a => a.Id_Area == mapa.Fk_Area_Id_Area);
 
-            Console.WriteLine("Foto salva no banco: " + mapa.Nome_Foto);
+    return Ok(new
+    {
+        mapa.Id_Mapa,
+        mapa.Descricao,
+        mapa.Data_Criacao,
+        mapa.Data_Atualizacao,
+        mapa.Nome_Foto,
 
+        Fk_Area_Id_Area = mapa.Fk_Area_Id_Area,
 
-            if (mapa.Nome_Foto != null)
-            {
-                mapa.Nome_Foto =
-                $"{Request.Scheme}://{Request.Host}/uploads/{mapa.Nome_Foto}";
-            }
-
-
-            return Ok(mapa);
-        }
+        NomeArea = area?.Nome_Area,
+        DescricaoArea = area?.Descricao
+    });
+}
 
     }
 }

@@ -195,10 +195,9 @@ function novoMapa(){
 
 function selecionarMapa(id){
 
-    console.log("ID do mapa selecionado:", id);
+ 
 
-
-
+console.log("URL:", "https://localhost:7175/Mapa_De_Risco/" + id);
     fetch(
         "https://localhost:7175/Mapa_De_Risco/" + id,
         {
@@ -214,7 +213,11 @@ function selecionarMapa(id){
 
 
     .then(mapa=>{
-            console.log("Mapa recebido:", mapa);
+            console.log(mapa);
+            
+    console.log("fk_Area_Id_Area =", mapa.fk_Area_Id_Area);
+    console.log("data_Criacao =", mapa.data_Criacao);
+    console.log("data_Atualizacao =", mapa.data_Atualizacao);
 
 
         mapaEdicao = mapa;
@@ -627,7 +630,7 @@ function limparFormulario(){
 
     mapaEdicao=null;
 
-
+ document.getElementById("descricaoArea").value="";
 
     document.getElementById("descricao").value="";
 
@@ -641,7 +644,7 @@ function limparFormulario(){
     document.getElementById("areas").value="";
 
 
-    document.getElementById("descricaoArea").value="";
+   
 
 
     document.getElementById("listaRiscos").innerHTML =

@@ -5,169 +5,153 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Cadastro - Segura Informa</title>
 
-    <link rel="stylesheet"
-          href="../css/cadastro.css">
+    <link rel="stylesheet" href="../css/cadastro.css">
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <div class="card">
+        <div class="card">
 
-        <div class="logo-area">
+            <div class="logo-area">
 
-            <img src="../imagens/logo.png"
-                 alt="Segura Informa"
-                 class="logo">
-
-        </div>
-
-        <h1>Criar Conta</h1>
-
-        <p class="subtitulo">
-
-            Cadastre-se para acessar alertas,
-            mapas de risco, controle de EPIs
-            e treinamentos de segurança.
-
-        </p>
-
-        <div class="info-box">
-
-            <i class="fa-solid fa-circle-info"></i>
-
-            Seus dados serão utilizados apenas
-            para acesso ao sistema Segura Informa.
-
-        </div>
-
-        <form id="cadastroUsuario">
-
-            <div class="linha">
-
-                <div class="campo">
-
-                    <label>Nome</label>
-
-                    <div class="input-icon">
-
-                        <i class="fa-solid fa-user"></i>
-
-                        <input
-                            type="text"
-                            id="nome"
-                            placeholder="Digite seu nome">
-
-                    </div>
-
-                </div>
-
-                <div class="campo">
-
-                    <label>E-mail</label>
-
-                    <div class="input-icon">
-
-                        <i class="fa-solid fa-envelope"></i>
-
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="Digite seu e-mail">
-
-                    </div>
-
-                </div>
+                <img src="../imagens/logo.png" alt="Segura Informa" class="logo">
 
             </div>
 
-            <div class="linha">
+            <h1>Criar Conta</h1>
 
-                <div class="campo">
+            <p class="subtitulo">
 
-                    <label>Cargo</label>
+                Cadastre-se para acessar alertas,
+                mapas de risco, controle de EPIs
+                e treinamentos de segurança.
 
-                    <select id="cargo">
+            </p>
 
-                        <option value="">
+            <div class="info-box">
 
-                            Selecione um cargo
+                <i class="fa-solid fa-circle-info"></i>
 
-                        </option>
+                Seus dados serão utilizados apenas
+                para acesso ao sistema Segura Informa.
 
-                        <option>
+            </div>
 
-                            Gestão
+            <form id="cadastroUsuario">
 
-                        </option>
+                <div class="linha">
 
-                        <option>
+                    <div class="campo">
 
-                            Funcionário
+                        <label>Nome</label>
 
-                        </option>
+                        <div class="input-icon">
 
-                    </select>
+                            <i class="fa-solid fa-user"></i>
 
-                </div>
+                            <input type="text" id="nome" placeholder="Digite seu nome">
 
-                <div class="campo">
+                        </div>
 
-                    <label>Senha</label>
+                    </div>
 
-                    <div class="input-icon">
+                    <div class="campo">
 
-                        <i class="fa-solid fa-lock"></i>
+                        <label>E-mail</label>
 
-                        <input
-                            type="password"
-                            id="senha"
-                            placeholder="Digite sua senha">
+                        <div class="input-icon">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <input type="email" id="email" placeholder="Digite seu e-mail">
+
+                        </div>
 
                     </div>
 
                 </div>
 
+                <div class="linha">
+
+                    <div class="campo">
+
+                        <label>Cargo</label>
+
+                        <select id="cargo">
+
+                            <option value="">
+
+                                Selecione um cargo
+
+                            </option>
+
+                            <option>
+
+                                Gestão
+
+                            </option>
+
+                            <option>
+
+                                Funcionário
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="campo">
+
+                        <label>Senha</label>
+
+                        <div class="input-icon">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input type="password" id="senha" placeholder="Digite sua senha">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn-cadastrar">
+
+
+                    Cadastrar
+
+                </button>
+
+            </form>
+
+            <div class="rodape">
+
+                Já possui conta?
+
+                <a href="../html/log.html">
+
+                    Entrar
+
+                </a>
+
             </div>
- 
-            <button
-                type="submit"
-                class="btn-cadastrar">
-
-            
-                Cadastrar
-
-            </button>
-
-        </form>
-
-        <div class="rodape">
-
-            Já possui conta?
-
-            <a href="../html/log.html">
-
-                Entrar
-
-            </a>
 
         </div>
 
     </div>
 
-</div>
-
-<script src="../js/javaCadastro.js"></script>
+    <script src="../js/javaCadastro.js"></script>
 
 </body>
 

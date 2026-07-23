@@ -39,37 +39,53 @@ function carregarEntregas(){
         lista.forEach(entrega => {
 
 
-            let card = `
+  let botao = "";
 
-            <div class="card-entrega">
+if(entrega.aceito == true){
 
-                <h3>
-                    ${entrega.epi}
-                </h3>
+    botao = `
+        <button disabled>
+            EPI confirmado
+        </button>
+    `;
 
+}else{
 
-                <p>
-                    Data entrega:
-                    ${formatarData(entrega.data_Entrega)}
-                </p>
+    botao = `
+        <button onclick="confirmarEntrega(${entrega.id_Entrega_EPI})">
+            Confirmar recebimento
+        </button>
+    `;
 
-
-                <p>
-                    Devolução:
-                    ${formatarData(entrega.data_Devolucao)}
-                </p>
-
-
-                <button onclick="confirmarEntrega(${entrega.id_Entrega_EPI})">
-
-                    Confirmar recebimento
-
-                </button>
+}
 
 
-            </div>
+let card = `
 
-            `;
+<div class="card-entrega">
+
+    <h3>
+        ${entrega.epi}
+    </h3>
+
+
+    <p>
+        Data entrega:
+        ${formatarData(entrega.data_Entrega)}
+    </p>
+
+
+    <p>
+        Devolução:
+        ${formatarData(entrega.data_Devolucao)}
+    </p>
+
+
+    ${botao}
+
+</div>
+
+`;
 
 
             if(entrega.aceito == true){

@@ -11,288 +11,273 @@
 
     <link rel="stylesheet" href="../css/episEnt.css">
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 
 <body>
 
-<div class="container">
+    <div class="container">
 
 
-    <!-- MENU -->
+        <!-- MENU -->
 
-    <aside class="menu-lateral" id="menuLateral">
-
-
-        <div class="logo-area">
-
-            <img src="../imagens/logo.png"
-                 class="logo"
-                 alt="Segura Informa">
-
-        </div>
+        <aside class="menu-lateral" id="menuLateral">
 
 
+            <div class="logo-area">
 
-        <nav>
-
-            <a href="mapaGest.html">
-                Mapa de Risco
-            </a>
-
-            <a href="areaCad.html">
-                Cadastro de Áreas
-            </a>
-
-            <a href="episCad.html">
-                Cadastro de EPIs
-            </a>
-
-            <a href="episEnt.html" class="ativo">
-                Entregas de EPIs
-            </a>
-
-            <a href="devolucoes.html">
-                Devoluções de EPIs
-            </a>
-
-            <a href="perfilAdm.html">
-                Perfil
-            </a>
-
-            <a href="log.html">
-                Sair
-            </a>
-
-
-        </nav>
-
-
-    </aside>
-
-
-
-
-
-    <!-- CONTEÚDO -->
-
-    <main class="conteudo">
-
-
-        <header class="topo">
-
-
-            <div>
-
-                <h1>
-                    Entrega de EPIs
-                </h1>
-
-
-                <p>
-                    Controle de entrega dos Equipamentos de Proteção Individual.
-                </p>
-
+                <img src="../imagens/logo.png" class="logo" alt="Segura Informa">
 
             </div>
 
 
-        </header>
 
+            <nav>
 
+                <a href="mapaGest.html">
+                    Mapa de Risco
+                </a>
 
+                <a href="areaCad.html">
+                    Cadastro de Áreas
+                </a>
 
+                <a href="episCad.html">
+                    Cadastro de EPIs
+                </a>
 
-        <!-- CADASTRAR ENTREGA -->
+                <a href="episEnt.html" class="ativo">
+                    Entregas de EPIs
+                </a>
 
+                <a href="devolucoes.html">
+                    Devoluções de EPIs
+                </a>
 
-        <section class="card">
+                <a href="perfilAdm.html">
+                    Perfil
+                </a>
 
+                <a href="log.html">
+                    Sair
+                </a>
 
-            <h2>
-                Nova Entrega
-            </h2>
 
+            </nav>
 
 
-            <form id="Entrega">
+        </aside>
 
 
-                <div class="formulario">
 
 
-                    <div class="campo">
 
-                        <label>
-                            Funcionário
-                        </label>
+        <!-- CONTEÚDO -->
 
+        <main class="conteudo">
 
-                        <select id="funcionario" required>
 
-                            <option value="">
-                                Selecione o funcionário
-                            </option>
+            <header class="topo">
 
 
-                        </select>
+                <div>
 
+                    <h1>
+                        Entrega de EPIs
+                    </h1>
 
-                    </div>
 
-
-
-
-
-                    <div class="campo">
-
-
-                        <label>
-                            EPI
-                        </label>
-
-
-                        <select id="epi" required>
-
-
-                            <option value="">
-                                Selecione o EPI
-                            </option>
-
-
-                        </select>
-
-
-                    </div>
-
-
-
-
-
-                    <div class="campo">
-
-
-                        <label>
-                            Quantidade
-                        </label>
-
-
-                        <input 
-                        type="number"
-                        id="quantidade"
-                        min="1"
-                        required>
-
-
-                    </div>
-
-
-
-
-
-                    <div class="campo">
-
-
-                        <label>
-                            Número do CA
-                        </label>
-
-
-                        <input
-                        type="text"
-                        id="numeroCA"
-                        readonly>
-
-
-                    </div>
-
-
-
-
-
-                    <div class="campo">
-
-
-                        <label>
-                            Data da Entrega
-                        </label>
-
-
-                        <input
-                        type="date"
-                        id="dataEntrega"
-                        required>
-
-
-                    </div>
-
-
-
-
-
-                    <div class="campo">
-
-
-                        <label>
-                            Data da Devolução Prevista
-                        </label>
-
-
-                        <input
-                        type="date"
-                        id="dataDevolucao">
-
-
-                    </div>
-
+                    <p>
+                        Controle de entrega dos Equipamentos de Proteção Individual.
+                    </p>
 
 
                 </div>
 
 
-
-
-
-                <div class="botoes">
-
-
-                    <button type="submit" class="btnEntregar">
-
-
-                        <i class="fa-solid fa-box"></i>
-
-                        Entregar EPI
-
-
-                    </button>
+            </header>
 
 
 
 
 
-                    <button type="reset" class="btnLimpar">
+            <!-- CADASTRAR ENTREGA -->
 
 
-                        <i class="fa-solid fa-trash"></i>
-
-                        Limpar
+            <section class="card">
 
 
-                    </button>
-
-
-
-                </div>
+                <h2>
+                    Nova Entrega
+                </h2>
 
 
 
-            </form>
+                <form id="Entrega">
 
 
-        </section>
+                    <div class="formulario">
+
+
+                        <div class="campo">
+
+                            <label>
+                                Funcionário
+                            </label>
+
+
+                            <select id="funcionario" required>
+
+                                <option value="">
+                                    Selecione o funcionário
+                                </option>
+
+
+                            </select>
+
+
+                        </div>
+
+
+
+
+
+                        <div class="campo">
+
+
+                            <label>
+                                EPI
+                            </label>
+
+
+                            <select id="epi" required>
+
+
+                                <option value="">
+                                    Selecione o EPI
+                                </option>
+
+
+                            </select>
+
+
+                        </div>
+
+
+
+
+
+                        <div class="campo">
+
+
+                            <label>
+                                Quantidade
+                            </label>
+
+
+                            <input type="number" id="quantidade" min="1" required>
+
+
+                        </div>
+
+
+
+
+
+                        <div class="campo">
+
+
+                            <label>
+                                Número do CA
+                            </label>
+
+
+                            <input type="text" id="numeroCA" readonly>
+
+
+                        </div>
+
+
+
+
+
+                        <div class="campo">
+
+
+                            <label>
+                                Data da Entrega
+                            </label>
+
+
+                            <input type="date" id="dataEntrega" required>
+
+
+                        </div>
+
+
+
+
+
+                        <div class="campo">
+
+
+                            <label>
+                                Data da Devolução Prevista
+                            </label>
+
+
+                            <input type="date" id="dataDevolucao">
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="botoes">
+
+
+                        <button type="submit" class="btnEntregar">
+
+
+                            <i class="fa-solid fa-box"></i>
+
+                            Entregar EPI
+
+
+                        </button>
+
+
+
+
+
+                        <button type="reset" class="btnLimpar">
+
+
+                            <i class="fa-solid fa-trash"></i>
+
+                            Limpar
+
+
+                        </button>
+
+
+
+                    </div>
+
+
+
+                </form>
+
+
+            </section>
 
 
 
@@ -301,14 +286,14 @@
 
 
 
-    
+
 
 
             </table>
 
 
 
-        </section>
+            </section>
 
 
 
@@ -318,7 +303,7 @@
 
 
 
-                </thead>
+            </thead>
 
 
 
@@ -329,22 +314,22 @@
 
 
 
-        </section>
+            </section>
 
 
 
 
 
-    </main>
+        </main>
 
 
 
-</div>
+    </div>
 
 
 
 
-<script src="../js/JavaEntrega.js"></script>
+    <script src="../js/JavaEntrega.js"></script>
 
 
 </body>

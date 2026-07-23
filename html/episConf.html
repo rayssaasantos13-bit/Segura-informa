@@ -3,154 +3,123 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Confirmação de EPIs</title>
+    <title>Confirmação de EPIs</title>
 
-<link rel="stylesheet" href="../css/episConf.css">
+    <link rel="stylesheet" href="../css/episConf.css">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <!-- MENU -->
+        <!-- MENU -->
 
-    <aside class="menu-lateral" id="menuLateral">
+        <aside class="menu-lateral" id="menuLateral">
 
-        <div class="logo-area">
+            <div class="logo-area">
 
-            <img src="../imagens/logo.png"
-                 class="logo">
-
-        </div>
-
-        <nav>
-
-            <a href="mapa.html">
-
-                <i class="fa-solid fa-map-location-dot"></i>
-
-                Mapa de Risco
-
-            </a>
-
-            <a href="episConf.html" class="ativo">
-
-                <i class="fa-solid fa-box-open"></i>
-
-                Confirmação de EPIs
-
-            </a>
-            <a href="devolverEpi.html">
-Devolver EPI
-</a>
-
-
-            <a href="perfilFunc.html">
-
-                <i class="fa-solid fa-user"></i>
-
-                Perfil
-
-            </a>
-
-            <a href="log.html">
-
-                <i class="fa-solid fa-right-from-bracket"></i>
-
-                Sair
-
-            </a>
-
-        </nav>
-
-    </aside>
-
-    <!-- CONTEÚDO -->
-
-    <main class="conteudo">
-
-        <header class="topo">
-
-          
-
-            <div>
-
-                <h1>Confirmação de EPIs</h1>
-
-                <p>
-
-                    Confirme as entregas realizadas aos colaboradores.
-
-                </p>
+                <img src="../imagens/logo.png" class="logo">
 
             </div>
 
-        </header>
+            <nav>
+                <a href="mapa.html">Mapa de Risco</a>
+                <a href="episConf.html">Confirmação de EPIs</a>
+                <a href="devolverEpi.html">Devolver EPIs</a>
+                <a href="perfilFunc.html">Perfil</a>
+                <a href="log.html">Sair</a>
 
-       <section class="card">
 
-<h2>Minhas entregas pendentes</h2>
 
-<div id="lista"></div>
+            </nav>
 
-</section>
+        </aside>
+
+        <!-- CONTEÚDO -->
+
+        <main class="conteudo">
+
+            <header class="topo">
+
+
+
+                <div>
+
+                    <h1>Confirmação de EPIs</h1>
+
+                    <p>
+
+                        Confirme as entregas realizadas aos colaboradores.
+
+                    </p>
+
+                </div>
+
+            </header>
+
+            <section class="card">
+
+                <h2>Minhas entregas pendentes</h2>
+
+                <div id="lista"></div>
+
+            </section>
 
             <form>
 
                 <div class="formulario">
 
-                  
-
-             
-
-<div class="listas-epis">
 
 
-    <div class="coluna-epis">
-<br>
-        <h2>EPIs Pendentes</h2>
 
-        <div class="lista-scroll">
 
-            <div id="listaPendentes"></div>
+                    <div class="listas-epis">
 
-        </div>
+
+                        <div class="coluna-epis">
+                            <br>
+                            <h2>EPIs Pendentes</h2>
+
+                            <div class="lista-scroll">
+
+                                <div id="listaPendentes"></div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="coluna-epis">
+                            <br>
+                            <h2>EPIs Confirmados</h2>
+
+                            <div class="lista-scroll">
+
+                                <div id="listaConfirmados"></div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    </section>
+
+        </main>
 
     </div>
 
-
-
-    <div class="coluna-epis">
-<br>
-        <h2>EPIs Confirmados</h2>
-
-        <div class="lista-scroll">
-
-            <div id="listaConfirmados"></div>
-
-        </div>
-
-    </div>
-
-
-</div>
-
-
-        </section>
-
-    </main>
-
-</div>
-
-<script src="../js/javaConfirmaEPIS.js"></script>
+    <script src="../js/javaConfirmaEPIS.js"></script>
 
 </body>
 

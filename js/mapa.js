@@ -310,7 +310,7 @@ function PesquisarMapa() {
 
 
         const descricaoArea =
-            document.getElementById("descricaoAreaMapa");
+            document.getElementById("descricaoArea");
 
 
 
@@ -318,7 +318,7 @@ function PesquisarMapa() {
 
 
             descricaoArea.textContent =
-                mapa.descricao || "";
+                mapa.descricaoArea || "";
 
 
         }

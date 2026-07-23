@@ -3,14 +3,14 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Devoluções | Segura Informa</title>
+    <title>Devoluções | Segura Informa</title>
 
 
-<link rel="stylesheet" href="../css/devolucoes.css">
+    <link rel="stylesheet" href="../css/devolucoes.css">
 
 
 </head>
@@ -19,203 +19,201 @@
 <body>
 
 
-<div class="container">
+    <div class="container">
 
 
-<aside class="menu-lateral">
+        <aside class="menu-lateral">
 
 
-<div class="logo-area">
+            <div class="logo-area">
 
-<img src="../imagens/logo.png" class="logo">
+                <img src="../imagens/logo.png" class="logo">
 
-</div>
+            </div>
 
 
-<nav>
+            <nav>
 
-<a href="mapaGest.html">Mapa de Risco</a>
+                <a href="mapaGest.html">Mapa de Risco</a>
 
-<a href="areaCad.html">Cadastro de Áreas</a>
+                <a href="areaCad.html">Cadastro de Áreas</a>
 
-<a href="episCad.html">Cadastro de EPIs</a>
+                <a href="episCad.html">Cadastro de EPIs</a>
 
-<a href="episEnt.html">Entregas de EPIs</a>
+                <a href="episEnt.html">Entregas de EPIs</a>
 
-<a href="devolucoes.html">
-Devoluções
-</a>
+                <a href="devolucoes.html">Devoluções de EPIs</a>
 
-<a href="perfilAdm.html">
-Perfil
-</a>
+                <a href="perfilAdm.html">
+                    Perfil
+                </a>
 
-<a href="log.html">
-Sair
-</a>
+                <a href="log.html">
+                    Sair
+                </a>
 
 
-</nav>
+            </nav>
 
 
-</aside>
+        </aside>
 
 
 
 
-<main class="conteudo">
+        <main class="conteudo">
 
 
-<header class="topo">
+            <header class="topo">
 
-<h1>
-Devoluções de EPIs
-</h1>
+                <h1>
+                    Devoluções de EPIs
+                </h1>
 
-<p>
-Avaliação dos equipamentos devolvidos pelos funcionários.
-</p>
+                <p>
+                    Avaliação dos equipamentos devolvidos pelos funcionários.
+                </p>
 
 
-</header>
+            </header>
 
 
 
 
-<section class="card">
+            <section class="card">
 
 
-<h2>Devoluções pendentes</h2>
+                <h2>Devoluções pendentes</h2>
 
-<table>
+                <table>
 
-<thead>
-<tr>
-<th>ID</th>
-<th>Funcionário</th>
-<th>EPI</th>
-<th>Quantidade</th>
-<th>Data</th>
-<th>Status</th>
-<th>Ação</th>
-</tr>
-</thead>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Funcionário</th>
+                            <th>EPI</th>
+                            <th>Quantidade</th>
+                            <th>Data</th>
+                            <th>Status</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
 
-<tbody id="listaPendentes"></tbody>
+                    <tbody id="listaPendentes"></tbody>
 
-</table>
+                </table>
 
 
 
-<br><br>
+                <br><br>
 
 
-<h2>Devoluções avaliadas</h2>
+                <h2>Devoluções avaliadas</h2>
 
 
-<table>
+                <table>
 
-<thead>
-<tr>
-<th>ID</th>
-<th>Funcionário</th>
-<th>EPI</th>
-<th>Quantidade</th>
-<th>Data</th>
-<th>Status</th>
-</tr>
-</thead>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Funcionário</th>
+                            <th>EPI</th>
+                            <th>Quantidade</th>
+                            <th>Data</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
 
 
-<tbody id="listaAvaliadas"></tbody>
+                    <tbody id="listaAvaliadas"></tbody>
 
 
-</table>
+                </table>
 
-<div id="modalAvaliacao" class="modal">
+                <div id="modalAvaliacao" class="modal">
 
-    <div class="modal-conteudo">
+                    <div class="modal-conteudo">
 
-        <h2>Avaliar EPI devolvido</h2>
+                        <h2>Avaliar EPI devolvido</h2>
 
 
-        <input type="hidden" id="idDevolucao">
+                        <input type="hidden" id="idDevolucao">
 
 
-        <label>
-            Estado do EPI
-        </label>
+                        <label>
+                            Estado do EPI
+                        </label>
 
-        <select id="estado">
+                        <select id="estado">
 
-            <option value="bom">
-                Bom
-            </option>
+                            <option value="bom">
+                                Bom
+                            </option>
 
-            <option value="danificado">
-                Danificado
-            </option>
+                            <option value="danificado">
+                                Danificado
+                            </option>
 
-            <option value="inutilizavel">
-                Inutilizável
-            </option>
+                            <option value="inutilizavel">
+                                Inutilizável
+                            </option>
 
-        </select>
+                        </select>
 
 
 
-        <label>
-            Destino
-        </label>
+                        <label>
+                            Destino
+                        </label>
 
-        <select id="destino">
+                        <select id="destino">
 
-            <option value="estoque">
-                Estoque
-            </option>
+                            <option value="estoque">
+                                Estoque
+                            </option>
 
-            <option value="manutencao">
-                Manutenção
-            </option>
+                            <option value="manutencao">
+                                Manutenção
+                            </option>
 
-            <option value="descarte">
-                Descarte
-            </option>
+                            <option value="descarte">
+                                Descarte
+                            </option>
 
-        </select>
+                        </select>
 
 
 
-        <label>
-            Observação
-        </label>
+                        <label>
+                            Observação
+                        </label>
 
-        <textarea id="observacao"></textarea>
+                        <textarea id="observacao"></textarea>
 
 
 
-        <button onclick="salvarAvaliacao()">
-            Finalizar avaliação
-        </button>
+                        <button onclick="salvarAvaliacao()">
+                            Finalizar avaliação
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
 
 
     </div>
 
-</div>
 
 
-</section>
-
-
-</main>
-
-
-
-</div>
-
-
-
-<script src="../js/JavaDevolucao.js"></script>
+    <script src="../js/JavaDevolucao.js"></script>
 
 
 </body>
