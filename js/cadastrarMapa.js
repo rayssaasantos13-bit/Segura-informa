@@ -162,7 +162,13 @@ function carregarMapas(){
 
         console.log(error);
 
-        alert("Erro ao carregar mapas.");
+      Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: "Erro ao carregar mapas.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
 
     });
@@ -356,7 +362,13 @@ function cadastrarMapa(){
     if(area==""){
 
 
-        alert("Selecione uma área.");
+       Swal.fire({
+    icon: "warning",
+    title: "Atenção!",
+    text: "Selecione uma área.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
         return;
 
@@ -438,7 +450,13 @@ function cadastrarMapa(){
 
 
 
-        alert("Mapa cadastrado!");
+       Swal.fire({
+    icon: "success",
+    title: "Sucesso!",
+    text: "Mapa cadastrado com sucesso.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
         carregarMapas();
 
@@ -451,7 +469,13 @@ function cadastrarMapa(){
     .catch(()=>{
 
 
-        alert("Erro ao cadastrar mapa.");
+      Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: "Erro ao cadastrar mapa.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
     });
 
@@ -473,7 +497,13 @@ function editarMapa(){
     if(!mapaEdicao){
 
 
-        alert("Selecione um mapa para editar.");
+        Swal.fire({
+    icon: "warning",
+    title: "Atenção!",
+    text: "Selecione um mapa para editar.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
         return;
 
@@ -553,7 +583,13 @@ function editarMapa(){
     .then(()=>{
 
 
-        alert("Mapa atualizado!");
+      Swal.fire({
+    icon: "success",
+    title: "Atualizado!",
+    text: "Mapa atualizado com sucesso.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
         carregarMapas();
 
@@ -574,16 +610,26 @@ function editarMapa(){
 // ============================
 
 
-function deletarMapa(id){
+async function deletarMapa(id){
+    const confirmacao = await Swal.fire({
 
+        title: "Tem certeza?",
+        text: "Deseja excluir este mapa?",
+        icon: "warning",
 
+        showCancelButton: true,
 
-    if(!confirm("Excluir mapa?")){
+        confirmButtonColor: "#f97316",
+        cancelButtonColor: "#6c757d",
 
+        confirmButtonText: "Sim, excluir",
+        cancelButtonText: "Cancelar"
+
+    });
+
+    if(!confirmacao.isConfirmed){
         return;
-
     }
-
 
 
 
@@ -603,7 +649,13 @@ function deletarMapa(id){
     .then(()=>{
 
 
-        alert("Mapa excluído!");
+     Swal.fire({
+    icon: "success",
+    title: "Excluído!",
+    text: "Mapa excluído com sucesso.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
         carregarMapas();
 

@@ -11,8 +11,49 @@ function abrirMenu() {
 // CARREGAR
 window.onload = function () {
     listarRiscos();
+    carregarListaRiscos();
 };
+function carregarListaRiscos() {
 
+    fetch("https://localhost:7175/Risco", {
+
+        method: "GET",
+
+        credentials: "include"
+
+    })
+
+    .then(response => response.json())
+
+    .then(riscos => {
+    console.log(riscos);
+
+        const lista = document.getElementById("listaRiscos");
+
+        lista.innerHTML = "";
+
+        riscos.forEach(risco => {
+
+            lista.innerHTML += `
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="${risco.id_Risco}">
+
+                    ${risco.tipo_Risco}
+                    - Grau ${risco.grau_Risco}
+
+                </label>
+
+            `;
+
+        });
+
+    });
+
+}
 // ===========================
 // LISTAR RISCOS
 // ===========================
@@ -78,53 +119,20 @@ function listarRiscos() {
 // ===========================
 // CADASTRAR
 // ===========================
-function cadastrarArea() {
+async function cadastrarArea() {
 
-    let area = {
+    try {
 
-        Nome_Area: document.getElementById("area").value,
+        const area = {
 
-        Descricao: document.getElementById("descricaoArea").value
-
-    };
-
-    fetch("https://localhost:7175/Area", {
-
-        method: "POST",
-
-        headers: {
-            "Content-Type": "application/json"
-        },
-
-        credentials: "include",
-
-        body: JSON.stringify(area)
-
-    })
-
-    .then(response => {
-
-        if (!response.ok) {
-            throw new Error("Erro ao cadastrar área.");
-        }
-
-        return response.json();
-
-    })
-
-    .then(areaCriada => {
-
-        let risco = {
-
-            Tipo_Risco: document.getElementById("tipoRisco").value,
-
-            Grau_Risco: document.getElementById("grau").value,
+            Nome_Area: document.getElementById("area").value,
 
             Descricao: document.getElementById("descricaoArea").value
 
         };
 
-        return fetch("https://localhost:7175/Risco", {
+        // Cadastra a Área
+        const respostaArea = await fetch("https://localhost:7175/Area", {
 
             method: "POST",
 
@@ -134,31 +142,52 @@ function cadastrarArea() {
 
             credentials: "include",
 
-            body: JSON.stringify(risco)
+            body: JSON.stringify(area)
 
-        })
+        });
 
-        .then(response => {
+        if (!respostaArea.ok) {
+            throw new Error("Erro ao cadastrar área.");
+        }
 
-            if (!response.ok) {
-                throw new Error("Erro ao cadastrar risco.");
-            }
+        const areaCriada = await respostaArea.json();
 
-            return response.json();
+        // Pega todos os riscos marcados
+        const riscosSelecionados = [];
 
-        })
+        document
+            .querySelectorAll("#listaRiscos input:checked")
+            .forEach(item => {
 
-        .then(riscoCriado => {
+                riscosSelecionados.push(parseInt(item.value));
 
-            let relacao = {
+            });
+
+        if (riscosSelecionados.length === 0) {
+
+            Swal.fire({
+    icon: "warning",
+    title: "Atenção!",
+    text: "Selecione pelo menos um risco.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
+            return;
+
+        }
+
+        // Cria a relação Área x Risco
+        for (const idRisco of riscosSelecionados) {
+
+            const relacao = {
 
                 Fk_Area_Id_Area: areaCriada.id_Area || areaCriada.Id_Area,
 
-                Fk_Id_Risco: riscoCriado.id_Risco || riscoCriado.Id_Risco
+                Fk_Id_Risco: idRisco
 
             };
 
-            return fetch("https://localhost:7175/Area_Contem_Risco", {
+            const respostaRelacao = await fetch("https://localhost:7175/Area_Contem_Risco", {
 
                 method: "POST",
 
@@ -172,34 +201,43 @@ function cadastrarArea() {
 
             });
 
-        });
+            if (!respostaRelacao.ok) {
 
-    })
+                throw new Error("Erro ao criar relação.");
 
-    .then(response => {
+            }
 
-        if (!response.ok) {
-            throw new Error("Erro ao criar relação.");
         }
 
-        alert("Cadastro realizado com sucesso!");
+       Swal.fire({
+    icon: "success",
+    title: "Sucesso!",
+    text: "Área cadastrada com sucesso.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
         limparCampos();
 
         listarRiscos();
 
-    })
+    }
 
-    .catch(error => {
+    catch (erro) {
 
-        console.log(error);
+        console.log(erro);
 
-        alert("Erro ao cadastrar.");
+       Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: "Erro ao cadastrar.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
-    });
+    }
 
 }
-
 // ===========================
 // EDITAR
 // ===========================
@@ -213,12 +251,6 @@ function editarArea(botao) {
 
     document.getElementById("area").value =
         linhaSelecionada.cells[1].innerHTML.trim();
-
-    document.getElementById("tipoRisco").value =
-        linhaSelecionada.cells[2].innerHTML.trim();
-
-    document.getElementById("grau").value =
-        linhaSelecionada.cells[3].innerHTML.trim();
 
     document.getElementById("descricaoArea").value =
         linhaSelecionada.cells[4].innerHTML.trim();
@@ -263,39 +295,44 @@ async function atualizarArea() {
             throw new Error("Erro ao atualizar a área.");
         }
 
-        // Atualiza o Risco
-        const respostaRisco = await fetch(
-            "https://localhost:7175/Risco/" + idRiscoSelecionado,
-            {
-                method: "PUT",
+        //// Atualiza o Risco
+const respostaRisco = await fetch(
+    "https://localhost:7175/Risco/" + idRiscoSelecionado,
+    {
+        method: "PUT",
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+        headers: {
+            "Content-Type": "application/json"
+        },
 
-                credentials: "include",
+        credentials: "include",
 
-                body: JSON.stringify({
+        body: JSON.stringify({
 
-                    Tipo_Risco:
-                        document.getElementById("tipoRisco").value,
+            Tipo_Risco:
+                document.getElementById("tipoRisco").value,
 
-                    Grau_Risco:
-                        document.getElementById("grau").value,
+            Grau_Risco:
+                document.getElementById("grau").value,
 
-                    Descricao:
-                        document.getElementById("descricaoArea").value
+            Descricao:
+                document.getElementById("descricaoArea").value
 
-                })
+        })
 
-            }
-        );
+    }
+);
 
-        if (!respostaRisco.ok) {
-            throw new Error("Erro ao atualizar o risco.");
-        }
-
-        alert("Área e risco atualizados com sucesso!");
+if (!respostaRisco.ok) {
+    throw new Error("Erro ao atualizar o risco.");
+}
+       Swal.fire({
+    icon: "success",
+    title: "Atualizado!",
+    text: "Área e risco atualizados com sucesso.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
         limparCampos();
 
@@ -306,7 +343,13 @@ async function atualizarArea() {
 
         console.log(erro);
 
-        alert("Erro ao atualizar.");
+        Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: "Erro ao atualizar.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
     }
 
@@ -317,10 +360,25 @@ async function atualizarArea() {
 // ===========================
 async function excluirArea(idArea, idRisco) {
 
-    if (!confirm("Deseja realmente excluir este registro?")) {
-        return;
-    }
+   const confirmacao = await Swal.fire({
 
+    title: "Tem certeza?",
+    text: "Deseja realmente excluir este registro?",
+    icon: "warning",
+
+    showCancelButton: true,
+
+    confirmButtonColor: "#f97316",
+    cancelButtonColor: "#6c757d",
+
+    confirmButtonText: "Sim, excluir",
+    cancelButtonText: "Cancelar"
+
+});
+
+if (!confirmacao.isConfirmed) {
+    return;
+}
     try {
 
         // Exclui o risco (seu controller já remove a relação Area_Contem_Risco)
@@ -349,7 +407,13 @@ async function excluirArea(idArea, idRisco) {
             throw new Error("Erro ao excluir a área.");
         }
 
-        alert("Área e risco excluídos com sucesso!");
+     Swal.fire({
+    icon: "success",
+    title: "Excluído!",
+    text: "Área e risco excluídos com sucesso.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
         limparCampos();
 
@@ -360,7 +424,13 @@ async function excluirArea(idArea, idRisco) {
 
         console.log(erro);
 
-        alert("Erro ao excluir.");
+       Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: "Erro ao excluir.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
     }
 
@@ -373,11 +443,12 @@ function limparCampos() {
 
     document.getElementById("area").value = "";
 
-    document.getElementById("tipoRisco").selectedIndex = 0;
-
-    document.getElementById("grau").selectedIndex = 0;
-
     document.getElementById("descricaoArea").value = "";
+
+    // Desmarca todos os riscos
+    document.querySelectorAll("#listaRiscos input").forEach(item => {
+        item.checked = false;
+    });
 
     linhaSelecionada = null;
 
@@ -390,7 +461,6 @@ function limparCampos() {
     document.getElementById("btnAtualizar").style.display = "none";
 
 }
-
 // ===========================
 // EDITAR EPI
 // ===========================
@@ -461,7 +531,13 @@ async function atualizarEpi() {
             throw new Error("Erro ao atualizar o EPI.");
         }
 
-        alert("EPI atualizado com sucesso!");
+       Swal.fire({
+    icon: "success",
+    title: "Sucesso!",
+    text: "EPI atualizado com sucesso.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
         limparCampos();
 
@@ -472,7 +548,13 @@ async function atualizarEpi() {
 
         console.log(erro);
 
-        alert("Erro ao atualizar.");
+       Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: "Erro ao atualizar.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
     }
 
@@ -483,9 +565,25 @@ async function atualizarEpi() {
 // ===========================
 async function excluirEpi(idEpi) {
 
-    if (!confirm("Deseja realmente excluir este EPI?")) {
-        return;
-    }
+  const confirmacao = await Swal.fire({
+
+    title: "Tem certeza?",
+    text: "Deseja realmente excluir este EPI?",
+    icon: "warning",
+
+    showCancelButton: true,
+
+    confirmButtonColor: "#f97316",
+    cancelButtonColor: "#6c757d",
+
+    confirmButtonText: "Sim, excluir",
+    cancelButtonText: "Cancelar"
+
+});
+
+if (!confirmacao.isConfirmed) {
+    return;
+}
 
     try {
 
@@ -501,8 +599,13 @@ async function excluirEpi(idEpi) {
             throw new Error("Erro ao excluir o EPI.");
         }
 
-        alert("EPI excluído com sucesso!");
-
+    Swal.fire({
+    icon: "success",
+    title: "Excluído!",
+    text: "EPI excluído com sucesso.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
         limparCampos();
 
         listarEpis();
@@ -512,7 +615,13 @@ async function excluirEpi(idEpi) {
 
         console.log(erro);
 
-        alert("Erro ao excluir.");
+     Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: "Erro ao excluir.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
     }
 

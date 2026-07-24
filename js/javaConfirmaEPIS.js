@@ -163,7 +163,13 @@ function confirmarEntrega(id){
 
 .then(msg => {
 
-    alert("EPI confirmado com sucesso!");
+  Swal.fire({
+    icon: "success",
+    title: "Confirmado!",
+    text: "EPI confirmado com sucesso.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
     carregarEntregas();
 
@@ -174,9 +180,13 @@ function confirmarEntrega(id){
 
         console.log(erro);
 
-        alert(
-        erro.message
-        );
+       Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: erro.message,
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
 
     });
@@ -226,7 +236,13 @@ return res.text();
 .then(msg=>{
 
 
-alert(msg);
+Swal.fire({
+    icon: "success",
+    title: "Solicitação enviada!",
+    text: msg,
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
 
 carregarEntregas();
@@ -241,10 +257,13 @@ carregarEntregas();
 console.log(erro);
 
 
-alert(
-"Erro ao solicitar devolução."
-);
-
+Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: "Erro ao solicitar devolução.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
 });
 

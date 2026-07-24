@@ -194,7 +194,13 @@ lista.forEach(e=>{
 
     console.log(erro);
 
-    alert("Erro ao carregar devoluções.");
+ Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: "Erro ao carregar devoluções.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
 });
 
@@ -228,7 +234,13 @@ credentials:"include"
 .then(msg=>{
 
 
-alert(msg);
+Swal.fire({
+    icon: "success",
+    title: "Solicitação enviada!",
+    text: msg,
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
 
 carregarDevolucoesFuncionario();

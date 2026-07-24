@@ -142,7 +142,13 @@ function carregarAreas(){
 
         console.log("Erro:", erro);
 
-        alert("Erro ao carregar áreas.");
+     Swal.fire({
+    title: "Atenção!",
+    text: "Erro ao carregar áreas.",
+    icon: "warning",
+    confirmButtonColor: "#ff8c00",
+    confirmButtonText: "OK"
+});
 
 
     });
@@ -165,7 +171,13 @@ function PesquisarMapa() {
     if (idArea === "") {
 
 
-        alert("Selecione uma área.");
+       Swal.fire({
+    title: "Atenção!",
+    text: "Selecione uma área.",
+    icon: "warning",
+    confirmButtonColor: "#ff8c00",
+    confirmButtonText: "OK"
+});
 
         return;
 
@@ -424,9 +436,13 @@ function PesquisarMapa() {
 
 
 
-        alert(
-            "Nenhum mapa encontrado para esta área."
-        );
+Swal.fire({
+    title: "Atenção!",
+    text: "Nenhum mapa encontrado para esta área.",
+    icon: "warning",
+    confirmButtonColor: "#ff8c00",
+    confirmButtonText: "OK"
+});
 
 
 
@@ -477,52 +493,64 @@ function editarMapaTela(id){
 // EXCLUIR MAPA
 // ============================
 
-function deletarMapaTela(id){
+async function deletarMapaTela(id){
 
 
-    if(!confirm("Deseja excluir este mapa?")){
+Swal.fire({
+    title: "Tem certeza?",
+    text: "Deseja excluir este mapa?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#ff8c00",
+    cancelButtonColor: "#808080",
+    confirmButtonText: "Sim, excluir!",
+    cancelButtonText: "Cancelar"
 
-        return;
+}).then((resultado) => {
+
+    if (resultado.isConfirmed) {
+
+        fetch("https://localhost:7175/Mapa_De_Risco/" + id, {
+
+            method:"DELETE",
+
+            credentials:"include"
+
+        })
+
+        .then(response=>{
+
+            if(response.ok){
+
+                Swal.fire({
+                    title: "Sucesso!",
+                    text: "Mapa excluído com sucesso!",
+                    icon: "success",
+                    confirmButtonColor: "#ff8c00",
+                    confirmButtonText: "OK"
+                });
+
+                location.reload();
+
+            }
+
+            else{
+
+                Swal.fire({
+                    title: "Erro!",
+                    text: "Erro ao excluir mapa.",
+                    icon: "error",
+                    confirmButtonColor: "#ff8c00",
+                    confirmButtonText: "OK"
+                });
+
+            }
+
+        });
 
     }
 
-
-
-    fetch("https://localhost:7175/Mapa_De_Risco/" + id, {
-
-
-        method:"DELETE",
-
-        credentials:"include"
-
-
-    })
-
-
-    .then(response=>{
-
-
-        if(response.ok){
-
-
-            alert("Mapa excluído com sucesso!");
-
-            location.reload();
-
-
-        }
-
-        else{
-
-
-            alert("Erro ao excluir mapa.");
-
-        }
-
-
-    });
-
-
+});
 }
 // ======================================
 // MOSTRAR RISCOS

@@ -78,7 +78,13 @@ ${usuario.nome}
 
 console.log(erro);
 
-alert("Erro ao carregar funcionários");
+Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: "Erro ao carregar funcionários.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
 });
 
@@ -150,8 +156,13 @@ ${e.nome.trim()}
 
 console.log(erro);
 
-alert("Erro ao carregar EPIs");
-
+Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: "Erro ao carregar EPIs.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 });
 
 
@@ -226,7 +237,13 @@ epi.options[epi.selectedIndex]
 
 if(quantidade <=0){
 
-alert("Quantidade inválida");
+Swal.fire({
+    icon: "warning",
+    title: "Atenção!",
+    text: "Quantidade inválida.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
 return;
 
@@ -236,10 +253,13 @@ return;
 
 if(quantidade > estoque){
 
-alert(
-"Estoque insuficiente. Disponível: "
-+ estoque
-);
+Swal.fire({
+    icon: "warning",
+    title: "Estoque insuficiente!",
+    text: "Disponível: " + estoque,
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
 return;
 
@@ -346,7 +366,13 @@ return texto;
 .then(msg=>{
 
 
-alert("Entrega cadastrada com sucesso!");
+Swal.fire({
+    icon: "success",
+    title: "Sucesso!",
+    text: "Entrega cadastrada com sucesso.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
 
 formulario.reset();
@@ -367,11 +393,13 @@ carregarGestaoEntregas();
 console.log(erro);
 
 
-alert(
-"Erro ao cadastrar: "
-+ erro.message
-);
-
+Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: "Erro ao cadastrar: " + erro.message,
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
 });
 
@@ -561,11 +589,13 @@ console.log(
 erro
 );
 
-
-alert(
-"Erro ao carregar entregas da gestão"
-);
-
+Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: "Erro ao carregar entregas da gestão.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
 });
 

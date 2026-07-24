@@ -150,7 +150,13 @@ function carregarDevolucoes(){
 
         console.log(erro);
 
-        alert("Erro ao carregar devoluções");
+     Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: "Erro ao carregar devoluções.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
     });
 
@@ -197,7 +203,13 @@ const observacao =
 document.getElementById("observacao").value;
 if(observacao.trim() === ""){
 
-    alert("Digite uma descrição da avaliação.");
+   Swal.fire({
+    icon: "warning",
+    title: "Atenção!",
+    text: "Digite uma descrição da avaliação.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
     return;
 
@@ -223,7 +235,13 @@ credentials:"include"
 .then(msg=>{
 
 
-alert(msg);
+Swal.fire({
+    icon: "success",
+    title: "Avaliação salva!",
+    text: msg,
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
 
 document.getElementById("modalAvaliacao")

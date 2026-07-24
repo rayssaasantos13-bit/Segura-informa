@@ -67,7 +67,13 @@ function listarEpis() {
 
         console.error(error);
 
-        alert(error.message);
+        Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: error.message,
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
     });
 
@@ -151,7 +157,13 @@ function cadastrarEpi() {
     // Validação
     if (nome == "" || numeroCA == "" || quantidade == "") {
 
-        alert("Preencha todos os campos.");
+  Swal.fire({
+    icon: "warning",
+    title: "Atenção!",
+    text: "Preencha todos os campos.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
         return;
 
@@ -208,8 +220,13 @@ function cadastrarEpi() {
 
     .then(data => {
 
-        alert("EPI cadastrado com sucesso!");
-
+      Swal.fire({
+    icon: "success",
+    title: "Sucesso!",
+    text: "EPI cadastrado com sucesso.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
         console.log(data);
 
         LimparCampos();
@@ -222,7 +239,13 @@ function cadastrarEpi() {
 
         console.error(error);
 
-        alert(error.message);
+       Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: error.message,
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
     });
 
@@ -251,8 +274,13 @@ function editarEpi(id) {
 
         if (epi == null) {
 
-            alert("EPI não encontrado.");
-
+         Swal.fire({
+    icon: "warning",
+    title: "Atenção!",
+    text: "EPI não encontrado.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
             return;
 
         }
@@ -281,7 +309,13 @@ function editarEpi(id) {
 
         console.error(error);
 
-        alert("Erro ao carregar o EPI.");
+       Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: "Erro ao carregar o EPI.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
     });
 
@@ -336,7 +370,13 @@ function atualizarEpi() {
 
         }
 
-        alert("EPI atualizado com sucesso!");
+       Swal.fire({
+    icon: "success",
+    title: "Atualizado!",
+    text: "EPI atualizado com sucesso.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
         // Limpa o formulário
         LimparCampos();
@@ -350,7 +390,13 @@ function atualizarEpi() {
 
         console.error(error);
 
-        alert(error.message);
+    Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: error.message,
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
     });
 
@@ -361,14 +407,26 @@ function atualizarEpi() {
 // DELETAR EPI
 // Exclui um EPI do banco de dados.
 // ======================================================
-function deletarEpi(id) {
+async function deletarEpi(id) {
 
-    let confirmar = confirm("Deseja realmente excluir este EPI?");
+    const confirmar = await Swal.fire({
 
-    if (!confirmar) {
+        title: "Tem certeza?",
+        text: "Deseja realmente excluir este EPI?",
+        icon: "warning",
 
+        showCancelButton: true,
+
+        confirmButtonColor: "#f97316",
+        cancelButtonColor: "#6c757d",
+
+        confirmButtonText: "Sim, excluir",
+        cancelButtonText: "Cancelar"
+
+    });
+
+    if (!confirmar.isConfirmed) {
         return;
-
     }
 
     fetch(api + "/" + id, {
@@ -391,7 +449,13 @@ function deletarEpi(id) {
 
         }
 
-        alert("EPI excluído com sucesso!");
+      Swal.fire({
+    icon: "success",
+    title: "Excluído!",
+    text: "EPI excluído com sucesso.",
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
         listarEpis();
 
@@ -401,7 +465,13 @@ function deletarEpi(id) {
 
         console.error(error);
 
-        alert(error.message);
+     Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: error.message,
+    confirmButtonColor: "#f97316",
+    confirmButtonText: "OK"
+});
 
     });
 

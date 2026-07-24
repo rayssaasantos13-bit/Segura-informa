@@ -1,30 +1,76 @@
 const myForm = document.getElementById('cadastroUsuario');
-if (myForm!=null){
-myForm.addEventListener('submit', function (event) {
-    // 1. Prevenir o recarregamento da página ao submeter form
-    event.preventDefault();
 
-    fetch('https://localhost:7175/usuario/', {
-        method: 'POST', //Para outros métodos, basta alterar aqui. Obs: Delete remove a parte do body e headers, e no get é conforme todos os exemploes feitos na Unidade interação com API 
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            nome: document.getElementById("nome").value,
-            email: document.getElementById("email").value,
-            senha: document.getElementById("senha").value,
-            cargo: document.getElementById("cargo").value
-        }),
-    }).then(response => {
-        console.log(response);
-        response.json();
-})
-        .then(data => {
-            alert("Conta cadastrada com sucesso");
-           window.location.href = "../html/log.html";      
-        })
+if (myForm != null) {
+
+    myForm.addEventListener('submit', function (event) {
+
+        event.preventDefault();
+
+        const senha = document.getElementById("senha").value;
+
+        if (senha.length < 8) {
+            Swal.fire({
+    icon: "warning",
+    title: "Senha inválida",
+    text: "A senha deve ter no mínimo 8 caracteres.",
+    confirmButtonText: "OK",
+    confirmButtonColor: "#ff8c00"
 });
+            return;
+        }
+
+        fetch('https://localhost:7175/usuario/', {
+
+            method: 'POST',
+
+            credentials: 'include',
+
+            headers: {
+                'Content-Type': 'application/json',
+            },
+
+            body: JSON.stringify({
+
+                nome: document.getElementById("nome").value,
+
+                email: document.getElementById("email").value,
+
+                senha: senha,
+
+                cargo: document.getElementById("cargo").value
+
+            }),
+
+        })
+
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error("Erro ao cadastrar usuário");
+            }
+
+            return response.json();
+
+        })
+
+        .then(data => {
+
+            alert("Conta cadastrada com sucesso");
+
+            window.location.href = "../html/log.html";
+
+        })
+
+        .catch(error => {
+
+            console.log(error);
+
+            alert("Erro ao cadastrar usuário.");
+
+        });
+
+    });
+
 }
 /*document.querySelector("form").addEventListener("submit", function (e) {
     e.preventDefault();
